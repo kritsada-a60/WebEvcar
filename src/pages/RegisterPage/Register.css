@@ -1,0 +1,17 @@
+.text {
+	text-transform: uppercase;
+	background: linear-gradient(180deg, #33B192 0%, #6CDCC0 100%); 
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+.input{
+    border-style:dashed;
+    border-width:3px;
+    border-top-width:0px;
+    border-left-width:0px;
+    border-right-width:0px;
+    border-color:black;
+}
+.button {
+	background-image: linear-gradient(180deg, #33B192 0%, #6CDCC0 100%); 
+}
