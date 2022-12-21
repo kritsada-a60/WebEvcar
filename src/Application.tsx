@@ -19,6 +19,8 @@ import AddStationInformationPage from './pages/MainPage/Page/StationInformationP
 import UserDetailPage from './pages/MainPage/Page/UserDetailPage/UserDetail';
 import AddUserDetailPage from './pages/MainPage/Page/UserDetailPage/AddUserDetail';
 
+import AdminPage from './pages/MainPage/Page/AdminPage/AdminPage';
+
 import MainPage from '../src/pages/MainPage/Header';
 import BodyPage from '../src/pages/MainPage/Body';
 
@@ -54,11 +56,14 @@ const Application: React.FunctionComponent<IApplicationProps> = (props) => {
                 <Route path="history" element={<HistoryPage />} />
                 <Route path="cardetail" element={<CarDetailPage />} />
                 <Route path="cradleinfomation" element={<CradleInfomationPage />} />
+
                 <Route path="stationinformation" element={<StationInformationPage />} />
                 <Route path="addstationinformation" element={<AddStationInformationPage />} />
 
                 <Route path="userdetail" element={<UserDetailPage />} />
                 <Route path="adduserdetail" element={<AddUserDetailPage />} />
+
+                <Route path="adminpage" element={<AdminPage />} />
 
                 <Route path="body" element={<BodyPage />}>
                     <Route index element={<BodyPage />} />

@@ -18,7 +18,21 @@ const AdminPage: React.FunctionComponent<IAdminPageProps> = (props) => {
     return (
         <div style={{backgroundColor:'#E0F0EC'}}>
           <Header/>
-          <Body/>
+          <div style={{display:'block',justifyContent:'center',alignItems:'center'}}>
+            <div style={{margin:'2.5vh 2.5vw'}}>
+              <Button style={{color:'black',width:'90vw', backgroundColor:'white',padding:'1vw'}}>
+                ตั้งค่า
+              </Button>
+            </div>
+          </div>
+
+          <div style={{display:'block',justifyContent:'center',alignItems:'center'}}>
+            <div style={{margin:'2.5vh 2.5vw'}}>
+              <Button style={{color:'black',width:'90vw', backgroundColor:'white',padding:'1vw',margin:'0 0 2.5vh 0'}}>
+                ออกจากระบบ
+              </Button>
+            </div>
+          </div>
         </div>
     );
 };
