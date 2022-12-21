@@ -101,7 +101,7 @@ const navigate = useNavigate();
     e.preventDefault();
     console.log(values)
     axios
-      .post("http://54.86.117.200:5000/user/login", {
+      .post("http://54.86.117.200:5000/user/login2", {
         uname: values.uname,
         upass: values.upass,
       })

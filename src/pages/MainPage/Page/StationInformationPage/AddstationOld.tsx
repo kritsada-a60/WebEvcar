@@ -10,10 +10,6 @@ import { Typography , TextField} from "@mui/material";
 import Header from "../../Header"
 import Body from "./Body"
 import axios, { Axios } from "axios";
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import { useParams , useNavigate} from 'react-router-dom';
 
 type MyDataPost = {
   ut_id: string;
@@ -41,18 +37,15 @@ const AddstationPage: React.FunctionComponent<ISAddstationPageProps> = (props) =
 
     const [FirstData, setFirstData] = useState<MyDataPost[]>([]);
 
+
+
     const LS = localStorage;
     const idEdit = LS.getItem('idEdit');
+
 
     const RemoceIdEdit = () => {
       LS.removeItem('idEdit');
     }
-
-    const navigate = useNavigate();
-
-    const navigateadddata = () => {
-        navigate('/stationinformation');
-    };
     
     const [Bname, setBname] = useState("") 
 
@@ -60,19 +53,6 @@ const AddstationPage: React.FunctionComponent<ISAddstationPageProps> = (props) =
       ut_name:"",
       u_id:"",
     }) 
-
-    const [age, setAge] = React.useState('');
-
-    const [testdorpdown, settestdorpdown] = useState([
-      {number:'1',text:'a'},
-      {number:'2',text:'b'},
-      {number:'3',text:'c'},
-      {number:'4',text:'d'},
-    ]);
-
-    const handleChange = (event: SelectChangeEvent) => {
-      setAge(event.target.value);
-    };
 
     // useEffect(() =>{
     //   axios.get(baseURL).then((response) => {
@@ -86,13 +66,12 @@ const AddstationPage: React.FunctionComponent<ISAddstationPageProps> = (props) =
     console.log(Bnumber)
     axios
       .post(baseURLUpdateEdit, {
-        ut_name: Bname,
+        ut_name: Bnumber.ut_name,
         ut_id: idEdit,
       })
       .then((res) => {
         console.log(res.data);
         console.log("ok");
-        navigateadddata();
         // setBnumber(res.data.success)
       })
       .catch((err) => console.error(err));
@@ -105,8 +84,8 @@ const AddstationPage: React.FunctionComponent<ISAddstationPageProps> = (props) =
         ut_id: LS.getItem('idEdit')
       }).then((response) => {
         console.log(response.data)
-        // setFirstData(response.data.data[0].ut_name)
-        setBname(response.data.data[0].ut_name)
+        setFirstData(response.data.data[0].ut_name)
+        // setBname(response.data.data[0].ut_name)
         // setpost(response.data.data)
         // console.log(response.data.data[0])
       })
@@ -152,30 +131,15 @@ const AddstationPage: React.FunctionComponent<ISAddstationPageProps> = (props) =
                 <label>
                   <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="เลขที่กิจการ"
                   // value={Bnumber}
-                  value={Bname}
-                  onChange={(e) => {setBname(e.target.value)}}
+                  value={Bnumber}
+                  onChange={(e) => setBnumber({ ...Bnumber, ut_name: e.target.value })}
+                  
+                  defaultValue={FirstData}
                   />       
                 </label>
                 <label>
-                  <Select type="ประเภทกิจการ" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ประเภทกิจการ"
-                    value={age}
-                    onChange={handleChange}
-                    // label="Age"
-                    displayEmpty
-                    inputProps={{ 'aria-label': 'Without label' }}
-                  >
-                    <MenuItem value="">
-                      {/* <em>None</em> */}
-                    </MenuItem>
-                    {testdorpdown?.length &&
-                      testdorpdown.map((e: any, i: number) => {
-                        return (
-                          <MenuItem key={i} value={e.number}>
-                            {e.text}
-                          </MenuItem>
-                        );
-                    })}
-                  </Select>          
+                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ประเภทกิจการ"
+                  />          
                 </label>
               </div>
               <div style={{margin:'2.5vh 0'}}>

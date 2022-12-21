@@ -1,7 +1,9 @@
 import axios, { Axios } from "axios";
 import MUIDataTable from "mui-datatables";
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams , useNavigate} from 'react-router-dom';
+import Button from '@mui/material/Button'
+
 
 export interface IBodyPageProps {}
 
@@ -19,7 +21,8 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const { nametext } = useParams();
 
     const [post, setpost] = useState<MyDataPost[]>([]);
-
+    const [EditData_1, setEditData_1] = useState('');
+    
     useEffect(() =>{
       axios.get(baseURL).then((response) => {
         setpost(response.data.data)
@@ -31,44 +34,66 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         console.log("this data",post)
     }, [post]);
 
-    useEffect(() => {
-        if (nametext) {
-            setMessage('The number is ' + nametext);
-        } else {
-            setMessage('No number was provided');
-        }
-    }, []);
+    const LS = localStorage;
+
+
+    function SetLs_idEdit() {
+
+        LS.setItem('idEdit', EditData_1);
+
+    }
+
+
 
     const columns = ["ทะเบียนรถ", "อู่", "Switch on", "Switch off", "ระยะทาง", "ปริมาณไฟฟ้าที่ใช้"];
 
-    const data = [
-    ["Joe James", "Test Corp", "Yonkers", "NY"],
-    ["John Walsh", "Test Corp", "Hartford", "CT"],
-    ["Bob Herm", "Test Corp", "Tampa", "FL"],
-    ["James Houston", "Test Corp", "Dallas", "TX"],
-    ];
 
-    const HistoryPagedata = [
-    ["กข 231", "อู่ 1", "110/1 อ.โคกสำรอง จ.ลพบุรี", "44/1 อ.เมือง จ.ลพบุรี", "7 กิโลเมตร", "82 kWh"],
-    ["ฮก 452", "อู่ 1", "59/1 อ.เมือง จ.ลพบุรี", "105/3 อ.เมือง จ.ลพบุรี", "15 กิโลเมตร", "120 kWh"],
-    ["ขฟ 785", "อู่ 1", "31/2 อ.บ้านหมี่ จ.ลพบุรี", "303/1 อ.เมือง จ.ลพบุรี", "3 กิโลเมตร", "41 kWh"],
-    ["อด 555", "อู่ 1", "22/2 อ.เมือง จ.ลพบุรี", "72/2 อ.เมือง จ.ลพบุรี", "1 กิโลเมตร", "22 kWh"],
+    const Testcolumns = [
+        "ทะเบียนรถ",
+        "อู่",
+        "Switch on",
+        "Switch off",
+        "ระยะทาง",
+        "ปริมาณไฟฟ้าที่ใช้",
+      {
+        name: "Edit",
+        options: {
+            filter: false,
+            sort: false,
+            customBodyRenderLite: (dataIndex:any, rowIndex:any) => {
+            return (
+              <Button aria-label="edit" variant="outlined" style={{color:'white',backgroundColor:'#6CDCC0',borderRadius:'15px'}}
+              onClick={() => {
+                setEditData_1(post[dataIndex].ut_id)
+                SetLs_idEdit();            
+              }}
+              >
+                {`ดูแผนที่`}
+              </Button>
+            );
+          }
+        }
+      }
     ];
 
     return (
-        <div style={{marginTop:'10vh'}}>
-            <MUIDataTable
-                title={"ประวัติการเดินทาง"}
-                // data={HistoryPagedata}
-                data={post.map(item => {
-                    return [
-                        item.ut_id,
-                        item.ut_name,
-                    ]
-                })}
-                columns={columns}
-            />
-            
+        <div style={{margin:'5vh 5vw'}}>
+            <div style={{display:'flex',justifyContent:'flex-start'}}>
+                <div style={{width:'100%'}}>
+                    <MUIDataTable
+                        title={"ประวัติการเดินทาง"}
+                        // data={HistoryPagedata}
+                        data={post.map(item => {
+                            return [
+                                item.ut_id,
+                                item.ut_name,
+                            ]
+                        })}
+                        columns={Testcolumns}
+                    />
+                </div>
+            </div>
+
         </div>
     );
 };
