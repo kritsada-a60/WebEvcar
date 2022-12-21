@@ -17,19 +17,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         }
     }, []);
 
-    const columns = ["Name", "Company", "City", "State"];
-
-    const mycolumns = ["ทะเบียนรถ", "อู่", "Switch on", "Switch off", "ระยะทาง", "ปริมาณไฟฟ้าที่ใช้"];
-
-    const mycolumns2 = ["ทะเบียนรถ", "อู่", "ประเภทรถ", "ประเภทแบตเตอรี่", "อายุแบตเตอรี่", "ความเร็วรถ", "เลขไมล์", "วันที่เริ่มใช้งาน", "สถานะรถ"];
-
-    const mycolumns3 = ["เลขที่กิจการ", "รูปแบบกิจการ", "ที่อยู่", "ชื่อเจ้าของอู่", "เบอร์ติดต่อ", "เวลาทำการ", "จำนวนรถ"];
-
-    const mycolumns4 = ["เลขที่กิจการ", "รูปแบบกิจการ", "สถานะเปิด/ปิด", "ที่อยู่", "ชื่อเจ้าของอู่", "เบอร์ติดต่อ", "เวลาทำการ"];
-
-    const mycolumns5 = ["เลขที่กิจการ", "รูปแบบกิจการ", "สถานะเปิด/ปิด", "ที่อยู่", "ชื่อเจ้าของอู่", "เบอร์ติดต่อ"];
-
-    const mycolumns6 = ["เลขที่กิจการ", "ระดับสิทธิ", "ชื่อ-นามสกุล", "ชื่ออู่", "เบอร์ติดต่อ", "เวลาทำการ"];
+    const columns = ["ทะเบียนรถ", "อู่", "ประเภทรถ", "ประเภทแบตเตอรี่", "อายุแบตเตอรี่", "ความเร็วรถ", "เลขไมล์", "วันที่เริ่มใช้งาน", "สถานะรถ"];
 
     const data = [
     ["Joe James", "Test Corp", "Yonkers", "NY"],
@@ -49,7 +37,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
             <MUIDataTable
                 title={"ข้อมูลรถ"}
                 data={CarDetailPagedata}
-                columns={mycolumns2}
+                columns={columns}
             />
             
         </div>
