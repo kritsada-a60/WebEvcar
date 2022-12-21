@@ -50,6 +50,10 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
 
 const navigate = useNavigate();
 
+    const navigateLoginPage = () => {
+    navigate('/login');
+  };
+
     const navigateMain = () => {
     navigate('/map');
   };
@@ -83,7 +87,7 @@ const navigate = useNavigate();
     e.preventDefault();
     console.log(values)
     axios
-      .post("http://54.86.117.200:6000/user/login", {
+      .post("https://54.172.95.43:5000/login", {
         uname: values.uname,
         upass: values.upass,
       })
@@ -144,11 +148,12 @@ const navigate = useNavigate();
 
         </form>
         <Button variant="text" style={{color:'black' ,position: 'absolute', zIndex:'3' ,left: '35.250vw', top: '30.741vh',fontSize:'1.563vw'}}
-        onClick={navigateMain}
+        onClick={navigateLoginPage}
         >
           เข้าสู่ระบบ
         </Button>
-        <Button variant="text" style={{color:'gray' ,position: 'absolute', zIndex:'3' ,left: '53.854vw', top: '81.019vh',fontSize:'24px'}}>
+        <Button variant="text" style={{color:'gray' ,position: 'absolute', zIndex:'3' ,left: '53.854vw', top: '81.019vh',fontSize:'24px'}}
+        onClick={navigateForgotPassword}>
           ลืมรหัสผ่าน?
         </Button>
 

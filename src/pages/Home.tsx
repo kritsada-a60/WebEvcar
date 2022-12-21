@@ -47,7 +47,7 @@ const HomePage: React.FunctionComponent<IHomePageProps> = (props) => {
 const navigate = useNavigate();
 
     const navigateLogin = () => {
-    navigate('/');
+    navigate('/login');
   };
 
     const navigateMain = () => {

@@ -47,7 +47,7 @@ const RegisterPage: React.FunctionComponent<IRegisterPageProps> = (props) => {
 const navigate = useNavigate();
 
     const navigateLogin = () => {
-    navigate('/');
+    navigate('/login');
   };
 
     const navigateMain = () => {
