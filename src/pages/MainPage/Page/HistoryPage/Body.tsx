@@ -1,13 +1,35 @@
+import axios, { Axios } from "axios";
 import MUIDataTable from "mui-datatables";
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 export interface IBodyPageProps {}
 
+type MyDataPost = {
+  ut_id: string;
+  ut_name: string;
+};
+
+const baseURL ="http://54.86.117.200:5000/usertype/list"
+
+
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     const [message, setMessage] = useState('');
     const { nametext } = useParams();
+
+    const [post, setpost] = useState<MyDataPost[]>([]);
+
+    useEffect(() =>{
+      axios.get(baseURL).then((response) => {
+        setpost(response.data.data)
+        // console.log(response.data.data[0])
+      })
+    }, []);
+
+    useEffect(() =>{
+        console.log("this data",post)
+    }, [post]);
 
     useEffect(() => {
         if (nametext) {
@@ -33,13 +55,17 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     ["อด 555", "อู่ 1", "22/2 อ.เมือง จ.ลพบุรี", "72/2 อ.เมือง จ.ลพบุรี", "1 กิโลเมตร", "22 kWh"],
     ];
 
-
-
     return (
         <div style={{marginTop:'10vh'}}>
             <MUIDataTable
                 title={"ประวัติการเดินทาง"}
-                data={HistoryPagedata}
+                // data={HistoryPagedata}
+                data={post.map(item => {
+                    return [
+                        item.ut_id,
+                        item.ut_name,
+                    ]
+                })}
                 columns={columns}
             />
             

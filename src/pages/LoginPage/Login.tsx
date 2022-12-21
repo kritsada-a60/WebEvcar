@@ -8,7 +8,7 @@ import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-import { Typography , TextField} from "@mui/material";
+import { Typography , TextField , Alert} from "@mui/material";
 import axios from "axios";
 
 
@@ -76,24 +76,39 @@ const navigate = useNavigate();
     // showPass: false,
   });
 
+  const [checklogin, setchechlogin] = useState(null);
+
   useEffect(() => {
       console.log("id",values.uname);
       console.log("pass",values.upass);
       // console.log(values)
     }, [values]);
 
+  useEffect(() => {
+    if (checklogin == true){
+      // console.log("gologin")
+      navigateMain();
+    } else {
+      // <Alert severity="error">ผู้ใช้งาน หรือ พาสเวิร์คผิด กรุณากรอกใหม่</Alert>
+      alert("ผู้ใช้งาน หรือ พาสเวิร์คผิด กรุณากรอกใหม่")
+      setchechlogin(null)
+    }
+    // console.log(checklogin,"hi")
+  }, [checklogin])
+
 
   const handleSubmit = (e:any) => {
     e.preventDefault();
     console.log(values)
     axios
-      .post("https://54.172.95.43:5000/login", {
+      .post("http://54.86.117.200:5000/user/login", {
         uname: values.uname,
         upass: values.upass,
       })
       .then((res) => {
-        // console.log(res.data);
-        console.log("ok");
+        console.log(res.data);
+        // console.log("ok");
+        setchechlogin(res.data.success)
       })
       .catch((err) => console.error(err));
   };
