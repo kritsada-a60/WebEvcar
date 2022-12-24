@@ -12,8 +12,12 @@ export interface IBodyPageProps {}
 // }
 
 type MyDataPost = {
-    ut_id: string;
-    ut_name: string;
+    ctm_id: string;
+    ctm_name: string;
+};
+
+type MyDeleteData = {
+    ctm_name: string;
 };
 
 // interface IDEdit {
@@ -22,9 +26,13 @@ type MyDataPost = {
  
 
 
-const baseURL ="http://54.86.117.200:5000/usertype/list"
+const baseURL ="http://54.86.117.200:5000/customer/list"
 
-const baseURLEdit ="http://54.86.117.200:5000/usertype/add"
+const baseURLEdit ="http://54.86.117.200:5000/customer/add"
+
+const baseURLUpdateDelete ="http://54.86.117.200:5000/customer/del"
+
+const test ="http://54.86.117.200:5000/customer/one"
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
@@ -49,21 +57,35 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         // navigateadddata();
     }
 
+    function GetLs_idDelete() {
+        // console.log(EditData_1);
+        LS.setItem('idDelete', DeleteData);
+        // console.log(Number(DeleteData))
+
+        // navigateadddata();
+    }
+
+
+
     const [EditData_1, setEditData_1] = useState('');
-    const [EditData_2, setEditData_2] = useState('');
-    const [EditData_3, setEditData_3] = useState('');
+    // const [DeleteData, setDeleteData] = useState<MyDeleteData[]>([]);
+    const [DeleteData, setDeleteData] = useState('');
+    const [EditData_3, setEditData_3] = useState();
+
+
 
     useEffect(() =>{
       axios.get(baseURL).then((response) => {
         setpost(response.data.data)
-        console.log(response.data.data)
+        // console.log(post,"post data")
+        console.log(response.data.data,"start data")
         // console.log(response.data.data.length)
         setcount(response.data.data.length)
       })
     }, []);
 
     useEffect(() =>{
-        // console.log("this data",post)
+        console.log(post,"this data")
     }, [post]);
 
     useEffect(() =>{
@@ -76,12 +98,36 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         console.log("EditData",EditData_1)   
         SetLs_idEdit();
         if (EditData_1 != ''){
-            navigateadddata();
+            navigateeditdata();
         }
     }, [EditData_1]);
 
+
+
+    useEffect(() =>{
+        console.log("EditData",DeleteData)
+        GetLs_idDelete();
+        if ( DeleteData != ''){
+            axios
+            .post(baseURLUpdateDelete, {
+                ctm_id: Number(DeleteData),
+                u_id: "1",
+            })
+            .then((res) => {
+                console.log(res,"this is delete");
+                // console.log("ok");
+            })
+            .catch((err) => console.error(err));
+        }
+
+    }, [DeleteData]);
+
     const navigateadddata = () => {
-        navigate('/addstationinformation');
+        navigate('/addcustomer');
+    };
+
+        const navigateeditdata = () => {
+        navigate('/editcustomer');
     };
 
     useEffect(() => {
@@ -91,6 +137,26 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
             setMessage('No number was provided');
         }
     }, []);
+
+
+    const handleSubmit = () => {
+        // if (DeleteData != "0"){
+        //     console.log(DeleteData,"Now Delete")
+        // }
+        console.log(DeleteData)
+        // axios
+        // .post(baseURLUpdateDelete, {
+        //     ctm_id: Number(DeleteData),
+        //     u_id: "1",
+        // })
+        // .then((res) => {
+        //     console.log(res,"this is delete");
+        //     // console.log("ok");
+        // })
+        // .catch((err) => console.error(err));
+    };
+
+
 
     const columns = ["เลขที่กิจการ", "รูปแบบกิจการ", "สถานะเปิด/ปิด", "ที่อยู่", "ชื่อเจ้าของอู่", "เบอร์ติดต่อ", "เวลาทำการ"];
 
@@ -124,8 +190,9 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
             return (
               <Button aria-label="edit" variant="outlined" style={{color:'white',backgroundColor:'#6CDCC0',borderRadius:'15px'}}
               onClick={() => {
-                setEditData_1(post[dataIndex].ut_id)
-                SetLs_idEdit();            
+                setEditData_1(post[dataIndex].ctm_id);
+                SetLs_idEdit();   
+          
               }}
               >
                 {`Edit`}
@@ -133,8 +200,29 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
             );
           }
         }
+      },
+      {
+        name: "Delete",
+        options: {
+            filter: false,
+            sort: false,
+            customBodyRenderLite: (dataIndex:any, rowIndex:any) => {
+            return (
+              <Button aria-label="delete" variant="outlined" style={{color:'white',backgroundColor:'#6CDCC0',borderRadius:'15px'}}
+              onClick={() => {
+                setDeleteData(post[dataIndex].ctm_id);
+                // GetLs_idDelete();
+                // handleSubmit();
+              }}
+              >
+                {`Delete`}
+              </Button>
+            );
+          }
+        }
       }
     ];
+    
 
     /* Add Button and Vaule */
 
@@ -192,11 +280,12 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                     title={"ข้อมูลสถานี"}
                     data={post.map(item => {
                         return [
-                            item.ut_id,
-                            item.ut_name,
+                            item.ctm_id,
+                            item.ctm_name,
                         ]
-                    })}
+                    })} 
                     columns={Testcolumns} 
+                    
                 />
                 {/* <MUIDataTable
                     title={"ข้อมูลสถานี"}

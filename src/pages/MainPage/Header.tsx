@@ -19,6 +19,7 @@ const pages = [
     {page:'แผนที่' , link: "map"},
     {page:'ประวัติ', link: "history"},
     {page:'ข้อมูลรถ', link: "cardetail"},
+    {page:'ข้อมูลลูกค้า', link: "customer"},
     {page:'ข้อมูลอู่', link: "cradleinfomation"},
     {page:'ข้อมูลสถานี', link: "stationinformation"},
     {page:'ข้อมูลผู้ใช้งาน', link: "userdetail"}
@@ -48,7 +49,7 @@ function ResponsiveAppBar() {
     <AppBar position="static" style={{backgroundColor:'white'}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <img src={Logo} style={{marginRight:'3vw'}}/>
+          <img src={Logo} style={{marginRight:'2vw'}}/>
           {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
           {/* <Typography
             variant="h6"

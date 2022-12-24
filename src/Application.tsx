@@ -13,6 +13,11 @@ import ChangePasswordPage from '../src/pages/ChangePasswordPage/ChangePassword';
 import MapPage from './pages/MainPage/Page/MapPage/Map';
 import HistoryPage from './pages/MainPage/Page/HistoryPage/History';
 import CarDetailPage from './pages/MainPage/Page/CarDetailPage/CarDetail';
+import CustomerPage from './pages/MainPage/Page/CustomerPage/Customer';
+import AddCustomerPage from './pages/MainPage/Page/CustomerPage/AddCustomer';
+import EditCustomerPage from './pages/MainPage/Page/CustomerPage/EditCustomer';
+import DeleteCustomerPage from './pages/MainPage/Page/CustomerPage/DeleteCustomer';
+
 import CradleInfomationPage from './pages/MainPage/Page/CradleInfomationPage/CradleInfomation';
 import StationInformationPage from './pages/MainPage/Page/StationInformationPage/StationInformation';
 import AddStationInformationPage from './pages/MainPage/Page/StationInformationPage/Addstation';
@@ -56,6 +61,12 @@ const Application: React.FunctionComponent<IApplicationProps> = (props) => {
                 <Route path="history" element={<HistoryPage />} />
                 <Route path="cardetail" element={<CarDetailPage />} />
                 <Route path="cradleinfomation" element={<CradleInfomationPage />} />
+
+                <Route path="customer" element={<CustomerPage />} />
+                <Route path="addcustomer" element={<AddCustomerPage />} />
+                <Route path="editcustomer" element={<EditCustomerPage />} />
+                <Route path="deletecustomer" element={<DeleteCustomerPage />} />
+                {/* <Route path="deletecustomer" element={<CustomerPage />} /> */}
 
                 <Route path="stationinformation" element={<StationInformationPage />} />
                 <Route path="addstationinformation" element={<AddStationInformationPage />} />
