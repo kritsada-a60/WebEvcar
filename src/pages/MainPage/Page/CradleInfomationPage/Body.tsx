@@ -33,13 +33,16 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
 
     return (
-        <div style={{marginTop:'10vh'}}>
-            <MUIDataTable
-                title={"ข้อมูลอู่"}
-                data={CradleInfomationPagedata}
-                columns={columns}
-            />
-            
+        <div style={{margin:'5vh 5vw'}}>
+            <div style={{display:'flex',justifyContent:'flex-start'}}>
+                <div style={{width:'100%'}}>
+                <MUIDataTable
+                    title={"ข้อมูลอู่"}
+                    data={CradleInfomationPagedata}
+                    columns={columns}
+                />
+                </div>
+            </div>
         </div>
     );
 };

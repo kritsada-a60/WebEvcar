@@ -16,7 +16,7 @@ export interface ICarDetailPageProps {}
 const CarDetailPage: React.FunctionComponent<ICarDetailPageProps> = (props) => {
 
     return (
-        <div style={{backgroundColor:'#E0F0EC'}}>
+        <div style={{backgroundColor:'#E0F0EC', padding:'0vh 0vw 1vh 0vw'}}>
           <Header/>
           <Body/>
         </div>

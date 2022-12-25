@@ -48,18 +48,18 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     const LS = localStorage;
     // const SetLs_idEdit = () => {
-    //     LS.setItem('idEdit', EditData_1);
+    //     LS.setItem('idEdit', EditCustomerData);
     // }
 
     function SetLs_idEdit() {
-        // console.log(EditData_1);
-        LS.setItem('idEdit', EditData_1);
+        // console.log(EditCustomerData);
+        LS.setItem('IdCustomerEdit', EditCustomerData);
         // navigateadddata();
     }
 
     function GetLs_idDelete() {
-        // console.log(EditData_1);
-        LS.setItem('idDelete', DeleteData);
+        // console.log(EditCustomerData);
+        LS.setItem('IdCustomerDelete', DeleteData);
         // console.log(Number(DeleteData))
 
         // navigateadddata();
@@ -67,7 +67,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
 
 
-    const [EditData_1, setEditData_1] = useState('');
+    const [EditCustomerData, setEditCustomerData] = useState('');
     // const [DeleteData, setDeleteData] = useState<MyDeleteData[]>([]);
     const [DeleteData, setDeleteData] = useState('');
     const [EditData_3, setEditData_3] = useState();
@@ -95,17 +95,17 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     /* Click And Go Next Page */
 
     useEffect(() =>{
-        console.log("EditData",EditData_1)   
+        console.log("EditCustomerData",EditCustomerData)   
         SetLs_idEdit();
-        if (EditData_1 != ''){
+        if (EditCustomerData != ''){
             navigateeditdata();
         }
-    }, [EditData_1]);
+    }, [EditCustomerData]);
 
 
 
     useEffect(() =>{
-        console.log("EditData",DeleteData)
+        console.log("EditCustomerData",DeleteData)
         GetLs_idDelete();
         if ( DeleteData != ''){
             axios
@@ -130,13 +130,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         navigate('/editcustomer');
     };
 
-    useEffect(() => {
-        if (nametext) {
-            setMessage('The number is ' + nametext);
-        } else {
-            setMessage('No number was provided');
-        }
-    }, []);
+
 
 
     const handleSubmit = () => {
@@ -174,13 +168,22 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     /* Add Button */
 
     const Testcolumns = [
-      "เลขที่กิจการ",
-      "รูปแบบกิจการ",
-      "สถานะเปิด/ปิด",
-      "ที่อยู่",
-      "ชื่อเจ้าของอู่",
-      "เบอร์ติดต่อ",
-      "เวลาทำการ",
+        "ID",
+        "ชื่อลูกค้า", 
+        "ประเภทลูกค้า", 
+        "เลขทะเบียนการค้า", 
+        "ชื่อธนาคาร", 
+        "บัญขีธนาคาร", 
+        "ชื่อผู้ติดต่อ", 
+        "ที่อยู่", 
+        // "ตำบล", 
+        // "อำเภอ",
+        // "จังหวัด", 
+        // "รหัสไปรษณีย์", 
+        // "โทรศัพท์", 
+        // "มือถือ",
+        // "E-Mail", 
+        // "รหัส MQTT",
       {
         name: "Edit",
         options: {
@@ -190,7 +193,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
             return (
               <Button aria-label="edit" variant="outlined" style={{color:'white',backgroundColor:'#6CDCC0',borderRadius:'15px'}}
               onClick={() => {
-                setEditData_1(post[dataIndex].ctm_id);
+                setEditCustomerData(post[dataIndex].ctm_id);
                 SetLs_idEdit();   
           
               }}

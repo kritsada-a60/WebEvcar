@@ -42,10 +42,10 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
     const [FirstData, setFirstData] = useState<MyDataPost[]>([]);
 
     const LS = localStorage;
-    const idEdit = LS.getItem('idEdit');
+    const idEdit = LS.getItem('IdEditCustomerData');
 
     const RemoceIdEdit = () => {
-      LS.removeItem('idEdit');
+      LS.removeItem('IdEditCustomerData');
     }
 
     const navigate = useNavigate();
@@ -102,7 +102,7 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
 
     useEffect(() =>{
       axios.post(baseURLUpdateData,{
-        ut_id: LS.getItem('idEdit')
+        ut_id: LS.getItem('IdEditCustomerData')
       }).then((response) => {
         console.log(response.data)
         // setFirstData(response.data.data[0].ut_name)
