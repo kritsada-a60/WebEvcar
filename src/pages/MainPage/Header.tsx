@@ -22,6 +22,7 @@ const pages = [
     {page:'ข้อมูลลูกค้า', link: "customer"},
     {page:'ข้อมูลอู่', link: "cradleinfomation"},
     {page:'ข้อมูลสถานี', link: "stationinformation"},
+    {page:'Serivce', link: "service"},
     {page:'ข้อมูลผู้ใช้งาน', link: "userdetail"}
 ];
 const settings = ['Logout'];

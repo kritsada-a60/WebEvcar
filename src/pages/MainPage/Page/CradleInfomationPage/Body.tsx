@@ -91,7 +91,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         if ( DeleteData != ''){
             axios
             .post(baseURLUpdateDelete, {
-                ctm_id: Number(DeleteData),
+                s_id: Number(DeleteData),
                 u_id: "1",
             })
             .then((res) => {
@@ -179,6 +179,9 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     return (
         <div style={{margin:'5vh 5vw'}}>
+            <div style={{display:'flex',justifyContent:'flex-end',alignItems:'center',margin:'2vh 0vw'}}>
+              <Button onClick={navigateadddata} style={{color:'black', backgroundColor:'#6CDCC0',borderRadius:'50px',width:'9.740vw'}}>เพิ่ม</Button>
+            </div>
             <div style={{display:'flex',justifyContent:'flex-start'}}>
                 <div style={{width:'100%'}}>
                 <MUIDataTable

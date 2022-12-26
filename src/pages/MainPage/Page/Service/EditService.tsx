@@ -17,41 +17,48 @@ import { useParams , useNavigate} from 'react-router-dom';
 
 type MyDataPost = {
   ut_id: string;
+  ctm_name: string;
+  ut_name: string;
+  u_id: number;
+};
+
+type MyDataEdit = {
+  ut_id: string;
+  ctm_name: string;
   ut_name: string;
   u_id: number;
 };
 
 
+export interface ISAddServicePageProps {}
 
-export interface ISAddstationPageProps {}
+const baseURL ="http://54.86.117.200:5000/service/list"
 
-const baseURL ="http://54.86.117.200:5000/usertype/list"
+const baseURLEdit ="http://54.86.117.200:5000/service/add"
 
-const baseURLEdit ="http://54.86.117.200:5000/usertype/add"
+const baseURLUpdateData ="http://54.86.117.200:5000/service/one"
 
-const baseURLUpdateData ="http://54.86.117.200:5000/usertype/one"
+const baseURLUpdateEdit ="http://54.86.117.200:5000/service/edit"
 
-const baseURLUpdateEdit ="http://54.86.117.200:5000/usertype/edit"
-
-const AddstationPage: React.FunctionComponent<ISAddstationPageProps> = (props) => {
+const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) => {
 
     const [post, setpost] = useState<MyDataPost[]>([]);
 
     const [MyIdEdit, setMyIdEdit] = useState('');
 
-    const [FirstData, setFirstData] = useState<MyDataPost[]>([]);
+    const [FirstData, setFirstData] = useState<MyDataEdit[]>([]);
 
     const LS = localStorage;
-    const idEdit = LS.getItem('idEdit');
+    const idEdit = LS.getItem('IdEditServiceData');
 
     const RemoceIdEdit = () => {
-      LS.removeItem('idEdit');
+      LS.removeItem('IdEditServiceData');
     }
 
     const navigate = useNavigate();
 
     const navigateadddata = () => {
-        navigate('/stationinformation');
+        navigate('/service');
     };
     
     const [Bname, setBname] = useState("") 
@@ -59,6 +66,8 @@ const AddstationPage: React.FunctionComponent<ISAddstationPageProps> = (props) =
     const [Bnumber, setBnumber] = useState({
       ut_name:"",
       u_id:"",
+      ctm_name:"",
+      ctmt_name:"",
     }) 
 
     const [age, setAge] = React.useState('');
@@ -101,14 +110,17 @@ const AddstationPage: React.FunctionComponent<ISAddstationPageProps> = (props) =
     /* axios Editdata */
 
     useEffect(() =>{
+      const MydataToPostIdEdit = LS.getItem('IdCustomerEdit')
+      // console.log(MydataToPostIdEdit,"postdataedit")
       axios.post(baseURLUpdateData,{
-        ut_id: LS.getItem('idEdit')
+        sv_id: Number(MydataToPostIdEdit)
+        // ctm_id: 7
       }).then((response) => {
-        console.log(response.data)
-        // setFirstData(response.data.data[0].ut_name)
-        setBname(response.data.data[0].ut_name)
+        // console.log(response.data)
+        setFirstData(response.data.data[0])
+        setBname(response.data.data[0].ctm_name)
         // setpost(response.data.data)
-        // console.log(response.data.data[0])
+        console.log(response.data.data[0])
       })
     }, []);
 
@@ -124,20 +136,20 @@ const AddstationPage: React.FunctionComponent<ISAddstationPageProps> = (props) =
     }, [Bnumber])
 
     useEffect(() =>{
-        console.log("this MyIdEdit",MyIdEdit)
-        console.log("this Ls.get",idEdit)
+      console.log("this MyIdEdit",MyIdEdit)
+      console.log("this Ls.get",idEdit)
     }, [MyIdEdit]);
 
     useEffect(() =>{
-        console.log("this data",post)
+      console.log("this data",post)
     }, []);
 
     useEffect(() =>{
-        console.log("this FirstData",FirstData)
+      console.log("this FirstData",FirstData)
     }, [FirstData]);
 
-        useEffect(() =>{
-        console.log("this Bname",Bname)
+    useEffect(() =>{
+      console.log("this Bname",Bname)
     }, [Bname]);
 
 
@@ -145,12 +157,12 @@ const AddstationPage: React.FunctionComponent<ISAddstationPageProps> = (props) =
     return (
         <div style={{backgroundColor:'#E0F0EC'}}>
           <Header/>
-          <p style={{margin:'5vh 30vw',justifyContent:'center' ,fontSize:'36px'}}>เพิ่มสถานี</p>
+          <p style={{margin:'5vh 30vw',justifyContent:'center' ,fontSize:'36px'}}>แก้ไขStation</p>
           <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
             <form >
               <div style={{margin:'2.5vh 0'}}>
                 <label>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="เลขที่กิจการ"
+                  <TextField type="ctm_name" name="ctm_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="เลขที่กิจการ"
                   // value={Bnumber}
                   value={Bname}
                   onChange={(e) => {setBname(e.target.value)}}
@@ -172,7 +184,6 @@ const AddstationPage: React.FunctionComponent<ISAddstationPageProps> = (props) =
                         return (
                           <MenuItem key={i} value={e.number}>
                             {e.text}
-                            {console.log(i,"i",e,"e")}
                           </MenuItem>
                         );
                     })}
@@ -241,4 +252,4 @@ const AddstationPage: React.FunctionComponent<ISAddstationPageProps> = (props) =
     );
 };
 
-export default AddstationPage;
+export default AddServicePage;
