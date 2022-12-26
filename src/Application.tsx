@@ -13,6 +13,9 @@ import ChangePasswordPage from '../src/pages/ChangePasswordPage/ChangePassword';
 import MapPage from './pages/MainPage/Page/MapPage/Map';
 import HistoryPage from './pages/MainPage/Page/HistoryPage/History';
 import CarDetailPage from './pages/MainPage/Page/CarDetailPage/CarDetail';
+import AddCarDetailPage from './pages/MainPage/Page/CarDetailPage/AddCar';
+import EditCarDetailPage from './pages/MainPage/Page/CarDetailPage/EditCar';
+
 import CustomerPage from './pages/MainPage/Page/CustomerPage/Customer';
 import AddCustomerPage from './pages/MainPage/Page/CustomerPage/AddCustomer';
 import EditCustomerPage from './pages/MainPage/Page/CustomerPage/EditCustomer';
@@ -60,6 +63,8 @@ const Application: React.FunctionComponent<IApplicationProps> = (props) => {
                 <Route path="map" element={<MapPage />} />
                 <Route path="history" element={<HistoryPage />} />
                 <Route path="cardetail" element={<CarDetailPage />} />
+                <Route path="addcardetail" element={<AddCarDetailPage />} />
+                <Route path="editcardetail" element={<EditCarDetailPage />} />
                 <Route path="cradleinfomation" element={<CradleInfomationPage />} />
 
                 <Route path="customer" element={<CustomerPage />} />

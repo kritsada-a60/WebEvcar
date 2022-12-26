@@ -280,7 +280,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
             <div style={{display:'flex',justifyContent:'flex-start'}}>
                 <div style={{width:'100%'}}>
                 <MUIDataTable
-                    title={"ข้อมูลสถานี"}
+                    title={"ข้อมูลลูกค้า"}
                     data={post.map(item => {
                         return [
                             item.ctm_id,

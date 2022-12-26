@@ -14,6 +14,7 @@ export interface IBodyPageProps {}
 type MyDataPost = {
     ut_id: string;
     ut_name: string;
+    s_id: string;
 };
 
 // interface IDEdit {
@@ -25,6 +26,8 @@ type MyDataPost = {
 const baseURL ="http://54.86.117.200:5000/usertype/list"
 
 const baseURLEdit ="http://54.86.117.200:5000/usertype/add"
+
+const baseURLUpdateDelete ="http://54.86.117.200:5000/usertype/del"
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
@@ -49,12 +52,22 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         // navigateadddata();
     }
 
+    function GetLs_idDelete() {
+        // console.log(EditCustomerData);
+        LS.setItem('idEdit', DeleteData);
+        // console.log(Number(DeleteData))
+
+        // navigateadddata();
+    }
+
+    const [DeleteData, setDeleteData] = useState('');
+
     const [EditData_1, setEditData_1] = useState('');
     const [EditData_2, setEditData_2] = useState('');
     const [EditData_3, setEditData_3] = useState('');
 
     useEffect(() =>{
-      axios.get(baseURL).then((response) => {
+      axios.post(baseURL).then((response) => {
         setpost(response.data.data)
         console.log(response.data.data)
         // console.log(response.data.data.length)
@@ -91,6 +104,24 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
             setMessage('No number was provided');
         }
     }, []);
+
+        useEffect(() =>{
+        console.log("EditCustomerData",DeleteData)
+        GetLs_idDelete();
+        if ( DeleteData != ''){
+            axios
+            .post(baseURLUpdateDelete, {
+                s_id: Number(DeleteData),
+                u_id: 1,
+            })
+            .then((res) => {
+                console.log(res,"this is delete");
+                // console.log("ok");
+            })
+            .catch((err) => console.error(err));
+        }
+
+    }, [DeleteData]);
 
     const columns = ["เลขที่กิจการ", "รูปแบบกิจการ", "สถานะเปิด/ปิด", "ที่อยู่", "ชื่อเจ้าของอู่", "เบอร์ติดต่อ", "เวลาทำการ"];
 
@@ -129,6 +160,26 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
               }}
               >
                 {`Edit`}
+              </Button>
+            );
+          }
+        }
+      },
+      {
+        name: "Delete",
+        options: {
+            filter: false,
+            sort: false,
+            customBodyRenderLite: (dataIndex:any, rowIndex:any) => {
+            return (
+              <Button aria-label="delete" variant="outlined" style={{color:'white',backgroundColor:'#6CDCC0',borderRadius:'15px'}}
+              onClick={() => {
+                // setDeleteData(post[dataIndex].s_id);
+                // GetLs_idDelete();
+                // handleSubmit();
+              }}
+              >
+                {`Delete`}
               </Button>
             );
           }

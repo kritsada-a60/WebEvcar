@@ -7,7 +7,7 @@ import axios from "axios";
 export interface IBodyPageProps {}
 
 type MyDataPost = {
-    ctm_id: string;
+    c_id: string;
     ctm_name: string;
     c_license_plate: string;
 };
@@ -20,10 +20,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     const baseURL ="http://54.86.117.200:5000/car/list"
 
-
-
     const baseURLUpdateDelete ="http://54.86.117.200:5000/car/del"
-    
 
     const navigate = useNavigate();
 
@@ -38,16 +35,16 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
 
     function SetLs_idEdit() {
-        // console.log(EditCarData);
-        LS.setItem('IdCarEdit', EditCarData);
-        // navigateadddata();
+      // console.log(EditCarData);
+      LS.setItem('IdCarEdit', EditCarData);
+      // navigateadddata();
     }
 
     function GetLs_idDelete() {
-        // console.log(EditCarData);
-        LS.setItem('IdCarDelete', DeleteData);
-        // console.log(Number(DeleteData))
-        // navigateadddata();
+      // console.log(EditCarData);
+      LS.setItem('IdCarDelete', DeleteData);
+      // console.log(Number(DeleteData))
+      // navigateadddata();
     }
 
     useEffect(() =>{
@@ -63,44 +60,49 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     }, []);
 
     useEffect(() =>{
-        console.log(post,"this data")
+      console.log(post,"this data")
     }, [post]);
 
     useEffect(() =>{
-        console.log("this count",count)
+      console.log("this count",count)
     }, [count]);
 
     /* Click And Go Next Page */
 
     useEffect(() =>{
-        console.log("EditCarData",EditCarData)   
-        SetLs_idEdit();
-        if (EditCarData != ''){
-            navigateeditdata();
-        }
+      console.log("EditCarData",EditCarData)   
+      SetLs_idEdit();
+      if (EditCarData != ''){
+          navigateeditdata();
+      }
     }, [EditCarData]);
 
     useEffect(() =>{
-        console.log("EditData",DeleteData)
-        GetLs_idDelete();
-        if ( DeleteData != ''){
-            axios
-            .post(baseURLUpdateDelete, {
-                ctm_id: Number(DeleteData),
-                u_id: "1",
-            })
-            .then((res) => {
-                console.log(res,"this is delete");
-                // console.log("ok");
-            })
-            .catch((err) => console.error(err));
+      console.log("EditData",DeleteData)
+      GetLs_idDelete();
+      if ( DeleteData != ''){
+        axios
+        .post(baseURLUpdateDelete, {
+            c_id: Number(DeleteData),
+            u_id: "1",
+        })
+        .then((res) => {
+            console.log(res,"this is delete");
+            // console.log("ok");
+        })
+      .catch((err) => console.error(err));
     }}, [DeleteData]);
 
 
 
-        const navigateeditdata = () => {
-        navigate('/editcar');
+    const navigateeditdata = () => {
+      navigate('/editcardetail');
     };
+
+    const navigateaddcar = () => {
+      navigate('/addcardetail');
+    };
+
 
 
     const CarDetailPagedata = [
@@ -125,11 +127,10 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
             customBodyRenderLite: (dataIndex:any, rowIndex:any) => {
             return (
               <Button aria-label="edit" variant="outlined" style={{color:'white',backgroundColor:'#6CDCC0',borderRadius:'15px'}}
-            //   onClick={() => {
-            //     setEditCarData(post[dataIndex].ctm_id);
-            //     SetLs_idEdit();   
-          
-            //   }}
+              onClick={() => {
+                setEditCarData(post[dataIndex].c_id);
+                SetLs_idEdit();          
+              }}
               >
                 {`Edit`}
               </Button>
@@ -162,24 +163,28 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
 
     return (
-        <div style={{margin:'5vh 5vw'}}>          
-            <div style={{display:'flex',justifyContent:'flex-start'}}>
-                <div style={{width:'100%'}}>
-                    <MUIDataTable
+      <div style={{margin:'5vh 5vw'}}>
+          <div style={{display:'flex',justifyContent:'flex-end',alignItems:'center',margin:'2vh 0vw'}}>
+            <Button onClick={navigateaddcar} style={{color:'black', backgroundColor:'#6CDCC0',borderRadius:'50px',width:'9.740vw'}}>เพิ่ม</Button>
+          </div>          
+          <div style={{display:'flex',justifyContent:'flex-start'}}>
+              <div style={{width:'100%'}}>
+                  <MUIDataTable
                     title={"ข้อมูลสถานี"}
                     data={post.map(item => {
                         return [
-                            item.ctm_id,
+                            item.c_id,
                             item.ctm_name,
                             item.c_license_plate,
                         ]
                     })} 
-                    columns={Testcolumns} 
+                    columns={Testcolumns}
                     
-                    />
-                </div>
-            </div>
-        </div>
+                  />
+
+              </div>
+          </div>
+      </div>
     );
 };
 

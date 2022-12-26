@@ -39,7 +39,6 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                 data={HistoryPagedata}
                 columns={columns}
             />
-            
         </div>
     );
 };

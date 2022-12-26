@@ -17,36 +17,30 @@ import { useParams , useNavigate} from 'react-router-dom';
 
 type MyDataPost = {
   ut_id: string;
-  ctm_name: string;
   ut_name: string;
   u_id: number;
-};
-
-type MyDataEdit = {
-  ut_id: string;
   ctm_name: string;
-  ut_name: string;
-  u_id: number;
 };
 
 
-export interface ISAddCustomerPageProps {}
 
-const baseURL ="http://54.86.117.200:5000/usertype/list"
+export interface ISEditCarPageProps {}
 
-const baseURLEdit ="http://54.86.117.200:5000/usertype/add"
+const baseURL ="http://54.86.117.200:5000/car/list"
 
-const baseURLUpdateData ="http://54.86.117.200:5000/customer/one"
+const baseURLEdit ="http://54.86.117.200:5000/car/add"
 
-const baseURLUpdateEdit ="http://54.86.117.200:5000/customertype/edit"
+const baseURLUpdateData ="http://54.86.117.200:5000/car/one"
 
-const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props) => {
+const baseURLUpdateEdit ="http://54.86.117.200:5000/car/edit"
+
+const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
 
     const [post, setpost] = useState<MyDataPost[]>([]);
 
     const [MyIdEdit, setMyIdEdit] = useState('');
 
-    const [FirstData, setFirstData] = useState<MyDataEdit[]>([]);
+    const [FirstData, setFirstData] = useState<MyDataPost[]>([]);
 
     const LS = localStorage;
     const idEdit = LS.getItem('IdEditCustomerData');
@@ -66,8 +60,6 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
     const [Bnumber, setBnumber] = useState({
       ut_name:"",
       u_id:"",
-      ctm_name:"",
-      ctmt_name:"",
     }) 
 
     const [age, setAge] = React.useState('');
@@ -110,17 +102,14 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
     /* axios Editdata */
 
     useEffect(() =>{
-      const MydataToPostIdEdit = LS.getItem('IdCustomerEdit')
-      // console.log(MydataToPostIdEdit,"postdataedit")
       axios.post(baseURLUpdateData,{
-        ctm_id: Number(MydataToPostIdEdit)
-        // ctm_id: 7
+        c_id: LS.getItem('IdCarEdit')
       }).then((response) => {
-        // console.log(response.data)
-        setFirstData(response.data.data[0])
-        setBname(response.data.data[0].ctm_name)
+        console.log(response.data)
+        setFirstData(response.data.data[0].ctm_name)
+        // setBname(response.data.data[0].ut_name)
         // setpost(response.data.data)
-        console.log(response.data.data[0])
+        // console.log(response.data.data[0])
       })
     }, []);
 
@@ -136,20 +125,20 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
     }, [Bnumber])
 
     useEffect(() =>{
-      console.log("this MyIdEdit",MyIdEdit)
-      console.log("this Ls.get",idEdit)
+        console.log("this MyIdEdit",MyIdEdit)
+        console.log("this Ls.get",idEdit)
     }, [MyIdEdit]);
 
     useEffect(() =>{
-      console.log("this data",post)
+        console.log("this data",post)
     }, []);
 
     useEffect(() =>{
-      console.log("this FirstData",FirstData)
+        console.log("this FirstData",FirstData)
     }, [FirstData]);
 
-    useEffect(() =>{
-      console.log("this Bname",Bname)
+        useEffect(() =>{
+        console.log("this Bname",Bname)
     }, [Bname]);
 
 
@@ -157,14 +146,14 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
     return (
         <div style={{backgroundColor:'#E0F0EC'}}>
           <Header/>
-          <p style={{margin:'5vh 30vw',justifyContent:'center' ,fontSize:'36px'}}>เพิ่มข้อมูลลูกค้า</p>
+          <p style={{margin:'5vh 30vw',justifyContent:'center' ,fontSize:'36px'}}>เพิ่มข้อมูลรถ</p>
           <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
             <form >
               <div style={{margin:'2.5vh 0'}}>
                 <label>
-                  <TextField type="ctm_name" name="ctm_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="เลขที่กิจการ"
+                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="เลขที่กิจการ"
                   // value={Bnumber}
-                  value={Bname}
+                  value={FirstData}
                   onChange={(e) => {setBname(e.target.value)}}
                   />       
                 </label>
@@ -252,4 +241,4 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
     );
 };
 
-export default AddCustomerPage;
+export default EditCarPage;
