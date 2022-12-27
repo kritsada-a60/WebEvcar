@@ -130,17 +130,6 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     const [age, setAge] = React.useState('');
 
-    const [testdorpdown, settestdorpdown] = useState([
-      {number:'1',text:'a'},
-      {number:'2',text:'b'},
-      {number:'3',text:'c'},
-      {number:'4',text:'d'},
-    ]);
-
-    const Newdata = [
-    ["Joe James", "Test Corp", "Yonkers", "NY"]
-    ];
-
 
 
 
@@ -208,13 +197,13 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     }, [count]);
 
     useEffect(() =>{
-        // console.log("this dorpdowndata",DorpDownStaion)
+        console.log("this dorpdowndata",DorpDownStaion)
     }, [DorpDownStaion]);
 
     useEffect(() =>{
-        console.log("this numberDorpDown",NumberDorpDown)
+        // console.log("this numberDorpDown",NumberDorpDown)
         // setpost2(post => [...post])
-        setpost2(post[Number(NumberDorpDown)])
+        // setpost2(post[Number(NumberDorpDown)])
         
     }, [NumberDorpDown]);
 
@@ -312,27 +301,23 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     const handleChange = (event: SelectChangeEvent) => {
     //  setAge(event.target.value);
-        setNumberDorpDown(event.target.value);
-        SetLs_idEdit2();
+        // setNumberDorpDown(event.target.value); /* จุดเริ่มต้นของนรก */
+        // SetLs_idEdit2();
         // setNameDorpDown(event.target.value);
-
+        console.log(event.target)
         // console.log(post3[0]?.sv_id)
+        axios.post(baseURLUpdateDataTable,{
+            sv_id:event.target.value
+            // sv_id: 
+        }).then((res)=>{
+            console.log(res.data.data)
+            // setDorpDownStaion(res.data.data)
+            setpost3(res.data.data)
+        }).catch((err) => console.error(err))
+        
     };
 
 
-
-    const columns = ["เลขที่กิจการ", "รูปแบบกิจการ", "สถานะเปิด/ปิด", "ที่อยู่", "ชื่อเจ้าของอู่", "เบอร์ติดต่อ", "เวลาทำการ"];
-
-    const data = [
-    ["Joe James", "Test Corp", "Yonkers", "NY"],
-    ["John Walsh", "Test Corp", "Hartford", "CT"],
-    ["Bob Herm", "Test Corp", "Tampa", "FL"],
-    ["James Houston", "Test Corp", "Dallas", "TX"],
-    ];
-
-    const StationInformationPagedata = [
-    ["11/10711", "สถานีประจุไฟ", "เปิด", "12/1 อ.เมือง จ.ลพบุรี", "คล่องแคล่ว    ว่องไว", "xxx-xxx-xxxx", "08.30-17.30 น."],
-    ];
 
     /* Add Button */
 
