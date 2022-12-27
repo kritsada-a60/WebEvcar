@@ -219,7 +219,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
             // console.log(NumberDorpDown,"Happy")
             axios
             .post(baseURLUpdateDataTable , {
-                sv_id: NumberDorpDown,
+                s_id: NumberDorpDown,
                 // sv_id: LS.getItem("IdCustomerEdit"),
 
                 
@@ -307,7 +307,8 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         console.log(event.target)
         // console.log(post3[0]?.sv_id)
         axios.post(baseURLUpdateDataTable,{
-            sv_id:event.target.value
+            s_id:event.target.value,
+            // sv_id:event.target.value
             // sv_id: 
         }).then((res)=>{
             console.log(res.data.data)
@@ -446,7 +447,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                     inputProps={{ 'aria-label': 'Without label' }}
                     >
                     <MenuItem value="">
-                        <em>{post3[0]?.sv_name}</em>
+                        <em>{post3[0]?.s_name}</em>
                     </MenuItem>
                     {DorpDownStaion?.length &&
                         DorpDownStaion.map((e: any, i: number) => {
@@ -457,7 +458,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                             //     setNumberDorpDown(e.sv_id)
                             // }}
                             >
-                            {e.sv_name}
+                            {e.s_name}
                             </MenuItem>
                         );
                     })}
