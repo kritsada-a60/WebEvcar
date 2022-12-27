@@ -130,10 +130,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     const [age, setAge] = React.useState('');
 
-    const [testdorpdown, settestdorpdown] = useState([
-      {number:'1',text:'Station1'},
-      {number:'2',text:'Station2'},
-    ]);
+
 
 
 
@@ -222,7 +219,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
             // console.log(NumberDorpDown,"Happy")
             axios
             .post(baseURLUpdateDataTable , {
-                s_id: NumberDorpDown,
+                sv_id: NumberDorpDown,
                 // sv_id: LS.getItem("IdCustomerEdit"),
 
                 
@@ -310,28 +307,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         console.log(event.target)
         // console.log(post3[0]?.sv_id)
         axios.post(baseURLUpdateDataTable,{
-            s_id:event.target.value,
-            // sv_id:event.target.value
-            // sv_id: 
-        }).then((res)=>{
-            console.log(res.data.data)
-            // setDorpDownStaion(res.data.data)
-            setpost3(res.data.data)
-        }).catch((err) => console.error(err))
-        
-    };
-
-    const handleChange2 = (event: SelectChangeEvent) => {
-    //  setAge(event.target.value);
-        // setNumberDorpDown(event.target.value); /* จุดเริ่มต้นของนรก */
-        // SetLs_idEdit2();
-        // setNameDorpDown(event.target.value);
-        console.log(event.target)
-        // console.log(post3[0]?.sv_id)
-        axios.post(baseURL,{
-            ctm_id:"5",
-            s_id:event.target.value,
-            // sv_id:event.target.value
+            sv_id:event.target.value
             // sv_id: 
         }).then((res)=>{
             console.log(res.data.data)
@@ -464,13 +440,13 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                 <label>
                     <Select type="ประเภทกิจการ" name="" style={{margin:'0 0vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ประเภทกิจการ"
                     value={age}
-                    onChange={handleChange2}
+                    onChange={handleChange}
                     // label="Age"
                     displayEmpty
                     inputProps={{ 'aria-label': 'Without label' }}
                     >
                     <MenuItem value="">
-                        <em>{post3[0]?.s_name}</em>
+                        <em>{post3[0]?.sv_name}</em>
                     </MenuItem>
                     {DorpDownStaion?.length &&
                         DorpDownStaion.map((e: any, i: number) => {
@@ -481,7 +457,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                             //     setNumberDorpDown(e.sv_id)
                             // }}
                             >
-                            {e.s_name}
+                            {e.sv_name}
                             </MenuItem>
                         );
                     })}
