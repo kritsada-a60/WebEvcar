@@ -470,7 +470,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                     inputProps={{ 'aria-label': 'Without label' }}
                     >
                     <MenuItem value="">
-                        <em>{post3[0]?.sv_name}</em>
+                        <em>{post3[0]?.s_name}</em>
                     </MenuItem>
                     {DorpDownStaion?.length &&
                         DorpDownStaion.map((e: any, i: number) => {
@@ -481,7 +481,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                             //     setNumberDorpDown(e.sv_id)
                             // }}
                             >
-                            {e.sv_name}
+                            {e.s_name}
                             </MenuItem>
                         );
                     })}
