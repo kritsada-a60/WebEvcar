@@ -13,9 +13,26 @@ type MyDataPost = {
     u_name: string;
     ul_id: any;
     ut_id: any;
+    ut_name: string;
 };
 
+// type MyData = {
+//     u_email: any;
+//     u_fullname: string;
+//     u_id: number;
+//     u_mobile: any;
+//     u_name: string;
+//     ua_name: string;
+//     ul_name: string;
+//     ut_name: string;
+// };
+
+
+
 const baseURL ="http://54.86.117.200:5000/user/login"
+
+const baseURLList ="http://54.86.117.200:5000/usertype/list"
+
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
@@ -40,12 +57,10 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     useEffect(() =>{
       axios
-        .post(baseURL, {
-            uname: "admin",
-            upass: "1234"
-        })
+        .get(baseURLList)
         .then((res) => {
-            setpost([res.data.data])
+            setpost(res.data.data)
+            console.log(res.data.data)
             // setcount(res.data)
         })
         .catch((err) => console.error(err));
@@ -138,10 +153,9 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                         // data = {data}
                         data={post.map(item => {
                             return [
-                                item.u_id,
-                                item.u_name,
-                                item.ul_id,
-                                item.ut_id
+                                item.ut_id,
+                                item.ut_name,
+
                             ]
                         })}
                         columns={UserDetailcolumns}

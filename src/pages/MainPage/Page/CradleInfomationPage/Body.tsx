@@ -15,6 +15,24 @@ type MyDeleteData = {
     ctm_name: string;
 };
 
+type MyData = {
+    ctm_id: string;
+    ctm_name: string;
+    s_active: string;
+    s_address: string;
+    s_amphur: string;
+    s_contact: string;
+    s_id: string;
+    s_mqtt_code: string;
+    s_name: string;
+    s_province: string;
+    s_tel: string;
+    s_tumbon: string;
+    s_zipcode: string;
+    ss_id: string;
+};
+
+
 const baseURL ="http://54.86.117.200:5000/station/list"
 
 const baseURLEdit ="http://54.86.117.200:5000/station/add"
@@ -28,7 +46,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
 
-    const [post, setpost] = useState<MyDataPost[]>([]);
+    const [post, setpost] = useState<MyData[]>([]);
 
     const [count, setcount] = useState('');
 
@@ -190,6 +208,11 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                         return [
                             item.ctm_id,
                             item.ctm_name,
+                            item.s_address,
+                            item.s_contact,
+                            item.s_tel,
+                            item.ss_id,
+                            item.s_active,
                         ]
                     })}
                     columns={Testcolumns}

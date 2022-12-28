@@ -14,3 +14,21 @@ ctm_mobile:
 ctm_mail: 
 ctm_mqtt_code: 
 u_id: 
+
+ctm_address: string;
+ctm_amphur: string;
+ctm_bank: string;
+ctm_bank_no: string;
+ctm_cno: string;
+ctm_contact_name: string;
+ctm_id: number;
+ctm_mail: string;
+ctm_mobile: string;
+ctm_mqtt_code: any;
+ctm_name: string;
+ctm_province: string;
+ctm_tel: string;
+ctm_tumbon: string;
+ctm_zipcode: string;
+ctmt_id: number;
+ctmt_name: string;

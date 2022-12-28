@@ -107,17 +107,17 @@ const navigate = useNavigate();
     console.log(checklogin,"hi")
   }, [checklogin])
 
-  useEffect(() => {
-    axios
-      .post("http://54.86.117.200:5000/car/one", {
-        c_id: "2"
-      })
-      .then((res) => {
-        console.log(res.data.data[0]);
-        // console.log("ok");
-      })
-      .catch((err) => console.error(err));
-  }, [])
+  // useEffect(() => {
+  //   axios
+  //     .post("http://54.86.117.200:5000/car/one", {
+  //       c_id: "2"
+  //     })
+  //     .then((res) => {
+  //       console.log(res.data.data[0]);
+  //       // console.log("ok");
+  //     })
+  //     .catch((err) => console.error(err));
+  // }, [])
 
 
   const handleSubmit = (e:any) => {
@@ -131,7 +131,7 @@ const navigate = useNavigate();
       })
       .then((res) => {
         console.log(res.data);
-        // console.log("ok");
+        console.log("ok");
         setchechlogin(res.data.success)
         
       })

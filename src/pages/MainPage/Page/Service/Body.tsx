@@ -323,13 +323,19 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     const Testcolumns = [
         "ID",
-        "ชื่อลูกค้า", 
-        "ประเภทลูกค้า", 
-        "เลขทะเบียนการค้า", 
-        "ชื่อธนาคาร", 
-        "บัญขีธนาคาร", 
-        "ชื่อผู้ติดต่อ", 
-        "ที่อยู่", 
+        "ชื่อู่",
+        "ประเภทหัวจ่าย",
+        "ชื่อหัวจ่าย",
+        "ที่อยู่",
+        "เบอร์ติดต่อ",
+        "ชื่อผู้ติดต่อ",
+        // "ชื่อลูกค้า", 
+        // "ประเภทลูกค้า", 
+        // "เลขทะเบียนการค้า", 
+        // "ชื่อธนาคาร", 
+        // "บัญขีธนาคาร", 
+        // "ชื่อผู้ติดต่อ", 
+        // "ที่อยู่", 
         // "ตำบล", 
         // "อำเภอ",
         // "จังหวัด", 
@@ -478,6 +484,10 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                             item.ctm_name,
                             item.pc_name,
                             item.sv_name,
+                            item.s_address,
+                            item.s_tel,
+                            item.s_contact,
+                            
                         ]
                     })} 
                     // data={post3}

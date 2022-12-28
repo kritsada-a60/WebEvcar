@@ -20,9 +20,27 @@ type MyDeleteData = {
     ctm_name: string;
 };
 
-// interface IDEdit {
-//     editdata_id: any;
-// }
+type MyData = {
+    ctm_address: string;
+    ctm_amphur: string;
+    ctm_bank: string;
+    ctm_bank_no: string;
+    ctm_cno: string;
+    ctm_contact_name: string;
+    ctm_id: string;
+    ctm_mail: string;
+    ctm_mobile: string;
+    ctm_mqtt_code: any;
+    ctm_name: string;
+    ctm_province: string;
+    ctm_tel: string;
+    ctm_tumbon: string;
+    ctm_zipcode: string;
+    ctmt_id: number;
+    ctmt_name: string;
+};
+
+
  
 
 
@@ -40,7 +58,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const { nametext } = useParams();
     const navigate = useNavigate();
 
-    const [post, setpost] = useState<MyDataPost[]>([]);
+    const [post, setpost] = useState<MyData[]>([]);
 
     const [count, setcount] = useState('');
 
@@ -284,7 +302,13 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                     data={post.map(item => {
                         return [
                             item.ctm_id,
-                            item.ctm_name,
+                            item.ctm_contact_name,
+                            item.ctmt_id,
+                            item.ctm_cno,
+                            item.ctm_bank,
+                            item.ctm_bank_no,
+                            item.ctm_contact_name,
+                            item.ctm_address,
                         ]
                     })} 
                     columns={Testcolumns} 

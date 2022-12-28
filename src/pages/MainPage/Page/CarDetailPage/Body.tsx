@@ -16,6 +16,31 @@ type MyDeleteData = {
     ctm_name: string;
 };
 
+type MyData = {
+    bt_pt_id: any;
+    bt_pt_name: string;
+    c_active: any;
+    c_capacity: any;
+    c_gps_signal: any;
+    c_gps_status: any;
+    c_id: any;
+    c_lat: any;
+    c_license_plate: string;
+    c_lng: any;
+    c_mileage: any;
+    c_mileage_init: any;
+    c_mqtt_code: string;
+    c_place: any;
+    c_speed: any;
+    c_status: string;
+    cgt_pt_id: any;
+    cgt_pt_name: string;
+    cs_id: any;
+    ctm_id: any;
+    ctm_name: string;
+};
+
+
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     const baseURL ="http://54.86.117.200:5000/car/list"
@@ -24,7 +49,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     const navigate = useNavigate();
 
-    const [post, setpost] = useState<MyDataPost[]>([]);
+    const [post, setpost] = useState<MyData[]>([]);
 
     const [count, setcount] = useState('');
 
@@ -166,22 +191,26 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
       <div style={{margin:'5vh 5vw'}}>
           <div style={{display:'flex',justifyContent:'flex-end',alignItems:'center',margin:'2vh 0vw'}}>
             <Button onClick={navigateaddcar} style={{color:'black', backgroundColor:'#6CDCC0',borderRadius:'50px',width:'9.740vw'}}>เพิ่ม</Button>
-          </div>          
+          </div>
           <div style={{display:'flex',justifyContent:'flex-start'}}>
               <div style={{width:'100%'}}>
                   <MUIDataTable
                     title={"ข้อมูลสถานี"}
                     data={post.map(item => {
                         return [
-                            item.c_id,
-                            item.ctm_name,
                             item.c_license_plate,
+                            item.ctm_name,
+                            item.cgt_pt_name,
+                            item.bt_pt_name,
+                            item.c_capacity,
+                            item.c_speed,
+                            item.c_lng,
+                            item.c_gps_signal,
+                            item.c_status,
                         ]
-                    })} 
+                    })}
                     columns={Testcolumns}
-                    
                   />
-
               </div>
           </div>
       </div>

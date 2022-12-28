@@ -127,7 +127,7 @@ function ResponsiveAppBar() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map(({page,link}) => (
-              <div style={{margin:'0vw 3vw'}}>
+              <div style={{margin:'0vw 2vw'}}>
                 <Button
                     key={page}
                     onClick={handleCloseNavMenu}
