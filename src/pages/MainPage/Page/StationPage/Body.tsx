@@ -122,19 +122,20 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     }, [DeleteData]);
 
     const navigateadddata = () => {
-        navigate('/addcradleinfomation');
+        navigate('/addstation');
     };
 
         const navigateeditdata = () => {
-        navigate('/editcradleinfomation');
+        navigate('/editstation');
     };
 
 
     const columns = ["เลขที่กิจการ", "รูปแบบกิจการ", "ที่อยู่", "ชื่อเจ้าของอู่", "เบอร์ติดต่อ", "เวลาทำการ", "จำนวนรถ"];
 
     const Testcolumns = [
-        "เลขที่กิจการ", 
-        "รูปแบบกิจการ", 
+        // "เลขที่กิจการ", 
+        "ชื่อสภานี", 
+        // "รูปแบบกิจการ", 
         "ที่อยู่", 
         "ชื่อเจ้าของอู่", 
         "เบอร์ติดต่อ", 
@@ -203,11 +204,12 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
             <div style={{display:'flex',justifyContent:'flex-start'}}>
                 <div style={{width:'100%'}}>
                 <MUIDataTable
-                    title={"ข้อมูลอู่"}
+                    // title={"ข้อมูลอู่"}
+                    title={"สถานี"}
                     data={post.map(item => {
                         return [
-                            item.ctm_id,
-                            item.ctm_name,
+                            // item.s_id,
+                            item.s_name,
                             item.s_address,
                             item.s_contact,
                             item.s_tel,
