@@ -98,6 +98,7 @@ const navigate = useNavigate();
     if (alertlogin == "1") {
       // <Alert severity="error">ผู้ใช้งาน หรือ พาสเวิร์คผิด กรุณากรอกใหม่</Alert>
       alert("ผู้ใช้งาน หรือ พาสเวิร์คผิด กรุณากรอกใหม่")
+      // setalertlogin("0")
       // setchechlogin(null)
     }
     if (checklogin == true && alertlogin == "1"){
@@ -106,6 +107,27 @@ const navigate = useNavigate();
     }
     console.log(checklogin,"hi")
   }, [checklogin])
+
+  function CheckLogin() {
+    if (checklogin == true){
+      // console.log("gologin")
+      navigateMain();
+    } else {
+    if (alertlogin == "1") {
+      // <Alert severity="error">ผู้ใช้งาน หรือ พาสเวิร์คผิด กรุณากรอกใหม่</Alert>
+      // alert("ผู้ใช้งาน หรือ พาสเวิร์คผิด กรุณากรอกใหม่")
+      setalertlogin("0")
+      // setchechlogin(null)
+    }
+    if (checklogin == true && alertlogin == "1"){
+      setchechlogin(null)
+      // setalertlogin("0")
+    }
+    }
+    console.log(checklogin,"hi")
+
+
+  }
 
   // useEffect(() => {
   //   axios
@@ -131,8 +153,11 @@ const navigate = useNavigate();
       })
       .then((res) => {
         console.log(res.data);
-        console.log("ok");
+        console.log(res.data.success);
         setchechlogin(res.data.success)
+        if(res.data.success == "false"){
+          alert("ผู้ใช้งาน หรือ พาสเวิร์คผิด กรุณากรอกใหม่")
+        }
         
       })
       .catch((err) => console.error(err));

@@ -29,6 +29,27 @@ type MyDataEdit = {
   u_id: number;
 };
 
+type MyData = {
+  ctm_name: number;
+  ctmt_id: string;
+  ctm_cno: number;
+  ctm_bank: string;
+  ctm_bank_no: string;
+  ctm_contact_name: string;
+  ctm_address : string;
+  ctm_tumbon: string;
+  ctm_amphur : string;
+  ctm_province : string;
+  ctm_zipcode: string;
+  ctm_tel: string;
+  ctm_mobile: string;
+  ctm_mail: string;
+  ctm_mqtt_code: string;
+  u_id: number;
+};
+
+ 
+
 
 export interface ISAddCustomerPageProps {}
 
@@ -38,7 +59,7 @@ const baseURLEdit ="http://54.86.117.200:5000/usertype/add"
 
 const baseURLUpdateData ="http://54.86.117.200:5000/customer/one"
 
-const baseURLUpdateEdit ="http://54.86.117.200:5000/customertype/edit"
+const baseURLUpdateEdit ="http://54.86.117.200:5000/customer/edit"
 
 const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props) => {
 
@@ -46,7 +67,7 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
 
     const [MyIdEdit, setMyIdEdit] = useState('');
 
-    const [FirstData, setFirstData] = useState<MyDataEdit[]>([]);
+    const [FirstData, setFirstData] = useState<MyData[]>([]);
 
     const LS = localStorage;
     const idEdit = LS.getItem('IdEditCustomerData');
@@ -72,6 +93,17 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
 
     const [age, setAge] = React.useState('');
 
+
+    const [Input1, setInput1] = useState("") 
+    const [Input2, setInput2] = useState("")
+    const [Input3, setInput3] = useState("") 
+    const [Input4, setInput4] = useState("")
+    const [Input5, setInput5] = useState("") 
+    const [Input6, setInput6] = useState("") 
+    const [Input7, setInput7] = useState("") 
+    const [Input8, setInput8] = useState("")
+    const [Input9, setInput9] = useState("") 
+
     const [testdorpdown, settestdorpdown] = useState([
       {number:'1',text:'a'},
       {number:'2',text:'b'},
@@ -95,8 +127,23 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
     console.log(Bnumber)
     axios
       .post(baseURLUpdateEdit, {
-        ut_name: Bname,
-        ut_id: idEdit,
+        ctm_id: Number(Input1),
+        ctm_name: "Fleet BBB",
+        ctmt_id: Number(Input3),
+        ctm_cno: Input4,
+        ctm_bank: Input5,
+        ctm_bank_no: Input6,
+        ctm_contact_name: Input2,
+        ctm_address : Input8,
+        ctm_tumbon: "บางนา",
+        ctm_amphur : "บางนา",
+        ctm_province : "กรุงเทพ",
+        ctm_zipcode: "12014",
+        ctm_tel: "6768689698",
+        ctm_mobile: "565656799",
+        ctm_mail: "test@test.com",
+        ctm_mqtt_code: "FleetBBB",
+        u_id: 1
       })
       .then((res) => {
         console.log(res.data);
@@ -119,6 +166,16 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
         // console.log(response.data)
         setFirstData(response.data.data[0])
         setBname(response.data.data[0].ctm_name)
+        setInput1(response.data.data[0].ctm_id)
+        setInput2(response.data.data[0].ctm_contact_name)
+        setInput3(response.data.data[0].ctmt_id)
+        setInput4(response.data.data[0].ctm_cno)
+        setInput5(response.data.data[0].ctm_bank)
+        setInput6(response.data.data[0].ctm_bank_no)
+        setInput7(response.data.data[0].ctm_contact_name)
+        setInput8(response.data.data[0].ctm_address)
+
+
         // setpost(response.data.data)
         console.log(response.data.data[0])
       })
@@ -161,79 +218,63 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
           <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
             <form >
               <div style={{margin:'2.5vh 0'}}>
+               <label>
+                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อลูกค้า"
+                  value={Input1}
+                  onChange={(e) => {setInput1(e.target.value)}}
+                  />          
+                </label>
                 <label>
-                  <TextField type="ctm_name" name="ctm_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="เลขที่กิจการ"
+                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ประเภทลูกค้า"
                   // value={Bnumber}
-                  value={Bname}
-                  onChange={(e) => {setBname(e.target.value)}}
+                  value={Input2}
+                  onChange={(e) => {setInput2(e.target.value)}}
+                  />       
+                </label>
+              </div>
+              <div style={{margin:'2.5vh 0'}}>
+                <label>
+                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ทะเบียนการค้า"
+                  // value={Bnumber}
+                  value={Input3}
+                  onChange={(e) => {setInput3(e.target.value)}}
                   />       
                 </label>
                 <label>
-                  <Select type="ประเภทกิจการ" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ประเภทกิจการ"
-                    value={age}
-                    onChange={handleChange}
-                    // label="Age"
-                    displayEmpty
-                    inputProps={{ 'aria-label': 'Without label' }}
-                  >
-                    <MenuItem value="">
-                      {/* <em>None</em> */}
-                    </MenuItem>
-                    {testdorpdown?.length &&
-                      testdorpdown.map((e: any, i: number) => {
-                        return (
-                          <MenuItem key={i} value={e.number}>
-                            {e.text}
-                          </MenuItem>
-                        );
-                    })}
-                  </Select>          
+                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อธนาคาร"
+                  // value={Bnumber}
+                  value={Input4}
+                  onChange={(e) => {setInput4(e.target.value)}}
+                  />       
                 </label>
               </div>
               <div style={{margin:'2.5vh 0'}}>
                 <label>
-                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อ-นามสกุล"
-                  />          
+                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="บัญชีธนาคาร"
+                  // value={Bnumber}
+                  value={Input5}
+                  onChange={(e) => {setInput5(e.target.value)}}
+                  />       
                 </label>
                 <label>
-                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="เบอร์ติดต่อ"
-                  />          
+                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อผู้ติดต่อ"
+                  // value={Bnumber}
+                  value={Input6}
+                  onChange={(e) => {setInput6(e.target.value)}}
+                  />       
                 </label>
               </div>
               <div style={{margin:'2.5vh 0'}}>
                 <label>
-                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="อีเมล"
-                  />          
+                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ที่อยู่"
+                  // value={Bnumber}
+                  value={Input7}
+                  onChange={(e) => {setInput7(e.target.value)}}
+                  />       
                 </label>
               </div>
 
-              <div style={{margin:'2.5vh 0'}}>
-                <label>
-                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'40vw'}} placeholder="ที่อยู่"
-                  />          
-                </label>
-              </div>
 
-              <div style={{margin:'2.5vh 0'}}>
-                <label>
-                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'10vw'}} placeholder="รหัสไปรษณีย์"
-                  />          
-                </label>
-                <label>
-                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'10vw'}} placeholder="จังหวัด"
-                  />          
-                </label>
-              </div>
-              <div style={{margin:'2.5vh 0'}}>
-                <label>
-                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'10vw'}} placeholder="ธนาคาร"
-                  />          
-                </label>
-                <label>
-                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'10vw'}} placeholder="เลขบัญชี"
-                  />          
-                </label>
-              </div>
               <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <Button style={{color:'white', backgroundColor:'#6CDCC0',margin:'2.5vh 2.5vw'}}
                 onClick={handleSubmit} type="submit"

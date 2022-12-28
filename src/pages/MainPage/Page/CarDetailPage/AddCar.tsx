@@ -144,7 +144,7 @@ const AddCarPage: React.FunctionComponent<ISAddCarPageProps> = (props) => {
           <p style={{margin:'5vh 30vw',justifyContent:'center' ,fontSize:'36px'}}>เพิ่มข้อมูลรถ</p>
           <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
             <form >
-              <div style={{margin:'2.5vh 0'}}>
+              {/* <div style={{margin:'2.5vh 0'}}>
                 <label>
                   <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อลูกค้า"
                   // value={Bnumber}
@@ -159,24 +159,24 @@ const AddCarPage: React.FunctionComponent<ISAddCarPageProps> = (props) => {
                   onChange={(e) => {setInput2(e.target.value)}}
                   />       
                 </label>
-              </div>
+              </div> */}
               <div style={{margin:'2.5vh 0'}}>
-                <label>
+                {/* <label>
                   <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อธนาคาร"
                   // value={Bnumber}
                   value={Input3}
                   onChange={(e) => {setInput3(e.target.value)}}
                   />       
-                </label>
+                </label> */}
                 <label>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="บัญขีธนาคาร"
+                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ทะเบียนรถ"
                   // value={Bnumber}
                   value={Input4}
                   onChange={(e) => {setInput4(e.target.value)}}
                   />       
                 </label>
               </div>
-              <div style={{margin:'2.5vh 0'}}>
+              {/* <div style={{margin:'2.5vh 0'}}>
                 <label>
                   <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อผู้ติดต่อ"
                   // value={Bnumber}
@@ -191,7 +191,7 @@ const AddCarPage: React.FunctionComponent<ISAddCarPageProps> = (props) => {
                   onChange={(e) => {setInput6(e.target.value)}}
                   />       
                 </label>
-              </div>
+              </div> */}
 
               <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <Button style={{color:'white', backgroundColor:'#6CDCC0',margin:'2.5vh 2.5vw'}}
