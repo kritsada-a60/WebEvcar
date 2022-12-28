@@ -49,7 +49,7 @@ const Application: React.FunctionComponent<IApplicationProps> = (props) => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<HomePage />} />
+                <Route path="/" element={<LoginPage />} />
                 <Route path="login">
                     <Route index element={<LoginPage />} />
                     {/* <Route path=":number" element={<AboutPage />} /> */}
