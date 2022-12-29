@@ -168,10 +168,10 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
       .post(baseURLUpdateEdit, {
         c_license_plate: Input1,
         c_id: FirstData[0]?.c_id,
-        ctm_id: Input2,
-        bt_pt_id: Number(Input3),
-        cgt_pt_id: Number(Input4),
-        c_mqtt_code: Input6,
+        ctm_id: Number(Input2),
+        bt_pt_id: Number(Input4),
+        cgt_pt_id: Number(Input3),
+        c_mqtt_code: "TT_3",
         c_active: "1",
         u_id: 1,
         c_start_data: Input8,
@@ -273,7 +273,7 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
     }, [Bname]);
 
     useEffect(() =>{
-        console.log("Input3",Input2)
+        console.log("Input2",Input2)
     }, [Input2]);
 
     useEffect(() =>{
@@ -354,7 +354,7 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
                     >
                       
                     <MenuItem value="">
-                        <em>{FirstData[0]?.bt_pt_name}</em>
+                        <em>{FirstData[0]?.cgt_pt_name}</em>
                     </MenuItem>
                     
                     {DorpDownData2?.length &&
@@ -382,7 +382,7 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
                     inputProps={{ 'aria-label': 'Without label' }}
                     >
                     <MenuItem value="">
-                        <em>{FirstData[0]?.cgt_pt_name}</em>
+                        <em>{FirstData[0]?.bt_pt_name}</em>
                     </MenuItem>
                     
                     {DorpDownData3?.length &&
