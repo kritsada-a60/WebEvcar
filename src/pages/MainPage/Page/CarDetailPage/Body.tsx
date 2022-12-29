@@ -74,7 +74,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     useEffect(() =>{
       axios.post(baseURL,{
-        ctm_id: "2"
+        ctm_id: ""
       }).then((response) => {
         setpost(response.data.data)
         // console.log(post,"post data")

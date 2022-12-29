@@ -94,22 +94,22 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
     e.preventDefault();
     axios
       .post(baseURLUpdateAdd, {
-        ctmt_id: 3,
+        ctmt_id: Input3, /* DorpDown */
         u_id: 1,
-        ctm_name: Input1,
-        ctm_cno: Input2,
-        ctm_bank: Input3,
-        ctm_bank_no: Input4,
-        ctm_contact_name: Input5,
-        ctm_address : Input6,
-        ctm_tumbon: Input7,
-        ctm_amphur : Input8,
-        ctm_province : Input9,
-        ctm_zipcode: Input10,
-        ctm_tel: Input11,
-        ctm_mobile: Input12,
-        ctm_mail: Input13,
-        ctm_mqtt_code: Input14,
+        ctm_name: Input2,
+        ctm_cno: Input4,
+        ctm_bank: Input5,
+        ctm_bank_no: Input6,
+        ctm_contact_name: Input7,
+        ctm_address : Input8,
+        ctm_tumbon: Input9,
+        ctm_amphur : Input10,
+        ctm_province : Input11,
+        ctm_zipcode: Input12,
+        ctm_tel: Input13,
+        ctm_mobile: Input14,
+        ctm_mail: Input15,
+        ctm_mqtt_code: Input16,
       })
       .then((res) => {
         console.log(res.data);
@@ -159,126 +159,142 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
                   <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ชื่อลูกค้า</p>
                   <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   // value={Bnumber}
-                  value={Input1}
-                  onChange={(e) => {setInput1(e.target.value)}}
-                  />       
-                </label>
-                <label>
-                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>เลขทะเบียนการค้า</p>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
-                  // value={Bnumber}
                   value={Input2}
                   onChange={(e) => {setInput2(e.target.value)}}
                   />       
                 </label>
-              </div>
-              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
-                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ชื่อธนาคาร</p>
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ประเภทลูกค้า</p>
                   <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   // value={Bnumber}
                   value={Input3}
                   onChange={(e) => {setInput3(e.target.value)}}
                   />       
                 </label>
+              </div>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
+
                 <label>
-                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>บัญขีธนาคาร</p>
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>เลขทะเบียนการค้า</p>
                   <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   // value={Bnumber}
                   value={Input4}
                   onChange={(e) => {setInput4(e.target.value)}}
                   />       
                 </label>
-              </div>
-              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
-                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ชื่อผู้ติดต่อ</p>
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ชื่อธนาคาร</p>
                   <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   // value={Bnumber}
                   value={Input5}
                   onChange={(e) => {setInput5(e.target.value)}}
                   />       
                 </label>
+              </div>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
+
                 <label>
-                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ที่อยู่</p>
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>บัญขีธนาคาร</p>
                   <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   // value={Bnumber}
                   value={Input6}
                   onChange={(e) => {setInput6(e.target.value)}}
                   />       
                 </label>
-              </div>
-
-              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
-                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ตำบล</p>
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ชื่อผู้ติดต่อ</p>
                   <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   // value={Bnumber}
                   value={Input7}
                   onChange={(e) => {setInput7(e.target.value)}}
                   />       
                 </label>
+              </div>
+
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
-                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>อำเภอ</p>
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ที่อยู่</p>
                   <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   // value={Bnumber}
                   value={Input8}
                   onChange={(e) => {setInput8(e.target.value)}}
                   />       
                 </label>
-              </div>
-
-              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
-                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>จังหวัด</p>
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ตำบล</p>
                   <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   // value={Bnumber}
                   value={Input9}
                   onChange={(e) => {setInput9(e.target.value)}}
                   />       
                 </label>
+              </div>
+
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
+
                 <label>
-                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>รหัสไปรษณีย์</p>
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>อำเภอ</p>
                   <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   // value={Bnumber}
                   value={Input10}
                   onChange={(e) => {setInput10(e.target.value)}}
                   />       
                 </label>
-              </div>
-              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
-                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>โทรศัพท์</p>
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>จังหวัด</p>
                   <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   // value={Bnumber}
                   value={Input11}
                   onChange={(e) => {setInput11(e.target.value)}}
                   />       
                 </label>
+              </div>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
+
                 <label>
-                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>มือถือ</p>
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>รหัสไปรษณีย์</p>
                   <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   // value={Bnumber}
                   value={Input12}
                   onChange={(e) => {setInput12(e.target.value)}}
                   />       
                 </label>
-              </div>
-              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
-                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>E-Mail</p>
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>โทรศัพท์</p>
                   <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   // value={Bnumber}
                   value={Input13}
                   onChange={(e) => {setInput13(e.target.value)}}
                   />       
                 </label>
+              </div>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
+
                 <label>
-                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>รหัส MQTT</p>
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>มือถือ</p>
                   <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}}
                   // value={Bnumber}
                   value={Input14}
                   onChange={(e) => {setInput14(e.target.value)}}
+                  />       
+                </label>
+                <label>
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>Emial</p>
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
+                  // value={Bnumber}
+                  value={Input15}
+                  onChange={(e) => {setInput15(e.target.value)}}
+                  />       
+                </label>
+              </div>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'flex-start',alignItems:'center'}}>
+
+                <label>
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>รหัส MQTT</p>
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}}
+                  // value={Bnumber}
+                  value={Input16}
+                  onChange={(e) => {setInput16(e.target.value)}}
                   />       
                 </label>
               </div>

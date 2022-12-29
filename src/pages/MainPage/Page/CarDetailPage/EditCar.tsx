@@ -196,6 +196,14 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
         setInput1(response.data.data[0].c_license_plate)
         setptName(response.data.data[0].bt_pt_name);
 
+        setInput2(response.data.data[0].ctm_id)
+
+        setInput3(response.data.data[0].cgt_pt_id)
+
+        setInput4(response.data.data[0].bt_pt_id)
+
+        // setInput6(response.data.data[0].c_mqtt_code);
+
         // setInput4(response.data.data[0].bt_pt_name);
         // setFirstData(response.data.data[0].ctm_name)
         // setFirstData(response.data.data[0].cgt_pt_name)
@@ -320,13 +328,13 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
                     inputProps={{ 'aria-label': 'Without label' }}
                     >
                       
-                    <MenuItem value="">
+                    {/* <MenuItem value="">
                         <em>{FirstData[0]?.ctm_name}</em>
-                    </MenuItem>
+                    </MenuItem> */}
                     {resultDorpDownData?.length &&
                         resultDorpDownData.map((e: any, i: number) => {
                         return (
-                            <MenuItem key={i} value={e.ctm_id}
+                            <MenuItem key={e.ctm_id} value={e.ctm_id}
                             // onChange={e =>{
                             //     console.log(e,"E")
                             //     setNumberDorpDown(e.sv_id)
@@ -353,14 +361,14 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
                     inputProps={{ 'aria-label': 'Without label' }}
                     >
                       
-                    <MenuItem value="">
+                    {/* <MenuItem value="">
                         <em>{FirstData[0]?.cgt_pt_name}</em>
-                    </MenuItem>
+                    </MenuItem> */}
                     
                     {DorpDownData2?.length &&
                         DorpDownData2.map((e: any, i: number) => {
                         return (
-                            <MenuItem key={i} value={e.pt_id}
+                            <MenuItem key={e.pt_id} value={e.pt_id}
                             // onChange={e =>{
                             //     console.log(e,"E")
                             //     setNumberDorpDown(e.sv_id)
@@ -381,14 +389,11 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
                     displayEmpty
                     inputProps={{ 'aria-label': 'Without label' }}
                     >
-                    <MenuItem value="">
-                        <em>{FirstData[0]?.bt_pt_name}</em>
-                    </MenuItem>
                     
                     {DorpDownData3?.length &&
                         DorpDownData3.map((e: any, i: number) => {
                         return (
-                            <MenuItem key={i} value={e.pt_id}
+                            <MenuItem key={e.pt_id} value={e.pt_id}
                             // onChange={e =>{
                             //     console.log(e,"E")
                             //     setNumberDorpDown(e.sv_id)
@@ -412,6 +417,11 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
                 </label>
                 <label>
                   <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>MQTT_CODE</p>
+                  {/* {Input6?
+                  "123"
+                  :
+                  "456"
+                  } */}
                   <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   value={Input6}
                   onChange={(e) => {setInput6(e.target.value)}}

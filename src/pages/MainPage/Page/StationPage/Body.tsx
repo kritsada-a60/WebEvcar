@@ -30,6 +30,8 @@ type MyData = {
     s_tumbon: string;
     s_zipcode: string;
     ss_id: string;
+    s_lat: string;
+    s_lng: string;
 };
 
 
@@ -117,8 +119,8 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         if ( DeleteData != ''){
             axios
             .post(baseURLUpdateDelete, {
-                s_id: Number(DeleteData),
-                u_id: "1",
+                // s_id: Number(DeleteData),
+                // u_id: "1",
             })
             .then((res) => {
                 console.log(res,"this is delete");
@@ -146,13 +148,15 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         "ชื่อสถานี", 
         // "รูปแบบกิจการ", 
         "ที่อยู่",
-        "อำเภอ", 
         "ตำบล", 
+        "อำเภอ", 
         "จังหวัด",  
-        "เจ้าของอู่", 
-        "เบอร์ติดต่อ", 
-        "เวลาทำการ", 
-        "จำนวนรถ",
+        "ชื่อผู้ติดต่อ", 
+        "เบอร์ติดต่อ",
+        
+        "ละติจูด",
+        "ลองจิจูด",
+        "รหัส MQTT",
       {
         name: "Edit",
         options: {
@@ -162,7 +166,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
             return (
               <Button aria-label="edit" variant="outlined" style={{color:'white',backgroundColor:'#6CDCC0',borderRadius:'15px'}}
               onClick={() => {
-                setIDEditData(post[dataIndex].ctm_id);
+                setIDEditData(post[dataIndex].s_id);
                 SetLs_idEdit();   
           
               }}
@@ -182,8 +186,8 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
             return (
               <Button aria-label="delete" variant="outlined" style={{color:'white',backgroundColor:'#6CDCC0',borderRadius:'15px'}}
               onClick={() => {
-                setDeleteData(post[dataIndex].ctm_id);
-                // GetLs_idDelete();
+                setDeleteData(post[dataIndex].s_id);
+                GetLs_idDelete();
                 // handleSubmit();
               }}
               >
@@ -223,13 +227,14 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                             // item.s_id,
                             item.s_name,
                             item.s_address,
-                            item.s_amphur,
                             item.s_tumbon,
+                            item.s_amphur,
                             item.s_province,
                             item.s_contact,
                             item.s_tel,
-                            item.ss_id,
-                            item.s_active,
+                            item.s_lat,
+                            item.s_lng,
+                            item.s_mqtt_code,
                         ]
                     })}
                     columns={Testcolumns}
