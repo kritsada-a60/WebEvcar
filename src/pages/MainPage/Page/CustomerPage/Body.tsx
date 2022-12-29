@@ -302,8 +302,8 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                     data={post.map(item => {
                         return [
                             item.ctm_id,
-                            item.ctm_contact_name,
-                            item.ctmt_id,
+                            item.ctm_name,
+                            item.ctmt_name,
                             item.ctm_cno,
                             item.ctm_bank,
                             item.ctm_bank_no,
@@ -311,8 +311,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                             item.ctm_address,
                         ]
                     })} 
-                    columns={Testcolumns} 
-                    
+                    columns={Testcolumns}
                 />
                 {/* <MUIDataTable
                     title={"ข้อมูลสถานี"}

@@ -137,9 +137,9 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const Testcolumns = [
         "ทะเบียนรถ", 
         "อู่", 
-        "ประเภทรถ", 
+        "หัวชาร์จ", 
         "ประเภทแบตเตอรี่", 
-        "อายุแบตเตอรี่", 
+        "ระดับแบตตารี่", 
         "ความเร็วรถ", 
         "เลขไมล์", 
         "วันที่เริ่มใช้งาน", 
@@ -195,7 +195,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
           <div style={{display:'flex',justifyContent:'flex-start'}}>
               <div style={{width:'100%'}}>
                   <MUIDataTable
-                    title={"ข้อมูลสถานี"}
+                    title={"ข้อมูลรถ"}
                     data={post.map(item => {
                         return [
                             item.c_license_plate,
@@ -204,7 +204,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                             item.bt_pt_name,
                             item.c_capacity,
                             item.c_speed,
-                            item.c_lng,
+                            item.c_mileage,
                             item.c_gps_signal,
                             item.c_status,
                         ]

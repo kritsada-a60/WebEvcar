@@ -205,63 +205,71 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
           <p style={{margin:'5vh 30vw',justifyContent:'center' ,fontSize:'36px'}}>แก้ไขข้อมูลรถ</p>
           <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
             <form >
-              <div style={{margin:'2.5vh 0'}}>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                <label>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อกิจการ"
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ทะเบียนรถ</p>
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อกิจการ"
                   value={Input1}
                   onChange={(e) => {setInput1(e.target.value)}}
                   />          
                 </label>
                 <label>
-                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="อู่"
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>อู่</p>
+                  <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="อู่"
                   // value={Bnumber}
                   value={FirstData[0]?.ctm_name}
                   onChange={(e) => {setInput2(e.target.value)}}
                   />       
                 </label>
               </div>
-              <div style={{margin:'2.5vh 0'}}>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
-                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ประเภทรถ"
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>หัวชาร์จ</p>
+                  <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ประเภทรถ"
                   // value={Bnumber}
                   value={FirstData[0]?.cgt_pt_name}
                   onChange={(e) => {setInput3(e.target.value)}}
                   />       
                 </label>
                 <label>
-                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ประเภทแบตเตอรี่"
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>แบตเตอร์รี่</p>
+                  <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ประเภทแบตเตอรี่"
                   // value={Bnumber}
                   value={FirstData[0]?.bt_pt_name}
                   onChange={(e) => {setInput4(e.target.value)}}
                   />       
                 </label>
               </div>
-              <div style={{margin:'2.5vh 0'}}>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
-                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="อายุแบตเตอรี่"
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ไมล์เริ่มต้น</p>
+                  <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="อายุแบตเตอรี่"
                   // value={Bnumber}
                   value={FirstData[0]?.c_capacity}
                   onChange={(e) => {setInput5(e.target.value)}}
                   />       
                 </label>
                 <label>
-                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ความเร็วรถ"
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ความเร็วรถ</p>
+                  <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ความเร็วรถ"
                   // value={Bnumber}
                   value={FirstData[0]?.c_speed}
                   onChange={(e) => {setInput6(e.target.value)}}
                   />       
                 </label>
               </div>
-              <div style={{margin:'2.5vh 0'}}>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
-                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="เลขไมล์"
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>เลขไมล์</p>
+                  <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="เลขไมล์"
                   // value={Bnumber}
-                  value={FirstData[0]?.c_lng}
+                  value={FirstData[0]?.c_mileage}
                   onChange={(e) => {setInput7(e.target.value)}}
                   />       
                 </label>
                 <label>
-                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="วันที่เริ่มใช้งาน"
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>วันที่เริ่มใช้งาน</p>
+                  <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="วันที่เริ่มใช้งาน"
                   // value={Bnumber}
                   value={FirstData[0]?.c_gps_signal}
                   onChange={(e) => {setInput8(e.target.value)}}
@@ -270,7 +278,8 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
               </div>
               <div style={{margin:'2.5vh 0'}}>
                 <label>
-                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="สถานะรถ"
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>สถานะรถ</p>
+                  <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="สถานะรถ"
                   // value={Bnumber}
                   value={FirstData[0]?.c_status}
                   onChange={(e) => {setInput9(e.target.value)}}

@@ -148,8 +148,9 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
           <p style={{margin:'5vh 30vw',justifyContent:'center' ,fontSize:'36px'}}>เพิ่มข้อมูลลูกค้า</p>
           <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
             <form >
-              <div style={{margin:'2.5vh 0'}}>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ชื่อลูกค้า</p>
                   <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อลูกค้า"
                   // value={Bnumber}
                   value={Input1}
@@ -157,6 +158,7 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
                   />       
                 </label>
                 <label>
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>เลขทะเบียนการค้า</p>
                   <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="เลขทะเบียนการค้า"
                   // value={Bnumber}
                   value={Input2}
@@ -164,8 +166,9 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
                   />       
                 </label>
               </div>
-              <div style={{margin:'2.5vh 0'}}>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ชื่อธนาคาร</p>
                   <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อธนาคาร"
                   // value={Bnumber}
                   value={Input3}
@@ -173,6 +176,7 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
                   />       
                 </label>
                 <label>
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>บัญขีธนาคาร</p>
                   <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="บัญขีธนาคาร"
                   // value={Bnumber}
                   value={Input4}
@@ -180,16 +184,18 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
                   />       
                 </label>
               </div>
-              <div style={{margin:'2.5vh 0'}}>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อผู้ติดต่อ"
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ชื่อผู้ติดต่อ</p>
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อผู้ติดต่อ"
                   // value={Bnumber}
                   value={Input5}
                   onChange={(e) => {setInput5(e.target.value)}}
                   />       
                 </label>
                 <label>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ที่อยู่"
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ที่อยู่</p>
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ที่อยู่"
                   // value={Bnumber}
                   value={Input6}
                   onChange={(e) => {setInput6(e.target.value)}}
@@ -197,16 +203,18 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
                 </label>
               </div>
 
-              <div style={{margin:'2.5vh 0'}}>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ตำบล"
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ตำบล</p>
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ตำบล"
                   // value={Bnumber}
                   value={Input7}
                   onChange={(e) => {setInput7(e.target.value)}}
                   />       
                 </label>
                 <label>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="อำเภอ"
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>อำเภอ</p>
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="อำเภอ"
                   // value={Bnumber}
                   value={Input8}
                   onChange={(e) => {setInput8(e.target.value)}}
@@ -214,48 +222,54 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
                 </label>
               </div>
 
-              <div style={{margin:'2.5vh 0'}}>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="จังหวัด"
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>จังหวัด</p>
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="จังหวัด"
                   // value={Bnumber}
                   value={Input9}
                   onChange={(e) => {setInput9(e.target.value)}}
                   />       
                 </label>
                 <label>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="รหัสไปรษณีย์"
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>รหัสไปรษณีย์</p>
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="รหัสไปรษณีย์"
                   // value={Bnumber}
                   value={Input10}
                   onChange={(e) => {setInput10(e.target.value)}}
                   />       
                 </label>
               </div>
-              <div style={{margin:'2.5vh 0'}}>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="โทรศัพท์"
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>โทรศัพท์</p>
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="โทรศัพท์"
                   // value={Bnumber}
                   value={Input11}
                   onChange={(e) => {setInput11(e.target.value)}}
                   />       
                 </label>
                 <label>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="มือถือ"
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>มือถือ</p>
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="มือถือ"
                   // value={Bnumber}
                   value={Input12}
                   onChange={(e) => {setInput12(e.target.value)}}
                   />       
                 </label>
               </div>
-              <div style={{margin:'2.5vh 0'}}>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="E-Mail"
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>E-Mail</p>
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="E-Mail"
                   // value={Bnumber}
                   value={Input13}
                   onChange={(e) => {setInput13(e.target.value)}}
                   />       
                 </label>
                 <label>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="รหัส MQTT"
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>รหัส MQTT</p>
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="รหัส MQTT"
                   // value={Bnumber}
                   value={Input14}
                   onChange={(e) => {setInput14(e.target.value)}}

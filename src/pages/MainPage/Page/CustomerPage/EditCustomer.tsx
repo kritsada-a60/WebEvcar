@@ -165,9 +165,9 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
       }).then((response) => {
         // console.log(response.data)
         setFirstData(response.data.data[0])
-        setBname(response.data.data[0].ctm_name)
-        setInput1(response.data.data[0].ctm_id)
-        setInput2(response.data.data[0].ctm_contact_name)
+        // setBname(response.data.data[0].ctm_name)
+        setInput1(response.data.data[0].ctm_name)
+        setInput2(response.data.data[0].ctmt_name)
         setInput3(response.data.data[0].ctmt_id)
         setInput4(response.data.data[0].ctm_cno)
         setInput5(response.data.data[0].ctm_bank)
@@ -217,56 +217,63 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
           <p style={{margin:'5vh 30vw',justifyContent:'center' ,fontSize:'36px'}}>แก้ไขมูลลูกค้า</p>
           <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
             <form >
-              <div style={{margin:'2.5vh 0'}}>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                <label>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อลูกค้า"
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ชื่อลูกค้า</p>
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อลูกค้า"
                   value={Input1}
                   onChange={(e) => {setInput1(e.target.value)}}
                   />          
                 </label>
                 <label>
-                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ประเภทลูกค้า"
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ประเภทลูกค้า</p>
+                  <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ประเภทลูกค้า"
                   // value={Bnumber}
                   value={Input2}
                   onChange={(e) => {setInput2(e.target.value)}}
                   />       
                 </label>
               </div>
-              <div style={{margin:'2.5vh 0'}}>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
-                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ทะเบียนการค้า"
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ทะเบียนการค้า</p>
+                  <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ทะเบียนการค้า"
                   // value={Bnumber}
                   value={Input3}
                   onChange={(e) => {setInput3(e.target.value)}}
                   />       
                 </label>
                 <label>
-                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อธนาคาร"
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ชื่อธนาคาร</p>
+                  <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อธนาคาร"
                   // value={Bnumber}
                   value={Input4}
                   onChange={(e) => {setInput4(e.target.value)}}
                   />       
                 </label>
               </div>
-              <div style={{margin:'2.5vh 0'}}>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
-                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="บัญชีธนาคาร"
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>บัญชีธนาคาร</p>
+                  <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="บัญชีธนาคาร"
                   // value={Bnumber}
                   value={Input5}
                   onChange={(e) => {setInput5(e.target.value)}}
                   />       
                 </label>
                 <label>
-                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อผู้ติดต่อ"
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ชื่อผู้ติดต่อ</p>
+                  <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อผู้ติดต่อ"
                   // value={Bnumber}
                   value={Input6}
                   onChange={(e) => {setInput6(e.target.value)}}
                   />       
                 </label>
               </div>
-              <div style={{margin:'2.5vh 0'}}>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'flex-start',alignItems:'center'}}>
                 <label>
-                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ที่อยู่"
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ที่อยู่</p>
+                  <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ที่อยู่"
                   // value={Bnumber}
                   value={Input7}
                   onChange={(e) => {setInput7(e.target.value)}}
