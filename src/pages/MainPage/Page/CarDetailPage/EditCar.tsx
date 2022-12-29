@@ -164,12 +164,13 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
       .post(baseURLUpdateEdit, {
         c_license_plate: Input1,
         c_id: FirstData[0]?.c_id,
-        ctm_id: 2,
-        bt_pt_id: 3,
-        cgt_pt_id: 1,
+        ctm_id: Input2,
+        bt_pt_id: Number(Input3),
+        cgt_pt_id: Number(Input4),
         c_mqtt_code: "TT_3",
         c_active: "1",
         u_id: 1,
+        c_start_data: Input8,
       })
       .then((res) => {
         console.log(res.data);
@@ -265,6 +266,10 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
     }, [Bname]);
 
     useEffect(() =>{
+        console.log("Input3",Input2)
+    }, [Input2]);
+
+    useEffect(() =>{
         console.log("Input3",Input3)
     }, [Input3]);
 
@@ -313,7 +318,7 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
                     {resultDorpDownData?.length &&
                         resultDorpDownData.map((e: any, i: number) => {
                         return (
-                            <MenuItem key={i} value={e.ctm_name}
+                            <MenuItem key={i} value={e.ctm_id}
                             // onChange={e =>{
                             //     console.log(e,"E")
                             //     setNumberDorpDown(e.sv_id)
@@ -346,7 +351,7 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
                     {DorpDownData2?.length &&
                         DorpDownData2.map((e: any, i: number) => {
                         return (
-                            <MenuItem key={i} value={e.pt_name}
+                            <MenuItem key={i} value={e.pt_id}
                             // onChange={e =>{
                             //     console.log(e,"E")
                             //     setNumberDorpDown(e.sv_id)
@@ -375,7 +380,7 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
                     {DorpDownData3?.length &&
                         DorpDownData3.map((e: any, i: number) => {
                         return (
-                            <MenuItem key={i} value={e.pt_name}
+                            <MenuItem key={i} value={e.pt_id}
                             // onChange={e =>{
                             //     console.log(e,"E")
                             //     setNumberDorpDown(e.sv_id)
