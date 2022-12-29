@@ -70,10 +70,10 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
     const [FirstData, setFirstData] = useState<MyData[]>([]);
 
     const LS = localStorage;
-    const idEdit = LS.getItem('IdEditCustomerData');
+    const idEdit = LS.getItem('IdCustomerEdit');
 
     const RemoceIdEdit = () => {
-      LS.removeItem('IdEditCustomerData');
+      LS.removeItem('IdCustomerEdit');
     }
 
     const navigate = useNavigate();
@@ -127,13 +127,13 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
     console.log(Bnumber)
     axios
       .post(baseURLUpdateEdit, {
-        ctm_id: Number(Input1),
-        ctm_name: "Fleet BBB",
-        ctmt_id: Number(Input3),
+        ctm_id: Number(idEdit),
+        ctm_name: Input1,
+        ctmt_id: Input3,
         ctm_cno: Input4,
         ctm_bank: Input5,
         ctm_bank_no: Input6,
-        ctm_contact_name: Input2,
+        ctm_contact_name: Input7,
         ctm_address : Input8,
         ctm_tumbon: "บางนา",
         ctm_amphur : "บางนา",
@@ -148,7 +148,7 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
       .then((res) => {
         console.log(res.data);
         console.log("ok");
-        navigateadddata();
+        // navigateadddata();
         // setBnumber(res.data.success)
       })
       .catch((err) => console.error(err));
