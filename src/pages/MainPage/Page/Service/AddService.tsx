@@ -53,6 +53,18 @@ ctm_mqtt_code: string;
 // u_id: number;
 };
 
+type MyDorpDownData = {
+    pc_description: any,
+    pc_id: number,
+    pc_name: string;
+};
+
+type MyDorpDownData2 = {
+    pt_description: any,
+    pt_id: number,
+    pt_name: string;
+};
+
 
 
 export interface ISAddServicePageProps {}
@@ -67,9 +79,17 @@ const baseURLUpdateEdit ="http://54.86.117.200:5000/service/edit"
 
 const baseURLUpdateAdd ="http://54.86.117.200:5000/service/add"
 
+const baseURLDorpDown ="http://54.86.117.200:5000/powercatalog/list"
+
+const baseURLDorpDown2 ="http://54.86.117.200:5000/powertype/list"
+
 const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) => {
 
     const [post, setpost] = useState<MyDataPost[]>([]);
+
+        const [DorpDownData, setDorpDownData] = useState<MyDorpDownData[]>([]);
+
+    const [DorpDownData2, setDorpDownData2] = useState<MyDorpDownData2[]>([]);
 
     
     const [Input1, setInput1] = useState("") 
@@ -132,6 +152,20 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
         console.log(Input1,"input")
     }, [Input1]);
 
+    useEffect(()=>{
+      axios.get(baseURLDorpDown).then((response) => {
+        setDorpDownData(response.data.data)
+        console.log(response.data)
+      })
+      axios.post(baseURLDorpDown2,{
+        pc_id: 2
+      }).then((response) => {
+        setDorpDownData2(response.data.data)
+        console.log(response.data)
+      })
+
+    }, []);
+
 
 
 
@@ -142,21 +176,63 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
           <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
             <form >
               <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
-                <label>
+<label>
                   <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ประเภทบริการ</p>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ประเภทบริการ"
-                  // value={Bnumber}
+                  <Select type="ประเภทบริการ" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ประเภทบริการ"
                   value={Input1}
                   onChange={(e) => {setInput1(e.target.value)}}
-                  />       
+                  // label="Age"
+                  displayEmpty
+                  inputProps={{ 'aria-label': 'Without label' }}
+                  >
+                    
+                  <MenuItem value="">
+                    <em></em>
+                  </MenuItem>
+                  {DorpDownData?.length &&
+                      DorpDownData.map((e: any, i: number) => {
+                      return (
+                        <MenuItem key={i} value={e.pc_id}
+                        // onChange={e =>{
+                        //     console.log(e,"E")
+                        //     setNumberDorpDown(e.sv_id)
+                        // }}
+                        >
+                        {e.pc_name}
+                        </MenuItem>
+                      );
+                  })}
+                  </Select>
+                  {/* {NumberDorpDown} */}
                 </label>
                 <label>
                   <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ชนิด</p>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชนิด"
-                  // value={Bnumber}
+                  <Select type="ชนิด" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชนิด"
                   value={Input2}
                   onChange={(e) => {setInput2(e.target.value)}}
-                  />       
+                  // label="Age"
+                  displayEmpty
+                  inputProps={{ 'aria-label': 'Without label' }}
+                  >
+                    
+                  <MenuItem value="">
+                    <em></em>
+                  </MenuItem>
+                  {DorpDownData2?.length &&
+                      DorpDownData2.map((e: any, i: number) => {
+                      return (
+                        <MenuItem key={i} value={e.pt_id}
+                        // onChange={e =>{
+                        //     console.log(e,"E")
+                        //     setNumberDorpDown(e.sv_id)
+                        // }}
+                        >
+                        {e.pt_name}
+                        </MenuItem>
+                      );
+                  })}
+                  </Select>
+                  {/* {NumberDorpDown} */}
                 </label>
               </div>
               <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
