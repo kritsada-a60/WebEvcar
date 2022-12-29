@@ -94,22 +94,15 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
     e.preventDefault();
     axios
       .post(baseURLUpdateAdd, {
-        ctmt_id: 3,
-        u_id: 1,
-        ctm_name: Input1,
-        ctm_cno: Input2,
-        ctm_bank: Input3,
-        ctm_bank_no: Input4,
-        ctm_contact_name: Input5,
-        ctm_address : Input6,
-        ctm_tumbon: Input7,
-        ctm_amphur : Input8,
-        ctm_province : Input9,
-        ctm_zipcode: Input10,
-        ctm_tel: Input11,
-        ctm_mobile: Input12,
-        ctm_mail: Input13,
-        ctm_mqtt_code: Input14,
+        s_id: 1,
+        pt_id: 3,
+        sv_name: Input1,
+        sv_serial: Input2,
+        sv_mqtt_code: Input5,
+        sv_price: Number(Input3),
+        sv_unit: Input4,
+        sv_remark: Input6,
+        u_id: 1
       })
       .then((res) => {
         console.log(res.data);
@@ -148,48 +141,54 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
           <p style={{margin:'5vh 30vw',justifyContent:'center' ,fontSize:'36px'}}>เพิ่มStation</p>
           <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
             <form >
-              <div style={{margin:'2.5vh 0'}}>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อลูกค้า"
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ประเภทบริการ</p>
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ประเภทบริการ"
                   // value={Bnumber}
                   value={Input1}
                   onChange={(e) => {setInput1(e.target.value)}}
                   />       
                 </label>
                 <label>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="เลขทะเบียนการค้า"
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ชนิด</p>
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชนิด"
                   // value={Bnumber}
                   value={Input2}
                   onChange={(e) => {setInput2(e.target.value)}}
                   />       
                 </label>
               </div>
-              <div style={{margin:'2.5vh 0'}}>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อธนาคาร"
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ชื่อบริการ</p>
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อบริการ"
                   // value={Bnumber}
                   value={Input3}
                   onChange={(e) => {setInput3(e.target.value)}}
                   />       
                 </label>
                 <label>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="บัญขีธนาคาร"
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>serial</p>
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="serial"
                   // value={Bnumber}
                   value={Input4}
                   onChange={(e) => {setInput4(e.target.value)}}
                   />       
                 </label>
               </div>
-              <div style={{margin:'2.5vh 0'}}>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อผู้ติดต่อ"
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ราคา</p>
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ราคา"
                   // value={Bnumber}
                   value={Input5}
                   onChange={(e) => {setInput5(e.target.value)}}
                   />       
                 </label>
                 <label>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ที่อยู่"
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>หน่วย</p>
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="หน่วย"
                   // value={Bnumber}
                   value={Input6}
                   onChange={(e) => {setInput6(e.target.value)}}
@@ -197,16 +196,18 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
                 </label>
               </div>
 
-              <div style={{margin:'2.5vh 0'}}>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ตำบล"
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>MQTT_OCDE</p>
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="MQTT_OCDE"
                   // value={Bnumber}
                   value={Input7}
                   onChange={(e) => {setInput7(e.target.value)}}
                   />       
                 </label>
                 <label>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="อำเภอ"
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>หมายเหตุ</p>
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="หมายเหตุ"
                   // value={Bnumber}
                   value={Input8}
                   onChange={(e) => {setInput8(e.target.value)}}
@@ -214,54 +215,7 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
                 </label>
               </div>
 
-              <div style={{margin:'2.5vh 0'}}>
-                <label>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="จังหวัด"
-                  // value={Bnumber}
-                  value={Input9}
-                  onChange={(e) => {setInput9(e.target.value)}}
-                  />       
-                </label>
-                <label>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="รหัสไปรษณีย์"
-                  // value={Bnumber}
-                  value={Input10}
-                  onChange={(e) => {setInput10(e.target.value)}}
-                  />       
-                </label>
-              </div>
-              <div style={{margin:'2.5vh 0'}}>
-                <label>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="โทรศัพท์"
-                  // value={Bnumber}
-                  value={Input11}
-                  onChange={(e) => {setInput11(e.target.value)}}
-                  />       
-                </label>
-                <label>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="มือถือ"
-                  // value={Bnumber}
-                  value={Input12}
-                  onChange={(e) => {setInput12(e.target.value)}}
-                  />       
-                </label>
-              </div>
-              <div style={{margin:'2.5vh 0'}}>
-                <label>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="E-Mail"
-                  // value={Bnumber}
-                  value={Input13}
-                  onChange={(e) => {setInput13(e.target.value)}}
-                  />       
-                </label>
-                <label>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="รหัส MQTT"
-                  // value={Bnumber}
-                  value={Input14}
-                  onChange={(e) => {setInput14(e.target.value)}}
-                  />       
-                </label>
-              </div>
+              
               <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <Button style={{color:'white', backgroundColor:'#6CDCC0',margin:'2.5vh 2.5vw'}}
                 onClick={handleSubmit} type="submit"

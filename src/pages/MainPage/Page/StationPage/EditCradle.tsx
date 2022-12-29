@@ -69,6 +69,10 @@ const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPage
     const [Input4, setInput4] = useState("")
     const [Input5, setInput5] = useState("") 
     const [Input6, setInput6] = useState("") 
+    const [Input7, setInput7] = useState("")
+    const [Input8, setInput8] = useState("") 
+    const [Input9, setInput9] = useState("")
+    const [Input10, setInput10] = useState("") 
 
     const [Bnumber, setBnumber] = useState({
       ut_name:"",
@@ -146,6 +150,10 @@ const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPage
         setInput4(response.data.data[0].s_tel)
         setInput5(response.data.data[0].ss_id)
         setInput6(response.data.data[0].s_active)
+        setInput7(response.data.data[0].s_amphur)
+        setInput8(response.data.data[0].s_tumbon)
+        setInput9(response.data.data[0].s_province)
+        setInput9(response.data.data[0].s_zipcode)
         // setpost(response.data.data)
         console.log(response.data.data[0])
       })
@@ -186,15 +194,17 @@ const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPage
           <Header/>
           <p style={{margin:'5vh 30vw',justifyContent:'center' ,fontSize:'36px'}}>แก้ไขสถานี</p>
           <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
-            <form >
-              <div style={{margin:'2.5vh 0'}}>
+            <form>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                <label>
+                  <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ชื่อสถานี</p>
                   <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อสถานี"
                   value={Input1}
                   onChange={(e) => {setInput1(e.target.value)}}
                   />          
                 </label>
                 <label>
+                  <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ที่อยู่</p>
                   <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ที่อยู่"
                   // value={Bnumber}
                   value={Input2}
@@ -202,33 +212,72 @@ const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPage
                   />       
                 </label>
               </div>
-              <div style={{margin:'2.5vh 0'}}>
-               <label>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อเจ้าของอู่"
-                  value={Input3}
-                  onChange={(e) => {setInput3(e.target.value)}}
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
+              <label>
+                  <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>อำเภอ</p>
+                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="อำเภอ"
+                  value={Input7}
+                  onChange={(e) => {setInput7(e.target.value)}}
                   />          
                 </label>
                 <label>
-                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="เบอร์ติดต่อ"
+                  <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ตำบล</p>
+                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ตำบล"
                   // value={Bnumber}
-                  value={Input4}
-                  onChange={(e) => {setInput4(e.target.value)}}
+                  value={Input8}
+                  onChange={(e) => {setInput8(e.target.value)}}
                   />       
                 </label>
               </div>
-              <div style={{margin:'2.5vh 0'}}>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                <label>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="เวลาทำการ"
-                  value={Input5}
-                  onChange={(e) => {setInput5(e.target.value)}}
+                  <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>จังหวัด</p>
+                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="จังหวัด"
+                  value={Input9}
+                  onChange={(e) => {setInput9(e.target.value)}}
                   />          
                 </label>
                 <label>
+                  <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ชื่อเจ้าของอู่</p>
+                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อเจ้าของอู่"
+                  // value={Bnumber}
+                  value={Input3}
+                  onChange={(e) => {setInput3(e.target.value)}}
+                  />       
+                </label>
+              </div>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
+               <label>
+                  <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>เบอร์ติดต่อ</p>
+                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="เบอร์ติดต่อ"
+                  value={Input4}
+                  onChange={(e) => {setInput4(e.target.value)}}
+                  />          
+                </label>
+                <label>
+                  <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>เวลาทำการ</p>
+                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="เวลาทำการ"
+                  // value={Bnumber}
+                  value={Input5}
+                  onChange={(e) => {setInput5(e.target.value)}}
+                  />       
+                </label>
+              </div>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
+                <label>
+                  <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>จำนวนรถ</p>
                   <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="จำนวนรถ"
                   // value={Bnumber}
                   value={Input6}
                   onChange={(e) => {setInput6(e.target.value)}}
+                  />       
+                </label>
+                <label>
+                  <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>รหัส MQTT</p>
+                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="รหัส MQTT"
+                  // value={Bnumber}
+                  value={Input10}
+                  onChange={(e) => {setInput10(e.target.value)}}
                   />       
                 </label>
               </div>

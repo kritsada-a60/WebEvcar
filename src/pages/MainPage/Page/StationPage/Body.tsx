@@ -61,6 +61,8 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         // navigateadddata();
     }
 
+
+
     function GetLs_idDelete() {
         // console.log(EditCustomerData);
         LS.setItem('idEdit', DeleteData);
@@ -69,10 +71,12 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         // navigateadddata();
     }
 
+
+
     const [IDEditData, setIDEditData] = useState('');
     // const [DeleteData, setDeleteData] = useState<MyDeleteData[]>([]);
     const [DeleteData, setDeleteData] = useState('');
-    const [EditData_3, setEditData_3] = useState();
+    const [IDCountData, setIDCountData] = useState('');
 
     useEffect(() =>{
       axios.post(baseURL,{
@@ -82,7 +86,11 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         // console.log(post,"post data")
         console.log(response.data.data,"start data")
         // console.log(response.data.data.length)
-        setcount(response.data.data.length)
+        LS.setItem('IdCount', response.data.data.length);
+        
+        if (IDCountData == ''){
+          setIDCountData(response.data.data.length);
+        }
       })
     }, []);
 
@@ -123,6 +131,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     const navigateadddata = () => {
         navigate('/addstation');
+
     };
 
         const navigateeditdata = () => {
@@ -136,7 +145,10 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         // "เลขที่กิจการ", 
         "ชื่อสถานี", 
         // "รูปแบบกิจการ", 
-        "ที่อยู่", 
+        "ที่อยู่",
+        "อำเภอ", 
+        "ตำบล", 
+        "จังหวัด",  
         "เจ้าของอู่", 
         "เบอร์ติดต่อ", 
         "เวลาทำการ", 
@@ -211,6 +223,9 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                             // item.s_id,
                             item.s_name,
                             item.s_address,
+                            item.s_amphur,
+                            item.s_tumbon,
+                            item.s_province,
                             item.s_contact,
                             item.s_tel,
                             item.ss_id,

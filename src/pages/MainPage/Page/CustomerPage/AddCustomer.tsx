@@ -151,7 +151,7 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
               <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
                   <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ชื่อลูกค้า</p>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อลูกค้า"
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อลูกค้า"
                   // value={Bnumber}
                   value={Input1}
                   onChange={(e) => {setInput1(e.target.value)}}
@@ -159,7 +159,7 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
                 </label>
                 <label>
                   <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>เลขทะเบียนการค้า</p>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="เลขทะเบียนการค้า"
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="เลขทะเบียนการค้า"
                   // value={Bnumber}
                   value={Input2}
                   onChange={(e) => {setInput2(e.target.value)}}
@@ -177,7 +177,7 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
                 </label>
                 <label>
                   <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>บัญขีธนาคาร</p>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="บัญขีธนาคาร"
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="บัญขีธนาคาร"
                   // value={Bnumber}
                   value={Input4}
                   onChange={(e) => {setInput4(e.target.value)}}

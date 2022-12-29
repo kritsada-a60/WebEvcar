@@ -173,9 +173,9 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     useEffect(() =>{
       axios.post(baseURL,{
         ctm_id: "5",
-        s_id: "1",
+        s_id: "2",
       }).then((response) => {
-        // console.log(response.data.data.length)
+        console.log(response.data)
         setpost(response.data.data)
         // console.log(post,"post data")
 
@@ -323,12 +323,12 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     const Testcolumns = [
         "ID",
-        "ชื่อู่",
-        "ประเภทหัวจ่าย",
-        "ชื่อหัวจ่าย",
-        "ที่อยู่",
-        "เบอร์ติดต่อ",
-        "ชื่อผู้ติดต่อ",
+        "ชื่อบริการ",
+        "ประเภท",
+        "serial",
+        "ราคา",
+        "หน่วย",
+        "MQTT_CODE",
         // "ชื่อลูกค้า", 
         // "ประเภทลูกค้า", 
         // "เลขทะเบียนการค้า", 
@@ -452,7 +452,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                     inputProps={{ 'aria-label': 'Without label' }}
                     >
                     <MenuItem value="">
-                        <em>{post3[0]?.sv_id}</em>
+                        <em>{post3[0]?.s_name}</em>
                     </MenuItem>
                     {DorpDownStaion?.length &&
                         DorpDownStaion.map((e: any, i: number) => {
@@ -463,7 +463,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                             //     setNumberDorpDown(e.sv_id)
                             // }}
                             >
-                            {e.sv_id}
+                            {e.s_name}
                             </MenuItem>
                         );
                     })}
@@ -481,13 +481,12 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                     data={post3?.map(item => {
                         return [
                             item.sv_id,
-                            item.ctm_name,
-                            item.pc_name,
                             item.sv_name,
-                            item.s_address,
-                            item.s_tel,
-                            item.s_contact,
-                            
+                            item.pc_name,
+                            item.sv_serial,
+                            item.sv_price,
+                            item.sv_unit,
+                            item.sv_mqtt_code,
                         ]
                     })} 
                     // data={post3}
