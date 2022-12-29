@@ -46,6 +46,7 @@ const AddstationPage: React.FunctionComponent<ISAddstationPageProps> = (props) =
 
     const RemoceIdEdit = () => {
       LS.removeItem('idEdit');
+      navigateadddata();
     }
 
     const navigate = useNavigate();

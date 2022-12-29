@@ -139,6 +139,12 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
         console.log(Input1,"input")
     }, [Input1]);
 
+    const navigate = useNavigate();
+
+    const navigatecustomer = () => {
+        navigate('/customer');
+    };
+
 
 
 
@@ -283,7 +289,7 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
                   บันทึก
                 </Button>
                 <Button style={{color:'white', backgroundColor:'#FF5A5A',margin:'2.5vh 2.5vw'}}
-
+                onClick={navigatecustomer}
                 >
                   ยกเลิก
                 </Button>

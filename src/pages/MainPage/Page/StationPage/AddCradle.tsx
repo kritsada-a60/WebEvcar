@@ -139,6 +139,12 @@ const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPage
         console.log(Input1,"input")
     }, [Input1]);
 
+    const navigate = useNavigate();
+
+    const navigateadddata = () => {
+        navigate('/stationin');
+    };
+
 
 
 
@@ -283,7 +289,7 @@ const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPage
                   บันทึก
                 </Button>
                 <Button style={{color:'white', backgroundColor:'#FF5A5A',margin:'2.5vh 2.5vw'}}
-
+                onClick={navigateadddata}
                 >
                   ยกเลิก
                 </Button>

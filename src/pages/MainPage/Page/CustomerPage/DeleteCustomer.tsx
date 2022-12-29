@@ -46,6 +46,7 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
 
     const RemoceIdEdit = () => {
       LS.removeItem('IdEditCustomerData');
+      navigateadddata();
     }
 
     const navigate = useNavigate();

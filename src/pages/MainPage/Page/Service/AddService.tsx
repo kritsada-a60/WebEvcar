@@ -166,6 +166,11 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
 
     }, []);
 
+    const navigate = useNavigate();
+
+    const navigateservice = () => {
+        navigate('/service ');
+    };
 
 
 
@@ -299,7 +304,7 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
                   บันทึก
                 </Button>
                 <Button style={{color:'white', backgroundColor:'#FF5A5A',margin:'2.5vh 2.5vw'}}
-
+                onClick={navigateservice}
                 >
                   ยกเลิก
                 </Button>

@@ -53,6 +53,7 @@ const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPage
 
     const RemoceIdEdit = () => {
       LS.removeItem('IdEditStationData');
+      navigateadddata();
     }
 
     const navigate = useNavigate();

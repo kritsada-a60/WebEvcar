@@ -55,12 +55,13 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
 
     const RemoceIdEdit = () => {
       LS.removeItem('idEdit');
+      navigateadddata();
     }
 
     const navigate = useNavigate();
 
     const navigateadddata = () => {
-        navigate('/stationinformation');
+        navigate('/userdetail');
     };
     
     const [Bname, setBname] = useState("")
@@ -255,7 +256,9 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
                 <Button style={{color:'white', backgroundColor:'#6CDCC0',margin:'2.5vh 2.5vw'}}>
                   บันทึก
                 </Button>
-                <Button style={{color:'white', backgroundColor:'#FF5A5A',margin:'2.5vh 2.5vw'}}>
+                <Button style={{color:'white', backgroundColor:'#FF5A5A',margin:'2.5vh 2.5vw'}}
+                onClick={RemoceIdEdit}
+                >
                   ยกเลิก
                 </Button>
               </div>

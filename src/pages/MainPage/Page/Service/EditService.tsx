@@ -53,7 +53,9 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
 
     const RemoceIdEdit = () => {
       LS.removeItem('IdEditServiceData');
+      navigateadddata();
     }
+    
 
     const navigate = useNavigate();
 

@@ -10,6 +10,7 @@ import { Typography , TextField} from "@mui/material";
 import Header from "../../Header"
 import Body from "./Body"
 import axios, { Axios } from "axios";
+import { useParams , useNavigate} from 'react-router-dom';
 
 type MyDataPost = {
   ut_id: string;
@@ -45,7 +46,15 @@ const AddstationPage: React.FunctionComponent<ISAddstationPageProps> = (props) =
 
     const RemoceIdEdit = () => {
       LS.removeItem('idEdit');
+      navigateadddata();
     }
+    
+
+    const navigate = useNavigate();
+
+    const navigateadddata = () => {
+        navigate('/stationinformation');
+    };
     
     const [Bname, setBname] = useState("") 
 

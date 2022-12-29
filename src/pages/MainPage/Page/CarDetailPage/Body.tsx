@@ -110,7 +110,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         axios
         .post(baseURLUpdateDelete, {
             c_id: Number(DeleteData),
-            u_id: "1",
+            u_id: 1,
         })
         .then((res) => {
             console.log(res,"this is delete");
@@ -173,7 +173,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
             return (
               <Button aria-label="delete" variant="outlined" style={{color:'white',backgroundColor:'#6CDCC0',borderRadius:'15px'}}
             //   onClick={() => {
-            //     setDeleteData(post[dataIndex].ctm_id);
+            //     setDeleteData(post[dataIndex].c_id);
             //     GetLs_idDelete();
             //     handleSubmit();
             //   }}
