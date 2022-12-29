@@ -116,6 +116,8 @@ const AddCarPage: React.FunctionComponent<ISAddCarPageProps> = (props) => {
 
     const [DorpDownData3, setDorpDownData3] = useState<MyDorpDownData2[]>([]);
 
+
+    const LS = localStorage;
     
     const [Input1, setInput1] = useState("") 
     const [Input2, setInput2] = useState("")
@@ -125,6 +127,7 @@ const AddCarPage: React.FunctionComponent<ISAddCarPageProps> = (props) => {
     const [Input6, setInput6] = useState("")
     const [Input7, setInput7] = useState("") 
     const [Input8, setInput8] = useState("")
+    const [Input9, setInput9] = useState("")
 
     const navigate = useNavigate();
 
@@ -166,12 +169,12 @@ const AddCarPage: React.FunctionComponent<ISAddCarPageProps> = (props) => {
         // ctm_bank_no: Input4,
         // ctm_contact_name: Input5,
         // ctm_address : Input6,
-        c_id: 1,
+        // c_id: 1,
         ctm_id: Number(Input2),
         bt_pt_id: Number(Input3),
         cgt_pt_id: Number(Input4),
         c_license_plate: Input1,
-        c_mqtt_code: "TT_3",
+        c_mqtt_code: Input9,
         c_active: "1",
         u_id: 1,
       })
@@ -332,6 +335,18 @@ const AddCarPage: React.FunctionComponent<ISAddCarPageProps> = (props) => {
                   onChange={(e) => {setInput6(e.target.value)}}
                   />       
                 </label>
+
+              </div>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'flex-start',alignItems:'center'}}>
+                <label>
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>MQTT_CODE</p>
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
+                  // value={Bnumber}
+                  value={Input9}
+                  onChange={(e) => {setInput9(e.target.value)}}
+                  />       
+                </label>
+
 
               </div>
 

@@ -6,7 +6,7 @@ import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-import { Typography , TextField} from "@mui/material";
+import { Typography , TextField ,Checkbox} from "@mui/material";
 import Header from "../../Header"
 import Body from "./Body"
 import axios, { Axios } from "axios";
@@ -106,11 +106,15 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
 
     const [FirstEditData, setFirstEditData] = useState<MyData[]>([]);
 
+    const [ptName, setptName] = useState('');
+
+
     const LS = localStorage;
     const idEdit = LS.getItem('IdEditCustomerData');
 
     const RemoceIdEdit = () => {
       LS.removeItem('IdEditCustomerData');
+      navigate('/cardetail');
     }
 
     const navigate = useNavigate();
@@ -167,7 +171,7 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
         ctm_id: Input2,
         bt_pt_id: Number(Input3),
         cgt_pt_id: Number(Input4),
-        c_mqtt_code: "TT_3",
+        c_mqtt_code: Input6,
         c_active: "1",
         u_id: 1,
         c_start_data: Input8,
@@ -187,9 +191,12 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
       axios.post(baseURLUpdateData,{
         c_id: LS.getItem('IdCarEdit')
       }).then((response) => {
-        console.log(response.data.data[0].c_id)
+        console.log(response.data.data[0])
         setFirstData(response.data.data)
         setInput1(response.data.data[0].c_license_plate)
+        setptName(response.data.data[0].bt_pt_name);
+
+        // setInput4(response.data.data[0].bt_pt_name);
         // setFirstData(response.data.data[0].ctm_name)
         // setFirstData(response.data.data[0].cgt_pt_name)
         // setFirstData(response.data.data[0].bt_pt_name)
@@ -288,7 +295,7 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
               <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                <label>
                   <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ทะเบียนรถ</p>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อกิจการ"
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   value={Input1}
                   onChange={(e) => {setInput1(e.target.value)}}
                   />          
@@ -304,16 +311,17 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
 
                 <label>
                     <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>อู่</p>
-                    <Select type="ประเภทกิจการ" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ประเภทกิจการ"
+                    <Select type="ประเภทกิจการ" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                     value={Input2}
                     onChange={(e) => {setInput2(e.target.value)}}
                     // label="Age"
                     displayEmpty
+                    // defaultValue=''
                     inputProps={{ 'aria-label': 'Without label' }}
                     >
                       
                     <MenuItem value="">
-                        <em></em>
+                        <em>{FirstData[0]?.ctm_name}</em>
                     </MenuItem>
                     {resultDorpDownData?.length &&
                         resultDorpDownData.map((e: any, i: number) => {
@@ -337,7 +345,7 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
               <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
                     <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>หัวชาร์จ</p>
-                    <Select type="หัวชาร์จ" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="หัวชาร์จ"
+                    <Select type="หัวชาร์จ" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                     value={Input3}
                     onChange={(e) => {setInput3(e.target.value)}}
                     // label="Age"
@@ -346,8 +354,9 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
                     >
                       
                     <MenuItem value="">
-                        <em></em>
+                        <em>{FirstData[0]?.bt_pt_name}</em>
                     </MenuItem>
+                    
                     {DorpDownData2?.length &&
                         DorpDownData2.map((e: any, i: number) => {
                         return (
@@ -366,17 +375,16 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
                 </label>
                 <label>
                     <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>แบตเตอร์รี่</p>
-                    <Select type="แบตเตอร์รี่" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="แบตเตอร์รี่"
+                    <Select type="แบตเตอร์รี่" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                     value={Input4}
                     onChange={(e) => {setInput4(e.target.value)}}
-                    // label="Age"
                     displayEmpty
                     inputProps={{ 'aria-label': 'Without label' }}
                     >
-                      
                     <MenuItem value="">
-                        <em></em>
+                        <em>{FirstData[0]?.cgt_pt_name}</em>
                     </MenuItem>
+                    
                     {DorpDownData3?.length &&
                         DorpDownData3.map((e: any, i: number) => {
                         return (
@@ -391,55 +399,46 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
                         );
                     })}
                     </Select>
-                    {/* {NumberDorpDown}          */}
                 </label>
               </div>
               <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
                   <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ไมล์เริ่มต้น</p>
-                  <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ไมล์เริ่มต้น"
+                  <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   // value={Bnumber}
-                  value={FirstData[0]?.c_capacity}
+                  value={Input5}
                   onChange={(e) => {setInput5(e.target.value)}}
                   />       
                 </label>
                 <label>
-                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ความเร็วรถ</p>
-                  <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ความเร็วรถ"
-                  // value={Bnumber}
-                  value={FirstData[0]?.c_speed}
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>MQTT_CODE</p>
+                  <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
+                  value={Input6}
                   onChange={(e) => {setInput6(e.target.value)}}
                   />       
                 </label>
               </div>
-              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
-                <label>
-                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>เลขไมล์</p>
-                  <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="เลขไมล์"
-                  // value={Bnumber}
-                  value={FirstData[0]?.c_mileage}
-                  onChange={(e) => {setInput7(e.target.value)}}
-                  />       
-                </label>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'flex-start',alignItems:'center'}}>
                 <label>
                   <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>วันที่เริ่มใช้งาน</p>
-                  <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="วันที่เริ่มใช้งาน"
+                  <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   // value={Bnumber}
-                  value={FirstData[0]?.c_gps_signal}
+                  value={Input8}
                   onChange={(e) => {setInput8(e.target.value)}}
                   />       
                 </label>
-              </div>
-              <div style={{margin:'2.5vh 0'}}>
                 <label>
-                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>สถานะรถ</p>
-                  <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="สถานะรถ"
-                  // value={Bnumber}
-                  value={FirstData[0]?.c_status}
-                  onChange={(e) => {setInput9(e.target.value)}}
-                  />       
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>การใช้งาน</p>
+                  <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
+                    <p style={{fontSize:'18px'}}>Active</p>
+                    <Checkbox/>
+                    <p style={{fontSize:'18px'}}>InActive</p>
+                    <Checkbox/>
+                  </div>
                 </label>
               </div>
+
+
               
               
               <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>

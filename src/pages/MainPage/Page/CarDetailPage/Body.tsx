@@ -81,6 +81,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         console.log(response.data.data,"start data")
         // console.log(response.data.data.length)
         setcount(response.data.data.length)
+        LS.setItem('CountDataCarpage', response.data.data.length)
       })
     }, []);
 
