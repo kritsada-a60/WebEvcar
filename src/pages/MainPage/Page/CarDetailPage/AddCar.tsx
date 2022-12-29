@@ -126,6 +126,12 @@ const AddCarPage: React.FunctionComponent<ISAddCarPageProps> = (props) => {
     const [Input7, setInput7] = useState("") 
     const [Input8, setInput8] = useState("")
 
+    const navigate = useNavigate();
+
+    const navigatecar = () => {
+      navigate('/cardetail');
+    };
+
     useEffect(()=>{
       axios.get(baseURLDorpDown).then((response) => {
         setDorpDownData(response.data.data)
@@ -213,7 +219,7 @@ const AddCarPage: React.FunctionComponent<ISAddCarPageProps> = (props) => {
               <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
                   <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ทะเบียนรถ</p>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อลูกค้า"
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   // value={Bnumber}
                   value={Input1}
                   onChange={(e) => {setInput1(e.target.value)}}
@@ -221,7 +227,7 @@ const AddCarPage: React.FunctionComponent<ISAddCarPageProps> = (props) => {
                 </label>
                 <label>
                     <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>อู่</p>
-                    <Select type="ประเภทกิจการ" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ประเภทกิจการ"
+                    <Select type="ประเภทกิจการ" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                     value={Input2}
                     onChange={(e) => {setInput2(e.target.value)}}
                     // label="Age"
@@ -252,7 +258,7 @@ const AddCarPage: React.FunctionComponent<ISAddCarPageProps> = (props) => {
               <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
                     <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>หัวชาร์จ</p>
-                    <Select type="หัวชาร์จ" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="หัวชาร์จ"
+                    <Select type="หัวชาร์จ" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                     value={Input3}
                     onChange={(e) => {setInput3(e.target.value)}}
                     // label="Age"
@@ -281,7 +287,7 @@ const AddCarPage: React.FunctionComponent<ISAddCarPageProps> = (props) => {
                 </label>
                 <label>
                     <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>แบตเตอร์รี่</p>
-                    <Select type="แบตเตอร์รี่" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="แบตเตอร์รี่"
+                    <Select type="แบตเตอร์รี่" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                     value={Input4}
                     onChange={(e) => {setInput4(e.target.value)}}
                     // label="Age"
@@ -312,39 +318,23 @@ const AddCarPage: React.FunctionComponent<ISAddCarPageProps> = (props) => {
               <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
                   <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ไมล์เริ่มต้น</p>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อผู้ติดต่อ"
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   // value={Bnumber}
                   value={Input5}
                   onChange={(e) => {setInput5(e.target.value)}}
                   />       
                 </label>
                 <label>
-                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ความเร็วรถ</p>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ที่อยู่"
-                  // value={Bnumber}
-                  value={Input6}
-                  onChange={(e) => {setInput6(e.target.value)}}
-                  />       
-                </label>
-              </div>
-              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
-                <label>
-                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>เลขไมล์</p>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อผู้ติดต่อ"
-                  // value={Bnumber}
-                  value={Input7}
-                  onChange={(e) => {setInput5(e.target.value)}}
-                  />       
-                </label>
-                <label>
                   <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>วันที่เริ่มใช้งาน</p>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ที่อยู่"
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   // value={Bnumber}
                   value={Input8}
                   onChange={(e) => {setInput6(e.target.value)}}
                   />       
                 </label>
+
               </div>
+
 
               <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <Button style={{color:'white', backgroundColor:'#6CDCC0',margin:'2.5vh 2.5vw'}}
@@ -353,7 +343,7 @@ const AddCarPage: React.FunctionComponent<ISAddCarPageProps> = (props) => {
                   บันทึก
                 </Button>
                 <Button style={{color:'white', backgroundColor:'#FF5A5A',margin:'2.5vh 2.5vw'}}
-
+                onClick={navigatecar}
                 >
                   ยกเลิก
                 </Button>
