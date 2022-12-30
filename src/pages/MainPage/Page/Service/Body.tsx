@@ -188,6 +188,16 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
       })
     }, []);
 
+    
+    const resultDorpDownData = DorpDownStaion.filter((member) => {
+        return member.ctm_name == "Station A"
+    })
+
+
+
+
+
+
     useEffect(() =>{
         // console.log(post,"this data")
     }, [post]);
@@ -451,13 +461,10 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                     displayEmpty
                     inputProps={{ 'aria-label': 'Without label' }}
                     >
-                    <MenuItem value="">
-                        <em>{post3[0]?.s_name}</em>
-                    </MenuItem>
                     {DorpDownStaion?.length &&
                         DorpDownStaion.map((e: any, i: number) => {
                         return (
-                            <MenuItem key={i} value={e.sv_id}
+                            <MenuItem key={e.sv_id} value={e.sv_id}
                             // onChange={e =>{
                             //     console.log(e,"E")
                             //     setNumberDorpDown(e.sv_id)
@@ -478,7 +485,8 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                 <div style={{width:'100%'}}>
                 <MUIDataTable
                     title={"ข้อมูลลูกค้า"}
-                    data={post3?.map(item => {
+                    data={
+                        post3?.map(item => {
                         return [
                             item.sv_id,
                             item.sv_name,

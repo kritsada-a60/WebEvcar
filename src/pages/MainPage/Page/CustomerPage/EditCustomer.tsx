@@ -48,7 +48,10 @@ type MyData = {
   u_id: number;
 };
 
- 
+ type MyDorpDownData = {
+    ctmt_id: any,
+    ctmt_name: string,
+};
 
 
 export interface ISAddCustomerPageProps {}
@@ -82,6 +85,8 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
     const navigateadddata = () => {
         navigate('/customer');
     };
+
+    const baseURLUpdateAddDorpDown ="http://54.86.117.200:5000/customertype/list"
     
     const [Bname, setBname] = useState("") 
 
@@ -94,6 +99,8 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
 
     const [age, setAge] = React.useState('');
 
+    
+    const [DorpDownData, setDorpDownData] = useState<MyDorpDownData[]>([]);
 
     const [Input1, setInput1] = useState("") 
     const [Input2, setInput2] = useState("")
@@ -104,6 +111,13 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
     const [Input7, setInput7] = useState("") 
     const [Input8, setInput8] = useState("")
     const [Input9, setInput9] = useState("") 
+    const [Input10, setInput10] = useState("")
+    const [Input11, setInput11] = useState("") 
+    const [Input12, setInput12] = useState("") 
+    const [Input13, setInput13] = useState("")  
+    const [Input14, setInput14] = useState("") 
+    const [Input15, setInput15] = useState("")
+    const [Input16, setInput16] = useState("") 
 
     const [testdorpdown, settestdorpdown] = useState([
       {number:'1',text:'a'},
@@ -131,19 +145,19 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
         ctm_id: Number(idEdit),
         ctm_name: Input1,
         ctmt_id: Input3,
-        ctm_cno: Input4,
-        ctm_bank: Input5,
-        ctm_bank_no: Input6,
-        ctm_contact_name: Input7,
-        ctm_address : Input8,
-        ctm_tumbon: "บางนา",
-        ctm_amphur : "บางนา",
-        ctm_province : "กรุงเทพ",
-        ctm_zipcode: "12014",
-        ctm_tel: "6768689698",
-        ctm_mobile: "565656799",
-        ctm_mail: "test@test.com",
-        ctm_mqtt_code: "FleetBBB",
+        ctm_cno: Input2,
+        ctm_bank: Input4,
+        ctm_bank_no: Input5,
+        ctm_contact_name: Input6,
+        ctm_address : Input7,
+        ctm_tumbon: Input9,
+        ctm_amphur : Input10,
+        ctm_province : Input11,
+        ctm_zipcode: Input12,
+        ctm_tel: Input13,
+        ctm_mobile: Input14,
+        ctm_mail: Input15,
+        ctm_mqtt_code: Input16,
         u_id: 1
       })
       .then((res) => {
@@ -175,12 +189,32 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
         setInput6(response.data.data[0].ctm_bank_no)
         setInput7(response.data.data[0].ctm_contact_name)
         setInput8(response.data.data[0].ctm_address)
+        setInput9(response.data.data[0].ctm_tumbon)
+        setInput10(response.data.data[0].ctm_amphur)
+        setInput11(response.data.data[0].ctm_province)
+        setInput12(response.data.data[0].ctm_zipcode)
+        setInput13(response.data.data[0].ctm_tel)
+        setInput14(response.data.data[0].ctm_mobile)
+        setInput15(response.data.data[0].ctm_mail)
+        setInput16(response.data.data[0].ctm_mqtt_code)
 
 
         // setpost(response.data.data)
         console.log(response.data.data[0])
       })
+      .catch((err) => console.error(err));
     }, []);
+
+    useEffect(()=>{
+      axios.get(baseURLUpdateAddDorpDown).then((response) => {
+        setDorpDownData(response.data.data)
+        
+        // const result = FirstData.filter((member) => {
+        //   return member.ctmt_id = 2
+        // })
+      })
+      .catch((err) => console.error(err));
+    },[])
 
     /* axios Editdata */
 
@@ -221,24 +255,45 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
               <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                <label>
                   <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ชื่อลูกค้า</p>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อลูกค้า"
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   value={Input1}
                   onChange={(e) => {setInput1(e.target.value)}}
                   />          
                 </label>
                 <label>
-                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ประเภทลูกค้า</p>
-                  <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ประเภทลูกค้า"
-                  // value={Bnumber}
-                  value={Input2}
-                  onChange={(e) => {setInput2(e.target.value)}}
-                  />       
+                    <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ประเภทลูกค้า</p>
+                    <Select type="ประเภทลูกค้า" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
+                    value={Input3}
+                    onChange={(e) => {setInput3(e.target.value)}}
+                    // label="Age"
+                    displayEmpty
+                    inputProps={{ 'aria-label': 'Without label' }}
+                    >
+                      
+                    <MenuItem value="">
+                        <em></em>
+                    </MenuItem>
+                    {DorpDownData?.length &&
+                        DorpDownData.map((e: any, i: number) => {
+                        return (
+                            <MenuItem key={e.ctmt_id} value={e.ctmt_id}
+                            // onChange={e =>{
+                            //     console.log(e,"E")
+                            //     setNumberDorpDown(e.sv_id)
+                            // }}
+                            >
+                            {e.ctmt_name}
+                            </MenuItem>
+                        );
+                    })}
+                    </Select>
+                    {/* {NumberDorpDown}          */}
                 </label>
               </div>
               <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
                   <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ทะเบียนการค้า</p>
-                  <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ทะเบียนการค้า"
+                  <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   // value={Bnumber}
                   value={Input3}
                   onChange={(e) => {setInput3(e.target.value)}}
@@ -246,7 +301,7 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
                 </label>
                 <label>
                   <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ชื่อธนาคาร</p>
-                  <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อธนาคาร"
+                  <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   // value={Bnumber}
                   value={Input4}
                   onChange={(e) => {setInput4(e.target.value)}}
@@ -256,7 +311,7 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
               <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
                   <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>บัญชีธนาคาร</p>
-                  <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="บัญชีธนาคาร"
+                  <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   // value={Bnumber}
                   value={Input5}
                   onChange={(e) => {setInput5(e.target.value)}}
@@ -264,7 +319,7 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
                 </label>
                 <label>
                   <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ชื่อผู้ติดต่อ</p>
-                  <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อผู้ติดต่อ"
+                  <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   // value={Bnumber}
                   value={Input6}
                   onChange={(e) => {setInput6(e.target.value)}}
@@ -274,10 +329,86 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
               <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'flex-start',alignItems:'center'}}>
                 <label>
                   <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ที่อยู่</p>
-                  <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ที่อยู่"
+                  <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   // value={Bnumber}
                   value={Input7}
                   onChange={(e) => {setInput7(e.target.value)}}
+                  />       
+                </label>
+                <label>
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ตำบล</p>
+                  <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
+                  // value={Bnumber}
+                  value={Input8}
+                  onChange={(e) => {setInput8(e.target.value)}}
+                  />       
+                </label>
+              </div>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
+
+                <label>
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>อำเภอ</p>
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
+                  // value={Bnumber}
+                  value={Input10}
+                  onChange={(e) => {setInput10(e.target.value)}}
+                  />       
+                </label>
+                <label>
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>จังหวัด</p>
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
+                  // value={Bnumber}
+                  value={Input11}
+                  onChange={(e) => {setInput11(e.target.value)}}
+                  />       
+                </label>
+              </div>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
+
+                <label>
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>รหัสไปรษณีย์</p>
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
+                  // value={Bnumber}
+                  value={Input12}
+                  onChange={(e) => {setInput12(e.target.value)}}
+                  />       
+                </label>
+                <label>
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>โทรศัพท์</p>
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
+                  // value={Bnumber}
+                  value={Input13}
+                  onChange={(e) => {setInput13(e.target.value)}}
+                  />       
+                </label>
+              </div>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
+
+                <label>
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>มือถือ</p>
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}}
+                  // value={Bnumber}
+                  value={Input14}
+                  onChange={(e) => {setInput14(e.target.value)}}
+                  />       
+                </label>
+                <label>
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>Emial</p>
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
+                  // value={Bnumber}
+                  value={Input15}
+                  onChange={(e) => {setInput15(e.target.value)}}
+                  />       
+                </label>
+              </div>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'flex-start',alignItems:'center'}}>
+
+                <label>
+                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>รหัส MQTT</p>
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}}
+                  // value={Bnumber}
+                  value={Input16}
+                  onChange={(e) => {setInput16(e.target.value)}}
                   />       
                 </label>
               </div>

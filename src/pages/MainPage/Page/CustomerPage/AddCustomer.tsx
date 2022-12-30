@@ -53,6 +53,11 @@ ctm_mqtt_code: string;
 // u_id: number;
 };
 
+type MyDorpDownData = {
+    ctmt_id: any,
+    ctmt_name: string,
+};
+
 
 
 export interface ISAddCustomerPageProps {}
@@ -67,11 +72,16 @@ const baseURLUpdateEdit ="http://54.86.117.200:5000/customer/edit"
 
 const baseURLUpdateAdd ="http://54.86.117.200:5000/customer/add"
 
+const baseURLUpdateAddDorpDown ="http://54.86.117.200:5000/customertype/list"
+
+
+
 const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props) => {
 
     const [post, setpost] = useState<MyDataPost[]>([]);
 
-    
+    const [DorpDownData, setDorpDownData] = useState<MyDorpDownData[]>([]);
+
     const [Input1, setInput1] = useState("") 
     const [Input2, setInput2] = useState("")
     const [Input3, setInput3] = useState("") 
@@ -119,6 +129,17 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
       .catch((err) => console.error(err));
     };
 
+    useEffect(()=>{
+      axios.get(baseURLUpdateAddDorpDown).then((response) => {
+        setDorpDownData(response.data.data)
+        
+        // const result = FirstData.filter((member) => {
+        //   return member.ctmt_id = 2
+        // })
+      })
+      .catch((err) => console.error(err));
+    },[])
+
     /* axios Adddata */
 
     // useEffect(() =>{
@@ -164,12 +185,33 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
                   />       
                 </label>
                 <label>
-                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ประเภทลูกค้า</p>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
-                  // value={Bnumber}
-                  value={Input3}
-                  onChange={(e) => {setInput3(e.target.value)}}
-                  />       
+                    <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ประเภทลูกค้า</p>
+                    <Select type="ประเภทลูกค้า" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
+                    value={Input3}
+                    onChange={(e) => {setInput3(e.target.value)}}
+                    // label="Age"
+                    displayEmpty
+                    inputProps={{ 'aria-label': 'Without label' }}
+                    >
+                      
+                    <MenuItem value="">
+                        <em></em>
+                    </MenuItem>
+                    {DorpDownData?.length &&
+                        DorpDownData.map((e: any, i: number) => {
+                        return (
+                            <MenuItem key={e.ctmt_id} value={e.ctmt_id}
+                            // onChange={e =>{
+                            //     console.log(e,"E")
+                            //     setNumberDorpDown(e.sv_id)
+                            // }}
+                            >
+                            {e.ctmt_name}
+                            </MenuItem>
+                        );
+                    })}
+                    </Select>
+                    {/* {NumberDorpDown}          */}
                 </label>
               </div>
               <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
