@@ -31,3 +31,20 @@ sv_status_txt: string;
 sv_temp: any,
 sv_ts: any,
 sv_unit: string;
+
+ctm_id: number;
+ctm_name: string;
+s_active: string;
+s_address: string;
+s_amphur: string;
+s_contact: string;
+s_id: number;
+s_lat: string;
+s_lng: string;
+s_mqtt_code: string;
+s_name: string;
+s_province: string;
+s_tel: string;
+s_tumbon: string;
+s_zipcode: string;
+ss_id: any;

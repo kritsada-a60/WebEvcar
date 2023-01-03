@@ -125,8 +125,9 @@ const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPage
           u_id: 1,
       })
       .then((res) => {
-        console.log(res.data);
-        console.log("ok");
+        // Update NewYear
+        // console.log(res.data);
+        // console.log("ok");
         navigateadddata();
 
         // setBnumber(res.data.success)

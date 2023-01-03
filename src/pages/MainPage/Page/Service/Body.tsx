@@ -90,6 +90,25 @@ interface MyDorpDown {
     sv_unit: string;
 }
 
+interface MyDorpDown2 {
+    ctm_id: number;
+    ctm_name: string;
+    s_active: string;
+    s_address: string;
+    s_amphur: string;
+    s_contact: string;
+    s_id: number;
+    s_lat: string;
+    s_lng: string;
+    s_mqtt_code: string;
+    s_name: string;
+    s_province: string;
+    s_tel: string;
+    s_tumbon: string;
+    s_zipcode: string;
+    ss_id: any;
+}
+
 type MyDorpDownLength = {
     sv_id: number;
 };
@@ -103,6 +122,8 @@ const baseURLEdit ="http://54.86.117.200:5000/service/add"
 const baseURLUpdateDelete ="http://54.86.117.200:5000/service/del"
 
 const baseURLUpdateDataTable ="http://54.86.117.200:5000/service/one"
+
+const baseURLUpdateDataTable2 ="http://54.86.117.200:5000/station/list"
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
@@ -119,6 +140,9 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const [post4, setpost4] = useState("1");
 
     const [DorpDownStaion, setDorpDownStaion] = useState<MyDorpDown[]>([]);
+
+    const [DorpDownStaion2, setDorpDownStaion2] = useState<MyDorpDown2[]>([]);
+
     const [DorpDownId, setDorpDownID] = useState('');
 
 
@@ -129,6 +153,8 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const [count, setcount] = useState('');
 
     const [age, setAge] = React.useState('');
+
+    const [Input1, setInput1] = useState("") 
 
 
 
@@ -171,15 +197,29 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
 
     useEffect(() =>{
-      axios.post(baseURL,{
+    //   axios.post(baseURL,{
+    //     ctm_id: "5",
+    //     s_id: "2",
+    //   }).then((response) => {
+    //     console.log(response.data)
+    //     setpost(response.data.data)
+    //     // console.log(post,"post data")
+
+    //     setDorpDownStaion(response.data.data)
+    //     // console.log(DorpDownStaion,"post dorpdown")
+        
+    //     // console.log(response.data.data,"start data")
+    //     // console.log(response.data.data.length)
+    //     // setcount(response.data.data.length)
+    //   })
+    axios.post(baseURLUpdateDataTable2,{
         ctm_id: "5",
-        s_id: "2",
       }).then((response) => {
         console.log(response.data)
         setpost(response.data.data)
         // console.log(post,"post data")
 
-        setDorpDownStaion(response.data.data)
+        setDorpDownStaion2(response.data.data)
         // console.log(DorpDownStaion,"post dorpdown")
         
         // console.log(response.data.data,"start data")
@@ -199,16 +239,20 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
 
     useEffect(() =>{
-        // console.log(post,"this data")
+        console.log(post,"this data")
     }, [post]);
 
     useEffect(() =>{
         // console.log("this count",count)
     }, [count]);
 
+    // useEffect(() =>{
+    //     console.log("this dorpdowndata",DorpDownStaion)
+    // }, [DorpDownStaion]);
+
     useEffect(() =>{
-        console.log("this dorpdowndata",DorpDownStaion)
-    }, [DorpDownStaion]);
+        console.log("this dorpdowndata2",DorpDownStaion2)
+    }, [DorpDownStaion2]);
 
     useEffect(() =>{
         // console.log("this numberDorpDown",NumberDorpDown)
@@ -226,21 +270,21 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         // ])
         // console.log(post3,"post3")
         if (post2 != null){
-            // console.log(NumberDorpDown,"Happy")
-            axios
-            .post(baseURLUpdateDataTable , {
-                sv_id: NumberDorpDown,
-                // sv_id: LS.getItem("IdCustomerEdit"),
+            console.log(NumberDorpDown,"Happy")
+        //     axios
+        //     .post(baseURLUpdateDataTable , {
+        //         sv_id: NumberDorpDown,
+        //         // sv_id: LS.getItem("IdCustomerEdit"),
 
                 
-                // sv_id: "6",
-            })
-            .then((res) => {
-                console.log(res.data.data,"this is Happy");
-                setpost3(res.data.data)
-                // console.log("ok");
-            })
-            .catch((err) => console.error(err));
+        //         // sv_id: "6",
+        //     })
+        //     .then((res) => {
+        //         console.log(res.data.data,"this is Happy");
+        //         setpost3(res.data.data)
+        //         // console.log("ok");
+        //     })
+        //     .catch((err) => console.error(err));
         }
     }, [post2]);
 
@@ -248,6 +292,10 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         // console.log(post3[0]?.sv_name,"post3")
         // console.log(post3)
     }, [post3]);
+
+    useEffect(() =>{
+        console.log(Input1)
+    }, [Input1]);
 
    
 
@@ -314,10 +362,12 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         // setNumberDorpDown(event.target.value); /* จุดเริ่มต้นของนรก */
         // SetLs_idEdit2();
         // setNameDorpDown(event.target.value);
+        
         console.log(event.target)
         // console.log(post3[0]?.sv_id)
-        axios.post(baseURLUpdateDataTable,{
-            sv_id:event.target.value
+        axios.post(baseURL,{
+            ctm_id:'5',
+            s_id:event.target.value
             // sv_id: 
         }).then((res)=>{
             console.log(res.data.data)
@@ -332,7 +382,6 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     /* Add Button */
 
     const Testcolumns = [
-        "ID",
         "ชื่อบริการ",
         "ประเภท",
         "serial",
@@ -455,16 +504,16 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                 </label>
                 <label>
                     <Select type="ประเภทกิจการ" name="" style={{margin:'0 0vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ประเภทกิจการ"
-                    value={age}
-                    onChange={handleChange}
+                    value={Input1}
+                    onChange={(e) =>{handleChange(e) ; setInput1(e.target.value)}}
                     // label="Age"
                     displayEmpty
                     inputProps={{ 'aria-label': 'Without label' }}
                     >
-                    {DorpDownStaion?.length &&
-                        DorpDownStaion.map((e: any, i: number) => {
+                    {DorpDownStaion2?.length &&
+                        DorpDownStaion2.map((e: any, i: number) => {
                         return (
-                            <MenuItem key={e.sv_id} value={e.sv_id}
+                            <MenuItem key={e.s_id} value={e.s_id}
                             // onChange={e =>{
                             //     console.log(e,"E")
                             //     setNumberDorpDown(e.sv_id)
@@ -479,16 +528,15 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                 </label>
             </div>
             <div style={{display:'flex',justifyContent:'flex-end',alignItems:'center',margin:'2vh 0vw'}}>
-                <Button onClick={navigateadddata} style={{color:'black', backgroundColor:'#6CDCC0',borderRadius:'50px',width:'9.740vw'}}>เพิ่ม</Button>
+                <Button onClick={navigateadddata} style={{color:'black', backgroundColor:'#6CDCC0',borderRadius:'50px',width:'9.740vw'}}>เพิ่ม Service</Button>
             </div>
             <div style={{display:'flex',justifyContent:'flex-start'}}>
                 <div style={{width:'100%'}}>
-                <MUIDataTable
-                    title={"ข้อมูลลูกค้า"}
+                <MUIDataTable   
+                    title={"ข้อมูล Station"}
                     data={
                         post3?.map(item => {
                         return [
-                            item.sv_id,
                             item.sv_name,
                             item.pc_name,
                             item.sv_serial,

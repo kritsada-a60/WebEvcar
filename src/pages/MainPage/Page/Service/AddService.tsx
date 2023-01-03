@@ -116,12 +116,12 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
       .post(baseURLUpdateAdd, {
         s_id: 1,
         pt_id: 3,
-        sv_name: Input1,
-        sv_serial: Input2,
-        sv_mqtt_code: Input5,
-        sv_price: Number(Input3),
-        sv_unit: Input4,
-        sv_remark: Input6,
+        sv_name: Input3,
+        sv_serial: Input4,
+        sv_mqtt_code: Input7,
+        sv_price: Number(Input5),
+        sv_unit: Input6,
+        sv_remark: Input8,
         u_id: 1
       })
       .then((res) => {
@@ -181,9 +181,9 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
           <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
             <form >
               <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
-<label>
+                  <label>
                   <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ประเภทบริการ</p>
-                  <Select type="ประเภทบริการ" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ประเภทบริการ"
+                  <Select type="ประเภทบริการ" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   value={Input1}
                   onChange={(e) => {setInput1(e.target.value)}}
                   // label="Age"
@@ -212,7 +212,7 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
                 </label>
                 <label>
                   <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ชนิด</p>
-                  <Select type="ชนิด" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชนิด"
+                  <Select type="ชนิด" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   value={Input2}
                   onChange={(e) => {setInput2(e.target.value)}}
                   // label="Age"
@@ -243,7 +243,7 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
               <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
                   <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ชื่อบริการ</p>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อบริการ"
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   // value={Bnumber}
                   value={Input3}
                   onChange={(e) => {setInput3(e.target.value)}}
@@ -251,7 +251,7 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
                 </label>
                 <label>
                   <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>serial</p>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="serial"
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   // value={Bnumber}
                   value={Input4}
                   onChange={(e) => {setInput4(e.target.value)}}
@@ -261,7 +261,7 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
               <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
                   <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ราคา</p>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ราคา"
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   // value={Bnumber}
                   value={Input5}
                   onChange={(e) => {setInput5(e.target.value)}}
@@ -269,7 +269,7 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
                 </label>
                 <label>
                   <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>หน่วย</p>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="หน่วย"
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   // value={Bnumber}
                   value={Input6}
                   onChange={(e) => {setInput6(e.target.value)}}
@@ -280,7 +280,7 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
               <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
                   <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>MQTT_OCDE</p>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="MQTT_OCDE"
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   // value={Bnumber}
                   value={Input7}
                   onChange={(e) => {setInput7(e.target.value)}}
@@ -288,7 +288,7 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
                 </label>
                 <label>
                   <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>หมายเหตุ</p>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="หมายเหตุ"
+                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   // value={Bnumber}
                   value={Input8}
                   onChange={(e) => {setInput8(e.target.value)}}
