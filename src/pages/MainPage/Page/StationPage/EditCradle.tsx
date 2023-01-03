@@ -104,7 +104,8 @@ const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPage
 
     const handleSubmit = (e:any) => {
     e.preventDefault();
-    console.log(Bnumber)
+    // console.log(Bnumber)
+    const Mys_id = LS.getItem('idEdit');
     axios
       .post(baseURLUpdateEdit, {
           ctm_id: 5,
@@ -120,13 +121,13 @@ const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPage
           s_contact: Input6,
           s_tel: Input7,
           s_active: "1",
-          s_id: "1",
+          s_id: Mys_id,
           u_id: 1,
       })
       .then((res) => {
         console.log(res.data);
         console.log("ok");
-        // navigateadddata();
+        navigateadddata();
 
         // setBnumber(res.data.success)
       })
