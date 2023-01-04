@@ -191,12 +191,15 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
                     })
                     .then((response) => {
                         setDorpDownData2(response.data.data);
-                        setInput2(response.data.data[0].pt_id);
+
                         // setInput2(response.data.data)
                         console.log(response.data.data);
                         // setInput2(response.data.data[0].pt_name)
                     })
-                    .catch((err) => console.error(err));
+                    .catch((err) => console.error(err))
+                    .finally(()=>{
+                        setInput2(response.data.data[0].pt_id)
+                    })
             });
         axios
             .get(baseURLDorpDown)
