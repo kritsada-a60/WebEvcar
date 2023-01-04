@@ -175,9 +175,9 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
                 setInput3(response.data.data[0].pc_name);
                 setInput4(response.data.data[0].sv_serial);
                 setInput5(response.data.data[0].sv_price);
-                setInput6(response.data.data[0].sv_serial);
-                setInput7(response.data.data[0].sv_unit);
-                setInput8(response.data.data[0].sv_mqtt_code);
+                setInput6(response.data.data[0].sv_unit)
+                setInput7(response.data.data[0].sv_mqtt_code)
+                setInput8(response.data.data[0].sv_remark)
                 console.log(response.data.data[0]);
                 // axios.post(baseURLDorpDown2,{
                 //   pc_id: response.data.data[0].pc_id
