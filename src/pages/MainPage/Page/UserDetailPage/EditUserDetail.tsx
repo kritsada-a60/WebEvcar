@@ -69,7 +69,7 @@ type MyDorpDownData4 = {
 
 
 
-export interface ISAddUserDetailPageProps {}
+export interface ISEditUserDetailPageProps {}
 
 const baseURL ="http://54.86.117.200:5000/usertype/list"
 
@@ -89,7 +89,7 @@ const baseURLUpdateAddDorpDown4 = "http://54.86.117.200:5000/usertype/list"
 
 
 
-const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (props) => {
+const EditUserDetailPage: React.FunctionComponent<ISEditUserDetailPageProps> = (props) => {
 
   const [post, setpost] = useState<MyDataPost[]>([]);
 
@@ -195,16 +195,14 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
       }).then((response) => {
         console.log(response.data)
         // setFirstData(response.data.data[0].ut_name)
-        // setBname(response.data.data[0].u_name)
-        // setBemail(response.data.data[0].u_email)
-        // setBfullname(response.data.data[0].u_fullname)
-        // setBid(response.data.data[0].u_id)
-        // setBmoblie(response.data.data[0].u_mobile)
-        // setBa_name(response.data.data[0].ua_name)
-        // setBl_name(response.data.data[0].ul_name)
-        // setBt_name(response.data.data[0].ut_name)
-
-        // setInput3(response.data.data[0])
+        setBname(response.data.data[0].u_name)
+        setBemail(response.data.data[0].u_email)
+        setBfullname(response.data.data[0].u_fullname)
+        setBid(response.data.data[0].u_id)
+        setBmoblie(response.data.data[0].u_mobile)
+        setBa_name(response.data.data[0].ua_name)
+        setBl_name(response.data.data[0].ul_name)
+        setBt_name(response.data.data[0].ut_name)
 
         // setBname2(response.data.data)
         // setpost(response.data.data)
@@ -271,7 +269,7 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
     return (
         <div style={{backgroundColor:'#E0F0EC'}}>
           <Header/>
-          <p style={{margin:'5vh 30vw',justifyContent:'center' ,fontSize:'36px'}}>เพิ่ม ข้อมูลผู้ใช้งาน</p>
+          <p style={{margin:'5vh 30vw',justifyContent:'center' ,fontSize:'36px'}}>แก้ไขข้อมูลผู้ใช้งาน</p>
           <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
             <form >
               <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
@@ -363,7 +361,7 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
               </div>
               <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
-                  <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ประเภทผู้ใช้</p>
+                  <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>UserType</p>
                     <Select type="ระดับสิทธิ" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                     value={Input9}
                     onChange={(e) => {setInput9(e.target.value)}}
@@ -422,4 +420,4 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
     );
 };
 
-export default AddUserDetailPage;
+export default EditUserDetailPage;

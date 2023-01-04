@@ -36,7 +36,7 @@ type MyDataPost = {
     sv_cmosfet: any,
     sv_credit: any,
     sv_current: any,
-    sv_id: number;
+    sv_id: any;
     sv_mqtt_code: string;
     sv_name: string;
     sv_now: any,
@@ -412,7 +412,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
             return (
               <Button aria-label="edit" variant="outlined" style={{color:'white',backgroundColor:'#6CDCC0',borderRadius:'15px'}}
               onClick={() => {
-                setEditCustomerData(post[dataIndex].ctm_id);
+                setEditCustomerData(post3[dataIndex].sv_id);
                 SetLs_idEdit();   
           
               }}
@@ -432,7 +432,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
             return (
               <Button aria-label="delete" variant="outlined" style={{color:'white',backgroundColor:'#6CDCC0',borderRadius:'15px'}}
               onClick={() => {
-                setDeleteData(post[dataIndex].ctm_id);
+                setDeleteData(post3[dataIndex].sv_id);
                 // GetLs_idDelete();
                 // handleSubmit();
               }}

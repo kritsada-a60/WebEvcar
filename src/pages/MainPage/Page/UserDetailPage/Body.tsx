@@ -67,13 +67,17 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     function SetLs_idEdit() {
 
         LS.setItem('idEdit', EditData_1);
-
+        // navigateeditdata();
     }
 
     const navigate = useNavigate();
 
     const navigateadddata = () => {
         navigate('/adduserdetail');
+    };
+
+    const navigateeditdata = () => {
+        navigate('/edituserdetail');
     };
 
     useEffect(() =>{
@@ -148,7 +152,8 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
               <Button aria-label="edit" variant="outlined" style={{color:'white',backgroundColor:'#6CDCC0',borderRadius:'15px'}}
               onClick={() => {
                 setEditData_1(post[dataIndex].u_id)
-                SetLs_idEdit();            
+                SetLs_idEdit();
+  
               }}
               >
                 {`Edit`}

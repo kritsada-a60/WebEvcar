@@ -31,6 +31,7 @@ import StationInformationPage from './pages/MainPage/Page/StationInformationPage
 import AddStationInformationPage from './pages/MainPage/Page/StationInformationPage/Addstation';
 import UserDetailPage from './pages/MainPage/Page/UserDetailPage/UserDetail';
 import AddUserDetailPage from './pages/MainPage/Page/UserDetailPage/AddUserDetail';
+import EditUserDetailPage from './pages/MainPage/Page/UserDetailPage/EditUserDetail';
 
 import ServicePage from './pages/MainPage/Page/Service/Service';
 import AddServicePage from './pages/MainPage/Page/Service/AddService';
@@ -92,6 +93,7 @@ const Application: React.FunctionComponent<IApplicationProps> = (props) => {
 
                 <Route path="userdetail" element={<UserDetailPage />} />
                 <Route path="adduserdetail" element={<AddUserDetailPage />} />
+                <Route path="edituserdetail" element={<EditUserDetailPage />} />
                 
                 <Route path="service" element={<ServicePage />} />
                 <Route path="addservice" element={<AddServicePage />} />

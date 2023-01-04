@@ -87,7 +87,7 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
 
     const [post, setpost] = useState<MyDataPost[]>([]);
 
-        const [DorpDownData, setDorpDownData] = useState<MyDorpDownData[]>([]);
+    const [DorpDownData, setDorpDownData] = useState<MyDorpDownData[]>([]);
 
     const [DorpDownData2, setDorpDownData2] = useState<MyDorpDownData2[]>([]);
 
@@ -177,7 +177,7 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
     return (
         <div style={{backgroundColor:'#E0F0EC'}}>
           <Header/>
-          <p style={{margin:'5vh 30vw',justifyContent:'center' ,fontSize:'36px'}}>เพิ่มStation</p>
+          <p style={{margin:'5vh 30vw',justifyContent:'center' ,fontSize:'36px'}}>เพิ่ม Service</p>
           <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
             <form >
               <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>

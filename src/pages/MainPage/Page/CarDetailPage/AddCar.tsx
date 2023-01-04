@@ -244,7 +244,7 @@ const AddCarPage: React.FunctionComponent<ISAddCarPageProps> = (props) => {
                     {resultDorpDownData?.length &&
                         resultDorpDownData.map((e: any, i: number) => {
                         return (
-                            <MenuItem key={i} value={e.ctm_id}
+                            <MenuItem key={e.ctm_id} value={e.ctm_id}
                             // onChange={e =>{
                             //     console.log(e,"E")
                             //     setNumberDorpDown(e.sv_id)
@@ -275,7 +275,7 @@ const AddCarPage: React.FunctionComponent<ISAddCarPageProps> = (props) => {
                     {DorpDownData2?.length &&
                         DorpDownData2.map((e: any, i: number) => {
                         return (
-                            <MenuItem key={i} value={e.pt_id}
+                            <MenuItem key={e.pt_id} value={e.pt_id}
                             // onChange={e =>{
                             //     console.log(e,"E")
                             //     setNumberDorpDown(e.sv_id)
@@ -304,7 +304,7 @@ const AddCarPage: React.FunctionComponent<ISAddCarPageProps> = (props) => {
                     {DorpDownData3?.length &&
                         DorpDownData3.map((e: any, i: number) => {
                         return (
-                            <MenuItem key={i} value={e.pt_id}
+                            <MenuItem key={e.pt_id} value={e.pt_id}
                             // onChange={e =>{
                             //     console.log(e,"E")
                             //     setNumberDorpDown(e.sv_id)

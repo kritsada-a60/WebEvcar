@@ -41,6 +41,22 @@ type MyDorpDownData2 = {
     pt_name: string;
 };
 
+type MyEditData = {
+    sv_id: number;
+    s_id: number;
+    pt_id: number;
+    sv_name: string;
+    sv_serial: string;
+    sv_mqtt_code: string;
+    sv_price: number;
+    sv_unit: string;
+    sv_remark: string;
+    sv_active: string;
+    u_id: string;
+};
+
+
+
 
 export interface ISAddServicePageProps {}
 
@@ -52,9 +68,13 @@ const baseURLUpdateData ="http://54.86.117.200:5000/service/one"
 
 const baseURLUpdateEdit ="http://54.86.117.200:5000/service/edit"
 
+const baseURLDorpDown ="http://54.86.117.200:5000/powercatalog/list"
+
+const baseURLDorpDown2 ="http://54.86.117.200:5000/powertype/list"
+
 const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) => {
 
-    const [post, setpost] = useState<MyDataPost[]>([]);
+    const [post, setpost] = useState<MyEditData[]>([]);
 
     const [MyIdEdit, setMyIdEdit] = useState('');
 
@@ -62,6 +82,8 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
 
     const [Input1, setInput1] = useState("") 
     const [Input2, setInput2] = useState("")
+    const [Input2_1, setInput2_1] = useState("")
+
     const [Input3, setInput3] = useState("") 
     const [Input4, setInput4] = useState("")
     const [Input5, setInput5] = useState("") 
@@ -129,6 +151,7 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
       .post(baseURLUpdateEdit, {
         ut_name: Bname,
         ut_id: idEdit,
+
       })
       .then((res) => {
         console.log(res.data);
@@ -148,12 +171,45 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
         sv_id: Number(MydataToPostIdEdit)
         // ctm_id: 7
       }).then((response) => {
-        // console.log(response.data)
+        console.log(response.data.data[0].pt_id,"updateeeee")
         setFirstData(response.data.data[0])
         setBname(response.data.data[0].ctm_name)
         // setpost(response.data.data)
+        setInput1(response.data.data[0].pc_id)
+        // setInput2(response.data.data[0].pc_id)
+        setInput3(response.data.data[0].pc_name)
+        setInput4(response.data.data[0].sv_serial)
+        setInput5(response.data.data[0].sv_price)
+        setInput6(response.data.data[0].sv_serial)
+        setInput7(response.data.data[0].sv_unit)
+        setInput8(response.data.data[0].sv_mqtt_code)
         console.log(response.data.data[0])
+        // axios.post(baseURLDorpDown2,{
+        //   pc_id: response.data.data[0].pc_id
+        // }).then((res)=>{
+        //   setInput2(res.data.data)
+        // })
+        const MyDD2 = response.data.data[0].pc_id
+        axios.post(baseURLDorpDown2,{
+          pc_id: Number(MyDD2)
+        }).then((response) => {
+          setDorpDownData2(response.data.data)
+          
+          // setInput2(response.data.data)
+          console.log(response.data.data)
+          // setInput2(response.data.data[0].pt_name)
+
+        })
+        .catch((err) => console.error(err));
       })
+      axios.get(baseURLDorpDown).then((response) => {
+        setDorpDownData(response.data.data)
+        // console.log(response.data.data)
+        // setInput1(response.data.data[0].pc_name)
+      })
+      .catch((err) => console.error(err));
+
+
     }, []);
 
     /* axios Editdata */
@@ -184,6 +240,14 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
       console.log("this Bname",Bname)
     }, [Bname]);
 
+    useEffect(() =>{
+        console.log(DorpDownData,"DD1")
+    }, [DorpDownData]);
+
+      useEffect(() =>{
+        console.log(DorpDownData2,"DD2")
+    }, [DorpDownData2]);
+
 
 
     return (
@@ -203,13 +267,10 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
                   inputProps={{ 'aria-label': 'Without label' }}
                   >
                     
-                  <MenuItem value="">
-                    <em></em>
-                  </MenuItem>
                   {DorpDownData?.length &&
                       DorpDownData.map((e: any, i: number) => {
                       return (
-                        <MenuItem key={i} value={e.pc_id}
+                        <MenuItem key={e.pc_id} value={e.pc_id}
                         // onChange={e =>{
                         //     console.log(e,"E")
                         //     setNumberDorpDown(e.sv_id)
@@ -232,13 +293,10 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
                   inputProps={{ 'aria-label': 'Without label' }}
                   >
                     
-                  <MenuItem value="">
-                    <em></em>
-                  </MenuItem>
                   {DorpDownData2?.length &&
                       DorpDownData2.map((e: any, i: number) => {
                       return (
-                        <MenuItem key={i} value={e.pt_id}
+                        <MenuItem key={e.pt_id} value={e.pt_id}
                         // onChange={e =>{
                         //     console.log(e,"E")
                         //     setNumberDorpDown(e.sv_id)
