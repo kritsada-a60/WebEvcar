@@ -2,6 +2,7 @@ import React, { useState , useEffect } from 'react';
 import { GoogleMap, InfoWindow, Marker } from '@react-google-maps/api';
 import IconCar from '../../../../img/Icon/IconCar.png';
 import axios from 'axios';
+import { type } from 'os';
 
 type MarkersData = {
     bt_pt_id: number;
@@ -33,6 +34,13 @@ type MyMarkersData = {
     c_license_plate: string;
     c_lng: any;
 };
+
+type NewData = {
+    id: number;
+    name: string;
+    position: { lat: number , lng: number },
+    customIcon: string;
+}
 
 const markers = [
     {
@@ -75,7 +83,7 @@ function Map() {
     const [MarkersLat, setMarkersLat] = useState<MarkersData[]>([]);
     const [MarkersLng, setMarkersLng] = useState<MarkersData[]>([]);
 
-    const [data, setdata] = useState("");
+    const [NewData, setNewData] = useState<NewData[]>([]);
 
     useEffect(() => {
         axios
@@ -83,7 +91,7 @@ function Map() {
             ctm_id : "2"
         })
         .then((res) => {
-            console.log(res.data.data);
+            // console.log(res.data.data);
             setMarkersData(res.data.data)
             // setMarkersId(res.data.data[0].c_id);
             // setdata(res.data.data.c_id);
@@ -99,23 +107,45 @@ function Map() {
 
     }, []);
 
-    function testmerker (){
+    // useEffect(() => {
+    // const interval = setInterval(() => {
+    //     console.log('This will run every second!');
+    // }, 5000);
+    // return () => clearInterval(interval);
+    // }, []);
+
+    // setInterval(() => {
+    // console.log('Interval triggered');
+    // }, 5000);
+
+    //   useEffect(() => {
+    //     const interval = setInterval(() => {
+    //     setSeconds(seconds => seconds + 1);
+    //     }, 1000);
+    //     return () => clearInterval(interval);
+    // }, []);
+
+
+    useEffect(() =>{
+        console.log(MarkersData,"This MarkersData")
+
         var data = [];
         for(var i in MarkersData) {
-            data.push(MarkersData[i].c_id);
+            data.push({
+                id: MarkersData[i].c_id,
+                name: MarkersData[i].c_license_plate,
+                position: { lat: Number(MarkersData[i].c_lat), lng: Number(MarkersData[i].c_lng) },
+                customIcon: IconCar   
+            })
         }
+        setNewData(data)
+        
+        // console.log(data);
+    }, [MarkersData]);
 
-        console.log(data);
-
-    }
-
-    // useEffect(() =>{
-    //   console.log(MarkersId,"This MarkersId")
-    // }, [MarkersId]);
-
-    // useEffect(() =>{
-    //   console.log(data,"This data")
-    // }, [data]);
+    useEffect(() =>{
+        // console.log(NewData,"This NewData")
+    }, [NewData]);
 
     const [activeMarker, setActiveMarker] = useState(null);
 
@@ -124,18 +154,17 @@ function Map() {
             return;
         }
         setActiveMarker(marker);
-        testmerker();
     };
 
     const handleOnLoad = (map: any) => {
         const bounds = new google.maps.LatLngBounds();
-        markers.forEach(({ position }) => bounds.extend(position));
+        NewData?.forEach(({ position }) => bounds.extend(position));
         map.fitBounds(bounds);
     };
 
     return (
         <GoogleMap onLoad={handleOnLoad} onClick={() => setActiveMarker(null)} mapContainerStyle={{ width: '100vw', height: '100vh' }}>
-            {markers.map(({ id, name, position, customIcon }) => (
+            {NewData?.map(({ id, name, position, customIcon }) => (
                 <Marker key={id} position={position} onClick={() => handleActiveMarker(id)} icon={customIcon}>
                     {activeMarker === id ? (
                         <InfoWindow onCloseClick={() => setActiveMarker(null)}>
