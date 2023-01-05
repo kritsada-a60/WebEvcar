@@ -93,6 +93,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         .get(baseURLList2)
         .then((res) => {
             setpost2(res.data.data)
+            setpost(res.data.data)
             console.log(res.data.data)
             // setcount(res.data)
         })
@@ -124,7 +125,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         console.log("EditData",EditData_1)   
         SetLs_idEdit();
         if (EditData_1 != ''){
-            navigateadddata();
+            navigateeditdata();
         }
     }, [EditData_1]);
 

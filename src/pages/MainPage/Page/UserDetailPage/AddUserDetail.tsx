@@ -175,8 +175,15 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
     console.log(Bnumber)
     axios
       .post(baseURLUpdateEdit, {
-        ut_name: Bname,
-        ut_id: idEdit,
+        // u_id: string,
+        // ctm_id: number,
+        u_email: Input8,
+        u_fullname: Input4,
+        u_mobile: Input7,
+        u_name: Input3,
+        // ua_id: number,
+        ul_id: Input10,
+        ut_id: Input9,
       })
       .then((res) => {
         console.log(res.data);

@@ -1,0 +1,10 @@
+u_id: string;
+ctm_id: number;
+u_email: string;
+u_fullname: string;
+u_mobile: string;
+u_name: string;
+ua_id: number;
+ul_id: number;
+ut_id: number;
+uid: number;

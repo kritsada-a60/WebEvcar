@@ -48,3 +48,15 @@ s_tel: string;
 s_tumbon: string;
 s_zipcode: string;
 ss_id: any;
+
+sv_id: number;
+s_id: number;
+pt_id: number;
+sv_name: string;
+sv_serial: string;
+sv_mqtt_code: string;
+sv_price: number;
+sv_unit: string;
+sv_remark: string;
+sv_active: string;
+u_id: string;

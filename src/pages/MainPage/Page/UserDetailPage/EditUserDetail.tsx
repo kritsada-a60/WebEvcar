@@ -67,6 +67,19 @@ type MyDorpDownData4 = {
     ut_name: string,
 };
 
+type MyEditData = {
+  u_id: string;
+  ctm_id: number;
+  u_email: string;
+  u_fullname: string;
+  u_mobile: string;
+  u_name: string;
+  ua_id: number;
+  ul_id: number;
+  ut_id: number;
+  uid: number;
+};
+
 
 
 export interface ISEditUserDetailPageProps {}
@@ -78,6 +91,8 @@ const baseURLEdit ="http://54.86.117.200:5000/usertype/add"
 const baseURLUpdateData ="http://54.86.117.200:5000/user/info"
 
 const baseURLUpdateEdit ="http://54.86.117.200:5000/usertype/edit"
+
+const baseURLUpdateMyEdit ="http://54.86.117.200:5000/usertype/edit"
 
 const baseURLUpdateAddDorpDown = "http://54.86.117.200:5000/customertype/list"
 
@@ -174,7 +189,7 @@ const EditUserDetailPage: React.FunctionComponent<ISEditUserDetailPageProps> = (
     e.preventDefault();
     console.log(Bnumber)
     axios
-      .post(baseURLUpdateEdit, {
+      .post(baseURLUpdateMyEdit, {
         ut_name: Bname,
         ut_id: idEdit,
       })
@@ -193,16 +208,27 @@ const EditUserDetailPage: React.FunctionComponent<ISEditUserDetailPageProps> = (
       axios.post(baseURLUpdateData,{
         u_id: LS.getItem('idEdit')
       }).then((response) => {
-        console.log(response.data)
+        console.log(response.data,"use data")
         // setFirstData(response.data.data[0].ut_name)
-        setBname(response.data.data[0].u_name)
-        setBemail(response.data.data[0].u_email)
-        setBfullname(response.data.data[0].u_fullname)
-        setBid(response.data.data[0].u_id)
-        setBmoblie(response.data.data[0].u_mobile)
-        setBa_name(response.data.data[0].ua_name)
-        setBl_name(response.data.data[0].ul_name)
-        setBt_name(response.data.data[0].ut_name)
+        // setBname(response.data.data[0].u_name)
+        // setBemail(response.data.data[0].u_email)
+        // setBfullname(response.data.data[0].u_fullname)
+        // setBid(response.data.data[0].u_id)
+        // setBmoblie(response.data.data[0].u_mobile)
+        // setBa_name(response.data.data[0].ua_name)
+        // setBl_name(response.data.data[0].ul_name)
+        // setBt_name(response.data.data[0].ut_name)
+
+        // setInput1(response.data.data[0])
+        // setInput2(response.data.data[0])
+        setInput3(response.data.data[0].u_name)
+        setInput4(response.data.data[0].u_fullname)
+        setInput5(response.data.data[0].ctm_name)
+        setInput6(response.data.data[0].ul_name)
+        setInput7(response.data.data[0].u_mobile)
+        setInput8(response.data.data[0].u_email)
+        // setInput9(response.data.data[0])
+        // setInput10(response.data.data[0])
 
         // setBname2(response.data.data)
         // setpost(response.data.data)
