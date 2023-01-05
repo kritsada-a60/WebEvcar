@@ -16,7 +16,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import Logo from "../../img/Logo.png";
 
 const pages = [
-    {name:'แผนที่' , value: "map"},
+    {page:'แผนที่' , link: "map"},
     {page:'ประวัติ', link: "history"},
     {page:'ข้อมูลรถ', link: "cardetail"},
     {page:'ข้อมูลลูกค้า', link: "customer"},
