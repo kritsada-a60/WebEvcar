@@ -229,6 +229,7 @@ const EditUserDetailPage: React.FunctionComponent<ISEditUserDetailPageProps> = (
         setInput8(response.data.data[0].u_email)
         // setInput9(response.data.data[0])
         setInput10(response.data.data[0].ul_id)
+        console.log(response.data.data[0].ul_name)
 
         // setBname2(response.data.data)
         // setpost(response.data.data)

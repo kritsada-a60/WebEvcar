@@ -206,7 +206,7 @@ function Map() {
     };
 
     return (
-        <GoogleMap onLoad={handleOnLoad} onClick={() => setActiveMarker(null)} mapContainerStyle={{ width: '100vw', height: '100vh' }}>
+        <GoogleMap onLoad={handleOnLoad} center={{ lat: 13.619392, lng: 100.720057 }} onClick={() => setActiveMarker(null)} mapContainerStyle={{ width: '100vw', height: '100vh' }}>
             {DataCar?.map(({ id, name, position, customIcon }) => (
                 <Marker key={id} position={position} onClick={() => handleActiveMarker(id)} icon={customIcon}>
                     {activeMarker === id ? (

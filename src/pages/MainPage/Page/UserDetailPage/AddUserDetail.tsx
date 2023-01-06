@@ -186,7 +186,7 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
         u_name: Input3,
         // ua_id: number, // 0 false 1 ture
         ul_id: Input10,
-        ut_id: Input9,
+        ut_id: '1',
       })
       .then((res) => {
         console.log(res.data);
@@ -201,7 +201,8 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
 
     useEffect(() =>{
       axios.post(baseURLUpdateData,{
-        u_id: LS.getItem('idEdit')
+        u_id: '1'
+        // u_id: LS.getItem('idEdit')
       }).then((response) => {
         console.log(response.data)
         // setFirstData(response.data.data[0].ut_name)
@@ -284,6 +285,26 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
           <p style={{margin:'5vh 30vw',justifyContent:'center' ,fontSize:'36px'}}>เพิ่ม ข้อมูลผู้ใช้งาน</p>
           <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
             <form >
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'flex-start',alignItems:'center'}}>
+                <label>
+                  <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ประเภทผู้ใช้</p>
+                    <Select type="ระดับสิทธิ" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
+                    value={Input9}
+                    onChange={(e) => {setInput9(e.target.value)}}
+                    displayEmpty
+                    inputProps={{ 'aria-label': 'Without label' }}
+                    >
+                    {DorpDownData4?.length &&
+                        DorpDownData4.map((e: any, i: number) => {
+                        return (
+                            <MenuItem key={e.ut_id} value={e.ut_id}>
+                            {e.ut_name}
+                            </MenuItem>
+                        );
+                    })}
+                    </Select>          
+                </label>
+              </div>
               <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
                   <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ประเภทกิจการ</p>
@@ -371,25 +392,7 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
                   />           
                 </label>
               </div>
-              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
-                <label>
-                  <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ประเภทผู้ใช้</p>
-                    <Select type="ระดับสิทธิ" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
-                    value={Input9}
-                    onChange={(e) => {setInput9(e.target.value)}}
-                    displayEmpty
-                    inputProps={{ 'aria-label': 'Without label' }}
-                    >
-                    {DorpDownData4?.length &&
-                        DorpDownData4.map((e: any, i: number) => {
-                        return (
-                            <MenuItem key={e.ut_id} value={e.ut_id}>
-                            {e.ut_name}
-                            </MenuItem>
-                        );
-                    })}
-                    </Select>          
-                </label>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'flex-start',alignItems:'center'}}>
                 <label>
                   <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ระดับสิทธิ</p>
                     <Select type="ระดับสิทธิ" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
@@ -417,7 +420,9 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
                 <Checkbox/>
               </div>
               <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
-                <Button style={{color:'white', backgroundColor:'#6CDCC0',margin:'2.5vh 2.5vw'}}>
+                <Button style={{color:'white', backgroundColor:'#6CDCC0',margin:'2.5vh 2.5vw'}}
+                onClick={handleSubmit}
+                >
                   บันทึก
                 </Button>
                 <Button style={{color:'white', backgroundColor:'#FF5A5A',margin:'2.5vh 2.5vw'}}
