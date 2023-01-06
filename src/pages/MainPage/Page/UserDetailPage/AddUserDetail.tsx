@@ -87,6 +87,8 @@ const baseURLUpdateAddDorpDown3 = "http://54.86.117.200:5000/userlevel/list"
 
 const baseURLUpdateAddDorpDown4 = "http://54.86.117.200:5000/usertype/list"
 
+const baseURLUpdateAdd = "http://54.86.117.200:5000/user/register"
+
 
 
 const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (props) => {
@@ -175,13 +177,14 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
     console.log(Bnumber)
     axios
       .post(baseURLUpdateEdit, {
-        // u_id: string,
-        // ctm_id: number,
+        ctmt_id: Input1,
+        u_id: 1,
+        ctm_id: Input2,
         u_email: Input8,
         u_fullname: Input4,
         u_mobile: Input7,
         u_name: Input3,
-        // ua_id: number,
+        // ua_id: number, // 0 false 1 ture
         ul_id: Input10,
         ut_id: Input9,
       })
@@ -301,7 +304,7 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
                     </Select>          
                 </label>
                 <label>
-                  <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ชื่อกิจการ</p>      
+                  <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ชื่อกิจการ</p>  
                   <Select type="ชื่อกิจการ" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                     value={Input2}
                     onChange={(e) => {setInput2(e.target.value)}}

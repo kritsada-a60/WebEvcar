@@ -1,6 +1,7 @@
 import React, { useState , useEffect } from 'react';
 import { GoogleMap, InfoWindow, Marker } from '@react-google-maps/api';
 import IconCar from '../../../../img/Icon/IconCar.png';
+import IconStation from '../../../../img/Icon/IconStation_red.png';
 import axios from 'axios';
 import { type } from 'os';
 
@@ -42,6 +43,14 @@ type NewData = {
     customIcon: string;
 }
 
+type DataStation = {
+    s_id: number;
+    s_lat: any;
+    s_license_plate: string;
+    s_lng: any;
+    s_mqtt_code: string;
+}
+
 const markers = [
     {
         id: 1,
@@ -73,37 +82,55 @@ const markers = [
 
 
 const URLMerkersData = "http://54.86.117.200:5000/car/list"
+const URLMerkersDataStation = "http://54.86.117.200:5000/station/list"
+
 
 function Map() {
 
     const [MarkersData, setMarkersData] = useState<MyMarkersData[]>([]);
+
+    const [MarkersDataStation, setMarkersDataStation] = useState<DataStation[]>([]);
+
 
     const [MarkersId, setMarkersId] = useState<MarkersData[]>([]);
     const [MarkersName, setMarkersName] = useState<MarkersData[]>([]);
     const [MarkersLat, setMarkersLat] = useState<MarkersData[]>([]);
     const [MarkersLng, setMarkersLng] = useState<MarkersData[]>([]);
 
-    const [NewData, setNewData] = useState<NewData[]>([]);
+    const [DataCar, setDataCar] = useState<NewData[]>([]);
+
+    const [DataStation, setDataStation] = useState<NewData[]>([]);
 
     useEffect(() => {
         axios
-        .post(URLMerkersData,{
-            ctm_id : "2"
-        })
-        .then((res) => {
-            // console.log(res.data.data);
-            setMarkersData(res.data.data)
-            // setMarkersId(res.data.data[0].c_id);
-            // setdata(res.data.data.c_id);
-            // setMarkersName(res.data.data.c_license_plate);
-            // setMarkersLat(res.data.data.c_lat);
-            // setMarkersLng(res.data.data.c_lng);
-            // console.log(MarkersId)
-            // Object.entries(res.data.data).forEach(([key,value]) =>{
-            //     console.log(`${key} : ${value}`)
-            // })
-        })
-        .catch((err) => console.error(err));
+            .post(URLMerkersData,{
+                ctm_id : "2"
+            })
+            .then((res) => {
+                // console.log(res.data.data);
+                setMarkersData(res.data.data)
+                // setMarkersId(res.data.data[0].c_id);
+                // setdata(res.data.data.c_id);
+                // setMarkersName(res.data.data.c_license_plate);
+                // setMarkersLat(res.data.data.c_lat);
+                // setMarkersLng(res.data.data.c_lng);
+                // console.log(MarkersId)
+                // Object.entries(res.data.data).forEach(([key,value]) =>{
+                //     console.log(`${key} : ${value}`)
+                // })
+            })
+            .catch((err) => console.error(err));
+
+        axios
+            .post(URLMerkersDataStation,{
+                ctm_id : "5"
+            })
+            .then((res) => {
+
+                setMarkersDataStation(res.data.data)
+
+            })
+            .catch((err) => console.error(err));
 
     }, []);
 
@@ -129,23 +156,38 @@ function Map() {
     useEffect(() =>{
         console.log(MarkersData,"This MarkersData")
 
-        var data = [];
+        var dataCar = [];
         for(var i in MarkersData) {
-            data.push({
+            dataCar.push({
                 id: MarkersData[i].c_id,
                 name: MarkersData[i].c_license_plate,
                 position: { lat: Number(MarkersData[i].c_lat), lng: Number(MarkersData[i].c_lng) },
                 customIcon: IconCar   
             })
         }
-        setNewData(data)
+
+        var dataStation = [];
+        for(var i in MarkersDataStation) {
+            dataStation.push({
+                id: MarkersDataStation[i].s_id,
+                name: MarkersDataStation[i].s_mqtt_code,
+                position: { lat: Number(MarkersDataStation[i].s_lat), lng: Number(MarkersDataStation[i].s_lng) },
+                customIcon: IconStation   
+            })
+        }
+        setDataCar(dataCar)
+        setDataStation(dataStation)
         
         // console.log(data);
     }, [MarkersData]);
 
     useEffect(() =>{
         // console.log(NewData,"This NewData")
-    }, [NewData]);
+    }, [DataCar]);
+
+    useEffect(() =>{
+        console.log(DataStation,"This DataStation")
+    }, [DataStation]);
 
     const [activeMarker, setActiveMarker] = useState(null);
 
@@ -158,13 +200,26 @@ function Map() {
 
     const handleOnLoad = (map: any) => {
         const bounds = new google.maps.LatLngBounds();
-        NewData?.forEach(({ position }) => bounds.extend(position));
+        DataCar?.forEach(({ position }) => bounds.extend(position));
+        DataStation?.forEach(({ position }) => bounds.extend(position));
         map.fitBounds(bounds);
     };
 
     return (
         <GoogleMap onLoad={handleOnLoad} onClick={() => setActiveMarker(null)} mapContainerStyle={{ width: '100vw', height: '100vh' }}>
-            {NewData?.map(({ id, name, position, customIcon }) => (
+            {DataCar?.map(({ id, name, position, customIcon }) => (
+                <Marker key={id} position={position} onClick={() => handleActiveMarker(id)} icon={customIcon}>
+                    {activeMarker === id ? (
+                        <InfoWindow onCloseClick={() => setActiveMarker(null)}>
+                            <div>
+                                <p>ID {id}</p>
+                                <p>ชื่อ {name}</p>
+                            </div>
+                        </InfoWindow>
+                    ) : null}
+                </Marker>
+            ))}
+            {DataStation?.map(({ id, name, position, customIcon }) => (
                 <Marker key={id} position={position} onClick={() => handleActiveMarker(id)} icon={customIcon}>
                     {activeMarker === id ? (
                         <InfoWindow onCloseClick={() => setActiveMarker(null)}>
