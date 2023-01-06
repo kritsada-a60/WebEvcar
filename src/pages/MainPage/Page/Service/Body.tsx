@@ -312,20 +312,21 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
 
     useEffect(() =>{
-        // console.log("EditCustomerData",DeleteData)
-        // GetLs_idDelete();
-        // if ( DeleteData != ''){
-        //     axios
-        //     .post(baseURLUpdateDelete, {
-        //         ctm_id: Number(DeleteData),
-        //         u_id: "1",
-        //     })
-        //     .then((res) => {
-        //         console.log(res,"this is delete");
-        //         // console.log("ok");
-        //     })
-        //     .catch((err) => console.error(err));
-        // }
+        console.log("EditCustomerData",DeleteData)
+        GetLs_idDelete();
+        if ( DeleteData != ''){
+            axios
+            .post(baseURLUpdateDelete, {
+                sv_id: Number(DeleteData),
+                u_id: "1",
+            })
+            .then((res) => {
+                console.log(res,"this is delete");
+                window.location.reload();
+                // console.log("ok");
+            })
+            .catch((err) => console.error(err));
+        }
 
     }, [DeleteData]);
 
@@ -433,7 +434,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
               <Button aria-label="delete" variant="outlined" style={{color:'white',backgroundColor:'#6CDCC0',borderRadius:'15px'}}
               onClick={() => {
                 setDeleteData(post3[dataIndex].sv_id);
-                // GetLs_idDelete();
+                GetLs_idDelete();
                 // handleSubmit();
               }}
               >

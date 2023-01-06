@@ -119,11 +119,12 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         if ( DeleteData != ''){
             axios
             .post(baseURLUpdateDelete, {
-                // s_id: Number(DeleteData),
+                s_id: Number(DeleteData),
                 // u_id: "1",
             })
             .then((res) => {
                 console.log(res,"this is delete");
+                window.location.reload();
                 // console.log("ok");
             })
             .catch((err) => console.error(err));
@@ -132,12 +133,12 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     }, [DeleteData]);
 
     const navigateadddata = () => {
-        navigate('/addstation');
+      navigate('/addstation');
 
     };
 
-        const navigateeditdata = () => {
-        navigate('/editstation');
+    const navigateeditdata = () => {
+      navigate('/editstation');
     };
 
 

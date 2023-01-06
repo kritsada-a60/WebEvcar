@@ -176,7 +176,7 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
     e.preventDefault();
     console.log(Bnumber)
     axios
-      .post(baseURLUpdateEdit, {
+      .post(baseURLUpdateAdd, {
         ctmt_id: Input1,
         u_id: 1,
         ctm_id: Input2,
@@ -187,11 +187,12 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
         // ua_id: number, // 0 false 1 ture
         ul_id: Input10,
         ut_id: '1',
+        uid: 1
       })
       .then((res) => {
         console.log(res.data);
         console.log("ok");
-        navigateadddata();
+        // navigateadddata();
         // setBnumber(res.data.success)
       })
       .catch((err) => console.error(err));

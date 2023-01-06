@@ -114,6 +114,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         })
         .then((res) => {
             console.log(res,"this is delete");
+            window.location.reload();
             // console.log("ok");
         })
       .catch((err) => console.error(err));
@@ -144,6 +145,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         "ความเร็วรถ", 
         "เลขไมล์", 
         "วันที่เริ่มใช้งาน", 
+        "MQTT CODE",
         "สถานะรถ",
       {
         name: "Edit",
@@ -172,11 +174,11 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
             customBodyRenderLite: (dataIndex:any, rowIndex:any) => {
             return (
               <Button aria-label="delete" variant="outlined" style={{color:'white',backgroundColor:'#6CDCC0',borderRadius:'15px'}}
-            //   onClick={() => {
-            //     setDeleteData(post[dataIndex].c_id);
-            //     GetLs_idDelete();
-            //     handleSubmit();
-            //   }}
+              onClick={() => {
+                setDeleteData(post[dataIndex].c_id);
+                GetLs_idDelete();
+                // handleSubmit();
+              }}
               >
                 {`Delete`}
               </Button>
@@ -206,7 +208,8 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                             item.c_capacity,
                             item.c_speed,
                             item.c_mileage,
-                            item.c_gps_signal,
+                            item.c_gps_signal, // c_start_data
+                            item.c_mqtt_code,
                             item.c_status,
                         ]
                     })}

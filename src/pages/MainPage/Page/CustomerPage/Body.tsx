@@ -40,10 +40,6 @@ type MyData = {
     ctmt_name: string;
 };
 
-
- 
-
-
 const baseURL ="http://54.86.117.200:5000/customer/list"
 
 const baseURLEdit ="http://54.86.117.200:5000/customer/add"
@@ -133,6 +129,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
             })
             .then((res) => {
                 console.log(res,"this is delete");
+                window.location.reload();
                 // console.log("ok");
             })
             .catch((err) => console.error(err));
@@ -232,7 +229,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
               <Button aria-label="delete" variant="outlined" style={{color:'white',backgroundColor:'#6CDCC0',borderRadius:'15px'}}
               onClick={() => {
                 setDeleteData(post[dataIndex].ctm_id);
-                // GetLs_idDelete();
+                GetLs_idDelete();
                 // handleSubmit();
               }}
               >

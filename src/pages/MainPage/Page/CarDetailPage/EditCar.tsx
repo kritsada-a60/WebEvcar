@@ -171,7 +171,7 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
         ctm_id: Number(Input2),
         bt_pt_id: Number(Input4),
         cgt_pt_id: Number(Input3),
-        c_mqtt_code: "TT_3",
+        c_mqtt_code: Input6,
         c_active: "1",
         u_id: 1,
         c_start_data: Input8,
@@ -197,10 +197,12 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
         setptName(response.data.data[0].bt_pt_name);
 
         setInput2(response.data.data[0].ctm_id)
-
+        console.log(response.data.data[0].ctm_id)
         setInput3(response.data.data[0].cgt_pt_id)
 
         setInput4(response.data.data[0].bt_pt_id)
+
+        setInput6(response.data.data[0].c_mqtt_code)
 
         // setInput6(response.data.data[0].c_mqtt_code);
 
@@ -219,6 +221,7 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
       })
       axios.get(baseURLDorpDown).then((response) => {
         setDorpDownData(response.data.data)
+        console.log(response.data)
         
         // const result = FirstData.filter((member) => {
         //   return member.ctmt_id = 2
