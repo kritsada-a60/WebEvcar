@@ -194,9 +194,19 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
         console.log("ok");
         // navigateadddata();
         // setBnumber(res.data.success)
+        if(res.data.success == true){
+          AlertMassage();
+        } else {
+          alert("ข้อมูลไม่ถูกต้อง");
+        }
       })
       .catch((err) => console.error(err));
     };
+
+    async function AlertMassage (){
+      await alert("ข้อมูลถูกต้อง");
+      await navigateadddata();
+    }
 
     /* axios Editdata */
 

@@ -128,12 +128,22 @@ const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPage
         // Update NewYear
         // console.log(res.data);
         // console.log("ok");
-        navigateadddata();
+        
+        if(res.data.success == true){
+          AlertMassage();
+        } else {
+          alert("ข้อมูลไม่ถูกต้อง");
+        }
 
         // setBnumber(res.data.success)
       })
       .catch((err) => console.error(err));
     };
+
+    async function AlertMassage (){
+      await alert("ข้อมูลถูกต้อง");
+      await navigateadddata();
+    }
 
     /* axios Editdata */
 
