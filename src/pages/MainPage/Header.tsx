@@ -36,8 +36,8 @@ const pagesLV2 = [
 
 const pagesLV3 = [
     { page: 'แผนที่', link: 'map' },
-    { page: 'ประวัติรถ', link: 'history' },
-    // {page:'ข้อมูลสถานี', link: "stationinformation"},
+    { page: 'ประวัติสถานี', link: 'history' },
+    {page:'ข้อมูลสถานี', link: "stationinformation"},
     { page: 'Serivce', link: 'service' },
     { page: 'ข้อมูลผู้ใช้งาน', link: 'userdetail' }
 ];

@@ -100,6 +100,8 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
     const [FirstData, setFirstData] = useState<MyDataPost[]>([]);
 
     const [DorpDownData, setDorpDownData] = useState<MyDorpDownData[]>([]);
+    const [DorpDownDatafillter, setDorpDownDatafillter] = useState<MyDorpDownData[]>([]);
+
 
     const [DorpDownData2, setDorpDownData2] = useState<MyDorpDownData2[]>([]);
 
@@ -234,6 +236,7 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
       })
 
       axios.get(baseURLUpdateAddDorpDown).then((response) => {
+
         console.log(response.data.data)
         setDorpDownData(response.data.data)
       })
@@ -260,6 +263,9 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
 
     /* axios Editdata */
 
+    useEffect(() =>{
+        console.log("this data",DorpDownData)
+    }, [DorpDownData]);
 
     useEffect(() =>{
         console.log("this data",post)
@@ -287,8 +293,17 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
     }, [Bname]);
 
     useEffect(() =>{
-        console.log("this Bname2",Bname2)
-    }, [Bname2]);
+        console.log("this Input9",Input9)
+        const result = DorpDownData.filter((DorpDownDataS:any) => {
+          if (Input9 <= '2'){
+            return DorpDownDataS.ctmt_id > 0
+          }else{
+            return DorpDownDataS.ctmt_id > 1
+          }
+        })
+        console.log("this result",result)
+        setDorpDownDatafillter(result)
+    }, [Input9]);
 
     return (
         <div style={{backgroundColor:'#E0F0EC'}}>
@@ -325,8 +340,8 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
                     displayEmpty
                     inputProps={{ 'aria-label': 'Without label' }}
                     >
-                    {DorpDownData?.length &&
-                        DorpDownData.map((e: any, i: number) => {
+                    {DorpDownDatafillter?.length &&
+                        DorpDownDatafillter.map((e: any, i: number) => {
                         return (
                             <MenuItem key={e.ctmt_id} value={e.ctmt_id}>
                             {e.ctmt_name}
