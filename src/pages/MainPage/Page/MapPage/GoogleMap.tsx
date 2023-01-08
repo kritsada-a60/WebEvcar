@@ -126,7 +126,7 @@ function Map() {
                 ctm_id : "5"
             })
             .then((res) => {
-
+                console.log(res.data.data);
                 setMarkersDataStation(res.data.data)
 
             })

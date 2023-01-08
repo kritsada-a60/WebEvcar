@@ -347,7 +347,7 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
                         DorpDownData2.map((e: any, i: number) => {
                         return (
                             <MenuItem key={e.ctm_id} value={e.ctm_id}>
-                            {e.ctm_contact_name}
+                            {e.ctm_name}
                             </MenuItem>
                         );
                     })}
