@@ -30,7 +30,7 @@ type MyData = {
     ctm_id: string;
     ctm_mail: string;
     ctm_mobile: string;
-    ctm_mqtt_code: any;
+    c_mqtt_code: any;
     ctm_name: string;
     ctm_province: string;
     ctm_tel: string;
@@ -183,22 +183,22 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     /* Add Button */
 
     const Testcolumns = [
-        "ID",
+        // "ID",
         "ชื่อลูกค้า", 
         "ประเภทลูกค้า", 
         "เลขทะเบียนการค้า", 
-        "ชื่อธนาคาร", 
-        "บัญขีธนาคาร", 
+        // "ชื่อธนาคาร", 
+        // "บัญขีธนาคาร", 
         "ชื่อผู้ติดต่อ", 
-        "ที่อยู่", 
+        // "ที่อยู่", 
         // "ตำบล", 
         // "อำเภอ",
-        // "จังหวัด", 
+        "จังหวัด", 
         // "รหัสไปรษณีย์", 
         // "โทรศัพท์", 
-        // "มือถือ",
+        "มือถือ",
         // "E-Mail", 
-        // "รหัส MQTT",
+        "รหัส MQTT",
       {
         name: "Edit",
         options: {
@@ -298,14 +298,16 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                     title={"ข้อมูลลูกค้า"}
                     data={post.map(item => {
                         return [
-                            item.ctm_id,
+                            // item.ctm_id,
                             item.ctm_name,
                             item.ctmt_name,
                             item.ctm_cno,
-                            item.ctm_bank,
-                            item.ctm_bank_no,
+                            // item.ctm_bank,
+                            // item.ctm_bank_no,
                             item.ctm_contact_name,
-                            item.ctm_address,
+                            item.ctm_province,
+                            item.ctm_mobile,
+                            item.c_mqtt_code,
                         ]
                     })} 
                     columns={Testcolumns}
