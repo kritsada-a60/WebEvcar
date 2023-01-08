@@ -113,6 +113,8 @@ const EditUserDetailPage: React.FunctionComponent<ISEditUserDetailPageProps> = (
     const [FirstData, setFirstData] = useState<MyDataPost[]>([]);
 
     const [DorpDownData, setDorpDownData] = useState<MyDorpDownData[]>([]);
+    const [DorpDownDatafillter, setDorpDownDatafillter] = useState<MyDorpDownData[]>([]);
+
 
     const [DorpDownData2, setDorpDownData2] = useState<MyDorpDownData2[]>([]);
 
@@ -174,6 +176,11 @@ const EditUserDetailPage: React.FunctionComponent<ISEditUserDetailPageProps> = (
       {number:'4',text:'d'},
     ]);
 
+    const [Activedorpdown, setActivedorpdown] = useState([
+      {number:'1',text:'Active'},
+      {number:'0',text:'InActive'},
+    ]);
+
     const handleChange = (event: SelectChangeEvent) => {
       setAge(event.target.value);
     };
@@ -188,10 +195,22 @@ const EditUserDetailPage: React.FunctionComponent<ISEditUserDetailPageProps> = (
     const handleSubmit = (e:any) => {
     e.preventDefault();
     console.log(Bnumber)
+    const UserU_ID = LS.getItem('LVUSER');
+    const UserTable_ID = LS.getItem('idEdit');
     axios
       .post(baseURLUpdateMyEdit, {
-        ut_name: Bname,
-        ut_id: idEdit,
+        // ctmt_id: Input1,
+        u_id: Number(UserU_ID),
+        ctm_id: Input2,
+        u_email: Input8,
+        u_fullname: Input4,
+        u_mobile: Input7,
+        u_name: Input3,
+        u_pass: Input5,
+        ua_id: Number(Input11), // 0 false 1 ture
+        ul_id: Input10,
+        ut_id: Input9,
+        uid: UserTable_ID,
       })
       .then((res) => {
         console.log(res.data);
@@ -214,6 +233,8 @@ const EditUserDetailPage: React.FunctionComponent<ISEditUserDetailPageProps> = (
     /* axios Editdata */
 
     useEffect(() =>{
+      const UserU_ID = LS.getItem('LVUSER');
+
       axios.post(baseURLUpdateData,{
         u_id: LS.getItem('idEdit')
       }).then((response) => {
@@ -228,16 +249,18 @@ const EditUserDetailPage: React.FunctionComponent<ISEditUserDetailPageProps> = (
         // setBl_name(response.data.data[0].ul_name)
         // setBt_name(response.data.data[0].ut_name)
 
-        // setInput1(response.data.data[0])
-        // setInput2(response.data.data[0].ctm_name)
+        // setInput1(response.data.data[0]?.ctmt_id)
+        // setInput2(response.data.data[0].ctm_id)
         setInput3(response.data.data[0].u_name)
         setInput4(response.data.data[0].u_fullname)
-        // setInput5(response.data.data[0].ctm_name)
+        setInput5(response.data.data[0].u_pass)
         // setInput6(response.data.data[0].ul_name)
         setInput7(response.data.data[0].u_mobile)
         setInput8(response.data.data[0].u_email)
-        // setInput9(response.data.data[0])
+        setInput9(response.data.data[0].ut_id)
         setInput10(response.data.data[0].ul_id)
+        setInput11(response.data.data[0].ua_id)
+
         console.log(response.data.data[0].ul_name)
 
         // setBname2(response.data.data)
@@ -251,11 +274,13 @@ const EditUserDetailPage: React.FunctionComponent<ISEditUserDetailPageProps> = (
       })
       .catch((err) => console.error(err));
 
-      axios.get(baseURLUpdateAddDorpDown2).then((response) => {
-        console.log(response.data.data)
-        setDorpDownData2(response.data.data)
-      })
-      .catch((err) => console.error(err));
+      // axios.post(baseURLUpdateAddDorpDown2,{
+      //   ctmt_id : Input1,
+      // }).then((response) => {
+      //   console.log(response.data.data)
+      //   setDorpDownData2(response.data.data)
+      // })
+      // .catch((err) => console.error(err));
 
       axios.get(baseURLUpdateAddDorpDown3).then((response) => {
         console.log(response.data.data)
@@ -295,12 +320,30 @@ const EditUserDetailPage: React.FunctionComponent<ISEditUserDetailPageProps> = (
     }, [FirstData]);
 
     useEffect(() =>{
-        console.log("this Bname",Bname)
-    }, [Bname]);
+      console.log("this Input1",Input1)
+      if (Input1 >= '0'){
+        axios.post(baseURLUpdateAddDorpDown2,{
+          ctmt_id : Input1,
+        }).then((response) => {
+          console.log(response.data.data)
+          setDorpDownData2(response.data.data)
+        })
+        .catch((err) => console.error(err));
+      }
+    }, [Input1]);
 
     useEffect(() =>{
-        console.log("this Bname2",Bname2)
-    }, [Bname2]);
+        console.log("this Input9",Input9)
+        const result = DorpDownData.filter((DorpDownDataS:any) => {
+          if (Input9 <= '2'){
+            return DorpDownDataS.ctmt_id > 0
+          }else{
+            return DorpDownDataS.ctmt_id > 1
+          }
+        })
+        console.log("this result",result)
+        setDorpDownDatafillter(result)
+    }, [Input9]);
 
     return (
         <div style={{backgroundColor:'#E0F0EC'}}>
@@ -308,6 +351,26 @@ const EditUserDetailPage: React.FunctionComponent<ISEditUserDetailPageProps> = (
           <p style={{margin:'5vh 30vw',justifyContent:'center' ,fontSize:'36px'}}>แก้ไขข้อมูลผู้ใช้งาน</p>
           <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
             <form >
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'flex-start',alignItems:'center'}}>
+                <label>
+                  <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ประเภทผู้ใช้</p>
+                    <Select type="ระดับสิทธิ" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
+                    value={Input9}
+                    onChange={(e) => {setInput9(e.target.value)}}
+                    displayEmpty
+                    inputProps={{ 'aria-label': 'Without label' }}
+                    >
+                    {DorpDownData4?.length &&
+                        DorpDownData4.map((e: any, i: number) => {
+                        return (
+                            <MenuItem key={e.ut_id} value={e.ut_id}>
+                            {e.ut_name}
+                            </MenuItem>
+                        );
+                    })}
+                    </Select>          
+                </label>
+              </div>
               <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
                   <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ประเภทกิจการ</p>
@@ -317,8 +380,8 @@ const EditUserDetailPage: React.FunctionComponent<ISEditUserDetailPageProps> = (
                     displayEmpty
                     inputProps={{ 'aria-label': 'Without label' }}
                     >
-                    {DorpDownData?.length &&
-                        DorpDownData.map((e: any, i: number) => {
+                    {DorpDownDatafillter?.length &&
+                        DorpDownDatafillter.map((e: any, i: number) => {
                         return (
                             <MenuItem key={e.ctmt_id} value={e.ctmt_id}>
                             {e.ctmt_name}
@@ -397,24 +460,6 @@ const EditUserDetailPage: React.FunctionComponent<ISEditUserDetailPageProps> = (
               </div>
               <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
-                  <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>UserType</p>
-                    <Select type="ระดับสิทธิ" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
-                    value={Input9}
-                    onChange={(e) => {setInput9(e.target.value)}}
-                    displayEmpty
-                    inputProps={{ 'aria-label': 'Without label' }}
-                    >
-                    {DorpDownData4?.length &&
-                        DorpDownData4.map((e: any, i: number) => {
-                        return (
-                            <MenuItem key={e.ut_id} value={e.ut_id}>
-                            {e.ut_name}
-                            </MenuItem>
-                        );
-                    })}
-                    </Select>          
-                </label>
-                <label>
                   <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ระดับสิทธิ</p>
                     <Select type="ระดับสิทธิ" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                     value={Input10}
@@ -432,13 +477,24 @@ const EditUserDetailPage: React.FunctionComponent<ISEditUserDetailPageProps> = (
                     })}
                     </Select>            
                 </label>
-              </div>
-              <div style={{display:'flex',justifyContent:'flex-start  ',alignItems:'center' ,margin:'2.5vh 5vw'}}>
-                <p style={{fontSize:'18px',margin:'0vh 1vw'}}>การใช้งาน</p>
-                <p style={{fontSize:'18px'}}>Active</p>
-                <Checkbox/>
-                <p style={{fontSize:'18px'}}>Inactive</p>
-                <Checkbox/>
+                <label>
+                  <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>การใช้งาน</p>
+                    <Select type="การใช้งาน" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
+                    value={Input11}
+                    onChange={(e) => {setInput11(e.target.value)}}
+                    displayEmpty
+                    inputProps={{ 'aria-label': 'Without label' }}
+                    >
+                    {Activedorpdown?.length &&
+                        Activedorpdown.map((e: any, i: number) => {
+                        return (
+                            <MenuItem key={e.number} value={e.number}>
+                            {e.text}
+                            </MenuItem>
+                        );
+                    })}
+                    </Select>            
+                </label>
               </div>
               <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <Button style={{color:'white', backgroundColor:'#6CDCC0',margin:'2.5vh 2.5vw'}}

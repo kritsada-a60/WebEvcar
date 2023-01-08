@@ -66,7 +66,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     function SetLs_idEdit() {
 
-        LS.setItem('idEdit', EditData_1);
+    LS.setItem('idEdit', EditData_1);
         // navigateeditdata();
     }
 

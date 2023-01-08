@@ -163,6 +163,11 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
       {number:'4',text:'d'},
     ]);
 
+    const [Activedorpdown, setActivedorpdown] = useState([
+      {number:'1',text:'Active'},
+      {number:'0',text:'InActive'},
+    ]);
+
     const handleChange = (event: SelectChangeEvent) => {
       setAge(event.target.value);
     };
@@ -189,7 +194,7 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
         u_mobile: Input7,
         u_name: Input3,
         u_pass: Input5,
-        ua_id: 1, // 0 false 1 ture
+        ua_id: Number(Input11), // 0 false 1 ture
         ul_id: Input10,
         ut_id: Input9,
       })
@@ -443,14 +448,26 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
                     })}
                     </Select>            
                 </label>
+                <label>
+                  <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>การใช้งาน</p>
+                    <Select type="การใช้งาน" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
+                    value={Input11}
+                    onChange={(e) => {setInput11(e.target.value)}}
+                    displayEmpty
+                    inputProps={{ 'aria-label': 'Without label' }}
+                    >
+                    {Activedorpdown?.length &&
+                        Activedorpdown.map((e: any, i: number) => {
+                        return (
+                            <MenuItem key={e.number} value={e.number}>
+                            {e.text}
+                            </MenuItem>
+                        );
+                    })}
+                    </Select>            
+                </label>
               </div>
-              <div style={{display:'flex',justifyContent:'flex-start  ',alignItems:'center' ,margin:'2.5vh 5vw'}}>
-                <p style={{fontSize:'18px',margin:'0vh 1vw'}}>การใช้งาน</p>
-                <p style={{fontSize:'18px'}}>Active</p>
-                <Checkbox/>
-                <p style={{fontSize:'18px'}}>Inactive</p>
-                <Checkbox/>
-              </div>
+
               <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <Button style={{color:'white', backgroundColor:'#6CDCC0',margin:'2.5vh 2.5vw'}}
                 onClick={handleSubmit}

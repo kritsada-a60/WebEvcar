@@ -136,7 +136,9 @@ const AddCarPage: React.FunctionComponent<ISAddCarPageProps> = (props) => {
     };
 
     useEffect(()=>{
-      axios.get(baseURLDorpDown).then((response) => {
+      axios.post(baseURLDorpDown,{
+        ctmt_id: 2
+      }).then((response) => {
         setDorpDownData(response.data.data)
         
         // const result = FirstData.filter((member) => {

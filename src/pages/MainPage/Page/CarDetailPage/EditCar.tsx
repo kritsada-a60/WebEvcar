@@ -135,7 +135,7 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
     const [Input8, setInput8] = useState("")
     const [Input9, setInput9] = useState("") 
 
-
+    const [Input11, setInput11] = useState("") 
     const [Bnumber, setBnumber] = useState({
       ut_name:"",
       u_id:"",
@@ -148,6 +148,11 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
       {number:'2',text:'b'},
       {number:'3',text:'c'},
       {number:'4',text:'d'},
+    ]);
+
+    const [Activedorpdown, setActivedorpdown] = useState([
+      {number:'1',text:'Active'},
+      {number:'0',text:'InActive'},
     ]);
 
     const handleChange = (event: SelectChangeEvent) => {
@@ -172,7 +177,7 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
         bt_pt_id: Number(Input4),
         cgt_pt_id: Number(Input3),
         c_mqtt_code: Input6,
-        c_active: "1",
+        c_active: Input11,
         u_id: 1,
         c_start_data: Input8,
       })
@@ -207,12 +212,14 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
         setptName(response.data.data[0].bt_pt_name);
 
         setInput2(response.data.data[0].ctm_id)
-        console.log(response.data.data[0].ctm_id)
+        // console.log(response.data.data[0].ctm_id)
         setInput3(response.data.data[0].cgt_pt_id)
 
         setInput4(response.data.data[0].bt_pt_id)
 
         setInput6(response.data.data[0].c_mqtt_code)
+
+        setInput11(response.data.data[0].c_active)
 
         // setInput6(response.data.data[0].c_mqtt_code);
 
@@ -229,7 +236,9 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
         // setpost(response.data.data)
         // console.log(response.data.data[0])
       })
-      axios.get(baseURLDorpDown).then((response) => {
+      axios.post(baseURLDorpDown,{
+        ctmt_id: 2
+      }).then((response) => {
         setDorpDownData(response.data.data)
         console.log(response.data)
         
@@ -452,12 +461,21 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
                 </label>
                 <label>
                   <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>การใช้งาน</p>
-                  <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
-                    <p style={{fontSize:'18px'}}>Active</p>
-                    <Checkbox/>
-                    <p style={{fontSize:'18px'}}>InActive</p>
-                    <Checkbox/>
-                  </div>
+                    <Select type="การใช้งาน" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
+                    value={Input11}
+                    onChange={(e) => {setInput11(e.target.value)}}
+                    displayEmpty
+                    inputProps={{ 'aria-label': 'Without label' }}
+                    >
+                    {Activedorpdown?.length &&
+                        Activedorpdown.map((e: any, i: number) => {
+                        return (
+                            <MenuItem key={e.number} value={e.number}>
+                            {e.text}
+                            </MenuItem>
+                        );
+                    })}
+                    </Select>            
                 </label>
               </div>
 
