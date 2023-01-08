@@ -30,7 +30,7 @@ type MyData = {
     ctm_id: string;
     ctm_mail: string;
     ctm_mobile: string;
-    c_mqtt_code: any;
+    ctm_mqtt_code: any;
     ctm_name: string;
     ctm_province: string;
     ctm_tel: string;
@@ -307,7 +307,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                             item.ctm_contact_name,
                             item.ctm_province,
                             item.ctm_mobile,
-                            item.c_mqtt_code,
+                            item.ctm_mqtt_code,
                         ]
                     })} 
                     columns={Testcolumns}
