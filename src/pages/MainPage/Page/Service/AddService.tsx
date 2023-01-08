@@ -164,6 +164,14 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
 
     /* axios Adddata */
 
+    useEffect(()=>{
+      axios.get(baseURLDorpDown).then((response) => {
+        setDorpDownData(response.data.data)
+        console.log(response.data)
+        setInputService(response.data)
+      })
+    }, []);
+
     useEffect(() =>{
         console.log(Input1,"input")
         axios.post(baseURLDorpDown2,{
