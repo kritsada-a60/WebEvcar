@@ -295,6 +295,8 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     useEffect(() =>{
         console.log(Input1)
+        LS.setItem('IdServiceDorpDown', Input1);
+        
     }, [Input1]);
 
    

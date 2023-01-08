@@ -112,12 +112,15 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
 
     const [InputService, setInputService] = useState("") 
 
+    const LS = localStorage;
+
     const handleSubmit = (e:any) => {
     e.preventDefault();
+    const NumberS_ID = LS.getItem("IdServiceDorpDown")
     axios
       .post(baseURLUpdateAdd, {
-        s_id: 1,
-        pt_id: 3,
+        s_id: Number(NumberS_ID),
+        pt_id: Number(Input2),
         sv_name: Input3,
         sv_serial: Input4,
         sv_mqtt_code: Input7,
@@ -141,6 +144,7 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
 
     async function AlertMassage (){
       await alert("ข้อมูลถูกต้อง");
+      await console.log("this dorpdowndata2",'')
       await navigateservice();
     }
 
@@ -171,12 +175,8 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
     }, [Input1]);
 
     useEffect(()=>{
-      axios.get(baseURLDorpDown).then((response) => {
-        setDorpDownData(response.data.data)
-        console.log(response.data)
-        setInputService(response.data)
-      })
-    }, []);
+      console.log(Input2)
+    }, [Input2]);
 
 
     const navigate = useNavigate();
