@@ -144,13 +144,13 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
       .post(baseURLUpdateEdit, {
         ctm_id: Number(idEdit),
         ctm_name: Input1,
-        ctmt_id: Input3,
-        ctm_cno: Input2,
+        ctmt_id: Input2,
+        ctm_cno: Input3,
         ctm_bank: Input4,
-        ctm_bank_no: Input5,
+        ctm_bank_no: Input4,
         ctm_contact_name: Input6,
         ctm_address : Input7,
-        ctm_tumbon: Input9,
+        ctm_tumbon: Input8,
         ctm_amphur : Input10,
         ctm_province : Input11,
         ctm_zipcode: Input12,
@@ -273,7 +273,7 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
                 <label>
                     <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ประเภทลูกค้า</p>
                     <Select type="ประเภทลูกค้า" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
-                    value={Input3}
+                    value={Input2}
                     onChange={(e) => {setInput3(e.target.value)}}
                     // label="Age"
                     displayEmpty
@@ -323,7 +323,7 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
                   <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>บัญชีธนาคาร</p>
                   <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   // value={Bnumber}
-                  value={Input5}
+                  value={Input4}
                   onChange={(e) => {setInput5(e.target.value)}}
                   />       
                 </label>
