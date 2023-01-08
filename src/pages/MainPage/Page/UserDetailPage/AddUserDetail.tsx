@@ -242,12 +242,6 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
       })
       .catch((err) => console.error(err));
 
-      axios.get(baseURLUpdateAddDorpDown2).then((response) => {
-        console.log(response.data.data)
-        setDorpDownData2(response.data.data)
-      })
-      .catch((err) => console.error(err));
-
       axios.get(baseURLUpdateAddDorpDown3).then((response) => {
         console.log(response.data.data)
         setDorpDownData3(response.data.data)
@@ -289,8 +283,15 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
     }, [FirstData]);
 
     useEffect(() =>{
-        console.log("this Bname",Bname)
-    }, [Bname]);
+      console.log("this Input1",Input1)
+      axios.post(baseURLUpdateAddDorpDown2,{
+        ctmt_id : Input1,
+      }).then((response) => {
+        console.log(response.data.data)
+        setDorpDownData2(response.data.data)
+      })
+      .catch((err) => console.error(err));
+    }, [Input1]);
 
     useEffect(() =>{
         console.log("this Input9",Input9)
