@@ -144,7 +144,7 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
 
     async function AlertMassage (){
       await alert("ข้อมูลถูกต้อง");
-      await console.log("this dorpdowndata2",'')
+      await LS.setItem('IdServiceDorpDown', '');
       await navigateservice();
     }
 
