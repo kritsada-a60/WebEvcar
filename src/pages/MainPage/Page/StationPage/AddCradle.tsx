@@ -261,7 +261,7 @@ const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPage
                   <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   // value={Bnumber}
                   value={Input8}
-                  onChange={(e) => {setInput9(e.target.value)}}
+                  onChange={(e) => {setInput8(e.target.value)}}
                   />       
                 </label>
                 <label>
@@ -269,7 +269,7 @@ const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPage
                   <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   // value={Bnumber}
                   value={Input9}
-                  onChange={(e) => {setInput8(e.target.value)}}
+                  onChange={(e) => {setInput9(e.target.value)}}
                   />       
                 </label>
 
