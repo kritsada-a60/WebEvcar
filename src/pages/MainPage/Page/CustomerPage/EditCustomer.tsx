@@ -147,7 +147,7 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
         ctmt_id: Input2,
         ctm_cno: Input3,
         ctm_bank: Input4,
-        ctm_bank_no: Input4,
+        ctm_bank_no: Input5,
         ctm_contact_name: Input6,
         ctm_address : Input7,
         ctm_tumbon: Input8,

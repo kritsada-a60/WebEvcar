@@ -192,7 +192,7 @@ const AddCarPage: React.FunctionComponent<ISAddCarPageProps> = (props) => {
     };
 
     async function AlertMassage (){
-      await alert("ข้อมูลถูกต้อง");
+      await alert("ข้อมูลสำเร็จ");
       await navigatecar();
     }
  
