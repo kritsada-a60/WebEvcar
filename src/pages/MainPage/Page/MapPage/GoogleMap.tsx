@@ -2,6 +2,11 @@ import React, { useState , useEffect } from 'react';
 import { GoogleMap, InfoWindow, Marker } from '@react-google-maps/api';
 import IconCar from '../../../../img/Icon/IconCar.png';
 import IconStation from '../../../../img/Icon/IconStation_red.png';
+
+
+import IconStationGreen from "../../../../img/Icon/IconStation0.png";
+import IconStationRed from "../../../../img/Icon/IconStation1.png";
+import IconStationGray from "../../../../img/Icon/IconStation2.png";
 import axios from 'axios';
 import { type } from 'os';
 
@@ -165,17 +170,17 @@ function Map() {
                 customIcon: IconCar   
             })
         }
-
+        setDataCar(dataCar)
         var dataStation = [];
         for(var i in MarkersDataStation) {
             dataStation.push({
                 id: MarkersDataStation[i].s_id,
                 name: MarkersDataStation[i].s_mqtt_code,
                 position: { lat: Number(MarkersDataStation[i].s_lat), lng: Number(MarkersDataStation[i].s_lng) },
-                customIcon: IconStation   
+                customIcon: IconStationGreen   
             })
         }
-        setDataCar(dataCar)
+        
         setDataStation(dataStation)
         
         // console.log(data);

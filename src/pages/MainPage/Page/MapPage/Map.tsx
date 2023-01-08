@@ -4,9 +4,9 @@ import Map from '../../../../img/map.png';
 // import React, { useState } from 'react';
 
 import IconCar from "../../../../img/Icon/IconCar.png";
-import IconStation_Green from "../../../../img/Icon/IconStation0.png";
-import IconStation_Red from "../../../../img/Icon/IconStation1.png";
-import IconStation_Gray from "../../../../img/Icon/IconStation2.png";
+import IconStationGreen from "../../../../img/Icon/IconStation0.png";
+import IconStationRed from "../../../../img/Icon/IconStation1.png";
+import IconStationGray from "../../../../img/Icon/IconStation2.png";
 
 import { styled } from '@mui/system';
 import Container from '@mui/material/Container';

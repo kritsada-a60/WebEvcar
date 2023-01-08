@@ -48,9 +48,11 @@ export interface ILoginPageProps {}
 
 const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
 
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const navigateLoginPage = () => {
+  const LS = localStorage;
+
+  const navigateLoginPage = () => {
     navigate('/login');
   };
 
@@ -153,6 +155,7 @@ const navigate = useNavigate();
         upass: values.upass,
       })
       .then((res) => {
+        LS.setItem('LVUSER', res.data.data.ctmt_id);
         console.log(res.data);
         console.log(res.data.success);
         setchechlogin(res.data.success)

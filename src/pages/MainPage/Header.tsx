@@ -17,10 +17,26 @@ import Logo from '../../img/Logo.png';
 
 const pages = [
     { page: 'แผนที่', link: 'map' },
-    { page: 'ประวัติ', link: 'history' },
+    { page: 'ประวัติรถ', link: 'history' },
     { page: 'ข้อมูลรถ', link: 'cardetail' },
     { page: 'ข้อมูลลูกค้า', link: 'customer' },
     { page: 'ข้อมูลสถานี', link: 'station' },
+    // {page:'ข้อมูลสถานี', link: "stationinformation"},
+    { page: 'Serivce', link: 'service' },
+    { page: 'ข้อมูลผู้ใช้งาน', link: 'userdetail' }
+];
+
+const pagesLV2 = [
+    { page: 'แผนที่', link: 'map' },
+    { page: 'ประวัติรถ', link: 'history' },
+    { page: 'ข้อมูลรถ', link: 'cardetail' },
+    // {page:'ข้อมูลสถานี', link: "stationinformation"},
+    { page: 'ข้อมูลผู้ใช้งาน', link: 'userdetail' }
+];
+
+const pagesLV3 = [
+    { page: 'แผนที่', link: 'map' },
+    { page: 'ประวัติรถ', link: 'history' },
     // {page:'ข้อมูลสถานี', link: "stationinformation"},
     { page: 'Serivce', link: 'service' },
     { page: 'ข้อมูลผู้ใช้งาน', link: 'userdetail' }
@@ -30,6 +46,9 @@ const settings = ['Logout'];
 function ResponsiveAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+
+    const LS = localStorage;
+
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
@@ -45,6 +64,8 @@ function ResponsiveAppBar() {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+
+    const LVID = LS.getItem('LVUSER');
 
     return (
         <AppBar position="static" style={{ backgroundColor: 'white' }}>
@@ -92,7 +113,18 @@ function ResponsiveAppBar() {
                                 display: { xs: 'block', md: 'none' }
                             }}
                         >
-                            {pages.map(({ page, link }) => (
+
+                            {LVID == "1" && pages.map(({ page, link }) => (
+                                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                                    <Typography textAlign="center">{page}</Typography>
+                                </MenuItem>
+                            ))}
+                            {LVID == "2" && pagesLV2.map(({ page, link }) => (
+                                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                                    <Typography textAlign="center">{page}</Typography>
+                                </MenuItem>
+                            ))}
+                            {LVID == "3" && pagesLV3.map(({ page, link }) => (
                                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                                     <Typography textAlign="center">{page}</Typography>
                                 </MenuItem>
@@ -119,7 +151,21 @@ function ResponsiveAppBar() {
                         LOGO
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {pages.map(({ page, link }) => (
+                        {LVID == "1" &&  pages.map(({ page, link }) => (
+                            <div style={{ margin: '0vw 2vw' }}>
+                                <Button key={page} onClick={handleCloseNavMenu} href={link} sx={{ my: 2, color: 'black', display: 'block' }}>
+                                    {page}
+                                </Button>
+                            </div>
+                        ))}
+                        {LVID == "2" &&  pagesLV2.map(({ page, link }) => (
+                            <div style={{ margin: '0vw 2vw' }}>
+                                <Button key={page} onClick={handleCloseNavMenu} href={link} sx={{ my: 2, color: 'black', display: 'block' }}>
+                                    {page}
+                                </Button>
+                            </div>
+                        ))}
+                        {LVID == "3" &&  pagesLV3.map(({ page, link }) => (
                             <div style={{ margin: '0vw 2vw' }}>
                                 <Button key={page} onClick={handleCloseNavMenu} href={link} sx={{ my: 2, color: 'black', display: 'block' }}>
                                     {page}
