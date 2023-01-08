@@ -141,10 +141,22 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
     const handleSubmit = (e: any) => {
         e.preventDefault();
         console.log(Bnumber);
+        const NumberS_ID = LS.getItem("IdServiceDorpDown")
+        const NumberSV_ID = LS.getItem("IdCustomerEdit")
+        
         axios
             .post(baseURLUpdateEdit, {
-                ut_name: Bname,
-                ut_id: idEdit
+                sv_id: Number(NumberSV_ID),
+                s_id: Number(NumberS_ID),
+                pt_id: Number(Input2),
+                sv_name: Input3,
+                sv_serial: Input4,
+                sv_mqtt_code: Input7,
+                sv_price: Number(Input5),
+                sv_unit: Input6,
+                sv_remark: Input8,
+                sv_active: "1",
+                u_id: 1
             })
             .then((res) => {
                 console.log(res.data);
@@ -162,6 +174,8 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
 
     async function AlertMassage (){
       await alert("ข้อมูลถูกต้อง");
+      await LS.setItem('IdServiceDorpDown', '');
+      await LS.setItem('IdCustomerEdit', '');
       await navigateadddata();
     }
 
@@ -182,7 +196,7 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
                 // setpost(response.data.data)
                 setInput1(response.data.data[0].pc_id);
                 // setInput2(response.data.data[0].pc_id)
-                setInput3(response.data.data[0].pc_name);
+                setInput3(response.data.data[0].sv_name);
                 setInput4(response.data.data[0].sv_serial);
                 setInput5(response.data.data[0].sv_price);
                 setInput6(response.data.data[0].sv_unit)
