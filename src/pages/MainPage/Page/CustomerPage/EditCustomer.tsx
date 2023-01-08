@@ -323,7 +323,7 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
                   <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>บัญชีธนาคาร</p>
                   <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   // value={Bnumber}
-                  value={Input4}
+                  value={Input5}
                   onChange={(e) => {setInput5(e.target.value)}}
                   />       
                 </label>
