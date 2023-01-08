@@ -110,6 +110,8 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
     const [Input16, setInput16] = useState("") 
     const [Input17, setInput17] = useState("")
 
+    const [InputService, setInputService] = useState("") 
+
     const handleSubmit = (e:any) => {
     e.preventDefault();
     axios
@@ -160,21 +162,22 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
 
     useEffect(() =>{
         console.log(Input1,"input")
+        axios.post(baseURLDorpDown2,{
+          pc_id: Number(Input1)
+        }).then((response) => {
+          setDorpDownData2(response.data.data)
+          console.log(response.data)
+        })
     }, [Input1]);
 
     useEffect(()=>{
       axios.get(baseURLDorpDown).then((response) => {
         setDorpDownData(response.data.data)
         console.log(response.data)
+        setInputService(response.data)
       })
-      axios.post(baseURLDorpDown2,{
-        pc_id: 2
-      }).then((response) => {
-        setDorpDownData2(response.data.data)
-        console.log(response.data)
-      })
-
     }, []);
+
 
     const navigate = useNavigate();
 
@@ -201,9 +204,6 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
                   inputProps={{ 'aria-label': 'Without label' }}
                   >
                     
-                  <MenuItem value="">
-                    <em></em>
-                  </MenuItem>
                   {DorpDownData?.length &&
                       DorpDownData.map((e: any, i: number) => {
                       return (
@@ -230,9 +230,7 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
                   inputProps={{ 'aria-label': 'Without label' }}
                   >
                     
-                  <MenuItem value="">
-                    <em></em>
-                  </MenuItem>
+
                   {DorpDownData2?.length &&
                       DorpDownData2.map((e: any, i: number) => {
                       return (

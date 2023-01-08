@@ -315,17 +315,27 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         console.log("EditCustomerData",DeleteData)
         GetLs_idDelete();
         if ( DeleteData != ''){
-            axios
-            .post(baseURLUpdateDelete, {
-                sv_id: Number(DeleteData),
-                u_id: "1",
-            })
-            .then((res) => {
-                console.log(res,"this is delete");
+        var answer = window.confirm("ต้องการจะลบข้อมูลหรือไม่");
+        if (answer) {
+                alert("ลบข้อมูลสำเร็จ");
+                axios
+                .post(baseURLUpdateDelete, {
+                    sv_id: Number(DeleteData),
+                    u_id: "1",
+                })
+                .then((res) => {
+                    console.log(res,"this is delete");
+                    window.location.reload();
+                    // console.log("ok");
+                })
+                .catch((err) => console.error(err));
+            }else{
                 window.location.reload();
-                // console.log("ok");
-            })
-            .catch((err) => console.error(err));
+            }
+        }
+        else {
+            
+            // alert("ลบข้อมูลไม่สำเร็จ");
         }
 
     }, [DeleteData]);
