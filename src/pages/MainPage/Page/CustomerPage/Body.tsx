@@ -121,21 +121,44 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     useEffect(() =>{
         console.log("EditCustomerData",DeleteData)
         GetLs_idDelete();
-        if ( DeleteData != ''){
-            axios
-            .post(baseURLUpdateDelete, {
-                ctm_id: Number(DeleteData),
-                u_id: "1",
-            })
-            .then((res) => {
-                console.log(res,"this is delete");
-                window.location.reload();
-                // console.log("ok");
-            })
-            .catch((err) => console.error(err));
-        }
 
+        if ( DeleteData != ''){
+            var answer = window.confirm("ต้องการจะลบข้อมูลหรือไม่");
+            if (answer) {
+                    alert("ลบข้อมูลสำเร็จ");
+                    axios
+                    .post(baseURLUpdateDelete, {
+                        ctm_id: Number(DeleteData),
+                        u_id: "1",
+                    })
+                    .then((res) => {
+                        console.log(res,"this is delete");
+                        window.location.reload();
+                        // console.log("ok");
+                    })
+                    .catch((err) => console.error(err));
+                }else{
+                    window.location.reload();
+                }
+            }
+            else {
+                
+                // alert("ลบข้อมูลไม่สำเร็จ");
+            }
     }, [DeleteData]);
+
+    // async function AlertMassage (){
+    //   var answer = window.confirm("ต้องการจะลบข้อมูลหรือไม่");
+    //     if (answer) {
+    //         await alert("ลบข้อมูลสำเร็จ");
+    //     }
+    //     else {
+    //         await alert("ลบข้อมูลไม่สำเร็จ");
+    //     }
+
+    // }
+
+
 
     const navigateadddata = () => {
         navigate('/addcustomer');
@@ -231,6 +254,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                 setDeleteData(post[dataIndex].ctm_id);
                 GetLs_idDelete();
                 // handleSubmit();
+                // AlertMassage();
               }}
               >
                 {`Delete`}
