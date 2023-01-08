@@ -157,7 +157,7 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
         ctm_tel: Input13,
         ctm_mobile: Input14,
         ctm_mail: Input15,
-        ctm_mqtt_code: Input16,
+        c_mqtt_code: Input16,
         u_id: 1
       })
       .then((res) => {
