@@ -177,19 +177,21 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
     const handleSubmit = (e:any) => {
     e.preventDefault();
     console.log(Bnumber)
+    const UserU_ID = LS.getItem('LVUSER');
+    
     axios
       .post(baseURLUpdateAdd, {
-        ctmt_id: Input1,
-        u_id: 1,
+        // ctmt_id: Input1,
+        u_id: Number(UserU_ID),
         ctm_id: Input2,
         u_email: Input8,
         u_fullname: Input4,
         u_mobile: Input7,
         u_name: Input3,
-        // ua_id: number, // 0 false 1 ture
+        u_pass: Input5,
+        ua_id: 1, // 0 false 1 ture
         ul_id: Input10,
-        ut_id: '1',
-        uid: 1
+        ut_id: Input9,
       })
       .then((res) => {
         console.log(res.data);
@@ -284,13 +286,16 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
 
     useEffect(() =>{
       console.log("this Input1",Input1)
-      axios.post(baseURLUpdateAddDorpDown2,{
-        ctmt_id : Input1,
-      }).then((response) => {
-        console.log(response.data.data)
-        setDorpDownData2(response.data.data)
-      })
-      .catch((err) => console.error(err));
+      if (Input1 >= '0'){
+        axios.post(baseURLUpdateAddDorpDown2,{
+          ctmt_id : Input1,
+        }).then((response) => {
+          console.log(response.data.data)
+          setDorpDownData2(response.data.data)
+        })
+        .catch((err) => console.error(err));
+      }
+
     }, [Input1]);
 
     useEffect(() =>{
