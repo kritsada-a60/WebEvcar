@@ -12,42 +12,87 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import {useNavigate} from 'react-router-dom';
+
 
 import Logo from '../../img/Logo.png';
 
-const pages = [
-    { page: 'แผนที่', link: 'map' },
-    { page: 'ประวัติรถ', link: 'history' },
-    { page: 'ข้อมูลรถ', link: 'cardetail' },
-    { page: 'ข้อมูลลูกค้า', link: 'customer' },
-    { page: 'ข้อมูลสถานี', link: 'station' },
-    // {page:'ข้อมูลสถานี', link: "stationinformation"},
-    { page: 'Serivce', link: 'service' },
-    { page: 'ข้อมูลผู้ใช้งาน', link: 'userdetail' }
-];
 
-const pagesLV2 = [
-    { page: 'แผนที่', link: 'map' },
-    { page: 'ประวัติรถ', link: 'history' },
-    { page: 'ข้อมูลรถ', link: 'cardetail' },
-    // {page:'ข้อมูลสถานี', link: "stationinformation"},
-    { page: 'ข้อมูลผู้ใช้งาน', link: 'userdetail' }
-];
 
-const pagesLV3 = [
-    { page: 'แผนที่', link: 'map' },
-    { page: 'ประวัติสถานี', link: 'history' },
-    {page:'ข้อมูลสถานี', link: "stationinformation"},
-    { page: 'Serivce', link: 'service' },
-    { page: 'ข้อมูลผู้ใช้งาน', link: 'userdetail' }
-];
+
 const settings = ['Logout'];
 
 function ResponsiveAppBar() {
+
+    const LS = localStorage;
+
+    const LVID = LS.getItem('LVUSER');
+
+    const LVTYPEID = LS.getItem('LVTYPEUSER');
+
+    const navigate = useNavigate();
+
+
+    const navigateLoginPage = () => {
+        navigate('/login');
+    };
+    
+
+    const pages = [
+        { page: 'แผนที่', link: 'map' },
+        { page: 'ประวัติรถ', link: 'history' },
+        { page: 'ข้อมูลรถ', link: 'cardetail' },
+        { page: 'ข้อมูลลูกค้า', link: 'customer' },
+        { page: 'ข้อมูลสถานี', link: 'station' },
+        // {page:'ข้อมูลสถานี', link: "stationinformation"},
+        { page: 'Serivce', link: 'service' },
+        { page: 'ข้อมูลผู้ใช้งาน', link: 'userdetail' }
+    ];
+
+    const pagesLV2 = [
+        { page: 'แผนที่', link: 'map' },
+        { page: 'ประวัติรถ', link: 'history' },
+        { page: 'ข้อมูลรถ', link: 'cardetail' },
+        // {page:'ข้อมูลสถานี', link: "stationinformation"},
+        { page: 'ข้อมูลผู้ใช้งาน', link: 'userdetail' }
+    ];
+
+    const pagesLV3 = [
+        { page: 'แผนที่', link: 'map' },
+        { page: 'ประวัติสถานี', link: 'history' },
+        {page:'ข้อมูลสถานี', link: "stationinformation"},
+        { page: 'Serivce', link: 'service' },
+        { page: 'ข้อมูลผู้ใช้งาน', link: 'userdetail' }
+    ];
+
+    const pagesLV4 = [
+        { page: 'แผนที่', link: 'map' },
+        { page: 'ประวัติรถ', link: 'history' },
+        { page: 'ข้อมูลรถ', link: 'cardetail' },
+        { page: 'ข้อมูลลูกค้า', link: 'customer' },
+        { page: 'ข้อมูลสถานี', link: 'station' },
+        // {page:'ข้อมูลสถานี', link: "stationinformation"},
+        { page: 'Serivce', link: 'service' },
+    ];
+
+    const pagesLV5 = [
+        { page: 'แผนที่', link: 'map' },
+        { page: 'ประวัติรถ', link: 'history' },
+        { page: 'ข้อมูลรถ', link: 'cardetail' },
+        // {page:'ข้อมูลสถานี', link: "stationinformation"},
+    ];
+
+    const pagesLV6 = [
+        { page: 'แผนที่', link: 'map' },
+        { page: 'ประวัติสถานี', link: 'history' },
+        {page:'ข้อมูลสถานี', link: "stationinformation"},
+        { page: 'Serivce', link: 'service' },
+    ];
+
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
-    const LS = localStorage;
+    
 
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -63,9 +108,10 @@ function ResponsiveAppBar() {
 
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
+        navigateLoginPage();
     };
 
-    const LVID = LS.getItem('LVUSER');
+
 
     return (
         <AppBar position="static" style={{ backgroundColor: 'white' }}>
@@ -114,11 +160,19 @@ function ResponsiveAppBar() {
                             }}
                         >
 
-                            {LVID == "1" && pages.map(({ page, link }) => (
+                            {LVID == "1" && LVTYPEID == "1" && pages.map(({ page, link }) => (
                                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                                     <Typography textAlign="center">{page}</Typography>
                                 </MenuItem>
-                            ))}
+                            ))
+                            }
+
+                            {LVID == "1" && LVTYPEID != "1" && pagesLV4.map(({ page, link }) => (
+                                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                                    <Typography textAlign="center">{page}</Typography>
+                                </MenuItem>
+                            ))
+                            }
                             {LVID == "2" && pagesLV2.map(({ page, link }) => (
                                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                                     <Typography textAlign="center">{page}</Typography>
@@ -151,21 +205,42 @@ function ResponsiveAppBar() {
                         LOGO
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {LVID == "1" &&  pages.map(({ page, link }) => (
+                        {LVID == "1" && LVTYPEID == "1" && pages.map(({ page, link }) => (
                             <div style={{ margin: '0vw 2vw' }}>
                                 <Button key={page} onClick={handleCloseNavMenu} href={link} sx={{ my: 2, color: 'black', display: 'block' }}>
                                     {page}
                                 </Button>
                             </div>
                         ))}
-                        {LVID == "2" &&  pagesLV2.map(({ page, link }) => (
+                        {LVID == "1" && LVTYPEID != "1" &&  pagesLV4.map(({ page, link }) => (
                             <div style={{ margin: '0vw 2vw' }}>
                                 <Button key={page} onClick={handleCloseNavMenu} href={link} sx={{ my: 2, color: 'black', display: 'block' }}>
                                     {page}
                                 </Button>
                             </div>
                         ))}
-                        {LVID == "3" &&  pagesLV3.map(({ page, link }) => (
+                        {LVID == "2" && LVTYPEID == "1" && pagesLV2.map(({ page, link }) => (
+                            <div style={{ margin: '0vw 2vw' }}>
+                                <Button key={page} onClick={handleCloseNavMenu} href={link} sx={{ my: 2, color: 'black', display: 'block' }}>
+                                    {page}
+                                </Button>
+                            </div>
+                        ))}
+                        {LVID == "2" && LVTYPEID != "1" && pagesLV5.map(({ page, link }) => (
+                            <div style={{ margin: '0vw 2vw' }}>
+                                <Button key={page} onClick={handleCloseNavMenu} href={link} sx={{ my: 2, color: 'black', display: 'block' }}>
+                                    {page}
+                                </Button>
+                            </div>
+                        ))}
+                        {LVID == "3" && LVTYPEID == "1" && pagesLV3.map(({ page, link }) => (
+                            <div style={{ margin: '0vw 2vw' }}>
+                                <Button key={page} onClick={handleCloseNavMenu} href={link} sx={{ my: 2, color: 'black', display: 'block' }}>
+                                    {page}
+                                </Button>
+                            </div>
+                        ))}
+                        {LVID == "3" && LVTYPEID != "1" && pagesLV6.map(({ page, link }) => (
                             <div style={{ margin: '0vw 2vw' }}>
                                 <Button key={page} onClick={handleCloseNavMenu} href={link} sx={{ my: 2, color: 'black', display: 'block' }}>
                                     {page}

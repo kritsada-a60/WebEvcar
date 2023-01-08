@@ -156,6 +156,7 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
       })
       .then((res) => {
         LS.setItem('LVUSER', res.data.data.ctmt_id);
+        LS.setItem('LVTYPEUSER', res.data.data.ul_id);
         console.log(res.data);
         console.log(res.data.success);
         setchechlogin(res.data.success)
@@ -204,7 +205,7 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
             onChange={(e) => setValues({ ...values, uname: e.target.value })}/>          
           </label>
           <label>
-            <TextField type="upass" name="password" style={{width:'36.250vw ',height:'3.704vh',position: 'absolute', zIndex:'3' ,left: '53.854vw', top: '70vh',borderLeftWidth: '0px',borderRight: '0px', borderTopWidth: '0px',paddingLeft:'10px',fontSize:'24px',color :'black'}} placeholder="รหัสผ่าน" 
+            <TextField type="password" name="password" style={{width:'36.250vw ',height:'3.704vh',position: 'absolute', zIndex:'3' ,left: '53.854vw', top: '70vh',borderLeftWidth: '0px',borderRight: '0px', borderTopWidth: '0px',paddingLeft:'10px',fontSize:'24px',color :'black'}} placeholder="รหัสผ่าน" 
             onChange={(e) => setValues({ ...values, upass: e.target.value })}/>
           </label>
           <ThemeProvider theme={theme}>
