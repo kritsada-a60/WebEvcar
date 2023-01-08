@@ -192,14 +192,14 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
         setFirstData(response.data.data[0])
         // setBname(response.data.data[0].ctm_name)
         setInput1(response.data.data[0].ctm_name)
-        setInput2(response.data.data[0].ctmt_name)
-        setInput3(response.data.data[0].ctmt_id)
-        setInput4(response.data.data[0].ctm_cno)
-        setInput5(response.data.data[0].ctm_bank)
-        setInput6(response.data.data[0].ctm_bank_no)
-        setInput7(response.data.data[0].ctm_contact_name)
-        setInput8(response.data.data[0].ctm_address)
-        setInput9(response.data.data[0].ctm_tumbon)
+        setInput2(response.data.data[0].ctmt_id)
+        setInput3(response.data.data[0].ctm_cno)
+        setInput4(response.data.data[0].ctm_bank)
+        setInput5(response.data.data[0].ctm_bank_no)
+        setInput6(response.data.data[0].ctm_contact_name)
+        setInput7(response.data.data[0].ctm_address)
+        setInput8(response.data.data[0].ctm_tumbon)
+        // setInput9(response.data.data[0])
         setInput10(response.data.data[0].ctm_amphur)
         setInput11(response.data.data[0].ctm_province)
         setInput12(response.data.data[0].ctm_zipcode)
@@ -274,7 +274,7 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
                     <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ประเภทลูกค้า</p>
                     <Select type="ประเภทลูกค้า" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                     value={Input2}
-                    onChange={(e) => {setInput3(e.target.value)}}
+                    onChange={(e) => {setInput2(e.target.value)}}
                     // label="Age"
                     displayEmpty
                     inputProps={{ 'aria-label': 'Without label' }}
