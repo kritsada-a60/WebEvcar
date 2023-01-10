@@ -402,7 +402,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         "ราคา",
         "หน่วย",
         "MQTT_CODE",
-        "สถานะสถานี",
+        "สถานะ",
         // "ชื่อลูกค้า", 
         // "ประเภทลูกค้า", 
         // "เลขทะเบียนการค้า", 
