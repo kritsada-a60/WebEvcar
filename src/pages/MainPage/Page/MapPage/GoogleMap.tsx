@@ -186,11 +186,23 @@ function Map() {
 
     const [activeMarker, setActiveMarker] = useState(null);
 
+    const [IDmarkerStation, setIDmarkerStation] = useState('');
+    const [IDmarkerCar, setIDmarkerCar] = useState('');
+
+    useEffect(() => {
+        console.log(IDmarkerStation, 'This IDmarkerStation');
+    }, [IDmarkerStation]);
+
+    useEffect(() => {
+        console.log(IDmarkerCar, 'This IDmarkerCar');
+    }, [IDmarkerCar]);
+
     const handleActiveMarker = (marker: any) => {
         if (marker === activeMarker) {
             return;
         }
         setActiveMarker(marker);
+        console.log()
     };
 
     const handleOnLoad = (map: any) => {
@@ -203,9 +215,16 @@ function Map() {
     return (
         <GoogleMap onLoad={handleOnLoad} center={{ lat: 13.619392, lng: 100.720057 }} onClick={() => setActiveMarker(null)} mapContainerStyle={{ width: '100vw', height: '100vh' }}>
             {DataCar?.map(({ id, name, position, customIcon }) => (
-                <Marker key={id} position={position} onClick={() => handleActiveMarker(id)} icon={customIcon}>
+                <Marker key={id} position={position} onClick={() => {
+                    handleActiveMarker(id)
+                    }} icon={customIcon}>
                     {activeMarker === id ? (
-                        <InfoWindow onCloseClick={() => setActiveMarker(null)}>
+                        <InfoWindow 
+                        onLoad={() =>setIDmarkerStation(id)}
+                        onCloseClick={() => {
+                            setActiveMarker(null)
+                            // setIDmarkerStation(id)
+                        }}>
                             <div>
                                 <p>ID {id}</p>
                                 <p>ชื่อ {name}</p>
@@ -215,9 +234,17 @@ function Map() {
                 </Marker>
             ))}
             {DataStation?.map(({ id, name, position, customIcon }) => (
-                <Marker key={id} position={position} onClick={() => handleActiveMarker(id)} icon={customIcon}>
+                <Marker key={id} position={position} onClick={() => {
+                    handleActiveMarker(id)
+                    
+                    }} icon={customIcon}>
                     {activeMarker === id ? (
-                        <InfoWindow onCloseClick={() => setActiveMarker(null)}>
+                        <InfoWindow
+                        onLoad={() =>setIDmarkerCar(id)} 
+                        onCloseClick={() => {
+                            setActiveMarker(null)
+                            setIDmarkerCar(id)
+                            }}>
                             <div>{name}</div>
                         </InfoWindow>
                     ) : null}
