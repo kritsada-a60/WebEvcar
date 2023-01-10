@@ -10,15 +10,29 @@ import { Typography } from "@mui/material";
 import Header from "../../Header"
 import Body from "./Body"
 
+import useNavigate from 'react-router-dom';
+
 export interface ICarDetailPageProps {}
 
 
 const CarDetailPage: React.FunctionComponent<ICarDetailPageProps> = (props) => {
 
+    const LS = localStorage;
+
+    const LVID = LS.getItem('LVUSER');
+
+    const LVTYPEID = LS.getItem('LVTYPEUSER');
+
     return (
         <div style={{backgroundColor:'#E0F0EC', padding:'0vh 0vw 1vh 0vw'}}>
-          <Header/>
-          <Body/>
+          {LVID == "1" ? (
+            <>
+            <Header/>
+            <Body/>
+            </>
+          ) : (
+            <></>
+          )}
         </div>
     );
 };

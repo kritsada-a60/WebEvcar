@@ -57,6 +57,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const [post, setpost] = useState<MyData[]>([]);
 
     const [count, setcount] = useState('');
+    
 
     // const [MyIdEdit, setMyIdEdit] = useState<IDEdit>();
 
@@ -64,6 +65,8 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     // const SetLs_idEdit = () => {
     //     LS.setItem('idEdit', EditCustomerData);
     // }
+
+    const LVID = LS.getItem('LVUSER');
 
     function SetLs_idEdit() {
         // console.log(EditCustomerData);
@@ -89,7 +92,9 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
 
     useEffect(() =>{
-      axios.get(baseURL).then((response) => {
+      axios.post(baseURL,{
+        ctmt_id: Number(LVID),
+      }).then((response) => {
         setpost(response.data.data)
         // console.log(post,"post data")
         console.log(response.data.data,"start data")

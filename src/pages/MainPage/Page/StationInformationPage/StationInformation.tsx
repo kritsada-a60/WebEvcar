@@ -15,6 +15,10 @@ export interface ISStationInformationPageProps {}
 
 const StationInformationPage: React.FunctionComponent<ISStationInformationPageProps> = (props) => {
 
+    const LS = localStorage;
+    const LVID = LS.getItem('LVUSER');
+    const LVTYPEID = LS.getItem('LVTYPEUSER');
+
     return (
         <div style={{backgroundColor:'#E0F0EC', padding:'0vh 0vw 1vh 0vw'}}>
           <Header/>
