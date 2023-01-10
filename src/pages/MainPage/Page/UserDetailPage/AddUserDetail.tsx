@@ -32,6 +32,43 @@ type MyDataPost2 = {
   ut_name: string;
 };
 
+type MyDorpDownData = {
+    ctmt_id: any,
+    ctmt_name: string,
+};
+
+type MyDorpDownData2 = {
+    ctm_address: string;
+    ctm_amphur: string;
+    ctm_bank: string;
+    ctm_bank_no: string;
+    ctm_cno: string;
+    ctm_contact_name: string;
+    ctm_id: string;
+    ctm_mail: string;
+    ctm_mobile: string;
+    ctm_mqtt_code: any;
+    ctm_name: string;
+    ctm_province: string;
+    ctm_tel: string;
+    ctm_tumbon: string;
+    ctm_zipcode: string;
+    ctmt_id: number;
+    ctmt_name: string;
+};
+
+type MyDorpDownData3 = {
+    ul_id: any,
+    ul_name: string,
+};
+
+type MyDorpDownData4 = {
+    ut_id: any,
+    ut_name: string,
+};
+
+
+
 export interface ISAddUserDetailPageProps {}
 
 const baseURL ="http://54.86.117.200:5000/usertype/list"
@@ -42,6 +79,18 @@ const baseURLUpdateData ="http://54.86.117.200:5000/user/info"
 
 const baseURLUpdateEdit ="http://54.86.117.200:5000/usertype/edit"
 
+const baseURLUpdateAddDorpDown = "http://54.86.117.200:5000/customertype/list"
+
+const baseURLUpdateAddDorpDown2 = "http://54.86.117.200:5000/customer/list"
+
+const baseURLUpdateAddDorpDown3 = "http://54.86.117.200:5000/userlevel/list"
+
+const baseURLUpdateAddDorpDown4 = "http://54.86.117.200:5000/usertype/list"
+
+const baseURLUpdateAdd = "http://54.86.117.200:5000/user/register"
+
+
+
 const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (props) => {
 
   const [post, setpost] = useState<MyDataPost[]>([]);
@@ -50,17 +99,28 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
 
     const [FirstData, setFirstData] = useState<MyDataPost[]>([]);
 
+    const [DorpDownData, setDorpDownData] = useState<MyDorpDownData[]>([]);
+    const [DorpDownDatafillter, setDorpDownDatafillter] = useState<MyDorpDownData[]>([]);
+
+
+    const [DorpDownData2, setDorpDownData2] = useState<MyDorpDownData2[]>([]);
+
+    const [DorpDownData3, setDorpDownData3] = useState<MyDorpDownData3[]>([]);
+
+    const [DorpDownData4, setDorpDownData4] = useState<MyDorpDownData4[]>([]);
+
     const LS = localStorage;
     const idEdit = LS.getItem('idEdit');
 
     const RemoceIdEdit = () => {
       LS.removeItem('idEdit');
+      navigateadddata();
     }
 
     const navigate = useNavigate();
 
     const navigateadddata = () => {
-        navigate('/stationinformation');
+        navigate('/userdetail');
     };
     
     const [Bname, setBname] = useState("")
@@ -73,6 +133,19 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
     const [Bt_name, setBt_name] = useState("") 
 
     const [Bname2, setBname2] = useState([]) 
+
+
+    const [Input1, setInput1] = useState("") 
+    const [Input2, setInput2] = useState("")
+    const [Input3, setInput3] = useState("") 
+    const [Input4, setInput4] = useState("")
+    const [Input5, setInput5] = useState("") 
+    const [Input6, setInput6] = useState("")
+    const [Input7, setInput7] = useState("") 
+    const [Input8, setInput8] = useState("")
+    const [Input9, setInput9] = useState("") 
+    const [Input10, setInput10] = useState("")
+    const [Input11, setInput11] = useState("") 
 
     // const myObj = JSON.parse(Bname2);
 
@@ -90,6 +163,11 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
       {number:'4',text:'d'},
     ]);
 
+    const [Activedorpdown, setActivedorpdown] = useState([
+      {number:'1',text:'Active'},
+      {number:'0',text:'InActive'},
+    ]);
+
     const handleChange = (event: SelectChangeEvent) => {
       setAge(event.target.value);
     };
@@ -104,45 +182,91 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
     const handleSubmit = (e:any) => {
     e.preventDefault();
     console.log(Bnumber)
+    const UserU_ID = LS.getItem('LVUSER');
+    
     axios
-      .post(baseURLUpdateEdit, {
-        ut_name: Bname,
-        ut_id: idEdit,
+      .post(baseURLUpdateAdd, {
+        // ctmt_id: Input1,
+        u_id: Number(UserU_ID),
+        ctm_id: Input2,
+        u_email: Input8,
+        u_fullname: Input4,
+        u_mobile: Input7,
+        u_name: Input3,
+        u_pass: Input5,
+        ua_id: Number(Input11), // 0 false 1 ture
+        ul_id: Input10,
+        ut_id: Input9,
       })
       .then((res) => {
         console.log(res.data);
         console.log("ok");
-        navigateadddata();
+        // navigateadddata();
         // setBnumber(res.data.success)
+        if(res.data.success == true){
+          AlertMassage();
+        } else {
+          alert("ข้อมูลไม่ถูกต้อง");
+        }
       })
       .catch((err) => console.error(err));
     };
+
+    async function AlertMassage (){
+      await alert("ข้อมูลถูกต้อง");
+      await navigateadddata();
+    }
 
     /* axios Editdata */
 
     useEffect(() =>{
       axios.post(baseURLUpdateData,{
-        u_id: LS.getItem('idEdit')
+        u_id: '1'
+        // u_id: LS.getItem('idEdit')
       }).then((response) => {
         console.log(response.data)
         // setFirstData(response.data.data[0].ut_name)
-        setBname(response.data.data[0].u_name)
-        setBemail(response.data.data[0].u_email)
-        setBfullname(response.data.data[0].u_fullname)
-        setBid(response.data.data[0].u_id)
-        setBmoblie(response.data.data[0].u_mobile)
-        setBa_name(response.data.data[0].ua_name)
-        setBl_name(response.data.data[0].ul_name)
-        setBt_name(response.data.data[0].ut_name)
+        // setBname(response.data.data[0].u_name)
+        // setBemail(response.data.data[0].u_email)
+        // setBfullname(response.data.data[0].u_fullname)
+        // setBid(response.data.data[0].u_id)
+        // setBmoblie(response.data.data[0].u_mobile)
+        // setBa_name(response.data.data[0].ua_name)
+        // setBl_name(response.data.data[0].ul_name)
+        // setBt_name(response.data.data[0].ut_name)
+
+        // setInput3(response.data.data[0])
 
         // setBname2(response.data.data)
         // setpost(response.data.data)
         // console.log(response.data.data[0])
       })
+
+      axios.get(baseURLUpdateAddDorpDown).then((response) => {
+
+        console.log(response.data.data)
+        setDorpDownData(response.data.data)
+      })
+      .catch((err) => console.error(err));
+
+      axios.get(baseURLUpdateAddDorpDown3).then((response) => {
+        console.log(response.data.data)
+        setDorpDownData3(response.data.data)
+      })
+      .catch((err) => console.error(err));
+
+      axios.get(baseURLUpdateAddDorpDown4).then((response) => {
+        console.log(response.data.data)
+        setDorpDownData4(response.data.data)
+      })
+      .catch((err) => console.error(err));
     }, []);
 
     /* axios Editdata */
 
+    useEffect(() =>{
+        console.log("this data",DorpDownData)
+    }, [DorpDownData]);
 
     useEffect(() =>{
         console.log("this data",post)
@@ -166,96 +290,193 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
     }, [FirstData]);
 
     useEffect(() =>{
-        console.log("this Bname",Bname)
-    }, [Bname]);
+      console.log("this Input1",Input1)
+      if (Input1 >= '0'){
+        axios.post(baseURLUpdateAddDorpDown2,{
+          ctmt_id : Input1,
+        }).then((response) => {
+          console.log(response.data.data)
+          setDorpDownData2(response.data.data)
+        })
+        .catch((err) => console.error(err));
+      }
+
+    }, [Input1]);
 
     useEffect(() =>{
-        console.log("this Bname2",Bname2)
-    }, [Bname2]);
+        console.log("this Input9",Input9)
+        const result = DorpDownData.filter((DorpDownDataS:any) => {
+          if (Input9 <= '2'){
+            return DorpDownDataS.ctmt_id > 0
+          }else{
+            return DorpDownDataS.ctmt_id > 1
+          }
+        })
+        console.log("this result",result)
+        setDorpDownDatafillter(result)
+    }, [Input9]);
 
     return (
         <div style={{backgroundColor:'#E0F0EC'}}>
           <Header/>
-          <p style={{margin:'5vh 30vw',justifyContent:'center' ,fontSize:'36px'}}>ข้อมูลผู้ใช้งาน</p>
+          <p style={{margin:'5vh 30vw',justifyContent:'center' ,fontSize:'36px'}}>เพิ่ม ข้อมูลผู้ใช้งาน</p>
           <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
             <form >
-              <div style={{margin:'2.5vh 0'}}>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'flex-start',alignItems:'center'}}>
                 <label>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อกิจการ"
-                  value={Bname}
-                  onChange={(e) => {setBname(e.target.value)}}
-                  />          
+                  <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ประเภทผู้ใช้</p>
+                    <Select type="ระดับสิทธิ" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
+                    value={Input9}
+                    onChange={(e) => {setInput9(e.target.value)}}
+                    displayEmpty
+                    inputProps={{ 'aria-label': 'Without label' }}
+                    >
+                    {DorpDownData4?.length &&
+                        DorpDownData4.map((e: any, i: number) => {
+                        return (
+                            <MenuItem key={e.ut_id} value={e.ut_id}>
+                            {e.ut_name}
+                            </MenuItem>
+                        );
+                    })}
+                    </Select>          
+                </label>
+              </div>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
+                <label>
+                  <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ประเภทกิจการ</p>
+                  <Select type="ประเภทกิจการ" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
+                    value={Input1}
+                    onChange={(e) => {setInput1(e.target.value)}}
+                    displayEmpty
+                    inputProps={{ 'aria-label': 'Without label' }}
+                    >
+                    {DorpDownDatafillter?.length &&
+                        DorpDownDatafillter.map((e: any, i: number) => {
+                        return (
+                            <MenuItem key={e.ctmt_id} value={e.ctmt_id}>
+                            {e.ctmt_name}
+                            </MenuItem>
+                        );
+                    })}
+                    </Select>          
                 </label>
                 <label>
-                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ประเภทกิจการ"
-                  value={Ba_name}
-                  onChange={(e) => {setBa_name(e.target.value)}}
+                  <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ชื่อกิจการ</p>  
+                  <Select type="ชื่อกิจการ" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
+                    value={Input2}
+                    onChange={(e) => {setInput2(e.target.value)}}
+                    displayEmpty
+                    inputProps={{ 'aria-label': 'Without label' }}
+                    >
+                    {DorpDownData2?.length &&
+                        DorpDownData2.map((e: any, i: number) => {
+                        return (
+                            <MenuItem key={e.ctm_id} value={e.ctm_id}>
+                            {e.ctm_name}
+                            </MenuItem>
+                        );
+                    })}
+                    </Select>      
+                </label>
+              </div>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
+                <label>
+                  <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ชื่อผู้ใช้</p>
+                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
+                  value={Input3}
+                  onChange={(e) => {setInput3(e.target.value)}}
+                  />           
+                </label>
+                <label>
+                  <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ชื่อ-นามสกุล</p>
+                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
+                  value={Input4}
+                  onChange={(e) => {setInput4(e.target.value)}}
+                  />           
+                </label>
+              </div>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
+                <label>
+                  <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>รหัสผ่าน</p>
+                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
+                  value={Input5}
+                  onChange={(e) => {setInput5(e.target.value)}}
                   />            
                 </label>
-              </div>
-              <div style={{margin:'2.5vh 0'}}>
                 <label>
-                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อ-นามสกุล"
-                  value={Bfullname}
-                  onChange={(e) => {setBfullname(e.target.value)}}
-                  />           
-                </label>
-                <label>
-                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="เบอร์ติดต่อ"
-                  value={Bmoblie}
-                  onChange={(e) => {setBmoblie(e.target.value)}}
-                  />           
-                </label>
-              </div>
-              <div style={{margin:'2.5vh 0'}}>
-                <label>
-                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="อีเมล"
-                  value={Bemail}
-                  onChange={(e) => {setBemail(e.target.value)}}
+                  <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ยืนยันรหัสผ่าน</p>
+                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
+                  value={Input6}
+                  onChange={(e) => {setInput6(e.target.value)}}
                   />            
                 </label>
               </div>
 
-              <div style={{margin:'2.5vh 0'}}>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>
-                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ชื่อผู้ใช้"
-                  value={Bid}
-                  onChange={(e) => {setBid(e.target.value)}}
+                  <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>เบอร์ติดต่อ</p>
+                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
+                  value={Input7}
+                  onChange={(e) => {setInput7(e.target.value)}}
                   />            
                 </label>
                 <label>
-                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ระดับสิทธิ"
-                  value={Bt_name}
-                  onChange={(e) => {setBt_name(e.target.value)}}
+                  <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>อีเมล</p>
+                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
+                  value={Input8}
+                  onChange={(e) => {setInput8(e.target.value)}}
                   />           
                 </label>
               </div>
-              <div style={{margin:'2.5vh 0'}}>
+              <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'flex-start',alignItems:'center'}}>
                 <label>
-                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="รหัสผ่าน"
-                  // value={Bname2}
-                  // onChange={(e) => {(e.target.value)}}
-                  />           
+                  <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ระดับสิทธิ</p>
+                    <Select type="ระดับสิทธิ" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
+                    value={Input10}
+                    onChange={(e) => {setInput10(e.target.value)}}
+                    displayEmpty
+                    inputProps={{ 'aria-label': 'Without label' }}
+                    >
+                    {DorpDownData3?.length &&
+                        DorpDownData3.map((e: any, i: number) => {
+                        return (
+                            <MenuItem key={e.ul_id} value={e.ul_id}>
+                            {e.ul_name}
+                            </MenuItem>
+                        );
+                    })}
+                    </Select>            
                 </label>
                 <label>
-                  <TextField type="" name="" style={{margin:'0 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="ยืนยันรหัสผ่าน"
-                  // value={Bname2}
-                  // onChange={(e) => {(e.target.value)}}
-                  />            
+                  <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>การใช้งาน</p>
+                    <Select type="การใช้งาน" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
+                    value={Input11}
+                    onChange={(e) => {setInput11(e.target.value)}}
+                    displayEmpty
+                    inputProps={{ 'aria-label': 'Without label' }}
+                    >
+                    {Activedorpdown?.length &&
+                        Activedorpdown.map((e: any, i: number) => {
+                        return (
+                            <MenuItem key={e.number} value={e.number}>
+                            {e.text}
+                            </MenuItem>
+                        );
+                    })}
+                    </Select>            
                 </label>
               </div>
-              <div style={{display:'flex',justifyContent:'flex-start  ',alignItems:'center' ,margin:'2.5vh 5vw'}}>
-                <p style={{fontSize:'18px',margin:'0vh 1vw'}}>การใช้งาน</p>
-                <p style={{fontSize:'18px'}}>Active</p>
-                <Checkbox/>
-                <p style={{fontSize:'18px'}}>Inactive</p>
-                <Checkbox/>
-              </div>
+
               <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
-                <Button style={{color:'white', backgroundColor:'#6CDCC0',margin:'2.5vh 2.5vw'}}>
+                <Button style={{color:'white', backgroundColor:'#6CDCC0',margin:'2.5vh 2.5vw'}}
+                onClick={handleSubmit}
+                >
                   บันทึก
                 </Button>
-                <Button style={{color:'white', backgroundColor:'#FF5A5A',margin:'2.5vh 2.5vw'}}>
+                <Button style={{color:'white', backgroundColor:'#FF5A5A',margin:'2.5vh 2.5vw'}}
+                onClick={RemoceIdEdit}
+                >
                   ยกเลิก
                 </Button>
               </div>

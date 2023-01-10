@@ -13,13 +13,51 @@ type MyDataPost = {
     u_name: string;
     ul_id: any;
     ut_id: any;
+    ut_name: string;
 };
 
+// type MyData = {
+//     u_email: any;
+//     u_fullname: string;
+//     u_id: number;
+//     u_mobile: any;
+//     u_name: string;
+//     ua_name: string;
+//     ul_name: string;
+//     ut_name: string;
+// };
+
+type MyDataPost2 = {
+    ctm_name: string;
+    u_email: any;
+    u_fullname: string;
+    u_id: number;
+    u_mobile: string;
+    u_name: string;
+    ua_name: string;
+    ul_name: string;
+    ut_name: string;
+};
+
+
+
+
+
 const baseURL ="http://54.86.117.200:5000/user/login"
+
+const baseURLList ="http://54.86.117.200:5000/usertype/list"
+
+const baseURLList2 ="http://54.86.117.200:5000/user/list"
+
+
+
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     const [post, setpost] = useState<MyDataPost[]>([]);
+
+    const [post2, setpost2] = useState<MyDataPost2[]>([]);
+
     const [count, setcount] = useState('');
 
     const [EditData_1, setEditData_1] = useState('');
@@ -28,8 +66,8 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     function SetLs_idEdit() {
 
-        LS.setItem('idEdit', EditData_1);
-
+    LS.setItem('idEdit', EditData_1);
+        // navigateeditdata();
     }
 
     const navigate = useNavigate();
@@ -38,14 +76,25 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         navigate('/adduserdetail');
     };
 
+    const navigateeditdata = () => {
+        navigate('/edituserdetail');
+    };
+
     useEffect(() =>{
-      axios
-        .post(baseURL, {
-            uname: "admin",
-            upass: "1234"
-        })
+    //   axios
+    //     .get(baseURLList)
+    //     .then((res) => {
+    //         setpost(res.data.data)
+    //         console.log(res.data.data)
+    //         // setcount(res.data)
+    //     })
+    //     .catch((err) => console.error(err));
+        axios
+        .get(baseURLList2)
         .then((res) => {
-            setpost([res.data.data])
+            setpost2(res.data.data)
+            setpost(res.data.data)
+            console.log(res.data.data)
             // setcount(res.data)
         })
         .catch((err) => console.error(err));
@@ -76,7 +125,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         console.log("EditData",EditData_1)   
         SetLs_idEdit();
         if (EditData_1 != ''){
-            navigateadddata();
+            navigateeditdata();
         }
     }, [EditData_1]);
 
@@ -86,12 +135,14 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const columns = ["เลขที่กิจการ", "รูปแบบกิจการ", "สถานะเปิด/ปิด", "ที่อยู่", "ชื่อเจ้าของอู่", "เบอร์ติดต่อ"];
 
     const UserDetailcolumns = [
-        "เลขที่กิจการ",
-        "รูปแบบกิจการ",
-        "สถานะเปิด/ปิด",
-        "ที่อยู่",
-        "ชื่อเจ้าของอู่",
+        "ชื่อผู้ใช้งาน",
+        "ชื่อ-นามสกุล",
+        "ชื่อลูกค้า",
+        "ประเภทสิทธิ",
+        "ระดับสิทธิ",
         "เบอร์ติดต่อ",
+        "e-mail",
+        "การใช้งาน",
       {
         name: "Edit",
         options: {
@@ -101,8 +152,9 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
             return (
               <Button aria-label="edit" variant="outlined" style={{color:'white',backgroundColor:'#6CDCC0',borderRadius:'15px'}}
               onClick={() => {
-                setEditData_1(post[dataIndex].ut_id)
-                SetLs_idEdit();            
+                setEditData_1(post[dataIndex].u_id)
+                SetLs_idEdit();
+  
               }}
               >
                 {`Edit`}
@@ -136,12 +188,16 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                     <MUIDataTable
                         title={"ข้อมูลผู้ใช้งาน"}
                         // data = {data}
-                        data={post.map(item => {
+                        data={post2.map(item => {
                             return [
-                                item.u_id,
                                 item.u_name,
-                                item.ul_id,
-                                item.ut_id
+                                item.u_fullname,
+                                item.ctm_name,
+                                item.ut_name,
+                                item.ul_name,
+                                item.u_mobile,
+                                item.u_email,
+                                item.ua_name,
                             ]
                         })}
                         columns={UserDetailcolumns}

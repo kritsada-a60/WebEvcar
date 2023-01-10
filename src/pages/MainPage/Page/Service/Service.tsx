@@ -10,17 +10,21 @@ import { Typography } from "@mui/material";
 import Header from "../../Header"
 import Body from "./Body"
 
-export interface ICradleInfomationPageProps {}
+export interface ISCustomerPageProps {}
 
 
-const CradleInfomationPage: React.FunctionComponent<ICradleInfomationPageProps> = (props) => {
+const CustomerPage: React.FunctionComponent<ISCustomerPageProps> = (props) => {
+  
+    const LS = localStorage;
+    const LVID = LS.getItem('LVUSER');
+    const LVTYPEID = LS.getItem('LVTYPEUSER');
 
     return (
-        <div style={{backgroundColor:'#E0F0EC'}}>
+        <div style={{backgroundColor:'#E0F0EC', padding:'0vh 0vw 1vh 0vw'}}>
           <Header/>
           <Body/>
         </div>
     );
 };
 
-export default CradleInfomationPage;
+export default CustomerPage;

@@ -10,13 +10,15 @@ import { Typography } from "@mui/material";
 import Header from "../../Header"
 import Body from "./Body"
 
-export interface ISStationInformationPageProps {}
+export interface ISCustomerPageProps {}
 
 
-const StationInformationPage: React.FunctionComponent<ISStationInformationPageProps> = (props) => {
+const CustomerPage: React.FunctionComponent<ISCustomerPageProps> = (props) => {
 
     const LS = localStorage;
+
     const LVID = LS.getItem('LVUSER');
+
     const LVTYPEID = LS.getItem('LVTYPEUSER');
 
     return (
@@ -27,4 +29,4 @@ const StationInformationPage: React.FunctionComponent<ISStationInformationPagePr
     );
 };
 
-export default StationInformationPage;
+export default CustomerPage;

@@ -1,0 +1,52 @@
+ctm_name: 
+ctmt_id: 
+ctm_cno: 
+ctm_bank: 
+ctm_bank_no: 
+ctm_contact_name: 
+ctm_address : 
+ctm_tumbon: 
+ctm_amphur : 
+ctm_province : 
+ctm_zipcode: 
+ctm_tel: 
+ctm_mobile: 
+ctm_mail: 
+ctm_mqtt_code: 
+u_id: 
+
+ctm_address: string;
+ctm_amphur: string;
+ctm_bank: string;
+ctm_bank_no: string;
+ctm_cno: string;
+ctm_contact_name: string;
+ctm_id: number;
+ctm_mail: string;
+ctm_mobile: string;
+ctm_mqtt_code: any;
+ctm_name: string;
+ctm_province: string;
+ctm_tel: string;
+ctm_tumbon: string;
+ctm_zipcode: string;
+ctmt_id: number;
+ctmt_name: string;
+
+
+    "ctm_name": "Station A5", /* ชื่อลูกค้า ห้ามซ้ำ */ 
+    "ctmt_id": 3, /*  ประเภทลูกค้า */
+    "ctm_cno": "464564646546", /* เลขทะเบียนการค้า */
+    "ctm_bank": "SCB", /* ชื่อธนาคาร */
+    "ctm_bank_no": "654654654", /* บัญขีธนาคาร */
+    "ctm_contact_name": "Somchai", /* ชื่อผู้ติดต่อ */
+    "ctm_address" : "234 vsdfdsfd", /* ที่อยู่ */
+    "ctm_tumbon": "บางนา", /* ตำบล */
+    "ctm_amphur" : "บางนา", /* อำเภอ */
+    "ctm_province" : "กรุงเทพ", /* จังหวัด */
+    "ctm_zipcode": "12014", /* รหัสไปรษณีย์ */
+    "ctm_tel": "6768689698", /* โทรศัพท์ */
+    "ctm_mobile": "565656799", /* มือถือ */
+    "ctm_mail": "test@test.com", /* E-Mail */
+    "ctm_mqtt_code": "Station2", /*      ห้ามซ้ำ */
+    "u_id": 1

@@ -22,6 +22,8 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     const [post, setpost] = useState<MyDataPost[]>([]);
     const [EditData_1, setEditData_1] = useState('');
+
+    const navigate = useNavigate();
     
     useEffect(() =>{
       axios.get(baseURL).then((response) => {
@@ -43,7 +45,9 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     }
 
-
+    const navigatemap = () => {
+      navigate('/map');
+    };
 
     const columns = ["ทะเบียนรถ", "อู่", "Switch on", "Switch off", "ระยะทาง", "ปริมาณไฟฟ้าที่ใช้"];
 
@@ -64,8 +68,9 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
             return (
               <Button aria-label="edit" variant="outlined" style={{color:'white',backgroundColor:'#6CDCC0',borderRadius:'15px'}}
               onClick={() => {
-                setEditData_1(post[dataIndex].ut_id)
-                SetLs_idEdit();            
+                // setEditData_1(post[dataIndex].ut_id)
+                // SetLs_idEdit();
+                navigatemap();         
               }}
               >
                 {`ดูแผนที่`}

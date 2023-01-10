@@ -23,17 +23,17 @@ type MyDataPost = {
 
 
 
-export interface ISAddstationPageProps {}
+export interface ISAddCustomerPageProps {}
 
 const baseURL ="http://54.86.117.200:5000/usertype/list"
 
 const baseURLEdit ="http://54.86.117.200:5000/usertype/add"
 
-const baseURLUpdateData ="http://54.86.117.200:5000/usertype/one"
+const baseURLUpdateData ="http://54.86.117.200:5000/customer/one"
 
 const baseURLUpdateEdit ="http://54.86.117.200:5000/usertype/edit"
 
-const AddstationPage: React.FunctionComponent<ISAddstationPageProps> = (props) => {
+const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props) => {
 
     const [post, setpost] = useState<MyDataPost[]>([]);
 
@@ -42,17 +42,17 @@ const AddstationPage: React.FunctionComponent<ISAddstationPageProps> = (props) =
     const [FirstData, setFirstData] = useState<MyDataPost[]>([]);
 
     const LS = localStorage;
-    const idEdit = LS.getItem('idEdit');
+    const idEdit = LS.getItem('IdEditCustomerData');
 
     const RemoceIdEdit = () => {
-      LS.removeItem('idEdit');
+      LS.removeItem('IdEditCustomerData');
       navigateadddata();
     }
 
     const navigate = useNavigate();
 
     const navigateadddata = () => {
-        navigate('/stationinformation');
+        navigate('/customer');
     };
     
     const [Bname, setBname] = useState("") 
@@ -103,7 +103,7 @@ const AddstationPage: React.FunctionComponent<ISAddstationPageProps> = (props) =
 
     useEffect(() =>{
       axios.post(baseURLUpdateData,{
-        ut_id: LS.getItem('idEdit')
+        ut_id: LS.getItem('IdEditCustomerData')
       }).then((response) => {
         console.log(response.data)
         // setFirstData(response.data.data[0].ut_name)
@@ -173,7 +173,6 @@ const AddstationPage: React.FunctionComponent<ISAddstationPageProps> = (props) =
                         return (
                           <MenuItem key={i} value={e.number}>
                             {e.text}
-                            {console.log(i,"i",e,"e")}
                           </MenuItem>
                         );
                     })}
@@ -242,4 +241,4 @@ const AddstationPage: React.FunctionComponent<ISAddstationPageProps> = (props) =
     );
 };
 
-export default AddstationPage;
+export default AddCustomerPage;

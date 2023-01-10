@@ -13,11 +13,30 @@ import ChangePasswordPage from '../src/pages/ChangePasswordPage/ChangePassword';
 import MapPage from './pages/MainPage/Page/MapPage/Map';
 import HistoryPage from './pages/MainPage/Page/HistoryPage/History';
 import CarDetailPage from './pages/MainPage/Page/CarDetailPage/CarDetail';
-import CradleInfomationPage from './pages/MainPage/Page/CradleInfomationPage/CradleInfomation';
+import AddCarDetailPage from './pages/MainPage/Page/CarDetailPage/AddCar';
+import EditCarDetailPage from './pages/MainPage/Page/CarDetailPage/EditCar';
+
+import CustomerPage from './pages/MainPage/Page/CustomerPage/Customer';
+import AddCustomerPage from './pages/MainPage/Page/CustomerPage/AddCustomer';
+import EditCustomerPage from './pages/MainPage/Page/CustomerPage/EditCustomer';
+import DeleteCustomerPage from './pages/MainPage/Page/CustomerPage/DeleteCustomer';
+
+import StationPage from './pages/MainPage/Page/StationPage/CradleInfomation';
+import AddStationPagePage from './pages/MainPage/Page/StationPage/AddCradle';
+import EditStationPagePage from './pages/MainPage/Page/StationPage/EditCradle';
+
+
+
 import StationInformationPage from './pages/MainPage/Page/StationInformationPage/StationInformation';
 import AddStationInformationPage from './pages/MainPage/Page/StationInformationPage/Addstation';
 import UserDetailPage from './pages/MainPage/Page/UserDetailPage/UserDetail';
 import AddUserDetailPage from './pages/MainPage/Page/UserDetailPage/AddUserDetail';
+import EditUserDetailPage from './pages/MainPage/Page/UserDetailPage/EditUserDetail';
+
+import ServicePage from './pages/MainPage/Page/Service/Service';
+import AddServicePage from './pages/MainPage/Page/Service/AddService';
+import EditServicePage from './pages/MainPage/Page/Service/EditService';
+
 
 import AdminPage from './pages/MainPage/Page/AdminPage/AdminPage';
 
@@ -31,7 +50,7 @@ const Application: React.FunctionComponent<IApplicationProps> = (props) => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<HomePage />} />
+                <Route path="/" element={<LoginPage />} />
                 <Route path="login">
                     <Route index element={<LoginPage />} />
                     {/* <Route path=":number" element={<AboutPage />} /> */}
@@ -55,13 +74,31 @@ const Application: React.FunctionComponent<IApplicationProps> = (props) => {
                 <Route path="map" element={<MapPage />} />
                 <Route path="history" element={<HistoryPage />} />
                 <Route path="cardetail" element={<CarDetailPage />} />
-                <Route path="cradleinfomation" element={<CradleInfomationPage />} />
+                <Route path="addcardetail" element={<AddCarDetailPage />} />
+                <Route path="editcardetail" element={<EditCarDetailPage />} />
 
-                <Route path="stationinformation" element={<StationInformationPage />} />
-                <Route path="addstationinformation" element={<AddStationInformationPage />} />
+                <Route path="station" element={<StationPage />} />
+                <Route path="addstation" element={<AddStationPagePage />} />
+                <Route path="editstation" element={<EditStationPagePage />} />
+
+
+                <Route path="customer" element={<CustomerPage />} />
+                <Route path="addcustomer" element={<AddCustomerPage />} />
+                <Route path="editcustomer" element={<EditCustomerPage />} />
+                <Route path="deletecustomer" element={<DeleteCustomerPage />} />
+                {/* <Route path="deletecustomer" element={<CustomerPage />} /> */}
+
+                {/* <Route path="stationinformation" element={<StationInformationPage />} />
+                <Route path="addstationinformation" element={<AddStationInformationPage />} /> */}
 
                 <Route path="userdetail" element={<UserDetailPage />} />
                 <Route path="adduserdetail" element={<AddUserDetailPage />} />
+                <Route path="edituserdetail" element={<EditUserDetailPage />} />
+                
+                <Route path="service" element={<ServicePage />} />
+                <Route path="addservice" element={<AddServicePage />} />
+                <Route path="editservice" element={<EditServicePage />} />
+                
 
                 <Route path="adminpage" element={<AdminPage />} />
 

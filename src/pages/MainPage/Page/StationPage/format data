@@ -1,0 +1,46 @@
+ctm_id: string;
+ctm_name: string;
+s_active: string;
+s_address: string;
+s_amphur: string;
+s_contact: string;
+s_id: string;
+s_mqtt_code: string;
+s_name: string;
+s_province: string;
+s_tel: string;
+s_tumbon: string;
+s_zipcode: string;
+ss_id: string;
+
+    ctm_id: number;
+    s_name: string;
+    s_mqtt_code: string;
+    s_address: string;
+    s_tumbon: string;
+    s_amphur: string;
+    s_province: string;
+    s_zipcode: string;
+    s_lat: string;
+    s_lng: string;
+    s_contact: string;
+    s_tel: string;
+    s_active: string;
+    s_id: number;
+    u_id: number;
+
+    ctm_id: 2,
+    s_name: Station01,
+    s_mqtt_code: STATION_01,
+    s_address: 1564,
+    s_tumbon: บางนา,
+    s_amphur: บางนา,
+    s_province: กรุงเทพ,
+    s_zipcode: 10260,
+    s_lat: 7.156416543,
+    s_lng: 100.454545,
+    s_contact: ช่างสมชาย1,
+    s_tel: 123456789,
+    s_active: 1,
+    s_id: 1,
+    u_id: 1

@@ -10,11 +10,11 @@ import { Typography } from "@mui/material";
 import Header from "../../Header"
 import Body from "./Body"
 
-export interface ISStationInformationPageProps {}
+export interface ICradleInfomationPageProps {}
 
 
-const StationInformationPage: React.FunctionComponent<ISStationInformationPageProps> = (props) => {
-
+const CradleInfomationPage: React.FunctionComponent<ICradleInfomationPageProps> = (props) => {
+  
     const LS = localStorage;
     const LVID = LS.getItem('LVUSER');
     const LVTYPEID = LS.getItem('LVTYPEUSER');
@@ -27,4 +27,4 @@ const StationInformationPage: React.FunctionComponent<ISStationInformationPagePr
     );
 };
 
-export default StationInformationPage;
+export default CradleInfomationPage;

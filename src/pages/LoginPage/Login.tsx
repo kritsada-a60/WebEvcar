@@ -48,9 +48,11 @@ export interface ILoginPageProps {}
 
 const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
 
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const navigateLoginPage = () => {
+  const LS = localStorage;
+
+  const navigateLoginPage = () => {
     navigate('/login');
   };
 
@@ -77,6 +79,9 @@ const navigate = useNavigate();
   });
 
   const [checklogin, setchechlogin] = useState(null);
+  
+  const [alertlogin, setalertlogin] = useState("0");
+
 
   useEffect(() => {
       console.log("id",values.uname);
@@ -85,30 +90,80 @@ const navigate = useNavigate();
     }, [values]);
 
   useEffect(() => {
+    console.log(alertlogin,"alert")
+  }, [alertlogin]);
+
+  useEffect(() => {
     if (checklogin == true){
       // console.log("gologin")
       navigateMain();
     } else {
+    if (alertlogin == "1") {
       // <Alert severity="error">ผู้ใช้งาน หรือ พาสเวิร์คผิด กรุณากรอกใหม่</Alert>
       alert("ผู้ใช้งาน หรือ พาสเวิร์คผิด กรุณากรอกใหม่")
+      // setalertlogin("0")
+      // setchechlogin(null)
+    }
+    if (checklogin == true && alertlogin == "1"){
       setchechlogin(null)
     }
-    // console.log(checklogin,"hi")
+    }
+    console.log(checklogin,"hi")
   }, [checklogin])
+
+  function CheckLogin() {
+    if (checklogin == true){
+      // console.log("gologin")
+      navigateMain();
+    } else {
+    if (alertlogin == "1") {
+      // <Alert severity="error">ผู้ใช้งาน หรือ พาสเวิร์คผิด กรุณากรอกใหม่</Alert>
+      // alert("ผู้ใช้งาน หรือ พาสเวิร์คผิด กรุณากรอกใหม่")
+      setalertlogin("0")
+      // setchechlogin(null)
+    }
+    if (checklogin == true && alertlogin == "1"){
+      setchechlogin(null)
+      // setalertlogin("0")
+    }
+    }
+    console.log(checklogin,"hi")
+
+
+  }
+
+  // useEffect(() => {
+  //   axios
+  //     .post("http://54.86.117.200:5000/car/one", {
+  //       c_id: "2"
+  //     })
+  //     .then((res) => {
+  //       console.log(res.data.data[0]);
+  //       // console.log("ok");
+  //     })
+  //     .catch((err) => console.error(err));
+  // }, [])
 
 
   const handleSubmit = (e:any) => {
     e.preventDefault();
     console.log(values)
+    setalertlogin("1")
     axios
-      .post("http://54.86.117.200:5000/user/login2", {
+      .post("http://54.86.117.200:5000/user/login", {
         uname: values.uname,
         upass: values.upass,
       })
       .then((res) => {
+        LS.setItem('LVUSER', res.data.data.ctmt_id);
+        LS.setItem('LVTYPEUSER', res.data.data.ul_id);
         console.log(res.data);
-        // console.log("ok");
+        console.log(res.data.success);
         setchechlogin(res.data.success)
+        if(res.data.success == "false"){
+          alert("ผู้ใช้งาน หรือ พาสเวิร์คผิด กรุณากรอกใหม่")
+        }
+        
       })
       .catch((err) => console.error(err));
   };
@@ -143,14 +198,14 @@ const navigate = useNavigate();
         >
           เข้าสู่ระบบ
         </Typography>
-        <img src={Background} style={{ height: "99.6vh" , width: "78.906vw"}}/>
+        <img src={Background} style={{ height: "99.95vh" , width: "78.906vw"}}/>
         <form onSubmit={handleSubmit}>
           <label>
             <TextField type="uname" name="username" style={{width:'36.250vw',height:'3.704vh',position: 'absolute', zIndex:'3' ,left: '53.854vw', top: '60vh',borderLeftWidth: '0px',borderRight: '0px', borderTopWidth: '0px',paddingLeft:'10px',fontSize:'24px' ,color :'black'}} placeholder="ผู้ใช้งาน"
             onChange={(e) => setValues({ ...values, uname: e.target.value })}/>          
           </label>
           <label>
-            <TextField type="upass" name="password" style={{width:'36.250vw ',height:'3.704vh',position: 'absolute', zIndex:'3' ,left: '53.854vw', top: '70vh',borderLeftWidth: '0px',borderRight: '0px', borderTopWidth: '0px',paddingLeft:'10px',fontSize:'24px',color :'black'}} placeholder="รหัสผ่าน"
+            <TextField type="password" name="password" style={{width:'36.250vw ',height:'3.704vh',position: 'absolute', zIndex:'3' ,left: '53.854vw', top: '70vh',borderLeftWidth: '0px',borderRight: '0px', borderTopWidth: '0px',paddingLeft:'10px',fontSize:'24px',color :'black'}} placeholder="รหัสผ่าน" 
             onChange={(e) => setValues({ ...values, upass: e.target.value })}/>
           </label>
           <ThemeProvider theme={theme}>

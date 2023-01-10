@@ -12,22 +12,41 @@ export interface IBodyPageProps {}
 // }
 
 type MyDataPost = {
-    ut_id: string;
-    ut_name: string;
-    s_id: string;
+    ctm_id: string;
+    ctm_name: string;
 };
 
-// interface IDEdit {
-//     editdata_id: any;
-// }
- 
+type MyDeleteData = {
+    ctm_name: string;
+};
 
+type MyData = {
+    ctm_address: string;
+    ctm_amphur: string;
+    ctm_bank: string;
+    ctm_bank_no: string;
+    ctm_cno: string;
+    ctm_contact_name: string;
+    ctm_id: string;
+    ctm_mail: string;
+    ctm_mobile: string;
+    ctm_mqtt_code: any;
+    ctm_name: string;
+    ctm_province: string;
+    ctm_tel: string;
+    ctm_tumbon: string;
+    ctm_zipcode: string;
+    ctmt_id: number;
+    ctmt_name: string;
+};
 
-const baseURL ="http://54.86.117.200:5000/usertype/list"
+const baseURL ="http://54.86.117.200:5000/customer/list"
 
-const baseURLEdit ="http://54.86.117.200:5000/usertype/add"
+const baseURLEdit ="http://54.86.117.200:5000/customer/add"
 
-const baseURLUpdateDelete ="http://54.86.117.200:5000/usertype/del"
+const baseURLUpdateDelete ="http://54.86.117.200:5000/customer/del"
+
+const test ="http://54.86.117.200:5000/customer/one"
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
@@ -35,48 +54,57 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const { nametext } = useParams();
     const navigate = useNavigate();
 
-    const [post, setpost] = useState<MyDataPost[]>([]);
+    const [post, setpost] = useState<MyData[]>([]);
 
     const [count, setcount] = useState('');
+    
 
     // const [MyIdEdit, setMyIdEdit] = useState<IDEdit>();
 
     const LS = localStorage;
     // const SetLs_idEdit = () => {
-    //     LS.setItem('idEdit', EditData_1);
+    //     LS.setItem('idEdit', EditCustomerData);
     // }
 
+    const LVID = LS.getItem('LVUSER');
+
     function SetLs_idEdit() {
-        // console.log(EditData_1);
-        LS.setItem('idEdit', EditData_1);
+        // console.log(EditCustomerData);
+        LS.setItem('IdCustomerEdit', EditCustomerData);
         // navigateadddata();
     }
 
     function GetLs_idDelete() {
         // console.log(EditCustomerData);
-        LS.setItem('idEdit', DeleteData);
+        LS.setItem('IdCustomerDelete', DeleteData);
         // console.log(Number(DeleteData))
 
         // navigateadddata();
     }
 
-    const [DeleteData, setDeleteData] = useState('');
 
-    const [EditData_1, setEditData_1] = useState('');
-    const [EditData_2, setEditData_2] = useState('');
-    const [EditData_3, setEditData_3] = useState('');
+
+    const [EditCustomerData, setEditCustomerData] = useState('');
+    // const [DeleteData, setDeleteData] = useState<MyDeleteData[]>([]);
+    const [DeleteData, setDeleteData] = useState('');
+    const [EditData_3, setEditData_3] = useState();
+
+
 
     useEffect(() =>{
-      axios.post(baseURL).then((response) => {
+      axios.post(baseURL,{
+        ctmt_id: Number(LVID),
+      }).then((response) => {
         setpost(response.data.data)
-        console.log(response.data.data)
+        // console.log(post,"post data")
+        console.log(response.data.data,"start data")
         // console.log(response.data.data.length)
         setcount(response.data.data.length)
       })
     }, []);
 
     useEffect(() =>{
-        // console.log("this data",post)
+        console.log(post,"this data")
     }, [post]);
 
     useEffect(() =>{
@@ -86,42 +114,86 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     /* Click And Go Next Page */
 
     useEffect(() =>{
-        console.log("EditData",EditData_1)   
+        console.log("EditCustomerData",EditCustomerData)   
         SetLs_idEdit();
-        if (EditData_1 != ''){
-            navigateadddata();
+        if (EditCustomerData != ''){
+            navigateeditdata();
         }
-    }, [EditData_1]);
+    }, [EditCustomerData]);
 
-    const navigateadddata = () => {
-        navigate('/addstationinformation');
-    };
 
-    useEffect(() => {
-        if (nametext) {
-            setMessage('The number is ' + nametext);
-        } else {
-            setMessage('No number was provided');
-        }
-    }, []);
 
-        useEffect(() =>{
+    useEffect(() =>{
         console.log("EditCustomerData",DeleteData)
         GetLs_idDelete();
-        if ( DeleteData != ''){
-            axios
-            .post(baseURLUpdateDelete, {
-                s_id: Number(DeleteData),
-                u_id: 1,
-            })
-            .then((res) => {
-                console.log(res,"this is delete");
-                // console.log("ok");
-            })
-            .catch((err) => console.error(err));
-        }
 
+        if ( DeleteData != ''){
+            var answer = window.confirm("ต้องการจะลบข้อมูลหรือไม่");
+            if (answer) {
+                    alert("ลบข้อมูลสำเร็จ");
+                    axios
+                    .post(baseURLUpdateDelete, {
+                        ctm_id: Number(DeleteData),
+                        u_id: "1",
+                    })
+                    .then((res) => {
+                        console.log(res,"this is delete");
+                        window.location.reload();
+                        // console.log("ok");
+                    })
+                    .catch((err) => console.error(err));
+                }else{
+                    window.location.reload();
+                }
+            }
+            else {
+                
+                // alert("ลบข้อมูลไม่สำเร็จ");
+            }
     }, [DeleteData]);
+
+    // async function AlertMassage (){
+    //   var answer = window.confirm("ต้องการจะลบข้อมูลหรือไม่");
+    //     if (answer) {
+    //         await alert("ลบข้อมูลสำเร็จ");
+    //     }
+    //     else {
+    //         await alert("ลบข้อมูลไม่สำเร็จ");
+    //     }
+
+    // }
+
+
+
+    const navigateadddata = () => {
+        navigate('/addcustomer');
+    };
+
+        const navigateeditdata = () => {
+        navigate('/editcustomer');
+    };
+
+
+
+
+    const handleSubmit = () => {
+        // if (DeleteData != "0"){
+        //     console.log(DeleteData,"Now Delete")
+        // }
+        console.log(DeleteData)
+        // axios
+        // .post(baseURLUpdateDelete, {
+        //     ctm_id: Number(DeleteData),
+        //     u_id: "1",
+        // })
+        // .then((res) => {
+        //     console.log(res,"this is delete");
+        //     // console.log("ok");
+        // })
+        // .catch((err) => console.error(err));
+    };
+
+
 
     const columns = ["เลขที่กิจการ", "รูปแบบกิจการ", "สถานะเปิด/ปิด", "ที่อยู่", "ชื่อเจ้าของอู่", "เบอร์ติดต่อ", "เวลาทำการ"];
 
@@ -139,13 +211,22 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     /* Add Button */
 
     const Testcolumns = [
-      "เลขที่กิจการ",
-      "รูปแบบกิจการ",
-      "สถานะเปิด/ปิด",
-      "ที่อยู่",
-      "ชื่อเจ้าของอู่",
-      "เบอร์ติดต่อ",
-      "เวลาทำการ",
+        // "ID",
+        "ชื่อลูกค้า", 
+        "ประเภทลูกค้า", 
+        "เลขทะเบียนการค้า", 
+        // "ชื่อธนาคาร", 
+        // "บัญขีธนาคาร", 
+        "ชื่อผู้ติดต่อ", 
+        // "ที่อยู่", 
+        // "ตำบล", 
+        // "อำเภอ",
+        "จังหวัด", 
+        // "รหัสไปรษณีย์", 
+        // "โทรศัพท์", 
+        "มือถือ",
+        // "E-Mail", 
+        "รหัส MQTT",
       {
         name: "Edit",
         options: {
@@ -155,8 +236,9 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
             return (
               <Button aria-label="edit" variant="outlined" style={{color:'white',backgroundColor:'#6CDCC0',borderRadius:'15px'}}
               onClick={() => {
-                setEditData_1(post[dataIndex].ut_id)
-                SetLs_idEdit();            
+                setEditCustomerData(post[dataIndex].ctm_id);
+                SetLs_idEdit();   
+          
               }}
               >
                 {`Edit`}
@@ -174,9 +256,10 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
             return (
               <Button aria-label="delete" variant="outlined" style={{color:'white',backgroundColor:'#6CDCC0',borderRadius:'15px'}}
               onClick={() => {
-                // setDeleteData(post[dataIndex].s_id);
-                // GetLs_idDelete();
+                setDeleteData(post[dataIndex].ctm_id);
+                GetLs_idDelete();
                 // handleSubmit();
+                // AlertMassage();
               }}
               >
                 {`Delete`}
@@ -186,6 +269,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         }
       }
     ];
+    
 
     /* Add Button and Vaule */
 
@@ -240,14 +324,22 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
             <div style={{display:'flex',justifyContent:'flex-start'}}>
                 <div style={{width:'100%'}}>
                 <MUIDataTable
-                    title={"ข้อมูลสถานี"}
+                    title={"ข้อมูลลูกค้า"}
                     data={post.map(item => {
                         return [
-                            item.ut_id,
-                            item.ut_name,
+                            // item.ctm_id,
+                            item.ctm_name,
+                            item.ctmt_name,
+                            item.ctm_cno,
+                            // item.ctm_bank,
+                            // item.ctm_bank_no,
+                            item.ctm_contact_name,
+                            item.ctm_province,
+                            item.ctm_mobile,
+                            item.ctm_mqtt_code,
                         ]
-                    })}
-                    columns={Testcolumns} 
+                    })} 
+                    columns={Testcolumns}
                 />
                 {/* <MUIDataTable
                     title={"ข้อมูลสถานี"}
