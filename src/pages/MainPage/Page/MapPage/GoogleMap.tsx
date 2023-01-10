@@ -1,12 +1,11 @@
-import React, { useState , useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GoogleMap, InfoWindow, Marker } from '@react-google-maps/api';
 import IconCar from '../../../../img/Icon/IconCar.png';
 import IconStation from '../../../../img/Icon/IconStation_red.png';
 
-
-import IconStationGreen from "../../../../img/Icon/IconStation0.png";
-import IconStationRed from "../../../../img/Icon/IconStation1.png";
-import IconStationGray from "../../../../img/Icon/IconStation2.png";
+import IconStationGreen from '../../../../img/Icon/IconStation0.png';
+import IconStationRed from '../../../../img/Icon/IconStation1.png';
+import IconStationGray from '../../../../img/Icon/IconStation2.png';
 import axios from 'axios';
 import { type } from 'os';
 
@@ -44,9 +43,9 @@ type MyMarkersData = {
 type NewData = {
     id: number;
     name: string;
-    position: { lat: number , lng: number },
+    position: { lat: number; lng: number };
     customIcon: string;
-}
+};
 
 type DataStation = {
     s_id: number;
@@ -54,7 +53,7 @@ type DataStation = {
     s_license_plate: string;
     s_lng: any;
     s_mqtt_code: string;
-}
+};
 
 const markers = [
     {
@@ -83,19 +82,13 @@ const markers = [
     }
 ];
 
-
-
-
-const URLMerkersData = "http://54.86.117.200:5000/car/list"
-const URLMerkersDataStation = "http://54.86.117.200:5000/station/list"
-
+const URLMerkersData = 'http://54.86.117.200:5000/car/list';
+const URLMerkersDataStation = 'http://54.86.117.200:5000/station/list';
 
 function Map() {
-
     const [MarkersData, setMarkersData] = useState<MyMarkersData[]>([]);
 
     const [MarkersDataStation, setMarkersDataStation] = useState<DataStation[]>([]);
-
 
     const [MarkersId, setMarkersId] = useState<MarkersData[]>([]);
     const [MarkersName, setMarkersName] = useState<MarkersData[]>([]);
@@ -108,12 +101,12 @@ function Map() {
 
     useEffect(() => {
         axios
-            .post(URLMerkersData,{
-                ctm_id : "2"
+            .post(URLMerkersData, {
+                ctm_id: '2'
             })
             .then((res) => {
                 // console.log(res.data.data);
-                setMarkersData(res.data.data)
+                setMarkersData(res.data.data);
                 // setMarkersId(res.data.data[0].c_id);
                 // setdata(res.data.data.c_id);
                 // setMarkersName(res.data.data.c_license_plate);
@@ -127,16 +120,14 @@ function Map() {
             .catch((err) => console.error(err));
 
         axios
-            .post(URLMerkersDataStation,{
-                ctm_id : "5"
+            .post(URLMerkersDataStation, {
+                ctm_id: '5'
             })
             .then((res) => {
                 console.log(res.data.data);
-                setMarkersDataStation(res.data.data)
-
+                setMarkersDataStation(res.data.data);
             })
             .catch((err) => console.error(err));
-
     }, []);
 
     // useEffect(() => {
@@ -157,41 +148,40 @@ function Map() {
     //     return () => clearInterval(interval);
     // }, []);
 
-
-    useEffect(() =>{
-        console.log(MarkersData,"This MarkersData")
+    useEffect(() => {
+        console.log(MarkersData, 'This MarkersData');
 
         var dataCar = [];
-        for(var i in MarkersData) {
+        for (var i in MarkersData) {
             dataCar.push({
                 id: MarkersData[i].c_id,
                 name: MarkersData[i].c_license_plate,
                 position: { lat: Number(MarkersData[i].c_lat), lng: Number(MarkersData[i].c_lng) },
-                customIcon: IconCar   
-            })
+                customIcon: IconCar
+            });
         }
-        setDataCar(dataCar)
+        setDataCar(dataCar);
         var dataStation = [];
-        for(var i in MarkersDataStation) {
+        for (var i in MarkersDataStation) {
             dataStation.push({
                 id: MarkersDataStation[i].s_id,
                 name: MarkersDataStation[i].s_mqtt_code,
                 position: { lat: Number(MarkersDataStation[i].s_lat), lng: Number(MarkersDataStation[i].s_lng) },
-                customIcon: IconStationGreen   
-            })
+                customIcon: IconStationGreen
+            });
         }
-        
-        setDataStation(dataStation)
-        
+
+        setDataStation(dataStation);
+
         // console.log(data);
     }, [MarkersData]);
 
-    useEffect(() =>{
+    useEffect(() => {
         // console.log(NewData,"This NewData")
     }, [DataCar]);
 
-    useEffect(() =>{
-        console.log(DataStation,"This DataStation")
+    useEffect(() => {
+        console.log(DataStation, 'This DataStation');
     }, [DataStation]);
 
     const [activeMarker, setActiveMarker] = useState(null);

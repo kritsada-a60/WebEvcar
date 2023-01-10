@@ -227,7 +227,35 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
                 setDorpDownData3(response.data.data);
                 console.log(response.data);
             });
+    }, []);
 
+    /* axios Editdata */
+
+    useEffect(() => {
+        console.log('this DorpDownData', DorpDownData);
+
+        console.log('this is result DorpDownData', resultDorpDownData);
+    }, [DorpDownData]);
+
+    const resultDorpDownData = DorpDownData.filter((member) => {
+        return member.ctmt_id == 2;
+    });
+
+    useEffect(() => {
+        console.log('this data', post);
+    }, [post]);
+
+    useEffect(() => {
+        console.log(Bnumber);
+    }, [Bnumber]);
+
+    useEffect(() => {
+        console.log('this MyIdEdit', MyIdEdit);
+        console.log('this Ls.get', idEdit);
+    }, [MyIdEdit]);
+
+    useEffect(() => {
+        console.log('this data', post);
         axios
             .post(baseURLUpdateData, {
                 c_id: LS.getItem('IdCarEdit')
@@ -266,35 +294,6 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
             });
     }, []);
 
-    /* axios Editdata */
-
-    useEffect(() => {
-        console.log('this DorpDownData', DorpDownData);
-
-        console.log('this is result DorpDownData', resultDorpDownData);
-    }, [DorpDownData]);
-
-    const resultDorpDownData = DorpDownData.filter((member) => {
-        return member.ctmt_id == 2;
-    });
-
-    useEffect(() => {
-        console.log('this data', post);
-    }, [post]);
-
-    useEffect(() => {
-        console.log(Bnumber);
-    }, [Bnumber]);
-
-    useEffect(() => {
-        console.log('this MyIdEdit', MyIdEdit);
-        console.log('this Ls.get', idEdit);
-    }, [MyIdEdit]);
-
-    useEffect(() => {
-        console.log('this data', post);
-    }, []);
-
     useEffect(() => {
         console.log('this FirstData', FirstData);
         // const result = FirstData.filter((member) => {
@@ -321,9 +320,9 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
     useEffect(() => {
         console.log(CarInfo);
         if (CarInfo != undefined) {
-            setInput2(CarInfo?.ctm_id.toString());
-            setInput3(CarInfo?.cgt_pt_id.toString());
-            setInput4(CarInfo?.bt_pt_id.toString());
+            if (Input2 != undefined) setInput2(CarInfo?.ctm_id.toString());
+            if (Input3 != undefined) setInput3(CarInfo?.cgt_pt_id.toString());
+            if (Input4 != undefined) setInput4(CarInfo?.bt_pt_id.toString());
         }
     }, [CarInfo]);
 
