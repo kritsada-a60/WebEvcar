@@ -107,6 +107,7 @@ interface MyDorpDown2 {
     s_tumbon: string;
     s_zipcode: string;
     ss_id: any;
+    sv_status_txt: string;
 }
 
 type MyDorpDownLength = {
@@ -401,6 +402,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         "ราคา",
         "หน่วย",
         "MQTT_CODE",
+        "สถานะสถานี",
         // "ชื่อลูกค้า", 
         // "ประเภทลูกค้า", 
         // "เลขทะเบียนการค้า", 
@@ -556,6 +558,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                             item.sv_price,
                             item.sv_unit,
                             item.sv_mqtt_code,
+                            item.sv_status_txt,
                         ]
                     })} 
                     // data={post3}

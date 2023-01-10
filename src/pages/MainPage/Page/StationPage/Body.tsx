@@ -32,6 +32,7 @@ type MyData = {
     ss_id: string;
     s_lat: string;
     s_lng: string;
+    ss_name: string;
 };
 
 
@@ -168,6 +169,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         "ละติจูด",
         "ลองจิจูด",
         "รหัส MQTT",
+        "สถานะสถานี",
       {
         name: "Edit",
         options: {
@@ -246,6 +248,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                             item.s_lat,
                             item.s_lng,
                             item.s_mqtt_code,
+                            item.ss_name,
                         ]
                     })}
                     columns={Testcolumns}
