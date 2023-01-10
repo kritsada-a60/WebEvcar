@@ -115,7 +115,6 @@ const EditUserDetailPage: React.FunctionComponent<ISEditUserDetailPageProps> = (
     const [DorpDownData2, setDorpDownData2] = useState<MyDorpDownData2[]>([]);
 
     const [DorpDownData3, setDorpDownData3] = useState<MyDorpDownData3[]>([]);
-    const [DropDownLvUserfillter, setDropDownLvUserfillter] = useState<MyDorpDownData3[]>([]);
 
     const [DorpDownData4, setDorpDownData4] = useState<MyDorpDownData4[]>([]);
 
@@ -327,60 +326,35 @@ const EditUserDetailPage: React.FunctionComponent<ISEditUserDetailPageProps> = (
     }, [FirstData]);
 
     useEffect(() => {
-        console.log("this Input1",Input1)
-      if (Input1 > '1'){
-        axios.post(baseURLUpdateAddDorpDown2,{
-          ctmt_id : Input1,
-        }).then((response) => {
-          console.log(response.data.data)
-          setDorpDownData2(response.data.data)
-          if (UserInfo != undefined) setInput2(UserInfo.ctm_id.toString());
-        })
-        .catch((err) => console.error(err));
-      }else{
-        axios.post(baseURLUpdateAddDorpDown2,{
-          ctmt_id : Input1,
-        }).then((response) => {
-          // console.log(response.data.data)
-          // setDorpDownData2(response.data.data)
-          // const FillDropDown = response.data.data
-          const resultDorpDownData = response.data.data?.filter((name:any) => {
-              return name.ctm_name == "System"
-          })
-          setDorpDownData2(resultDorpDownData)
-          if (UserInfo != undefined) setInput2(UserInfo.ctm_id.toString());
-          console.log(resultDorpDownData)
-        })
-        .catch((err) => console.error(err));
-      }
+        console.log('this Input1', Input1);
+        if (Input1 >= '0') {
+            axios
+                .post(baseURLUpdateAddDorpDown2, {
+                    ctmt_id: Input1
+                })
+                .then((response) => {
+                    console.log(response.data.data);
+                    setDorpDownData2(response.data.data);
+                    if (UserInfo != undefined) setInput2(UserInfo.ctm_id.toString());
+                })
+                .catch((err) => console.error(err));
+        }
     }, [Input1]);
 
     useEffect(() => {
         console.log('this Input9', Input9);
         const result = DorpDownData.filter((DorpDownDataS: any) => {
             if (Input9 <= '2') {
-                return DorpDownDataS.ctmt_id == 1;
+                return DorpDownDataS.ctmt_id > 0;
             } else {
                 return DorpDownDataS.ctmt_id > 1;
             }
         });
-        const result2 = DorpDownData3.filter((DorpDownDataS:any) => {
-          if (Input9 == '1'){
-            return DorpDownDataS.ul_id == 1
-          }else if(Input9 == '2'){
-            return DorpDownDataS.ul_id == 2
-          }else{
-            return DorpDownDataS
-          }
-
-        })
         console.log('this result', result);
         setDorpDownDatafillter(result);
-        setDropDownLvUserfillter(result2)
         console.log('Effect Input9');
         console.log(UserInfo);
         if (UserInfo != undefined) setInput1(UserInfo.ctmt_id.toString());
-        if (UserInfo != undefined) setInput10(UserInfo.ul_id.toString());
     }, [Input9]);
 
     useEffect(() => {
@@ -562,8 +536,8 @@ const EditUserDetailPage: React.FunctionComponent<ISEditUserDetailPageProps> = (
                                 displayEmpty
                                 inputProps={{ 'aria-label': 'Without label' }}
                             >
-                                {DropDownLvUserfillter?.length &&
-                                    DropDownLvUserfillter.map((e: any, i: number) => {
+                                {DorpDownData3?.length &&
+                                    DorpDownData3.map((e: any, i: number) => {
                                         return (
                                             <MenuItem key={e.ul_id} value={e.ul_id}>
                                                 {e.ul_name}

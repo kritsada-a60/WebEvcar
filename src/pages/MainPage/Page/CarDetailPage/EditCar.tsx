@@ -219,6 +219,7 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
                 setDorpDownData2(response.data.data);
                 console.log(response.data);
             });
+            
         axios
             .post(baseURLDorpDown2, {
                 pc_id: 2
@@ -346,14 +347,13 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
                             />
                         </label>
                         {/* <label>
-                  <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>อู่</p>
-                  <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="อู่"
-                  // value={Bnumber}
-                  value={FirstData[0]?.ctm_name}
-                  onChange={(e) => {setInput2(e.target.value)}}
-                  />       
-                </label> */}
-
+                            <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>อู่</p>
+                            <TextField type="" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} placeholder="อู่"
+                            // value={Bnumber}
+                            value={FirstData[0]?.ctm_name}
+                            onChange={(e) => {setInput2(e.target.value)}}
+                            />
+                            </label> */}
                         <label>
                             <p style={{ margin: '0vh 5vw', borderColor: 'black', width: '15vw', fontSize: '18px', fontWeight: 'bold' }}>อู่</p>
                             <Select
@@ -370,8 +370,8 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
                                 inputProps={{ 'aria-label': 'Without label' }}
                             >
                                 {/* <MenuItem value="">
-                        <em>{FirstData[0]?.ctm_name}</em>
-                    </MenuItem> */}
+                                    <em>{FirstData[0]?.ctm_name}</em>
+                                </MenuItem> */}
                                 {resultDorpDownData?.length &&
                                     resultDorpDownData.map((e: any, i: number) => {
                                         return (
@@ -388,7 +388,7 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
                                         );
                                     })}
                             </Select>
-                            {/* {NumberDorpDown}          */}
+                            {/* {NumberDorpDown} */}
                         </label>
                     </div>
                     <div style={{ margin: '2.5vh 0', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -407,9 +407,8 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
                                 inputProps={{ 'aria-label': 'Without label' }}
                             >
                                 {/* <MenuItem value="">
-                        <em>{FirstData[0]?.cgt_pt_name}</em>
-                    </MenuItem> */}
-
+                                    <em>{FirstData[0]?.cgt_pt_name}</em>
+                                </MenuItem> */}
                                 {DorpDownData2?.length &&
                                     DorpDownData2.map((e: any, i: number) => {
                                         return (
@@ -426,7 +425,7 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
                                         );
                                     })}
                             </Select>
-                            {/* {NumberDorpDown}          */}
+                            {/* {NumberDorpDown} */}
                         </label>
                         <label>
                             <p style={{ margin: '0vh 5vw', borderColor: 'black', width: '15vw', fontSize: '18px', fontWeight: 'bold' }}>แบตเตอร์รี่</p>

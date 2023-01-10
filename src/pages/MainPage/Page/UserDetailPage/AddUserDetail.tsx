@@ -106,6 +106,7 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
     const [DorpDownData2, setDorpDownData2] = useState<MyDorpDownData2[]>([]);
 
     const [DorpDownData3, setDorpDownData3] = useState<MyDorpDownData3[]>([]);
+    const [DropDownLvUserfillter, setDropDownLvUserfillter] = useState<MyDorpDownData3[]>([]);
 
     const [DorpDownData4, setDorpDownData4] = useState<MyDorpDownData4[]>([]);
 
@@ -252,6 +253,7 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
       axios.get(baseURLUpdateAddDorpDown3).then((response) => {
         console.log(response.data.data)
         setDorpDownData3(response.data.data)
+
       })
       .catch((err) => console.error(err));
 
@@ -291,7 +293,7 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
 
     useEffect(() =>{
       console.log("this Input1",Input1)
-      if (Input1 >= '0'){
+      if (Input1 > '1'){
         axios.post(baseURLUpdateAddDorpDown2,{
           ctmt_id : Input1,
         }).then((response) => {
@@ -299,22 +301,65 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
           setDorpDownData2(response.data.data)
         })
         .catch((err) => console.error(err));
+      }else{
+        axios.post(baseURLUpdateAddDorpDown2,{
+          ctmt_id : Input1,
+        }).then((response) => {
+          // console.log(response.data.data)
+          // setDorpDownData2(response.data.data)
+          // const FillDropDown = response.data.data
+          const resultDorpDownData = response.data.data?.filter((name:any) => {
+              return name.ctm_name == "System"
+          })
+          setDorpDownData2(resultDorpDownData)
+          console.log(resultDorpDownData)
+        })
+        .catch((err) => console.error(err));
       }
-
     }, [Input1]);
 
     useEffect(() =>{
-        console.log("this Input9",Input9)
+        // console.log("this Input9",Input9)
         const result = DorpDownData.filter((DorpDownDataS:any) => {
           if (Input9 <= '2'){
-            return DorpDownDataS.ctmt_id > 0
+            return DorpDownDataS.ctmt_id == 1
           }else{
             return DorpDownDataS.ctmt_id > 1
           }
         })
+
+        const result2 = DorpDownData3.filter((DorpDownDataS:any) => {
+          if (Input9 == '1'){
+            return DorpDownDataS.ul_id == 1
+          }else if(Input9 == '2'){
+            return DorpDownDataS.ul_id == 2
+          }else{
+            return DorpDownDataS
+          }
+
+        })
+
+
+
+
         console.log("this result",result)
+        console.log("this result2",result2)
         setDorpDownDatafillter(result)
+        setDropDownLvUserfillter(result2)
     }, [Input9]);
+
+
+
+
+    useEffect(() =>{
+        // console.log("this Input2",Input2)
+        // console.log("this Input9",Input9)
+        // if(Input2 == "1"){
+        //   console.log("5555")
+        // }
+
+
+    }, [DorpDownData2]);
 
     return (
         <div style={{backgroundColor:'#E0F0EC'}}>
@@ -370,7 +415,7 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
                     inputProps={{ 'aria-label': 'Without label' }}
                     >
                     {DorpDownData2?.length &&
-                        DorpDownData2.map((e: any, i: number) => {
+                        DorpDownData2?.map((e: any, i: number) => {
                         return (
                             <MenuItem key={e.ctm_id} value={e.ctm_id}>
                             {e.ctm_name}
@@ -438,8 +483,8 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
                     displayEmpty
                     inputProps={{ 'aria-label': 'Without label' }}
                     >
-                    {DorpDownData3?.length &&
-                        DorpDownData3.map((e: any, i: number) => {
+                    {DropDownLvUserfillter?.length &&
+                        DropDownLvUserfillter.map((e: any, i: number) => {
                         return (
                             <MenuItem key={e.ul_id} value={e.ul_id}>
                             {e.ul_name}
