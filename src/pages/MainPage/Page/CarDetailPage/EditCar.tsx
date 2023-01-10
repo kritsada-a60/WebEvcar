@@ -108,6 +108,10 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
 
     const [ptName, setptName] = useState('');
 
+    const [UserInfo, setUserInfo] = useState<MyData>();
+
+    const [UserInfo2, setUserInfo2] = useState<MyDorpDownData2>();
+
 
     const LS = localStorage;
     const idEdit = LS.getItem('IdEditCustomerData');
@@ -211,7 +215,7 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
         setInput1(response.data.data[0].c_license_plate)
         setptName(response.data.data[0].bt_pt_name);
 
-        setInput2(response.data.data[0].ctm_id)
+        // setInput2(response.data.data[0].ctm_id)
         // console.log(response.data.data[0].ctm_id)
         setInput3(response.data.data[0].cgt_pt_id)
 
@@ -220,6 +224,8 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
         setInput6(response.data.data[0].c_mqtt_code)
 
         setInput11(response.data.data[0].c_active)
+        setUserInfo(response.data.data[0])
+        setUserInfo2(response.data.data[0])
 
         // setInput6(response.data.data[0].c_mqtt_code);
 
@@ -304,17 +310,45 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
 
     useEffect(() =>{
         console.log("Input2",Input2)
+        // if (UserInfo2 != undefined) setInput3(UserInfo2.pt_id.toString());
     }, [Input2]);
 
     useEffect(() =>{
         console.log("Input3",Input3)
+        // if (UserInfo2 != undefined) setInput3(UserInfo2.pt_id.toString());
+        // if (UserInfo2 != undefined) setInput4(UserInfo2.pt_id.toString());  
+        
     }, [Input3]);
 
     useEffect(() =>{
         console.log("Input4",Input4)
+        // if (UserInfo2 != undefined) setInput4(UserInfo2.pt_id.toString());
     }, [Input4]);
 
+    useEffect(() => {
+        console.log('Set UserInfo');
+        console.log(UserInfo);
+        console.log(UserInfo?.ctm_id);
+        if (UserInfo != undefined) setInput2(UserInfo.ctm_id.toString());
+    }, [UserInfo]);
 
+    useEffect(() => {
+        console.log('Set UserInfo');
+        console.log(UserInfo2);
+        console.log(UserInfo2?.pt_id);
+        
+        // if (UserInfo2 != undefined) setInput4(UserInfo2.pt_id.toString());
+    }, [UserInfo2]);
+
+    useEffect(() => {
+      
+    }, [DorpDownData2]);
+
+    useEffect(() => {
+      
+    }, [DorpDownData3]);
+
+    
 
     return (
         <div style={{backgroundColor:'#E0F0EC'}}>
