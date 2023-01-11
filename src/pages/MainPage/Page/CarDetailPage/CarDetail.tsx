@@ -20,21 +20,22 @@ const CarDetailPage: React.FunctionComponent<ICarDetailPageProps> = (props) => {
     const LS = localStorage;
 
     const LVID = LS.getItem('LVUSER');
-
+    const LVTYPE = LS.getItem('LVTYPE');
     const LVTYPEID = LS.getItem('LVTYPEUSER');
 
+    // console.log(LVID)
+    // console.log(LVTYPE)
+    // console.log(LVTYPEID)
     return (
-        <div style={{backgroundColor:'#E0F0EC', padding:'0vh 0vw 1vh 0vw'}}>
-          {/* {LVID == "1" ? (
-            <>
-            <Header/>
-            <Body/>
-            </>
-          ) : (
+        <div>
+          {LVID != null && LVID >= "3" ?(
             <></>
-          )} */}
-            <Header/>
-            <Body/>
+          ) : (
+            <div style={{backgroundColor:'#E0F0EC', padding:'0vh 0vw 1vh 0vw'}}>
+              <Header/>
+              <Body/>
+            </div>
+          )}
         </div>
     );
 };

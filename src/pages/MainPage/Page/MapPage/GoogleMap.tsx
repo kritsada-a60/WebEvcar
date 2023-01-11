@@ -8,6 +8,7 @@ import IconStationRed from '../../../../img/Icon/IconStation1.png';
 import IconStationGray from '../../../../img/Icon/IconStation2.png';
 import axios from 'axios';
 import { type } from 'os';
+import { url } from 'inspector';
 
 type MarkersData = {
     bt_pt_id: number;
@@ -41,7 +42,7 @@ type MyMarkersData = {
 };
 
 type NewData = {
-    id: number;
+    id: string;
     name: string;
     position: { lat: number; lng: number };
     customIcon: string;
@@ -154,7 +155,7 @@ function Map() {
         var dataCar = [];
         for (var i in MarkersData) {
             dataCar.push({
-                id: MarkersData[i].c_id,
+                id: 'c_' + MarkersData[i].c_id.toString(),
                 name: MarkersData[i].c_license_plate,
                 position: { lat: Number(MarkersData[i].c_lat), lng: Number(MarkersData[i].c_lng) },
                 customIcon: IconCar
@@ -164,7 +165,7 @@ function Map() {
         var dataStation = [];
         for (var i in MarkersDataStation) {
             dataStation.push({
-                id: MarkersDataStation[i].s_id,
+                id: 's_' + MarkersDataStation[i].s_id.toString(),
                 name: MarkersDataStation[i].s_mqtt_code,
                 position: { lat: Number(MarkersDataStation[i].s_lat), lng: Number(MarkersDataStation[i].s_lng) },
                 customIcon: IconStationGreen
@@ -184,25 +185,42 @@ function Map() {
         console.log(DataStation, 'This DataStation');
     }, [DataStation]);
 
+    const [url, setUrl] = useState('');
+    const [param, setParam] = useState('');
+
     const [activeMarker, setActiveMarker] = useState(null);
-
-    const [IDmarkerStation, setIDmarkerStation] = useState('');
-    const [IDmarkerCar, setIDmarkerCar] = useState('');
-
-    useEffect(() => {
-        console.log(IDmarkerStation, 'This IDmarkerStation');
-    }, [IDmarkerStation]);
-
-    useEffect(() => {
-        console.log(IDmarkerCar, 'This IDmarkerCar');
-    }, [IDmarkerCar]);
 
     const handleActiveMarker = (marker: any) => {
         if (marker === activeMarker) {
             return;
         }
         setActiveMarker(marker);
-        console.log()
+        console.log(marker);
+        const tmp = marker.split('_');
+        console.log(tmp[0]);
+
+        if (tmp[0] == 'c') {
+            axios
+                .post('http://54.86.117.200:5000/car/one', { c_id: tmp[1].toString() })
+                .then((res) => {
+                    console.log(res.data.data);
+                })
+                .catch((err) => console.error(err));
+        } else {
+            axios
+                .post('http://54.86.117.200:5000/station/one', { s_id: tmp[1].toString() })
+                .then((res) => {
+                    console.log(res.data.data);
+                })
+                .catch((err) => console.error(err));
+        }
+
+        axios
+            .post(url, JSON.parse(JSON.stringify(param)))
+            .then((res) => {
+                console.log(res.data.data);
+            })
+            .catch((err) => console.error(err));
     };
 
     const handleOnLoad = (map: any) => {
@@ -215,16 +233,9 @@ function Map() {
     return (
         <GoogleMap onLoad={handleOnLoad} center={{ lat: 13.619392, lng: 100.720057 }} onClick={() => setActiveMarker(null)} mapContainerStyle={{ width: '100vw', height: '100vh' }}>
             {DataCar?.map(({ id, name, position, customIcon }) => (
-                <Marker key={id} position={position} onClick={() => {
-                    handleActiveMarker(id)
-                    }} icon={customIcon}>
+                <Marker key={id} position={position} onClick={() => handleActiveMarker(id)} icon={customIcon}>
                     {activeMarker === id ? (
-                        <InfoWindow 
-                        onLoad={() =>setIDmarkerStation(id)}
-                        onCloseClick={() => {
-                            setActiveMarker(null)
-                            // setIDmarkerStation(id)
-                        }}>
+                        <InfoWindow onCloseClick={() => setActiveMarker(null)}>
                             <div>
                                 <p>ID {id}</p>
                                 <p>ชื่อ {name}</p>
@@ -234,17 +245,9 @@ function Map() {
                 </Marker>
             ))}
             {DataStation?.map(({ id, name, position, customIcon }) => (
-                <Marker key={id} position={position} onClick={() => {
-                    handleActiveMarker(id)
-                    
-                    }} icon={customIcon}>
+                <Marker key={id} position={position} onClick={() => handleActiveMarker(id)} icon={customIcon}>
                     {activeMarker === id ? (
-                        <InfoWindow
-                        onLoad={() =>setIDmarkerCar(id)} 
-                        onCloseClick={() => {
-                            setActiveMarker(null)
-                            setIDmarkerCar(id)
-                            }}>
+                        <InfoWindow onCloseClick={() => setActiveMarker(null)}>
                             <div>{name}</div>
                         </InfoWindow>
                     ) : null}

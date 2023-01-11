@@ -156,6 +156,7 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
       })
       .then((res) => {
         LS.setItem('LVUSER', res.data.data.ctmt_id);
+        LS.setItem('LVTYPE', res.data.data.ut_id);
         LS.setItem('LVTYPEUSER', res.data.data.ul_id);
         console.log(res.data);
         console.log(res.data.success);
