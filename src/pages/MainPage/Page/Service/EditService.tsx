@@ -203,11 +203,13 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
                 setInput7(response.data.data[0].sv_mqtt_code)
                 setInput8(response.data.data[0].sv_remark)
                 console.log(response.data.data[0]);
+
                 // axios.post(baseURLDorpDown2,{
                 //   pc_id: response.data.data[0].pc_id
                 // }).then((res)=>{
                 //   setInput2(res.data.data)
                 // })
+                
                 const MyDD2 = response.data.data[0].pc_id;
                 axios
                     .post(baseURLDorpDown2, {

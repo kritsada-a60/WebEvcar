@@ -132,6 +132,36 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
 
   }
 
+
+
+    const [count, setCount] = useState(0);
+    const [countInTimeout, setCountInTimeout] = useState(0);
+
+    // useEffect(() => {
+    //   setCount(5); // Update count to be 5 after timeout is scheduled
+    //   setTimeout(() => {
+    //     setCountInTimeout(count); // count is 0 here
+    //     console.log(count,"count")
+    //     console.log(countInTimeout,"countInTimeout")
+    //   }, 3000);
+      
+    //   const timer = setTimeout(() => {
+    //     console.log('This will run after 1 second!')
+    //   }, 1000);
+    //   return () => clearTimeout(timer);
+    // }, []);
+
+
+  // const MINUTE_MS = 3000;
+
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     console.log('Logs every minute');
+  //   }, MINUTE_MS);
+
+  //   return () => clearInterval(interval);
+  // }, [])
+
   // useEffect(() => {
   //   axios
   //     .post("http://54.86.117.200:5000/car/one", {
@@ -166,11 +196,16 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
         }
         
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err)
+        alert("ผู้ใช้งาน หรือ พาสเวิร์คผิด กรุณากรอกใหม่")
+      });
+      
   };
 
     return (
       <div>
+
         {/* <Box sx={{ bgcolor: "#cfe8fc", height: "50vh" , width: "78.906vw"}} /> */}
         {/* <Box sx={{ bgcolor: "#cfe8fc", height: "100vh" , width: "78.906vw"}} /> */}
         <img src={Logo} style={{position: 'absolute', zIndex:'2' ,left: '65.469vw', top: '20.370vh',}}/>
