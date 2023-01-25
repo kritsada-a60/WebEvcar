@@ -170,7 +170,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     return (
       <div style={{width:'50%'}}>
-          <div style={{display:'flex',justifyContent:'flex-start'}}>
+          <div style={{display:'flex',justifyContent:'flex-start',alignItems:'flex-start'}}>
               <div style={{width:'100%'}}>
                   <MUIDataTable
                     title={"ข้อมูลรถ"}
@@ -179,8 +179,11 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                             item.c_license_plate,
                             item.cgt_pt_name,
                             item.bt_pt_name,
-                            item.c_capacity,
+                            <>
+                            {item.c_capacity} %
+                            </>,
                             item.ctm_name,
+                            
                         ]
                     })}
                     columns={Testcolumns}

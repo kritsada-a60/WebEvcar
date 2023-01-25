@@ -14,6 +14,12 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import { useParams , useNavigate} from 'react-router-dom';
+import { Dayjs } from 'dayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 
 type MyDataPost = {
 ctm_name: string;
@@ -129,6 +135,12 @@ const AddCarPage: React.FunctionComponent<ISAddCarPageProps> = (props) => {
     const [Input8, setInput8] = useState("")
     const [Input9, setInput9] = useState("")
 
+    const handleChange = (newValue: any | null) => {
+      setValuedate(newValue);
+    };
+
+    const [valuedata, setValuedate] = React.useState<Dayjs | null>(null);
+
     const navigate = useNavigate();
 
     const navigatecar = () => {
@@ -217,6 +229,10 @@ const AddCarPage: React.FunctionComponent<ISAddCarPageProps> = (props) => {
     useEffect(() =>{
         console.log(Input1,"input")
     }, [Input1]);
+
+    useEffect(() =>{
+        console.log(valuedata,"valuedata")
+    }, [valuedata]);
 
     const resultDorpDownData = DorpDownData.filter((member) => {
       return member.ctmt_id == 2
@@ -341,11 +357,17 @@ const AddCarPage: React.FunctionComponent<ISAddCarPageProps> = (props) => {
                 </label>
                 <label>
                   <p style={{margin:'0vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>วันที่เริ่มใช้งาน</p>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
-                  // value={Bnumber}
-                  value={Input8}
-                  onChange={(e) => {setInput6(e.target.value)}}
-                  />       
+                  <div style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'13vw'}}>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <DesktopDatePicker
+                          label="Date"
+                          inputFormat="MM/DD/YYYY"
+                          value={valuedata}
+                          onChange={handleChange}
+                          renderInput={(params) => <TextField {...params} />}
+                        />
+                    </LocalizationProvider>
+                  </div>
                 </label>
 
               </div>
@@ -376,6 +398,7 @@ const AddCarPage: React.FunctionComponent<ISAddCarPageProps> = (props) => {
                 </Button>
               </div>
             </form>
+
           </div>
         </div>
     );
