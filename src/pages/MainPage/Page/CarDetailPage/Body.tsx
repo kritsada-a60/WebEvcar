@@ -216,12 +216,18 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                             item.ctm_name,
                             item.cgt_pt_name,
                             item.bt_pt_name,
-                            item.c_capacity,
+                            <p>{item.c_capacity}%</p>,
                             item.c_speed,
                             item.c_mileage,
                             item.c_gps_signal, // c_start_data
                             item.c_mqtt_code,
-                            item.c_status,
+                            () => {
+                              if (item.c_status == "OFF-LINE") {
+                                return <p style={{color:'red',fontWeight:'bold'}}>{item.c_status}</p>
+                              } else {
+                                return <p style={{color:'darkgreen',fontWeight:'bold'}}>{item.c_status}</p>
+                              }
+                            },
                         ]
                     })}
                     columns={Testcolumns}

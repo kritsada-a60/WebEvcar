@@ -228,7 +228,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         // "E-Mail", 
         "รหัส MQTT",
       {
-        name: "Edit",
+        name: "",
         options: {
             filter: false,
             sort: false,
@@ -248,7 +248,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         }
       },
       {
-        name: "Delete",
+        name: "",
         options: {
             filter: false,
             sort: false,

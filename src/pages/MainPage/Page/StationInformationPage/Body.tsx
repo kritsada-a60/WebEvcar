@@ -147,7 +147,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
       "เบอร์ติดต่อ",
       "เวลาทำการ",
       {
-        name: "Edit",
+        name: "",
         options: {
             filter: false,
             sort: false,
@@ -166,7 +166,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         }
       },
       {
-        name: "Delete",
+        name: "",
         options: {
             filter: false,
             sort: false,

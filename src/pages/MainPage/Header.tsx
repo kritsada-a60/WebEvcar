@@ -42,6 +42,7 @@ function ResponsiveAppBar() {
         { page: 'แผนที่', link: 'map' },
         { page: 'ประวัติรถ', link: 'history' },
         { page: 'ข้อมูลรถ', link: 'cardetail' },
+        { page: 'เติมเครดิต', link: 'credit' }, // เห็นเฉพาะเจ้าของปั้ม
         { page: 'ข้อมูลลูกค้า', link: 'customer' },
         { page: 'ข้อมูลสถานี', link: 'station' },
         // {page:'ข้อมูลสถานี', link: "stationinformation"},

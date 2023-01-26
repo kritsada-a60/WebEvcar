@@ -21,6 +21,12 @@ import AddCustomerPage from './pages/MainPage/Page/CustomerPage/AddCustomer';
 import EditCustomerPage from './pages/MainPage/Page/CustomerPage/EditCustomer';
 import DeleteCustomerPage from './pages/MainPage/Page/CustomerPage/DeleteCustomer';
 
+import CreditPage from './pages/MainPage/Page/Credit/Credit';
+import AddCreditPage from './pages/MainPage/Page/Credit/AddCredit';
+
+import CarReseverPage from './pages/MainPage/Page/CarResever/CarReserve';
+import AddCarReseverPage from './pages/MainPage/Page/CarResever/AddCarReserve';
+
 import StationPage from './pages/MainPage/Page/StationPage/CradleInfomation';
 import AddStationPagePage from './pages/MainPage/Page/StationPage/AddCradle';
 import EditStationPagePage from './pages/MainPage/Page/StationPage/EditCradle';
@@ -76,6 +82,12 @@ const Application: React.FunctionComponent<IApplicationProps> = (props) => {
                 <Route path="cardetail" element={<CarDetailPage />} />
                 <Route path="addcardetail" element={<AddCarDetailPage />} />
                 <Route path="editcardetail" element={<EditCarDetailPage />} />
+
+                <Route path="credit" element={<CreditPage />} />
+                <Route path="addcredit" element={<AddCreditPage />} />
+
+                <Route path="carresever" element={<CreditPage />} />
+                <Route path="addcarresever" element={<AddCreditPage />} />
 
                 <Route path="station" element={<StationPage />} />
                 <Route path="addstation" element={<AddStationPagePage />} />

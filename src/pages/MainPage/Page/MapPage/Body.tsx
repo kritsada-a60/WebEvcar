@@ -169,7 +169,8 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
 
     return (
-      <div style={{width:'50%'}}>
+      <div style={{width:'50%',height:'100vh'}}>
+          <div style={{width:'50%',margin:'5vh 1vw',fontSize:'2vw'}}>ค้นหารถ</div>
           <div style={{display:'flex',justifyContent:'flex-start',alignItems:'flex-start'}}>
               <div style={{width:'100%'}}>
                   <MUIDataTable

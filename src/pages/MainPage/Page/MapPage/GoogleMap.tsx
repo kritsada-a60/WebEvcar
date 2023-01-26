@@ -372,7 +372,7 @@ function Map() {
                                     </div>
                                     <div style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
                                         <img src={Icon2} style={{width:'1vw'}}/>
-                                        <p style={{margin:'1vh 0.5vw',width:'5vw',fontWeight:'bold'}}>ความเร็ว</p>
+                                        <p style={{margin:'1vh 0.5vw',width:'5vw',fontWeight:'bold'}}>ความเร็ว (หน่วย)</p>
                                         <p style={{width:'12vw',display: 'flex', justifyContent: 'flex-end'}}>{carspeed}</p>
                                     </div>
                                     <div style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
