@@ -48,7 +48,7 @@ type MyDorpDownData = {
 
 export interface ISAddCreditPageProps {}
 
-const baseURL ="http://54.86.117.200:5000/credit/list"
+const baseURL ="http://54.86.117.200:5000/user/list"
 
 const baseURLUpdateAdd ="http://54.86.117.200:5000/credit/deposit"
 
@@ -63,17 +63,12 @@ const AddCreditPage: React.FunctionComponent<ISAddCreditPageProps> = (props) => 
 
     const LS = localStorage;
 
-    const CTMID = LS.getItem('LVUSER');
+    const CTMID = LS.getItem('USERCTM');
     const UID = LS.getItem('LVUSERID');
     const CID = LS.getItem('IdCarEditHistory');
 
     useEffect(() => {
-      axios.post(baseURL, {
-        ctm_id: CTMID,
-        u_id: UID,
-        sdate: "2000-12-30",
-        edate: "3000-1-31",
-      }).then((response) => {
+      axios.get(baseURL).then((response) => {
         setDorpDownData(response.data.data)
         console.log(response.data.data)
         // setcount(response.data.data.length)
@@ -85,9 +80,9 @@ const AddCreditPage: React.FunctionComponent<ISAddCreditPageProps> = (props) => 
     e.preventDefault();
     axios
       .post(baseURLUpdateAdd, {
-        ctm_id: '2',
-        u_id: '1',
-        uid: Input1,
+        ctm_id: CTMID,
+        u_id: Input1,
+        uid: UID,
         ut_balance: Input2
       })
       .then((res) => {
@@ -145,7 +140,7 @@ const AddCreditPage: React.FunctionComponent<ISAddCreditPageProps> = (props) => 
                     {DorpDownData?.length &&
                       DorpDownData.map((e: any, i: number) => {
                       return (
-                        <MenuItem key={i} value={e.ut_id}
+                        <MenuItem key={i} value={e.u_id}
                         // onChange={e =>{
                         //     console.log(e,"E")
                         //     setNumberDorpDown(e.sv_id)

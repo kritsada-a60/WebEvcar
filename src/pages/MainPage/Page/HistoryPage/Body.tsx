@@ -47,7 +47,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     
     const LS = localStorage;
 
-    const CTMID = LS.getItem('LVUSER');
+    const CTMID = LS.getItem('USERCTM');
     const UID = LS.getItem('LVUSERID');
     // const CID = LS.getItem('LVUSER');
 

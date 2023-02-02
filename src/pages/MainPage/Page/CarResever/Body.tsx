@@ -109,7 +109,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const [StartDate, setStartDate] = React.useState<Dayjs | null | string>('');
     const [EndDate, setEndDate] = React.useState<Dayjs | null | string>('');
 
-    const CTMID = LS.getItem('LVUSER');
+    const CTMID = LS.getItem('USERCTM');
     const UID = LS.getItem('LVUSERID');
     const CID = LS.getItem('IdCarEditHistory');
 
