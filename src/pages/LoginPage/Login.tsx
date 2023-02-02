@@ -173,6 +173,14 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
   //     })
   //     .catch((err) => console.error(err));
   // }, [])
+    // useEffect(() => {
+    // const interval = setInterval(() => {
+    //     console.log('This will run every second!');
+    // }, 5000);
+    // return () => clearInterval(interval);
+    // }, []);
+
+
 
 
   const handleSubmit = (e:any) => {
@@ -203,6 +211,15 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
       });
       
   };
+
+    // const [NameGame, setNameGame] = useState("Game");
+
+    // useEffect(() => {
+    // const interval = setInterval(() => {
+    //     setNameGame("Game" + "EiEi")
+    // }, 5000);
+    // return () => clearInterval(interval);
+    // }, []);
 
     return (
       <div>
@@ -239,7 +256,8 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
         <form onSubmit={handleSubmit}>
           <label>
             <TextField type="uname" name="username" style={{width:'36.250vw',height:'3.704vh',position: 'absolute', zIndex:'3' ,left: '53.854vw', top: '60vh',borderLeftWidth: '0px',borderRight: '0px', borderTopWidth: '0px',paddingLeft:'10px',fontSize:'24px' ,color :'black'}} placeholder="ผู้ใช้งาน"
-            onChange={(e) => setValues({ ...values, uname: e.target.value })}/>          
+            onChange={(e) => setValues({ ...values, uname: e.target.value })}
+            />          
           </label>
           <label>
             <TextField type="password" name="password" style={{width:'36.250vw ',height:'3.704vh',position: 'absolute', zIndex:'3' ,left: '53.854vw', top: '70vh',borderLeftWidth: '0px',borderRight: '0px', borderTopWidth: '0px',paddingLeft:'10px',fontSize:'24px',color :'black'}} placeholder="รหัสผ่าน" 

@@ -94,6 +94,21 @@ type NewCarData = {
     carcapacity: number;
 };
 
+type NewStationData = {
+    id: string;
+    name: string;
+    position: { lat: number; lng: number };
+    customIcon: string;
+    positionlat: string;
+    positionlng: string;
+    sactive: any;
+    ssname: string;
+    scontact: string;
+    ctmname: string;
+    stel: string;
+
+};
+
 type NewData = {
     id: string;
     name: string;
@@ -107,7 +122,29 @@ type DataStation = {
     s_license_plate: string;
     s_lng: any;
     s_mqtt_code: string;
+
+    
 };
+
+type MyDataStation = {
+    ctm_id: number;
+    ctm_name: string;
+    s_active: string;
+    s_address: string;
+    s_amphur: string;
+    s_contact: string;
+    s_id: number;
+    s_lat: string;
+    s_lng: string;
+    s_mqtt_code: string;
+    s_name: string;
+    s_province: string;
+    s_tel: string;
+    s_tumbon: string;
+    s_zipcode: string;
+    ss_id: number;
+    ss_name: string;
+}
 
 type MyDataCar = {
     bt_pt_id: any;
@@ -186,7 +223,7 @@ const URLMerkersDataStation = 'http://54.86.117.200:5000/station/list';
 function Map() {
     const [MarkersData, setMarkersData] = useState<MyMarkersData[]>([]);
 
-    const [MarkersDataStation, setMarkersDataStation] = useState<DataStation[]>([]);
+    const [MarkersDataStation, setMarkersDataStation] = useState<MyDataStation[]>([]);
 
     const [MarkersId, setMarkersId] = useState<MarkersData[]>([]);
     const [MarkersName, setMarkersName] = useState<MarkersData[]>([]);
@@ -195,9 +232,7 @@ function Map() {
 
     const [DataCar, setDataCar] = useState<NewCarData[]>([]);
 
-    const [DataStation, setDataStation] = useState<NewData[]>([]);
-
-
+    const [DataStation, setDataStation] = useState<NewStationData[]>([]);
 
     useEffect(() => {
         axios
@@ -229,6 +264,42 @@ function Map() {
             })
             .catch((err) => console.error(err));
     }, []);
+
+    const ReMarkerData = () => {
+        axios
+            .post(URLMerkersData, {
+                ctm_id: '2'
+            })
+            .then((res) => {
+
+                setMarkersData(res.data.data);
+            })
+            .catch((err) => console.error(err));
+
+        axios
+            .post(URLMerkersDataStation, {
+                ctm_id: '5'
+            })
+            .then((res) => {
+                console.log(res.data.data,"DataStation");
+                setMarkersDataStation(res.data.data);
+            })
+            .catch((err) => console.error(err));
+    }
+
+    useEffect(() => {
+    const interval = setInterval(() => {
+        ReMarkerData();
+    }, 20000);
+    return () => clearInterval(interval);
+    }, []);
+
+
+    // const nodeInterval: NodeJS.Timeout = setInterval(() => {
+    //     console.log("1234")
+    // }, 3000);
+
+    
 
     // useEffect(() => {
     // const interval = setInterval(() => {
@@ -276,7 +347,14 @@ function Map() {
                 id: 's_' + MarkersDataStation[i].s_id.toString(),
                 name: MarkersDataStation[i].s_mqtt_code,
                 position: { lat: Number(MarkersDataStation[i].s_lat), lng: Number(MarkersDataStation[i].s_lng) },
-                customIcon: IconStationGreen
+                customIcon: IconStationGreen,
+                positionlat:MarkersDataStation[i].s_lat,
+                positionlng:MarkersDataStation[i].s_lng,
+                sactive: MarkersDataStation[i].s_active,
+                ssname: MarkersDataStation[i].ss_name,
+                scontact: MarkersDataStation[i].s_contact,
+                ctmname: MarkersDataStation[i].ctm_name,
+                stel: MarkersDataStation[i].s_tel,
             });
         }
 
@@ -418,13 +496,49 @@ function Map() {
                         ) : null}
                     </Marker>
                 ))}
-                {DataStation?.map(({ id, name, position, customIcon }) => (
+                {DataStation?.map(({ id, name, position, customIcon, positionlat, positionlng, sactive, ssname, scontact, stel ,ctmname}) => (
                     <Marker key={id} position={position} onClick={() => handleActiveMarker(id)} icon={customIcon}>
                         {activeMarker === id ? (
                             <InfoWindow onCloseClick={() => setActiveMarker(null)}>
-                                <div>
-                                    <p>ID {id}</p>
-                                    <p>ชื่อ {name}</p>
+                                <div style={{width:'20vw',height:'40vh'}}>
+                                    <div style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                                        <p style={{margin:'1vh 0.5vw',width:'10vw',fontWeight:'bold' , fontSize:'3vh'}}>{name}</p>
+                                    </div>
+                                    <div style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                                        {ssname === "OFF-LINE" ? (
+                                        <img src={IconCarOff} style={{width:'1vw'}}/>
+                                        ) : 
+                                        <img src={IconCarOn} style={{width:'1vw'}}/>
+                                        }
+                                        <p style={{margin:'1vh 0.5vw',width:'5vw',fontWeight:'bold'}}>{ssname}</p>
+                                        {/* <p style={{width:'12vw',display: 'flex', justifyContent: 'flex-end'}}>{sactive}</p> */}
+                                    </div>
+                                    <div style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                                        <img src={Icon3} style={{width:'1vw'}}/>
+                                        <p style={{margin:'1vh 0.5vw',width:'5vw',fontWeight:'bold'}}>ชื่อสถานี</p>
+                                        <p style={{width:'12vw',display: 'flex', justifyContent: 'flex-end'}}>{ctmname}</p>
+                                    </div>
+                                    <div style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                                        <img src={IconBetteryType} style={{width:'1vw'}}/>
+                                        <p style={{margin:'1vh 0.5vw',width:'5vw',fontWeight:'bold'}}>ชื่อเจ้าของ</p>
+                                        <p style={{width:'12vw',display: 'flex', justifyContent: 'flex-end'}}>{scontact}</p>
+                                    </div>
+                                    <div style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                                        <img src={IconBetteryType} style={{width:'1vw'}}/>
+                                        <p style={{margin:'1vh 0.5vw',width:'5vw',fontWeight:'bold'}}>เบอร์ติดต่อ</p>
+                                        <p style={{width:'12vw',display: 'flex', justifyContent: 'flex-end'}}>{stel}</p>
+                                    </div>
+                                    <div style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                                        <img src={Icon7} style={{width:'1vw'}}/>
+                                        <p style={{margin:'1vh 0.5vw',width:'5vw',fontWeight:'bold'}}>ตำแหน่ง</p>
+                                        <p style={{width:'12vw',display: 'flex', justifyContent: 'flex-end'}}>ละติจูด : {positionlat}</p>
+                                    </div>
+                                    <div style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                                        <p style={{margin:'1vh 0.5vw',width:'5vw',fontWeight:'bold'}}></p>
+                                        <p style={{width:'13vw',display: 'flex', justifyContent: 'flex-end'}}>ลองจิจูด : {positionlng}</p>
+                                    </div>
+
+
                                 </div>
                             </InfoWindow>
                         ) : null}
