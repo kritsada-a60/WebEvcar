@@ -109,10 +109,15 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const [StartDate, setStartDate] = React.useState<Dayjs | null | string>('');
     const [EndDate, setEndDate] = React.useState<Dayjs | null | string>('');
 
+    const CTMID = LS.getItem('LVUSER');
+    const UID = LS.getItem('LVUSERID');
+    const CID = LS.getItem('IdCarEditHistory');
+
+
     const fetchapi = () => {
       axios.post(baseURL,{
-        ctm_id: '2',
-        u_id: '3',
+        ctm_id: CTMID,
+        u_id: UID,
         sdate: StartDate,
         edate: EndDate
       }).then((response) => {
@@ -126,7 +131,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
       axios.post(baseURLCancel,{
         c_id: MySetCancelCID,
         c_mqtt_code: MySetCancelCMQTT,
-        u_id: '1',
+        u_id: UID,
         cr_id: MySetCancelCRID
       }).then((response) => {
         // setpost(response.data.data)
@@ -240,7 +245,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                     SetCancelCID(post[dataIndex].c_id);
                     SetCancelCMQTT(post[dataIndex].c_mqtt_code);
                     SetCancelCRID(post[dataIndex].cr_id);
-                    SetCancer();   
+                    Cancelapi();   
                 }} style={{cursor:'pointer'}}/>
               ) : (
                 <></>

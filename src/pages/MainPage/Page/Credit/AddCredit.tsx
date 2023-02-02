@@ -56,26 +56,21 @@ const AddCreditPage: React.FunctionComponent<ISAddCreditPageProps> = (props) => 
 
     const [post, setpost] = useState<AddCredit[]>([]);
 
-
-
-    
     const [Input1, setInput1] = useState("") 
     const [Input2, setInput2] = useState("")
 
     const [DorpDownData, setDorpDownData] = useState<AddCredit[]>([]);
 
-
-
-
-
     const LS = localStorage;
 
-
+    const CTMID = LS.getItem('LVUSER');
+    const UID = LS.getItem('LVUSERID');
+    const CID = LS.getItem('IdCarEditHistory');
 
     useEffect(() => {
       axios.post(baseURL, {
-        ctm_id: '5',
-        u_id: '1',
+        ctm_id: CTMID,
+        u_id: UID,
         sdate: "2000-12-30",
         edate: "3000-1-31",
       }).then((response) => {

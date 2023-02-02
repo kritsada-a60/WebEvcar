@@ -92,10 +92,14 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const [StartDate, setStartDate] = React.useState<Dayjs | null | string>('');
     const [EndDate, setEndDate] = React.useState<Dayjs | null | string>('');
 
+    const CTMID = LS.getItem('LVUSER');
+    const UID = LS.getItem('LVUSERID');
+    const CID = LS.getItem('IdCarEditHistory');
+
     const fetchapi = () => {
       axios.post(baseURL,{
-        ctm_id: '5',
-        u_id: '1',
+        ctm_id: CTMID,
+        u_id: UID,
         sdate: StartDate,
         edate: EndDate
       }).then((response) => {
