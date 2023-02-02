@@ -3,6 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams , useNavigate} from 'react-router-dom';
 import Button from '@mui/material/Button'
 import axios from "axios";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import SearchIcon from '@mui/icons-material/Search';
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 
 export interface IBodyPageProps {}
 
@@ -159,47 +164,61 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         "MQTT CODE",
         "สถานะรถ",
       {
-        name: "Edit",
+        name: "",
         options: {
             filter: false,
             sort: false,
             customBodyRenderLite: (dataIndex:any, rowIndex:any) => {
             return (
-              <Button aria-label="edit" variant="outlined" style={{color:'white',backgroundColor:'#6CDCC0',borderRadius:'15px'}}
-              onClick={() => {
+              <EditOutlinedIcon onClick={() => {
                 setEditCarData(post[dataIndex].c_id);
                 SetLs_idEdit();          
-              }}
-              >
-                {`Edit`}
-              </Button>
+              }} style={{cursor:'pointer'}}/>
             );
           }
         }
       },
       {
-        name: "Delete",
+        name: "",
         options: {
             filter: false,
             sort: false,
             customBodyRenderLite: (dataIndex:any, rowIndex:any) => {
             return (
-              <Button aria-label="delete" variant="outlined" style={{color:'white',backgroundColor:'#6CDCC0',borderRadius:'15px'}}
-              onClick={() => {
+              <DeleteIcon onClick={() => {
                 setDeleteData(post[dataIndex].c_id);
                 GetLs_idDelete();
-                // handleSubmit();
-              }}
-              >
-                {`Delete`}
-              </Button>
+                // handleSubmit();    
+              }} style={{cursor:'pointer'}}/>
             );
           }
         }
       }
     ];
 
+    const options = {
+        // caseSensitive: true,
+        confirmFilters: false,
+        sort: false,
+        viewColumns: false,
+        searchOpen: true,
+        download: false,
+        print: false,
+        selectableRowsHeader: false,
+        selectableRowsHideCheckboxes: true,
+    };
 
+    const getMuiTheme = () =>
+      createTheme({
+        components: {
+          MuiTableCell: {
+            styleOverrides:{ root: {
+              padding: '16px 1.5vw',
+            }}
+          },
+
+        }
+      });
 
     return (
       <div style={{margin:'5vh 5vw'}}>
@@ -208,30 +227,33 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
           </div>
           <div style={{display:'flex',justifyContent:'flex-start'}}>
               <div style={{width:'100%'}}>
-                  <MUIDataTable
-                    title={"ข้อมูลรถ"}
-                    data={post.map(item => {
-                        return [
-                            item.c_license_plate,
-                            item.ctm_name,
-                            item.cgt_pt_name,
-                            item.bt_pt_name,
-                            <p>{item.c_capacity}%</p>,
-                            item.c_speed,
-                            item.c_mileage,
-                            item.c_gps_signal, // c_start_data
-                            item.c_mqtt_code,
-                            () => {
-                              if (item.c_status == "OFF-LINE") {
-                                return <p style={{color:'red',fontWeight:'bold'}}>{item.c_status}</p>
-                              } else {
-                                return <p style={{color:'darkgreen',fontWeight:'bold'}}>{item.c_status}</p>
-                              }
-                            },
-                        ]
-                    })}
-                    columns={Testcolumns}
-                  />
+                  <ThemeProvider theme={getMuiTheme()}>
+                    <MUIDataTable
+                      title={"ข้อมูลรถ"}
+                      data={post.map(item => {
+                          return [
+                              item.c_license_plate,
+                              item.ctm_name,
+                              item.cgt_pt_name,
+                              item.bt_pt_name,
+                              <p>{item.c_capacity}%</p>,
+                              item.c_speed,
+                              item.c_mileage,
+                              item.c_gps_signal, // c_start_data
+                              item.c_mqtt_code,
+                              () => {
+                                if (item.c_status == "OFF-LINE") {
+                                  return <p style={{color:'red',fontWeight:'bold'}}>{item.c_status}</p>
+                                } else {
+                                  return <p style={{color:'darkgreen',fontWeight:'bold'}}>{item.c_status}</p>
+                                }
+                              },
+                          ]
+                      })}
+                      columns={Testcolumns}
+                      options={options}
+                    />
+                  </ThemeProvider>
               </div>
           </div>
       </div>

@@ -4,6 +4,11 @@ import { useParams , useNavigate} from 'react-router-dom';
 import Button from '@mui/material/Button'
 import axios from "axios";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import SearchIcon from '@mui/icons-material/Search';
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import TimeToLeaveOutlinedIcon from '@mui/icons-material/TimeToLeaveOutlined';
 
 export interface IBodyPageProps {}
 
@@ -62,7 +67,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     function SetLs_idEdit() {
       // console.log(EditCarData);
-      LS.setItem('IdCarEdit', EditCarData);
+      LS.setItem('IdCarEditHistory', EditCarData);
       // navigateadddata();
     }
 
@@ -100,7 +105,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
       console.log("EditCarData",EditCarData)   
       SetLs_idEdit();
       if (EditCarData != ''){
-          navigateeditdata();
+          navigatemaphistory();
       }
     }, [EditCarData]);
 
@@ -134,22 +139,14 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
 
 
-    const navigateeditdata = () => {
-      navigate('/editcardetail');
+    const navigatemaphistory = () => {
+      navigate('/maphistory');
     };
 
     const navigateaddcar = () => {
       navigate('/addcardetail');
     };
-    // const MyNumber = 1;
-    // const MyNumber2 = 1;
-    // const nodeInterval: NodeJS.Timeout = setInterval(() => {
-    //   console.log(MyNumber+1)
-    // }, 3000);
 
-    // const windowInterval: number = window.setInterval(() => {
-    //   console.log(MyNumber2+1)
-    // }, 3000);
 
 
     const CarDetailPagedata = [
@@ -158,10 +155,30 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     const Testcolumns = [
         "ทะเบียนรถ", 
+        "อู่", 
         "หัวชาร์จ", 
         "ประเภทแบตเตอรี่", 
         "ระดับแบตตารี่", 
-        "อู่", 
+        "ความเร็วรถ", 
+        "เลขไมล์", 
+        "วันที่เริ่มใช้งาน", 
+        "MQTT CODE",
+        "สถานะรถ",
+      {
+        name: "",
+        options: {
+            filter: false,
+            sort: false,
+            customBodyRenderLite: (dataIndex:any, rowIndex:any) => {
+            return (
+              <TimeToLeaveOutlinedIcon onClick={() => {
+                setEditCarData(post[dataIndex].c_id);
+                SetLs_idEdit();          
+              }} style={{cursor:'pointer'}}/>
+            );
+          }
+        }
+      },
     ];
 
     const options = {
@@ -176,7 +193,6 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         selectableRowsHideCheckboxes: true,
     };
 
-
     const getMuiTheme = () =>
       createTheme({
         components: {
@@ -189,32 +205,37 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         }
       });
 
-
-
     return (
-      <div style={{width:'50%',height:'100vh'}}>
-          <div style={{width:'50%',margin:'5vh 1vw',fontSize:'2vw'}}>ค้นหารถ</div>
-          <div style={{display:'flex',justifyContent:'flex-start',alignItems:'flex-start'}}>
+      <div style={{margin:'5vh 5vw'}}>
+          <div style={{display:'flex',justifyContent:'flex-start'}}>
               <div style={{width:'100%'}}>
-                <ThemeProvider theme={getMuiTheme()}>
-                  <MUIDataTable
-                    title={"ข้อมูลรถ"}
-                    data={post.map(item => {
-                        return [
-                            item.c_license_plate,
-                            item.cgt_pt_name,
-                            item.bt_pt_name,
-                            <>
-                            {item.c_capacity} %
-                            </>,
-                            item.ctm_name,
-                            
-                        ]
-                    })}
-                    columns={Testcolumns}
-                    options={options}
-                  />
-                </ThemeProvider>
+                  <ThemeProvider theme={getMuiTheme()}>
+                    <MUIDataTable
+                      title={"ประวัติรถ"}
+                      data={post.map(item => {
+                          return [
+                              item.c_license_plate,
+                              item.ctm_name,
+                              item.cgt_pt_name,
+                              item.bt_pt_name,
+                              <p>{item.c_capacity}%</p>,
+                              item.c_speed,
+                              item.c_mileage,
+                              item.c_gps_signal, // c_start_data
+                              item.c_mqtt_code,
+                              () => {
+                                if (item.c_status == "OFF-LINE") {
+                                  return <p style={{color:'red',fontWeight:'bold'}}>{item.c_status}</p>
+                                } else {
+                                  return <p style={{color:'darkgreen',fontWeight:'bold'}}>{item.c_status}</p>
+                                }
+                              },
+                          ]
+                      })}
+                      columns={Testcolumns}
+                      options={options}
+                    />
+                  </ThemeProvider>
               </div>
           </div>
       </div>

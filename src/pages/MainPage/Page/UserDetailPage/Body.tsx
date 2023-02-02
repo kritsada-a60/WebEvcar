@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams , useNavigate} from 'react-router-dom';
 import Button from '@mui/material/Button'
 import axios from "axios";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
 
@@ -165,6 +166,30 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
       }
     ];
 
+    const options = {
+        // caseSensitive: true,
+        confirmFilters: false,
+        sort: false,
+        viewColumns: false,
+        searchOpen: true,
+        download: false,
+        print: false,
+        selectableRowsHeader: false,
+        selectableRowsHideCheckboxes: true,
+    };
+
+    const getMuiTheme = () =>
+      createTheme({
+        components: {
+          MuiTableCell: {
+            styleOverrides:{ root: {
+              padding: '16px 1.5vw',
+            }}
+          },
+
+        }
+      });
+      
     const data = [
     ["Joe James", "Test Corp", "Yonkers", "NY"],
     ["John Walsh", "Test Corp", "Hartford", "CT"],
@@ -185,23 +210,26 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
             </div>
             <div style={{display:'flex',justifyContent:'flex-start'}}>
                 <div style={{width:'100%'}}>
-                    <MUIDataTable
-                        title={"ข้อมูลผู้ใช้งาน"}
-                        // data = {data}
-                        data={post2.map(item => {
-                            return [
-                                item.u_name,
-                                item.u_fullname,
-                                item.ctm_name,
-                                item.ut_name,
-                                item.ul_name,
-                                item.u_mobile,
-                                item.u_email,
-                                item.ua_name,
-                            ]
-                        })}
-                        columns={UserDetailcolumns}
-                    />
+                    <ThemeProvider theme={getMuiTheme()}>
+                        <MUIDataTable
+                            title={"ข้อมูลผู้ใช้งาน"}
+                            // data = {data}
+                            data={post2.map(item => {
+                                return [
+                                    item.u_name,
+                                    item.u_fullname,
+                                    item.ctm_name,
+                                    item.ut_name,
+                                    item.ul_name,
+                                    item.u_mobile,
+                                    item.u_email,
+                                    item.ua_name,
+                                ]
+                            })}
+                            columns={UserDetailcolumns}
+                            options={options}
+                        />
+                    </ThemeProvider>
                 </div>
             </div>
         </div>

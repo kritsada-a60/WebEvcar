@@ -15,52 +15,85 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import { useParams , useNavigate} from 'react-router-dom';
 
+
 type AddCredit ={
+    cb: number;
+    cd: string;
     ctm_id: number;
-    s_name: string;
-    s_mqtt_code: string;
-    s_address: string;
-    s_tumbon: string;
-    s_amphur: string;
-    s_province: string;
-    s_zipcode: string;
-    s_lat: string;
-    s_lng: string;
-    s_contact: string;
-    s_tel: string;
-    s_active: string;
+    ctm_name: string;
+    mb: string;
+    md: string;
+    pc_name: string;
+    pt_name: string;
+    remark: string;
+    retire: number;
     s_id: number;
-    u_id: number;
+    s_name: string;
+    sv_id: number;
+    sv_name: string;
+    u_fullname: string;
+    u_id: string;
+    ut_balance: number;
+    ut_id: number;
+    ut_type: string;
 }
+
+type MyDorpDownData = {
+    pc_description: any,
+    pc_id: number,
+    pc_name: string;
+};
 
 
 
 export interface ISAddCreditPageProps {}
 
-const baseURL ="http://54.86.117.200:5000/station/list"
+const baseURL ="http://54.86.117.200:5000/credit/list"
 
-const baseURLUpdateAdd ="http://54.86.117.200:5000/station/add"
+const baseURLUpdateAdd ="http://54.86.117.200:5000/credit/deposit"
 
 const AddCreditPage: React.FunctionComponent<ISAddCreditPageProps> = (props) => {
 
     const [post, setpost] = useState<AddCredit[]>([]);
 
+
+
     
     const [Input1, setInput1] = useState("") 
     const [Input2, setInput2] = useState("")
 
+    const [DorpDownData, setDorpDownData] = useState<AddCredit[]>([]);
+
+
+
+
 
     const LS = localStorage;
+
+
+
+    useEffect(() => {
+      axios.post(baseURL, {
+        ctm_id: '5',
+        u_id: '1',
+        sdate: "2000-12-30",
+        edate: "3000-1-31",
+      }).then((response) => {
+        setDorpDownData(response.data.data)
+        console.log(response.data.data)
+        // setcount(response.data.data.length)
+      })
+    }, [])
 
 
     const handleSubmit = (e:any) => {
     e.preventDefault();
     axios
       .post(baseURLUpdateAdd, {
-          ctm_id: 5,
-          s_name: Input1,
-          s_active: "1",
-          u_id: 1,
+        ctm_id: '2',
+        u_id: '1',
+        uid: Input1,
+        ut_balance: Input2
       })
       .then((res) => {
         console.log(res.data);
@@ -103,16 +136,37 @@ const AddCreditPage: React.FunctionComponent<ISAddCreditPageProps> = (props) => 
               <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'flex-start',alignItems:'center'}}>
                 <label>
                   <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>ชื่อ</p>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
+                  {/* <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   value={Input1}
                   onChange={(e) => {setInput1(e.target.value)}}
-                  />       
+                  /> */}
+                  <Select type="ชื่อ" name="" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
+                    value={Input1}
+                    onChange={(e) => {setInput1(e.target.value)}}
+                    // label="Age"
+                    displayEmpty
+                    inputProps={{ 'aria-label': 'Without label' }}
+                    >
+                    {DorpDownData?.length &&
+                      DorpDownData.map((e: any, i: number) => {
+                      return (
+                        <MenuItem key={i} value={e.ut_id}
+                        // onChange={e =>{
+                        //     console.log(e,"E")
+                        //     setNumberDorpDown(e.sv_id)
+                        // }}
+                        >
+                        {e.u_fullname}
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>       
                 </label>
               </div>
               <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'flex-start',alignItems:'center'}}>
                 <label>
                   <p style={{margin:'1vh 5vw',borderColor:'black', width:'15vw',fontSize:'18px',fontWeight:'bold'}}>จำนวนเงิน</p>
-                  <TextField type="ut_name" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
+                  <TextField type="number" name="ut_name" style={{margin:'1vh 5vw',backgroundColor:'white',borderColor:'black', width:'15vw'}} 
                   value={Input2}
                   onChange={(e) => {setInput2(e.target.value)}}
                   />       
@@ -123,7 +177,7 @@ const AddCreditPage: React.FunctionComponent<ISAddCreditPageProps> = (props) => 
                 <Button style={{color:'white', backgroundColor:'#6CDCC0',margin:'2.5vh 2.5vw'}}
                 onClick={handleSubmit} type="submit"
                 >
-                  บันทึก
+                  ตกลง
                 </Button>
                 <Button style={{color:'white', backgroundColor:'#FF5A5A',margin:'2.5vh 2.5vw'}}
                 onClick={navigateadddata}

@@ -42,12 +42,13 @@ function ResponsiveAppBar() {
         { page: 'แผนที่', link: 'map' },
         { page: 'ประวัติรถ', link: 'history' },
         { page: 'ข้อมูลรถ', link: 'cardetail' },
+        { page: 'หน้าจองรถ', link: 'carresever' }, // เห็นเฉพาะเจ้าของปั้ม
         { page: 'เติมเครดิต', link: 'credit' }, // เห็นเฉพาะเจ้าของปั้ม
         { page: 'ข้อมูลลูกค้า', link: 'customer' },
         { page: 'ข้อมูลสถานี', link: 'station' },
         // {page:'ข้อมูลสถานี', link: "stationinformation"},
         { page: 'Serivce', link: 'service' },
-        { page: 'ข้อมูลผู้ใช้งาน', link: 'userdetail' }
+        // { page: 'ข้อมูลผู้ใช้งาน', link: 'userdetail' }
     ];
 
     const pagesLV2 = [
@@ -107,11 +108,14 @@ function ResponsiveAppBar() {
         setAnchorElNav(null);
     };
 
-    const handleCloseUserMenu = () => {
+    const handleLogOut = () => {
         setAnchorElUser(null);
         navigateLoginPage();
     };
 
+    const handleCloseUserMenu = () => {
+        setAnchorElUser(null);
+    };
 
 
     return (
@@ -273,7 +277,7 @@ function ResponsiveAppBar() {
                             onClose={handleCloseUserMenu}
                         >
                             {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                                <MenuItem key={setting} onClick={handleLogOut}>
                                     <Typography textAlign="center">{setting}</Typography>
                                 </MenuItem>
                             ))}

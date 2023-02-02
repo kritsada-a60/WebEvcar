@@ -6,6 +6,12 @@ import { Typography , TextField} from "@mui/material";
 import axios from "axios";
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import SearchIcon from '@mui/icons-material/Search';
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+
 // import { UseFormRegisterReturn } from 'react-hook-form';
 
 export interface IBodyPageProps {}
@@ -425,15 +431,10 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
             sort: false,
             customBodyRenderLite: (dataIndex:any, rowIndex:any) => {
             return (
-              <Button aria-label="edit" variant="outlined" style={{color:'white',backgroundColor:'#6CDCC0',borderRadius:'15px'}}
-              onClick={() => {
+              <EditOutlinedIcon onClick={() => {
                 setEditCustomerData(post3[dataIndex].sv_id);
-                SetLs_idEdit();   
-          
-              }}
-              >
-                {`Edit`}
-              </Button>
+                SetLs_idEdit();          
+              }} style={{cursor:'pointer'}}/>
             );
           }
         }
@@ -445,22 +446,41 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
             sort: false,
             customBodyRenderLite: (dataIndex:any, rowIndex:any) => {
             return (
-              <Button aria-label="delete" variant="outlined" style={{color:'white',backgroundColor:'#6CDCC0',borderRadius:'15px'}}
-              onClick={() => {
+              <DeleteIcon onClick={() => {
                 setDeleteData(post3[dataIndex].sv_id);
-                GetLs_idDelete();
-                // handleSubmit();
-              }}
-              >
-                {`Delete`}
-              </Button>
+                GetLs_idDelete();         
+              }} style={{cursor:'pointer'}}/>
             );
           }
         }
       }
     ];
-    
+    const options = {
+        // caseSensitive: true,
+        confirmFilters: false,
+        sort: false,
+        viewColumns: false,
+        searchOpen: true,
+        download: false,
+        print: false,
+        selectableRowsHeader: false,
+        selectableRowsHideCheckboxes: true,
+        // selectableRowsOnClick: true,
+    };
 
+    const getMuiTheme = () =>
+      createTheme({
+        components: {
+          MuiTableCell: {
+            styleOverrides:{ root: {
+              padding: '16px 1.5vw',
+            }}
+          },
+
+        }
+      });
+
+      
     /* Add Button and Vaule */
 
     // console.log(Testcolumns,"Columns")
@@ -547,24 +567,26 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
             </div>
             <div style={{display:'flex',justifyContent:'flex-start'}}>
                 <div style={{width:'100%'}}>
-                <MUIDataTable   
-                    title={"ข้อมูล Station"}
-                    data={
-                        post3?.map(item => {
-                        return [
-                            item.sv_name,
-                            item.pc_name,
-                            item.sv_serial,
-                            item.sv_price,
-                            item.sv_unit,
-                            item.sv_mqtt_code,
-                            item.sv_status_txt,
-                        ]
-                    })} 
-                    // data={post3}
-                    columns={Testcolumns} 
-                    
-                />
+                <ThemeProvider theme={getMuiTheme()}>
+                    <MUIDataTable   
+                        title={"ข้อมูล Station"}
+                        data={
+                            post3?.map(item => {
+                            return [
+                                item.sv_name,
+                                item.pc_name,
+                                item.sv_serial,
+                                item.sv_price,
+                                item.sv_unit,
+                                item.sv_mqtt_code,
+                                item.sv_status_txt,
+                            ]
+                        })} 
+                        // data={post3}
+                        columns={Testcolumns} 
+                        options={options}
+                    />
+                </ThemeProvider>
                     {/* {post3?.length &&
                         post3.map((e: any, i: number) => {
                         return (

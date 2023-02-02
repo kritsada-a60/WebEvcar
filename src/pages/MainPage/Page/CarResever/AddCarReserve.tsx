@@ -33,8 +33,6 @@ type AddCarReserve ={
     u_id: number;
 }
 
-
-
 export interface ISAddCarReservePageProps {}
 
 const baseURL ="http://54.86.117.200:5000/station/list"

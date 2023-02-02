@@ -190,7 +190,7 @@ const AddCarPage: React.FunctionComponent<ISAddCarPageProps> = (props) => {
         c_license_plate: Input1,
         c_mqtt_code: Input9,
         c_active: "1",
-        u_id: "1ฟหกฟหก",
+        u_id: "1",
       })
       .then((res) => {
         console.log(res.data);

@@ -3,6 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { useParams , useNavigate} from 'react-router-dom';
 import Button from '@mui/material/Button'
 import axios from "axios";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import SearchIcon from '@mui/icons-material/Search';
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 // import { UseFormRegisterReturn } from 'react-hook-form';
 
 export interface IBodyPageProps {}
@@ -234,15 +240,10 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
             sort: false,
             customBodyRenderLite: (dataIndex:any, rowIndex:any) => {
             return (
-              <Button aria-label="edit" variant="outlined" style={{color:'white',backgroundColor:'#6CDCC0',borderRadius:'15px'}}
-              onClick={() => {
+                <EditOutlinedIcon onClick={() => {
                 setEditCustomerData(post[dataIndex].ctm_id);
-                SetLs_idEdit();   
-          
-              }}
-              >
-                {`Edit`}
-              </Button>
+                SetLs_idEdit();    
+                }} style={{cursor:'pointer'}}/>
             );
           }
         }
@@ -254,22 +255,41 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
             sort: false,
             customBodyRenderLite: (dataIndex:any, rowIndex:any) => {
             return (
-              <Button aria-label="delete" variant="outlined" style={{color:'white',backgroundColor:'#6CDCC0',borderRadius:'15px'}}
-              onClick={() => {
+            <DeleteIcon onClick={() => {
                 setDeleteData(post[dataIndex].ctm_id);
                 GetLs_idDelete();
-                // handleSubmit();
-                // AlertMassage();
-              }}
-              >
-                {`Delete`}
-              </Button>
+                // handleSubmit();    
+            }} style={{cursor:'pointer'}}/>
             );
           }
         }
       }
     ];
     
+    const options = {
+        // caseSensitive: true,
+        confirmFilters: false,
+        sort: false,
+        viewColumns: false,
+        searchOpen: true,
+        download: false,
+        print: false,
+        selectableRowsHeader: false,
+        selectableRowsHideCheckboxes: true,
+    };
+
+    const getMuiTheme = () =>
+      createTheme({
+        components: {
+          MuiTableCell: {
+            styleOverrides:{ root: {
+              padding: '16px 1.5vw',
+            }}
+          },
+
+        }
+      });
+      
 
     /* Add Button and Vaule */
 
@@ -323,24 +343,27 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
             </div>
             <div style={{display:'flex',justifyContent:'flex-start'}}>
                 <div style={{width:'100%'}}>
-                <MUIDataTable
-                    title={"ข้อมูลลูกค้า"}
-                    data={post.map(item => {
-                        return [
-                            // item.ctm_id,
-                            item.ctm_name,
-                            item.ctmt_name,
-                            item.ctm_cno,
-                            // item.ctm_bank,
-                            // item.ctm_bank_no,
-                            item.ctm_contact_name,
-                            item.ctm_province,
-                            item.ctm_mobile,
-                            item.ctm_mqtt_code,
-                        ]
-                    })} 
-                    columns={Testcolumns}
-                />
+                <ThemeProvider theme={getMuiTheme()}>
+                    <MUIDataTable
+                        title={"ข้อมูลลูกค้า"}
+                        data={post.map(item => {
+                            return [
+                                // item.ctm_id,
+                                item.ctm_name,
+                                item.ctmt_name,
+                                item.ctm_cno,
+                                // item.ctm_bank,
+                                // item.ctm_bank_no,
+                                item.ctm_contact_name,
+                                item.ctm_province,
+                                item.ctm_mobile,
+                                item.ctm_mqtt_code,
+                            ]
+                        })} 
+                        columns={Testcolumns}
+                        options={options}
+                    />
+                </ThemeProvider>
                 {/* <MUIDataTable
                     title={"ข้อมูลสถานี"}
                     data={data2}

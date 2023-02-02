@@ -9,6 +9,8 @@ import Button from '@mui/material/Button';
 import { Typography } from "@mui/material";
 import Header from "../../Header"
 import Body from "./Body"
+import Body2 from "./BodyNew"
+
 
 
 export interface IHistoryPageProps {}
@@ -23,7 +25,7 @@ const HistoryPage: React.FunctionComponent<IHistoryPageProps> = (props) => {
     return (
         <div style={{backgroundColor:'#E0F0EC', padding:'0vh 0vw 1vh 0vw'}}>
           <Header/>
-          <Body/>
+          <Body2/>
         </div>
     );
 };

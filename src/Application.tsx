@@ -12,6 +12,8 @@ import ChangePasswordPage from '../src/pages/ChangePasswordPage/ChangePassword';
 
 import MapPage from './pages/MainPage/Page/MapPage/Map';
 import HistoryPage from './pages/MainPage/Page/HistoryPage/History';
+import MapHistoryPage from './pages/MainPage/Page/HistoryPage/HistoryMap';
+
 import CarDetailPage from './pages/MainPage/Page/CarDetailPage/CarDetail';
 import AddCarDetailPage from './pages/MainPage/Page/CarDetailPage/AddCar';
 import EditCarDetailPage from './pages/MainPage/Page/CarDetailPage/EditCar';
@@ -79,6 +81,8 @@ const Application: React.FunctionComponent<IApplicationProps> = (props) => {
 
                 <Route path="map" element={<MapPage />} />
                 <Route path="history" element={<HistoryPage />} />
+                <Route path="maphistory" element={<MapHistoryPage />} />
+
                 <Route path="cardetail" element={<CarDetailPage />} />
                 <Route path="addcardetail" element={<AddCarDetailPage />} />
                 <Route path="editcardetail" element={<EditCarDetailPage />} />
@@ -86,8 +90,8 @@ const Application: React.FunctionComponent<IApplicationProps> = (props) => {
                 <Route path="credit" element={<CreditPage />} />
                 <Route path="addcredit" element={<AddCreditPage />} />
 
-                <Route path="carresever" element={<CreditPage />} />
-                <Route path="addcarresever" element={<AddCreditPage />} />
+                <Route path="carresever" element={<CarReseverPage />} />
+                <Route path="addcarresever" element={<AddCarReseverPage />} />
 
                 <Route path="station" element={<StationPage />} />
                 <Route path="addstation" element={<AddStationPagePage />} />
