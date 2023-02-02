@@ -48,7 +48,7 @@ function ResponsiveAppBar() {
         { page: 'ข้อมูลสถานี', link: 'station' },
         // { page:'ข้อมูลสถานี', link: "stationinformation"},
         { page: 'Serivce', link: 'service' },
-        // { page: 'ข้อมูลผู้ใช้งาน', link: 'userdetail' }
+        { page: 'ข้อมูลผู้ใช้งาน', link: 'userdetail' }
     ];
 
     const pagesLV2 = [
@@ -64,7 +64,7 @@ function ResponsiveAppBar() {
         { page: 'แผนที่', link: 'map' },
         { page: 'ประวัติสถานี', link: 'history' },
         { page: 'เติมเครดิต', link: 'credit' }, // เห็นเฉพาะเจ้าของปั้ม
-        {page:'ข้อมูลสถานี', link: "stationinformation"},
+        {page:'ข้อมูลสถานี', link: "station"},
         { page: 'Serivce', link: 'service' },
         { page: 'ข้อมูลผู้ใช้งาน', link: 'userdetail' }
     ];
@@ -90,7 +90,7 @@ function ResponsiveAppBar() {
     const pagesLV6 = [
         { page: 'แผนที่', link: 'map' },
         { page: 'ประวัติสถานี', link: 'history' },
-        { page:'ข้อมูลสถานี', link: "stationinformation"},
+        { page:'ข้อมูลสถานี', link: "station" },
         { page: 'Serivce', link: 'service' },
     ];
 

@@ -4,7 +4,7 @@ import { useParams , useNavigate} from 'react-router-dom';
 import Button from '@mui/material/Button'
 import axios from "axios";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 
 
 export interface IBodyPageProps {}
@@ -151,15 +151,10 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
             sort: false,
             customBodyRenderLite: (dataIndex:any, rowIndex:any) => {
             return (
-              <Button aria-label="edit" variant="outlined" style={{color:'white',backgroundColor:'#6CDCC0',borderRadius:'15px'}}
-              onClick={() => {
+              <EditOutlinedIcon onClick={() =>{
                 setEditData_1(post[dataIndex].u_id)
                 SetLs_idEdit();
-  
-              }}
-              >
-                {`Edit`}
-              </Button>
+              }}/>
             );
           }
         }
@@ -171,7 +166,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         confirmFilters: false,
         sort: false,
         viewColumns: false,
-        searchOpen: true,
+        searchOpen: false,
         download: false,
         print: false,
         selectableRowsHeader: false,

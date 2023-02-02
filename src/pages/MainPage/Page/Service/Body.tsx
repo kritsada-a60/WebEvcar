@@ -460,7 +460,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         confirmFilters: false,
         sort: false,
         viewColumns: false,
-        searchOpen: true,
+        searchOpen: false,
         download: false,
         print: false,
         selectableRowsHeader: false,
