@@ -33,7 +33,8 @@ import StationPage from './pages/MainPage/Page/StationPage/CradleInfomation';
 import AddStationPagePage from './pages/MainPage/Page/StationPage/AddCradle';
 import EditStationPagePage from './pages/MainPage/Page/StationPage/EditCradle';
 
-
+import Car from './pages/MainPage/Page/Car/Service';
+import Exprot from './pages/MainPage/Page/Export/Export';
 
 import StationInformationPage from './pages/MainPage/Page/StationInformationPage/StationInformation';
 import AddStationInformationPage from './pages/MainPage/Page/StationInformationPage/Addstation';
@@ -97,6 +98,9 @@ const Application: React.FunctionComponent<IApplicationProps> = (props) => {
                 <Route path="addstation" element={<AddStationPagePage />} />
                 <Route path="editstation" element={<EditStationPagePage />} />
 
+
+                <Route path="car" element={<Car />} />
+                <Route path="export" element={<Exprot />} />
 
                 <Route path="customer" element={<CustomerPage />} />
                 <Route path="addcustomer" element={<AddCustomerPage />} />
