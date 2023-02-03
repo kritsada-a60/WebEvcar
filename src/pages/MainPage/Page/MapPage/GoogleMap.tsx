@@ -234,10 +234,15 @@ function Map() {
 
     const [DataStation, setDataStation] = useState<NewStationData[]>([]);
 
+    const LS = localStorage;
+    const CTMID = LS.getItem('USERCTM');
+    const UID = LS.getItem('LVUSERID');
+    const CID = LS.getItem('IdCarEditHistory');
+
         useEffect(() => {
         axios
             .post(URLMerkersData, {
-                ctm_id: '2'
+                ctm_id: CTMID
             })
             .then((res) => {
                 // console.log(res.data.data);
@@ -256,7 +261,7 @@ function Map() {
 
         axios
             .post(URLMerkersDataStation, {
-                ctm_id: '5'
+                ctm_id: CTMID
             })
             .then((res) => {
                 console.log(res.data.data,"DataStation");
@@ -268,7 +273,7 @@ function Map() {
     const ReMarkerData = () => {
         axios
             .post(URLMerkersData, {
-                ctm_id: '2'
+                ctm_id: CTMID
             })
             .then((res) => {
 
@@ -278,7 +283,7 @@ function Map() {
 
         axios
             .post(URLMerkersDataStation, {
-                ctm_id: '5'
+                ctm_id: CTMID
             })
             .then((res) => {
                 console.log(res.data.data,"DataStation");
