@@ -111,7 +111,7 @@ const AddCreditPage: React.FunctionComponent<ISAddCreditPageProps> = (props) => 
     const navigate = useNavigate();
 
     const navigateadddata = () => {
-        navigate('/station');
+        navigate('/credit');
     };
 
 

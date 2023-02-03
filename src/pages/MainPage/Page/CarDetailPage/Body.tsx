@@ -60,6 +60,10 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     const LS = localStorage;
 
+    const CTMID = LS.getItem('USERCTM');
+    const UID = LS.getItem('LVUSERID');
+    const CID = LS.getItem('IdCarEditHistory');
+
     const [EditCarData, setEditCarData] = useState('');
     const [DeleteData, setDeleteData] = useState('');
 
@@ -79,7 +83,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     useEffect(() =>{
       axios.post(baseURL,{
-        ctm_id: ""
+        ctm_id: CTMID
       }).then((response) => {
         setpost(response.data.data)
         // console.log(post,"post data")
@@ -118,7 +122,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                 axios
                 .post(baseURLUpdateDelete, {
                     c_id: Number(DeleteData),
-                    u_id: 1,
+                    u_id: Number(UID),
                 })
                 .then((res) => {
                     console.log(res,"this is delete");

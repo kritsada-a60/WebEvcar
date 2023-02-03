@@ -95,6 +95,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const CTMID = LS.getItem('USERCTM');
     const UID = LS.getItem('LVUSERID');
     const CID = LS.getItem('IdCarEditHistory');
+    
 
     const fetchapi = () => {
       console.log("This is Ctm_id",CTMID)

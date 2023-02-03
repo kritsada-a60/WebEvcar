@@ -234,7 +234,7 @@ function Map() {
 
     const [DataStation, setDataStation] = useState<NewStationData[]>([]);
 
-    useEffect(() => {
+        useEffect(() => {
         axios
             .post(URLMerkersData, {
                 ctm_id: '2'
