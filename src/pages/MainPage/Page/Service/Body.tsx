@@ -579,7 +579,13 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                                 item.sv_price,
                                 item.sv_unit,
                                 item.sv_mqtt_code,
-                                item.sv_status_txt,
+                                () => {
+                                if (item.sv_status_txt == "ไม่พร้อมใช้งาน") {
+                                  return <p style={{color:'red',fontWeight:'bold'}}>{item.sv_status_txt}</p>
+                                } else {
+                                  return <p style={{color:'darkgreen',fontWeight:'bold'}}>{item.sv_status_txt}</p>
+                                }
+                                },
                             ]
                         })} 
                         // data={post3}

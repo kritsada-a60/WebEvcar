@@ -240,37 +240,71 @@ function Map() {
     const CID = LS.getItem('IdCarEditHistory');
 
         useEffect(() => {
-        axios
-            .post(URLMerkersData, {
-                ctm_id: CTMID
-            })
-            .then((res) => {
-                // console.log(res.data.data);
-                setMarkersData(res.data.data);
-                // setMarkersId(res.data.data[0].c_id);
-                // setdata(res.data.data.c_id);
-                // setMarkersName(res.data.data.c_license_plate);
-                // setMarkersLat(res.data.data.c_lat);
-                // setMarkersLng(res.data.data.c_lng);
-                // console.log(MarkersId)
-                // Object.entries(res.data.data).forEach(([key,value]) =>{
-                //     console.log(`${key} : ${value}`)
-                // })
-            })
-            .catch((err) => console.error(err));
+            if (CTMID == '1'){
+            axios
+                .post(URLMerkersData, {
+                    ctm_id: ''
+                })
+                .then((res) => {
+                    setMarkersData(res.data.data);
+                })
+                .catch((err) => console.error(err));
 
-        axios
-            .post(URLMerkersDataStation, {
-                ctm_id: CTMID
-            })
-            .then((res) => {
-                console.log(res.data.data,"DataStation");
-                setMarkersDataStation(res.data.data);
-            })
-            .catch((err) => console.error(err));
+                axios
+                .post(URLMerkersDataStation, {
+                    ctm_id: ''
+                })
+                .then((res) => {
+                    console.log(res.data.data,"DataStation");
+                    setMarkersDataStation(res.data.data);
+                })
+                .catch((err) => console.error(err));
+            } else {
+            axios
+                .post(URLMerkersData, {
+                    ctm_id: CTMID
+                })
+                .then((res) => {
+                    setMarkersData(res.data.data);
+                })
+                .catch((err) => console.error(err));
+
+            axios
+                .post(URLMerkersDataStation, {
+                    ctm_id: CTMID
+                })
+                .then((res) => {
+                    console.log(res.data.data,"DataStation");
+                    setMarkersDataStation(res.data.data);
+                })
+                .catch((err) => console.error(err));
+            }
+
     }, []);
 
     const ReMarkerData = () => {
+
+        if (CTMID == '1'){
+        axios
+            .post(URLMerkersData, {
+                ctm_id: ''
+            })
+            .then((res) => {
+
+                setMarkersData(res.data.data);
+            })
+            .catch((err) => console.error(err));
+
+        axios
+            .post(URLMerkersDataStation, {
+                ctm_id: ''
+            })
+            .then((res) => {
+                console.log(res.data.data,"DataStation");
+                setMarkersDataStation(res.data.data);
+            })
+            .catch((err) => console.error(err));
+        } else {
         axios
             .post(URLMerkersData, {
                 ctm_id: CTMID
@@ -290,6 +324,8 @@ function Map() {
                 setMarkersDataStation(res.data.data);
             })
             .catch((err) => console.error(err));
+        }
+
     }
 
     useEffect(() => {

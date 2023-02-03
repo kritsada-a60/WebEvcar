@@ -78,16 +78,30 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     }
 
     useEffect(() =>{
-      axios.post(baseURL,{
-        ctm_id: CTMID
-      }).then((response) => {
-        setpost(response.data.data)
-        // console.log(post,"post data")
-        console.log(response.data.data,"start data")
-        // console.log(response.data.data.length)
-        setcount(response.data.data.length)
-        LS.setItem('CountDataCarpage', response.data.data.length)
-      })
+      if (CTMID == '1'){
+        axios.post(baseURL,{
+          ctm_id: ''
+        }).then((response) => {
+          setpost(response.data.data)
+          // console.log(post,"post data")
+          console.log(response.data.data,"start data")
+          // console.log(response.data.data.length)
+          setcount(response.data.data.length)
+          LS.setItem('CountDataCarpage', response.data.data.length)
+        })
+      } else {
+        axios.post(baseURL,{
+          ctm_id: CTMID
+        }).then((response) => {
+          setpost(response.data.data)
+          // console.log(post,"post data")
+          console.log(response.data.data,"start data")
+          // console.log(response.data.data.length)
+          setcount(response.data.data.length)
+          LS.setItem('CountDataCarpage', response.data.data.length)
+        })
+      }
+
     }, []);
 
     useEffect(() =>{

@@ -267,7 +267,13 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                               item.s_lat,
                               item.s_lng,
                               item.s_mqtt_code,
-                              item.ss_name,
+                              () => {
+                              if (item.ss_name == "OFF-LINE") {
+                                return <p style={{color:'red',fontWeight:'bold'}}>{item.ss_name}</p>
+                              } else {
+                                return <p style={{color:'darkgreen',fontWeight:'bold'}}>{item.ss_name}</p>
+                              }
+                              },
                           ]
                       })}
                       columns={Testcolumns}
