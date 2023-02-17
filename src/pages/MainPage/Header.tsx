@@ -46,9 +46,9 @@ function ResponsiveAppBar() {
         { page: 'เติมเครดิต', link: 'credit' }, // เห็นเฉพาะเจ้าของปั้ม
         { page: 'ข้อมูลลูกค้า', link: 'customer' },
         { page: 'ข้อมูลสถานี', link: 'station' },
-        { page: 'ข้อมูลประวัติ', link: "car"},
         { page: 'Serivce', link: 'service' },
-        { page: 'Export', link: 'Export' },
+        { page: 'Export', link: "detailstation"},
+        { page: 'เครดิตคงเหลือ', link: 'checkcredit' },
         { page: 'ข้อมูลผู้ใช้งาน', link: 'userdetail' }
     ];
 

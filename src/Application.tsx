@@ -99,8 +99,8 @@ const Application: React.FunctionComponent<IApplicationProps> = (props) => {
                 <Route path="editstation" element={<EditStationPagePage />} />
 
 
-                <Route path="car" element={<Car />} />
-                <Route path="export" element={<Exprot />} />
+                <Route path="detailstation" element={<Car />} />
+                <Route path="checkcredit" element={<Exprot />} />
 
                 <Route path="customer" element={<CustomerPage />} />
                 <Route path="addcustomer" element={<AddCustomerPage />} />

@@ -41,9 +41,11 @@ type MyDataPost = {
     ut_balance: number;
     ut_id: number;
     ut_type: string;
+    uc_balance: string;
+    
 };
 
-const baseURL ="http://54.86.117.200:5000/credit/list"
+const baseURL ="http://54.86.117.200:5000/credit/user"
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
@@ -102,8 +104,8 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
       axios.post(baseURL,{
         ctm_id: CTMID,
         u_id: '',
-        sdate: String(StartDate),
-        edate: String(EndDate)
+        // sdate: String(StartDate),
+        // edate: String(EndDate)
       }).then((response) => {
         setpost(response.data.data)
         console.log(response.data.data)
@@ -161,9 +163,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     /* Add Button */
 
     const Testcolumns = [
-      "วันเวลา",
       "ชื่อ-นามสกุล",
-      "ผู้เติมเงิน",
       "จำนวนเงิน",
     ];
 
@@ -199,50 +199,15 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     return (
         <div style={{margin:'5vh 5vw'}}>
-            <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'flex-start',alignItems:'center'}}>
-                <label>
-                    <div style={{margin:'1vh 2vw 1vh 0vw',backgroundColor:'white',borderColor:'black', width:'13vw'}}>
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DesktopDatePicker
-                            label="StartDate"
-                            inputFormat="YYYY/MM/DD"
-                            value={StartDate}
-                            onChange={handleChangeStartDate}
-                            renderInput={(params) => <TextField {...params} />}
-                            />
-                        </LocalizationProvider>
-                    </div>    
-                    </label>
-                    <label>
-                    <div style={{margin:'1vh 1vw 1vh 0vw',backgroundColor:'white',borderColor:'black', width:'13vw'}}>
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DesktopDatePicker
-                            label="EndDate"
-                            inputFormat="YYYY/MM/DD"
-                            value={EndDate}
-                            onChange={handleChangeEndDate}
-                            renderInput={(params) => <TextField {...params} />}
-                            />
-                        </LocalizationProvider>
-                    </div>    
-                </label>
-                <SearchIcon onClick={navigateadddata} style={{cursor:'pointer'}}/>
-
-             </div>
-            <div style={{display:'flex',justifyContent:'flex-end',alignItems:'center',margin:'2vh 0vw'}}>
-                <Button onClick={navigateadddata} style={{color:'black', backgroundColor:'#6CDCC0',borderRadius:'50px',width:'9.740vw'}}>เพิ่ม</Button>
-            </div>
             <div style={{display:'flex',justifyContent:'flex-start'}}>
                 <div style={{width:'100%'}}>
                 <ThemeProvider theme={getMuiTheme()}>
                     <MUIDataTable
-                        title={"ประวัติการเติมเงิน"}
+                        title={"เครดิตคงเหลือ"}
                         data={post.map(item => {
                             return [
-                                item.cd,
                                 item.u_fullname,
-                                item.u_fullname_add,
-                                item.ut_balance,
+                                item.uc_balance,
                             ]
                         })}
                         columns={Testcolumns}

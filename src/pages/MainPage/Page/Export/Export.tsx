@@ -21,8 +21,8 @@ const ExportPage: React.FunctionComponent<ISExportPageProps> = (props) => {
 
     return (
       <div style={{backgroundColor:'#E0F0EC', padding:'0vh 0vw 1vh 0vw'}}>
-        {/* <Header/> */}
-        <Body2/>
+        <Header/>
+        <Body/>
       </div>
     );
 };

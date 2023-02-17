@@ -60,3 +60,26 @@ sv_unit: string;
 sv_remark: string;
 sv_active: string;
 u_id: string;
+
+
+
+cb: number;
+cd: string;
+ctm_id: number;
+ctm_name: string;
+mb: string;
+md: string;
+pc_name: string;
+pt_name: string;
+remark: string;
+retire: number;
+s_id: string;
+s_name: string;
+sv_id: string;
+sv_name: string;
+u_fullname: string;
+u_fullname_add: string;
+u_id: number;
+ut_balance: number;
+ut_id: number;
+ut_type: string;

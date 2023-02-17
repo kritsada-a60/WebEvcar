@@ -6,7 +6,7 @@ import { Typography , TextField} from "@mui/material";
 import axios from "axios";
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 import SearchIcon from '@mui/icons-material/Search';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -18,6 +18,8 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import "./styles.css";
 
 
 // import { UseFormRegisterReturn } from 'react-hook-form';
@@ -124,6 +126,29 @@ interface MyDorpDown2 {
     sv_status_txt: string;
 }
 
+type MyDataExprot = {
+    cb: number;
+    cd: string;
+    ctm_id: number;
+    ctm_name: string;
+    mb: string;
+    md: string;
+    pc_name: string;
+    pt_name: string;
+    remark: string;
+    retire: number;
+    s_id: string;
+    s_name: string;
+    sv_id: string;
+    sv_name: string;
+    u_fullname: string;
+    u_fullname_add: string;
+    u_id: number;
+    ut_balance: number;
+    ut_id: number;
+    ut_type: string;
+}
+
 type MyDorpDownLength = {
     sv_id: number;
 };
@@ -140,6 +165,10 @@ const baseURLUpdateDataTable ="http://54.86.117.200:5000/service/one"
 
 const baseURLUpdateDataTable2 ="http://54.86.117.200:5000/station/list"
 
+const baseURLUpdateDorpdown ="http://54.86.117.200:5000/credit/list"
+
+
+
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     const [message, setMessage] = useState('');
@@ -150,7 +179,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     const [post2, setpost2] = useState<MyDataPost>();
 
-    const [post3, setpost3] = useState<MyDataPost[]>([]);
+    const [post3, setpost3] = useState<MyDataExprot[]>([]);
 
     const [post4, setpost4] = useState("1");
 
@@ -169,7 +198,11 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     const [age, setAge] = React.useState('');
 
-    const [Input1, setInput1] = useState("") 
+    const [Input1, setInput1] = useState("");
+
+
+
+
 
 
     const handleChangeStartDate = (newValue: any | null) => {
@@ -187,8 +220,8 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
       axios.post(baseURL,{
         ctm_id: '2',
         u_id: '3',
-        sdate: "2022-12-30",
-        edate: "2023-1-31"
+        sdate: StartDate,
+        edate: EndDate
       }).then((response) => {
         setpost(response.data.data)
         console.log(response.data.data)
@@ -202,6 +235,10 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     // const SetLs_idEdit = () => {
     //     LS.setItem('idEdit', EditCustomerData);
     // }
+
+    const CTMID = LS.getItem('USERCTM');
+    const UID = LS.getItem('LVUSERID');
+    const CID = LS.getItem('IdCarEditHistory');
 
     function SetLs_idEdit() {
         // console.log(EditCustomerData);
@@ -233,6 +270,14 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
 
     useEffect(() =>{
+
+        const showdate =new Date();
+        const todaydate=showdate.getFullYear()+'-'+(showdate.getMonth()+ 1) +'-'+showdate.getDate()
+        const monthdate = new Date();
+        monthdate.setMonth(-1);
+        const monthstartdate=monthdate.getFullYear()+'-'+(monthdate.getMonth()+ 1)+'-'+monthdate.getDate()
+        setStartDate(monthstartdate)
+        setEndDate(todaydate)
     //   axios.post(baseURL,{
     //     ctm_id: "5",
     //     s_id: "2",
@@ -412,12 +457,14 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         // SetLs_idEdit2();
         // setNameDorpDown(event.target.value);
         
-        console.log(event.target)
+        console.log(event.target.value)
         // console.log(post3[0]?.sv_id)
-        axios.post(baseURL,{
-            ctm_id:'5',
-            s_id:event.target.value
-            // sv_id: 
+        axios.post(baseURLUpdateDorpdown,{
+            u_id: UID,
+            ctm_id: CTMID,
+            s_id: event.target.value,
+            sdate: StartDate,
+            edate: EndDate,
         }).then((res)=>{
             console.log(res.data.data)
             // setDorpDownStaion(res.data.data)
@@ -431,13 +478,11 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     /* Add Button */
 
     const Testcolumns = [
+        "ชื่อสถานี",
         "ชื่อบริการ",
         "ประเภท",
-        "serial",
-        "ราคา",
-        "หน่วย",
-        "MQTT_CODE",
-        "สถานะ",
+        "ชื่อ-นามสกุล",
+        "จำนวนเงิน",
         // "ชื่อลูกค้า", 
         // "ประเภทลูกค้า", 
         // "เลขทะเบียนการค้า", 
@@ -485,16 +530,16 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
       }
     ];
     const options = {
-        // caseSensitive: true,
+        caseSensitive: true,
         confirmFilters: false,
         sort: false,
         viewColumns: false,
         searchOpen: false,
-        download: false,
-        print: false,
+        // download: false,
+        // print: false,
         selectableRowsHeader: false,
         selectableRowsHideCheckboxes: true,
-        // selectableRowsOnClick: true,
+        selectableRowsOnClick: true,
     };
 
     const getMuiTheme = () =>
@@ -503,6 +548,18 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
           MuiTableCell: {
             styleOverrides:{ root: {
               padding: '16px 1.5vw',
+            }}
+          },
+
+        }
+      });
+
+    const getMuiTheme2 = () =>
+      createTheme({
+        components: {
+          MuiTableCell: {
+            styleOverrides:{ root: {
+              color:'black',
             }}
           },
 
@@ -586,6 +643,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                         </LocalizationProvider>
                     </div>    
                     </label>
+
                     
                 </div>
                 <label>
@@ -597,9 +655,11 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                     
                     inputProps={{ 'aria-label': 'Without label' }}
                     >
+                    <MenuItem key="" value="">เลือกทั้งหมด</MenuItem>
                     {DorpDownStaion2?.length &&
                         DorpDownStaion2.map((e: any, i: number) => {
                         return (
+                            // <MenuItem key="" value="">เลือกทั้งหมด</MenuItem>
                             <MenuItem key={e.s_id} value={e.s_id}
                             // onChange={e =>{
                             //     console.log(e,"E")
@@ -615,9 +675,6 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                 </label>
                 <SearchIcon onClick={SearchData} style={{cursor:'pointer'}}/>
             </div>
-            <div style={{display:'flex',justifyContent:'flex-end',alignItems:'center',margin:'2vh 0vw'}}>
-                <Button onClick={navigateadddata} style={{color:'black', backgroundColor:'#6CDCC0',borderRadius:'50px',width:'9.740vw'}}>เพิ่ม Service</Button>
-            </div>
             <div style={{display:'flex',justifyContent:'flex-start'}}>
                 <div style={{width:'100%'}}>
                 <ThemeProvider theme={getMuiTheme()}>
@@ -626,19 +683,11 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                         data={
                             post3?.map(item => {
                             return [
-                                item.sv_name,
+                                item.s_name,
                                 item.pc_name,
-                                item.sv_serial,
-                                item.sv_price,
-                                item.sv_unit,
-                                item.sv_mqtt_code,
-                                () => {
-                                if (item.sv_status_txt == "ไม่พร้อมใช้งาน") {
-                                  return <p style={{color:'red',fontWeight:'bold'}}>{item.sv_status_txt}</p>
-                                } else {
-                                  return <p style={{color:'darkgreen',fontWeight:'bold'}}>{item.sv_status_txt}</p>
-                                }
-                                },
+                                item.pt_name,
+                                item.u_fullname,
+                                item.ut_balance,
                             ]
                         })} 
                         // data={post3}
