@@ -460,8 +460,8 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         console.log(event.target.value)
         // console.log(post3[0]?.sv_id)
         axios.post(baseURLUpdateDorpdown,{
-            u_id: UID,
-            ctm_id: CTMID,
+            u_id: "1",
+            ctm_id: "5",
             s_id: event.target.value,
             sdate: StartDate,
             edate: EndDate,
