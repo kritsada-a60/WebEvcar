@@ -103,7 +103,8 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         ctm_id: CTMID,
         u_id: '',
         sdate: String(StartDate),
-        edate: String(EndDate)
+        edate: String(EndDate),
+        s_id: ''
       }).then((response) => {
         setpost(response.data.data)
         console.log(response.data.data)

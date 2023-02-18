@@ -79,6 +79,10 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         // navigateadddata();
     }
 
+    const CTMID = LS.getItem('USERCTM');
+    const UID = LS.getItem('LVUSERID');
+    const CID = LS.getItem('IdCarEditHistory');
+
 
 
     const [IDEditData, setIDEditData] = useState('');
@@ -88,7 +92,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     useEffect(() =>{
       axios.post(baseURL,{
-        "ctm_id": 5
+        "ctm_id": CTMID
       }).then((response) => {
         setpost(response.data.data)
         // console.log(post,"post data")

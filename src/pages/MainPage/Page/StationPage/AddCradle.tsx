@@ -109,12 +109,16 @@ const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPage
 
     const LS = localStorage;
 
+    const CTMID = LS.getItem('USERCTM');
+    const UID = LS.getItem('LVUSERID');
+    const CID = LS.getItem('IdCarEditHistory');
+
 
     const handleSubmit = (e:any) => {
     e.preventDefault();
     axios
       .post(baseURLUpdateAdd, {
-          ctm_id: 5,
+          ctm_id: CTMID,
           s_name: Input1,
           s_mqtt_code: Input10,
           s_address: Input2,
@@ -127,7 +131,7 @@ const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPage
           s_contact: Input6,
           s_tel: Input7,
           s_active: "1",
-          u_id: 1,
+          u_id: UID,
       })
       .then((res) => {
         console.log(res.data);
