@@ -56,6 +56,10 @@ const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPage
       navigateadddata();
     }
 
+    const CTMID = LS.getItem('USERCTM');
+    const UID = LS.getItem('LVUSERID');
+    const CID = LS.getItem('IdCarEditHistory');
+
     const navigate = useNavigate();
 
     const navigateadddata = () => {
@@ -108,7 +112,7 @@ const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPage
     const Mys_id = LS.getItem('idEdit');
     axios
       .post(baseURLUpdateEdit, {
-          ctm_id: 5,
+          ctm_id: CTMID,
           s_name: Input1,
           s_mqtt_code: Input10,
           s_address: Input2,
@@ -122,7 +126,7 @@ const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPage
           s_tel: Input7,
           s_active: "1",
           s_id: Mys_id,
-          u_id: 1,
+          u_id: UID,
       })
       .then((res) => {
         // Update NewYear
