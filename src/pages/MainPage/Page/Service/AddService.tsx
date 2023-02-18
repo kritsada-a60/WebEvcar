@@ -114,6 +114,10 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
 
     const LS = localStorage;
 
+    const CTMID = LS.getItem('USERCTM');
+    const UID = LS.getItem('LVUSERID');
+    const CID = LS.getItem('IdCarEditHistory');
+
     const handleSubmit = (e:any) => {
     e.preventDefault();
     const NumberS_ID = LS.getItem("IdServiceDorpDown")
@@ -127,7 +131,7 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
         sv_price: Number(Input5),
         sv_unit: Input6,
         sv_remark: Input8,
-        u_id: 1
+        u_id: UID
       })
       .then((res) => {
         console.log(res.data);

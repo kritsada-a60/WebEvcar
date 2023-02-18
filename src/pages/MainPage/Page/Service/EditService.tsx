@@ -94,6 +94,10 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
     const LS = localStorage;
     const idEdit = LS.getItem('IdEditServiceData');
 
+    const CTMID = LS.getItem('USERCTM');
+    const UID = LS.getItem('LVUSERID');
+    const CID = LS.getItem('IdCarEditHistory');
+
     const RemoceIdEdit = () => {
         LS.removeItem('IdEditServiceData');
         navigateadddata();
@@ -156,7 +160,7 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
                 sv_unit: Input6,
                 sv_remark: Input8,
                 sv_active: "1",
-                u_id: 1
+                u_id: UID
             })
             .then((res) => {
                 console.log(res.data);

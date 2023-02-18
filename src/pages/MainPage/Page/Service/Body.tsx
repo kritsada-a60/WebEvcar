@@ -195,6 +195,9 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     }
 
 
+    const CTMID = LS.getItem('USERCTM');
+    const UID = LS.getItem('LVUSERID');
+    const CID = LS.getItem('IdCarEditHistory');
 
     const [EditCustomerData, setEditCustomerData] = useState('');
     // const [DeleteData, setDeleteData] = useState<MyDeleteData[]>([]);
@@ -220,7 +223,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     //     // setcount(response.data.data.length)
     //   })
     axios.post(baseURLUpdateDataTable2,{
-        ctm_id: "5",
+        ctm_id: CTMID,
       }).then((response) => {
         console.log(response.data)
         setpost(response.data.data)
