@@ -333,7 +333,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                 axios
                 .post(baseURLUpdateDelete, {
                     sv_id: Number(DeleteData),
-                    u_id: "1",
+                    u_id: UID,
                 })
                 .then((res) => {
                     console.log(res,"this is delete");
@@ -389,7 +389,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         console.log(event.target)
         // console.log(post3[0]?.sv_id)
         axios.post(baseURL,{
-            ctm_id:'5',
+            ctm_id:CTMID,
             s_id:event.target.value
             // sv_id: 
         }).then((res)=>{
