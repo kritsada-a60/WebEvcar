@@ -155,17 +155,17 @@ type MyDorpDownLength = {
  
 
 
-const baseURL ="http://54.86.117.200:5000/service/list"
+const baseURL ="http://44.203.251.203:5000/service/list"
 
-const baseURLEdit ="http://54.86.117.200:5000/service/add"
+const baseURLEdit ="http://44.203.251.203:5000/service/add"
 
-const baseURLUpdateDelete ="http://54.86.117.200:5000/service/del"
+const baseURLUpdateDelete ="http://44.203.251.203:5000/service/del"
 
-const baseURLUpdateDataTable ="http://54.86.117.200:5000/service/one"
+const baseURLUpdateDataTable ="http://44.203.251.203:5000/service/one"
 
-const baseURLUpdateDataTable2 ="http://54.86.117.200:5000/station/list"
+const baseURLUpdateDataTable2 ="http://44.203.251.203:5000/station/list"
 
-const baseURLUpdateDorpdown ="http://54.86.117.200:5000/credit/list"
+const baseURLUpdateDorpdown ="http://44.203.251.203:5000/credit/list"
 
 
 
@@ -216,10 +216,19 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const [StartDate, setStartDate] = React.useState<Dayjs | null | string>('');
     const [EndDate, setEndDate] = React.useState<Dayjs | null | string>('');
 
+    const LS = localStorage;
+    // const SetLs_idEdit = () => {
+    //     LS.setItem('idEdit', EditCustomerData);
+    // }
+
+    const CTMID = LS.getItem('USERCTM');
+    const UID = LS.getItem('LVUSERID');
+    const CID = LS.getItem('IdCarEditHistory');
+
     const SearchData = () => {
       axios.post(baseURL,{
-        ctm_id: '2',
-        u_id: '3',
+        ctm_id: CTMID,
+        u_id: UID,
         sdate: StartDate,
         edate: EndDate
       }).then((response) => {
@@ -231,14 +240,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     // const [MyIdEdit, setMyIdEdit] = useState<IDEdit>();
 
-    const LS = localStorage;
-    // const SetLs_idEdit = () => {
-    //     LS.setItem('idEdit', EditCustomerData);
-    // }
 
-    const CTMID = LS.getItem('USERCTM');
-    const UID = LS.getItem('LVUSERID');
-    const CID = LS.getItem('IdCarEditHistory');
 
     function SetLs_idEdit() {
         // console.log(EditCustomerData);
@@ -294,7 +296,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     //     // setcount(response.data.data.length)
     //   })
     axios.post(baseURLUpdateDataTable2,{
-        ctm_id: "5",
+        ctm_id: CTMID,
       }).then((response) => {
         console.log(response.data)
         setpost(response.data.data)
@@ -404,7 +406,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                 axios
                 .post(baseURLUpdateDelete, {
                     sv_id: Number(DeleteData),
-                    u_id: "1",
+                    u_id: UID,
                 })
                 .then((res) => {
                     console.log(res,"this is delete");
@@ -460,8 +462,8 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         console.log(event.target.value)
         // console.log(post3[0]?.sv_id)
         axios.post(baseURLUpdateDorpdown,{
-            u_id: "1",
-            ctm_id: "5",
+            u_id: UID,
+            ctm_id: CTMID,
             s_id: event.target.value,
             sdate: StartDate,
             edate: EndDate,

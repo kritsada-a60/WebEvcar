@@ -45,7 +45,7 @@ type MyDataPost = {
     
 };
 
-const baseURL ="http://54.86.117.200:5000/credit/user"
+const baseURL ="http://44.203.251.203:5000/credit/user"
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
@@ -113,6 +113,9 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
       })
     }
 
+    console.log(CTMID,"ctm")
+    console.log(UID,"uid")
+    console.log(CID,"cid")
     useEffect(() =>{
         const showdate =new Date();
         const todaydate=showdate.getFullYear()+'-'+(showdate.getMonth()+ 1) +'-'+showdate.getDate()

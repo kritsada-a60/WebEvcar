@@ -49,9 +49,9 @@ type MyData = {
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
-    const baseURL ="http://54.86.117.200:5000/car/list"
+    const baseURL ="http://44.203.251.203:5000/car/list"
 
-    const baseURLUpdateDelete ="http://54.86.117.200:5000/car/del"
+    const baseURLUpdateDelete ="http://44.203.251.203:5000/car/del"
 
     const navigate = useNavigate();
 

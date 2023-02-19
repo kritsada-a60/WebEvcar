@@ -46,13 +46,13 @@ type MyData = {
     ctmt_name: string;
 };
 
-const baseURL ="http://54.86.117.200:5000/customer/list"
+const baseURL ="http://44.203.251.203:5000/customer/list"
 
-const baseURLEdit ="http://54.86.117.200:5000/customer/add"
+const baseURLEdit ="http://44.203.251.203:5000/customer/add"
 
-const baseURLUpdateDelete ="http://54.86.117.200:5000/customer/del"
+const baseURLUpdateDelete ="http://44.203.251.203:5000/customer/del"
 
-const test ="http://54.86.117.200:5000/customer/one"
+const test ="http://44.203.251.203:5000/customer/one"
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 

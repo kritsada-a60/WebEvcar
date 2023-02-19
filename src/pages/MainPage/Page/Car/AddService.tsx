@@ -69,19 +69,19 @@ type MyDorpDownData2 = {
 
 export interface ISAddServicePageProps {}
 
-const baseURL ="http://54.86.117.200:5000/service/list"
+const baseURL ="http://44.203.251.203:5000/service/list"
 
-const baseURLEdit ="http://54.86.117.200:5000/service/add"
+const baseURLEdit ="http://44.203.251.203:5000/service/add"
 
-const baseURLUpdateData ="http://54.86.117.200:5000/service/one"
+const baseURLUpdateData ="http://44.203.251.203:5000/service/one"
 
-const baseURLUpdateEdit ="http://54.86.117.200:5000/service/edit"
+const baseURLUpdateEdit ="http://44.203.251.203:5000/service/edit"
 
-const baseURLUpdateAdd ="http://54.86.117.200:5000/service/add"
+const baseURLUpdateAdd ="http://44.203.251.203:5000/service/add"
 
-const baseURLDorpDown ="http://54.86.117.200:5000/powercatalog/list"
+const baseURLDorpDown ="http://44.203.251.203:5000/powercatalog/list"
 
-const baseURLDorpDown2 ="http://54.86.117.200:5000/powertype/list"
+const baseURLDorpDown2 ="http://44.203.251.203:5000/powertype/list"
 
 const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) => {
 
@@ -114,6 +114,10 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
 
     const LS = localStorage;
 
+    const CTMID = LS.getItem('USERCTM');
+    const UID = LS.getItem('LVUSERID');
+    const CID = LS.getItem('IdCarEditHistory');
+
     const handleSubmit = (e:any) => {
     e.preventDefault();
     const NumberS_ID = LS.getItem("IdServiceDorpDown")
@@ -127,7 +131,7 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
         sv_price: Number(Input5),
         sv_unit: Input6,
         sv_remark: Input8,
-        u_id: 1
+        u_id: UID
       })
       .then((res) => {
         console.log(res.data);

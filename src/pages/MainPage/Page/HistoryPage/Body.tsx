@@ -30,9 +30,9 @@ type MyDataPost = {
   retire: any;
 };
 
-const baseURL ="http://54.86.117.200:5000/usertype/list"
+const baseURL ="http://44.203.251.203:5000/usertype/list"
 
-const baseURLTracking ="http://54.86.117.200:5000/car/tracking"
+const baseURLTracking ="http://44.203.251.203:5000/car/tracking"
 
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {

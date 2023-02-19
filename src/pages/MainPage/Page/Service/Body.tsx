@@ -122,15 +122,15 @@ type MyDorpDownLength = {
  
 
 
-const baseURL ="http://54.86.117.200:5000/service/list"
+const baseURL ="http://44.203.251.203:5000/service/list"
 
-const baseURLEdit ="http://54.86.117.200:5000/service/add"
+const baseURLEdit ="http://44.203.251.203:5000/service/add"
 
-const baseURLUpdateDelete ="http://54.86.117.200:5000/service/del"
+const baseURLUpdateDelete ="http://44.203.251.203:5000/service/del"
 
-const baseURLUpdateDataTable ="http://54.86.117.200:5000/service/one"
+const baseURLUpdateDataTable ="http://44.203.251.203:5000/service/one"
 
-const baseURLUpdateDataTable2 ="http://54.86.117.200:5000/station/list"
+const baseURLUpdateDataTable2 ="http://44.203.251.203:5000/station/list"
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 

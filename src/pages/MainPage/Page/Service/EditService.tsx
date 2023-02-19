@@ -57,17 +57,17 @@ type MyEditData = {
 
 export interface ISAddServicePageProps {}
 
-const baseURL = 'http://54.86.117.200:5000/service/list';
+const baseURL = 'http://44.203.251.203:5000/service/list';
 
-const baseURLEdit = 'http://54.86.117.200:5000/service/add';
+const baseURLEdit = 'http://44.203.251.203:5000/service/add';
 
-const baseURLUpdateData = 'http://54.86.117.200:5000/service/one';
+const baseURLUpdateData = 'http://44.203.251.203:5000/service/one';
 
-const baseURLUpdateEdit = 'http://54.86.117.200:5000/service/edit';
+const baseURLUpdateEdit = 'http://44.203.251.203:5000/service/edit';
 
-const baseURLDorpDown = 'http://54.86.117.200:5000/powercatalog/list';
+const baseURLDorpDown = 'http://44.203.251.203:5000/powercatalog/list';
 
-const baseURLDorpDown2 = 'http://54.86.117.200:5000/powertype/list';
+const baseURLDorpDown2 = 'http://44.203.251.203:5000/powertype/list';
 
 const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) => {
     const [post, setpost] = useState<MyEditData[]>([]);

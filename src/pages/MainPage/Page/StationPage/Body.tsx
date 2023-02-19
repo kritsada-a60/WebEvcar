@@ -41,13 +41,13 @@ type MyData = {
 };
 
 
-const baseURL ="http://54.86.117.200:5000/station/list"
+const baseURL ="http://44.203.251.203:5000/station/list"
 
-const baseURLEdit ="http://54.86.117.200:5000/station/add"
+const baseURLEdit ="http://44.203.251.203:5000/station/add"
 
-const baseURLUpdateDelete ="http://54.86.117.200:5000/station/del"
+const baseURLUpdateDelete ="http://44.203.251.203:5000/station/del"
 
-const test ="http://54.86.117.200:5000/station/one"
+const test ="http://44.203.251.203:5000/station/one"
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 

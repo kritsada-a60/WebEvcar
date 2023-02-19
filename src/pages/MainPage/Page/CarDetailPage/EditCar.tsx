@@ -74,17 +74,17 @@ type MyDorpDownData2 = {
 
 export interface ISEditCarPageProps {}
 
-const baseURL = 'http://54.86.117.200:5000/car/list';
+const baseURL = 'http://44.203.251.203:5000/car/list';
 
-const baseURLEdit = 'http://54.86.117.200:5000/car/add';
+const baseURLEdit = 'http://44.203.251.203:5000/car/add';
 
-const baseURLUpdateData = 'http://54.86.117.200:5000/car/one';
+const baseURLUpdateData = 'http://44.203.251.203:5000/car/one';
 
-const baseURLUpdateEdit = 'http://54.86.117.200:5000/car/edit';
+const baseURLUpdateEdit = 'http://44.203.251.203:5000/car/edit';
 
-const baseURLDorpDown = 'http://54.86.117.200:5000/customer/list';
+const baseURLDorpDown = 'http://44.203.251.203:5000/customer/list';
 
-const baseURLDorpDown2 = 'http://54.86.117.200:5000/powertype/list';
+const baseURLDorpDown2 = 'http://44.203.251.203:5000/powertype/list';
 
 const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
     const [post, setpost] = useState<MyDataPost[]>([]);

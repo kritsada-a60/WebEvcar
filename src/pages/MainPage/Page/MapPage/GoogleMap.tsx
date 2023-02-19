@@ -217,8 +217,8 @@ const markers = [
     }
 ];
 
-const URLMerkersData = 'http://54.86.117.200:5000/car/list';
-const URLMerkersDataStation = 'http://54.86.117.200:5000/station/list';
+const URLMerkersData = 'http://44.203.251.203:5000/car/list';
+const URLMerkersDataStation = 'http://44.203.251.203:5000/station/list';
 
 function Map() {
     const [MarkersData, setMarkersData] = useState<MyMarkersData[]>([]);
@@ -428,14 +428,14 @@ function Map() {
 
         if (tmp[0] == 'c') {
             axios
-                .post('http://54.86.117.200:5000/car/one', { c_id: tmp[1].toString() })
+                .post('http://44.203.251.203:5000/car/one', { c_id: tmp[1].toString() })
                 .then((res) => {
                     console.log(res.data.data,"Customer");
                 })
                 .catch((err) => console.error(err));
         } else {
             axios
-                .post('http://54.86.117.200:5000/station/one', { s_id: tmp[1].toString() })
+                .post('http://44.203.251.203:5000/station/one', { s_id: tmp[1].toString() })
                 .then((res) => {
                     console.log(res.data.data,"Station");
                 })
