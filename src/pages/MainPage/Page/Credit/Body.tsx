@@ -159,6 +159,8 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         navigate('/addcredit');
     };
 
+
+
     /* Add Button */
 
     const Testcolumns = [
@@ -227,7 +229,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                         </LocalizationProvider>
                     </div>    
                 </label>
-                <SearchIcon onClick={navigateadddata} style={{cursor:'pointer'}}/>
+                <SearchIcon onClick={fetchapi} style={{cursor:'pointer'}}/>
 
              </div>
             <div style={{display:'flex',justifyContent:'flex-end',alignItems:'center',margin:'2vh 0vw'}}>
