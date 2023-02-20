@@ -99,17 +99,32 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     const fetchapi = () => {
       console.log("This is Ctm_id",CTMID)
-      axios.post(baseURL,{
-        ctm_id: CTMID,
-        u_id: '',
-        sdate: String(StartDate),
-        edate: String(EndDate),
-        s_id: ''
-      }).then((response) => {
-        setpost(response.data.data)
-        console.log(response.data.data)
-        setcount(response.data.data.length)
-      })
+      if(CTMID != "1"){
+        axios.post(baseURL,{
+          ctm_id: CTMID,
+          u_id: "",
+          sdate: String(StartDate),
+          edate: String(EndDate),
+          s_id: ""
+        }).then((response) => {
+          setpost(response.data.data)
+          console.log(response.data.data)
+          setcount(response.data.data.length)
+        })
+      }else{
+         axios.post(baseURL,{
+          ctm_id: "5",
+          u_id: "",
+          sdate: String(StartDate),
+          edate: String(EndDate),
+          s_id: ""
+        }).then((response) => {
+          setpost(response.data.data)
+          console.log(response.data.data)
+          setcount(response.data.data.length)
+        })
+      }
+
     }
 
     useEffect(() =>{
