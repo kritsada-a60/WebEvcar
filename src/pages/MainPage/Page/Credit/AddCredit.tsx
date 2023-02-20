@@ -77,13 +77,18 @@ const AddCreditPage: React.FunctionComponent<ISAddCreditPageProps> = (props) => 
 
 
     const handleSubmit = (e:any) => {
+
+    console.log(CTMID,"CTM");
+    console.log(UID,"UID");
+    console.log(Input1,"Input1");
+    console.log(Input2,"Input2");
     e.preventDefault();
     axios
       .post(baseURLUpdateAdd, {
-        ctm_id: CTMID,
-        u_id: Input1,
-        uid: UID,
-        ut_balance: Input2
+        ctm_id: Number(CTMID),
+        u_id: Number(Input1),
+        uid: Number(UID),
+        ut_balance: Number(Input2)
       })
       .then((res) => {
         console.log(res.data);
