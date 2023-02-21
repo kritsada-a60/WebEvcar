@@ -64,7 +64,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const CTMID = LS.getItem('USERCTM');
     const UID = LS.getItem('LVUSERID');
     const CID = LS.getItem('IdCarEditHistory');
-
+    const LVID = LS.getItem('LVUSER');
 
 
     const [EditCarData, setEditCarData] = useState('');
@@ -199,6 +199,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         selectableRowsHideCheckboxes: true,
     };
 
+
     const getMuiTheme = () =>
       createTheme({
         components: {
@@ -215,33 +216,63 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
       <div style={{margin:'5vh 5vw'}}>
           <div style={{display:'flex',justifyContent:'flex-start'}}>
               <div style={{width:'100%'}}>
-                  <ThemeProvider theme={getMuiTheme()}>
-                    <MUIDataTable
-                      title={"ประวัติรถ"}
-                      data={post.map(item => {
-                          return [
-                              item.c_license_plate,
-                              item.ctm_name,
-                              item.cgt_pt_name,
-                              item.bt_pt_name,
-                              <p>{item.c_capacity}%</p>,
-                              item.c_speed,
-                              item.c_mileage,
-                              item.c_gps_signal, // c_start_data
-                              item.c_mqtt_code,
-                              () => {
-                                if (item.c_status == "OFF-LINE") {
-                                  return <p style={{color:'red',fontWeight:'bold'}}>{item.c_status}</p>
-                                } else {
-                                  return <p style={{color:'darkgreen',fontWeight:'bold'}}>{item.c_status}</p>
-                                }
-                              },
-                          ]
-                      })}
-                      columns={Testcolumns}
-                      options={options}
-                    />
-                  </ThemeProvider>
+                    {LVID == "2" ?(
+                      <ThemeProvider theme={getMuiTheme()}>
+                        <MUIDataTable
+                          title={"ประวัติรถ"}
+                          data={post.map(item => {
+                              return [
+                                  item.c_license_plate,
+                                  item.ctm_name,
+                                  item.cgt_pt_name,
+                                  item.bt_pt_name,
+                                  <p>{item.c_capacity}%</p>,
+                                  item.c_speed,
+                                  item.c_mileage,
+                                  item.c_gps_signal, // c_start_data
+                                  item.c_mqtt_code,
+                                  () => {
+                                    if (item.c_status == "OFF-LINE") {
+                                      return <p style={{color:'red',fontWeight:'bold'}}>{item.c_status}</p>
+                                    } else {
+                                      return <p style={{color:'darkgreen',fontWeight:'bold'}}>{item.c_status}</p>
+                                    }
+                                  },
+                              ]
+                          })}
+                          columns={Testcolumns}
+                          options={options}
+                        />
+                      </ThemeProvider>
+                    ) : (
+                      <ThemeProvider theme={getMuiTheme()}>
+                        <MUIDataTable
+                          title={"ประวัติสถานี"}
+                          data={post.map(item => {
+                              return [
+                                  item.c_license_plate,
+                                  item.ctm_name,
+                                  item.cgt_pt_name,
+                                  item.bt_pt_name,
+                                  <p>{item.c_capacity}%</p>,
+                                  item.c_speed,
+                                  item.c_mileage,
+                                  item.c_gps_signal, // c_start_data
+                                  item.c_mqtt_code,
+                                  () => {
+                                    if (item.c_status == "OFF-LINE") {
+                                      return <p style={{color:'red',fontWeight:'bold'}}>{item.c_status}</p>
+                                    } else {
+                                      return <p style={{color:'darkgreen',fontWeight:'bold'}}>{item.c_status}</p>
+                                    }
+                                  },
+                              ]
+                          })}
+                          columns={Testcolumns}
+                          options={options}
+                        />
+                      </ThemeProvider>
+                    )}
               </div>
           </div>
       </div>
