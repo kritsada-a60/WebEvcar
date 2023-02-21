@@ -107,7 +107,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         })
       }else{
         axios.post(baseURL,{
-          "ctm_id": "5"
+          "ctm_id": ""
         }).then((response) => {
           setpost(response.data.data)
           // console.log(post,"post data")

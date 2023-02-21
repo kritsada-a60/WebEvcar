@@ -248,13 +248,13 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
              </div>
             <div style={{display:'flex',justifyContent:'flex-end',alignItems:'center',margin:'2vh 0vw'}}>
-                <Button onClick={navigateadddata} style={{color:'black', backgroundColor:'#6CDCC0',borderRadius:'50px',width:'9.740vw'}}>เพิ่ม</Button>
+                <Button onClick={navigateadddata} style={{color:'black', backgroundColor:'#6CDCC0',borderRadius:'50px',width:'9.740vw'}}>เพิ่มเครดิต</Button>
             </div>
             <div style={{display:'flex',justifyContent:'flex-start'}}>
                 <div style={{width:'100%'}}>
                 <ThemeProvider theme={getMuiTheme()}>
                     <MUIDataTable
-                        title={"ประวัติการเติมเงิน"}
+                        title={"ประวัติการใช้งาน"}
                         data={post.map(item => {
                             return [
                                 item.cd,
