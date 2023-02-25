@@ -115,6 +115,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
 
     const fetchapi = () => {
+      if(CTMID != "1"){
       axios.post(baseURL,{
         ctm_id: CTMID,
         u_id: UID,
@@ -125,6 +126,19 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         console.log(response.data.data)
         setcount(response.data.data.length)
       })
+      }else{
+      axios.post(baseURL,{
+        ctm_id: "2",
+        u_id: UID,
+        sdate: StartDate,
+        edate: EndDate
+      }).then((response) => {
+        setpost(response.data.data)
+        console.log(response.data.data)
+        setcount(response.data.data.length)
+      })
+      }
+
     }
 
     const Cancelapi = () => {
@@ -203,7 +217,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     useEffect(() =>{
       console.log("MySetCancelCID",MySetCancelCID) 
       console.log("MySetCancelCMQTT",MySetCancelCMQTT) 
-      console.log("MySetCancelCRID",MySetCancelCRID) 
+      console.log("MySetCancelCRID",MySetCancelCRID)
     }, [MySetCancelCID, MySetCancelCMQTT, MySetCancelCRID]);
 
     // useEffect(() =>{
@@ -211,16 +225,30 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     // }, [EditData_1]);
 
     const SearchData = () => {
+      if(CTMID != "1"){
       axios.post(baseURL,{
-        ctm_id: '2',
-        u_id: '3',
-        sdate: "2022-12-30",
-        edate: "2023-1-31"
+        ctm_id: CTMID,
+        u_id: UID,
+        sdate: StartDate,
+        edate: EndDate
       }).then((response) => {
         setpost(response.data.data)
         console.log(response.data.data)
         setcount(response.data.data.length)
       })
+      }else{
+      axios.post(baseURL,{
+        ctm_id: "2",
+        u_id: UID,
+        sdate: StartDate,
+        edate: EndDate
+      }).then((response) => {
+        setpost(response.data.data)
+        console.log(response.data.data)
+        setcount(response.data.data.length)
+      })
+      }
+
     };
 
     /* Add Button */
