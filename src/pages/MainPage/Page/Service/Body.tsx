@@ -122,15 +122,15 @@ type MyDorpDownLength = {
  
 
 
-const baseURL ="http://44.203.251.203:5000/service/list"
+const baseURL ="http://43.210.67.101:5000/service/list"
 
-const baseURLEdit ="http://44.203.251.203:5000/service/add"
+const baseURLEdit ="http://43.210.67.101:5000/service/add"
 
-const baseURLUpdateDelete ="http://44.203.251.203:5000/service/del"
+const baseURLUpdateDelete ="http://43.210.67.101:5000/service/del"
 
-const baseURLUpdateDataTable ="http://44.203.251.203:5000/service/one"
+const baseURLUpdateDataTable ="http://43.210.67.101:5000/service/one"
 
-const baseURLUpdateDataTable2 ="http://44.203.251.203:5000/station/list"
+const baseURLUpdateDataTable2 ="http://43.210.67.101:5000/station/list"
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
@@ -392,6 +392,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         
         console.log(event.target)
         // console.log(post3[0]?.sv_id)
+        if(CTMID != "1"){
         axios.post(baseURL,{
             ctm_id:CTMID,
             s_id:event.target.value
@@ -401,7 +402,18 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
             // setDorpDownStaion(res.data.data)
             setpost3(res.data.data)
         }).catch((err) => console.error(err))
-        
+
+        }else{
+        axios.post(baseURL,{
+            ctm_id:"",
+            s_id:event.target.value
+            // sv_id: 
+            }).then((res)=>{
+                console.log(res.data.data)
+                // setDorpDownStaion(res.data.data)
+                setpost3(res.data.data)
+            }).catch((err) => console.error(err))
+        }
     };
 
 

@@ -56,13 +56,13 @@ type MyData = {
 
 export interface ISAddCustomerPageProps {}
 
-const baseURL ="http://44.203.251.203:5000/usertype/list"
+const baseURL ="http://43.210.67.101:5000/usertype/list"
 
-const baseURLEdit ="http://44.203.251.203:5000/usertype/add"
+const baseURLEdit ="http://43.210.67.101:5000/usertype/add"
 
-const baseURLUpdateData ="http://44.203.251.203:5000/customer/one"
+const baseURLUpdateData ="http://43.210.67.101:5000/customer/one"
 
-const baseURLUpdateEdit ="http://44.203.251.203:5000/customer/edit"
+const baseURLUpdateEdit ="http://43.210.67.101:5000/customer/edit"
 
 const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props) => {
 
@@ -86,7 +86,7 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
         navigate('/customer');
     };
 
-    const baseURLUpdateAddDorpDown ="http://44.203.251.203:5000/customertype/list"
+    const baseURLUpdateAddDorpDown ="http://43.210.67.101:5000/customertype/list"
     
     const [Bname, setBname] = useState("") 
 

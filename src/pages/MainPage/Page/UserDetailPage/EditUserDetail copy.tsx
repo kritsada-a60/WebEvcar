@@ -84,23 +84,23 @@ type MyEditData = {
 
 export interface ISEditUserDetailPageProps {}
 
-const baseURL = 'http://44.203.251.203:5000/usertype/list';
+const baseURL = 'http://43.210.67.101:5000/usertype/list';
 
-const baseURLEdit = 'http://44.203.251.203:5000/usertype/add';
+const baseURLEdit = 'http://43.210.67.101:5000/usertype/add';
 
-const baseURLUpdateData = 'http://44.203.251.203:5000/user/info';
+const baseURLUpdateData = 'http://43.210.67.101:5000/user/info';
 
-const baseURLUpdateEdit = 'http://44.203.251.203:5000/usertype/edit';
+const baseURLUpdateEdit = 'http://43.210.67.101:5000/usertype/edit';
 
-const baseURLUpdateMyEdit = 'http://44.203.251.203:5000/usertype/edit';
+const baseURLUpdateMyEdit = 'http://43.210.67.101:5000/usertype/edit';
 
-const baseURLUpdateAddDorpDown = 'http://44.203.251.203:5000/customertype/list';
+const baseURLUpdateAddDorpDown = 'http://43.210.67.101:5000/customertype/list';
 
-const baseURLUpdateAddDorpDown2 = 'http://44.203.251.203:5000/customer/list';
+const baseURLUpdateAddDorpDown2 = 'http://43.210.67.101:5000/customer/list';
 
-const baseURLUpdateAddDorpDown3 = 'http://44.203.251.203:5000/userlevel/list';
+const baseURLUpdateAddDorpDown3 = 'http://43.210.67.101:5000/userlevel/list';
 
-const baseURLUpdateAddDorpDown4 = 'http://44.203.251.203:5000/usertype/list';
+const baseURLUpdateAddDorpDown4 = 'http://43.210.67.101:5000/usertype/list';
 
 const EditUserDetailPage: React.FunctionComponent<ISEditUserDetailPageProps> = (props) => {
     const [post, setpost] = useState<MyDataPost[]>([]);

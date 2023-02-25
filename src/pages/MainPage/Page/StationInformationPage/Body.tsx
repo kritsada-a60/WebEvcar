@@ -27,11 +27,11 @@ type MyDataPost = {
  
 
 
-const baseURL ="http://44.203.251.203:5000/usertype/list"
+const baseURL ="http://43.210.67.101:5000/usertype/list"
 
-const baseURLEdit ="http://44.203.251.203:5000/usertype/add"
+const baseURLEdit ="http://43.210.67.101:5000/usertype/add"
 
-const baseURLUpdateDelete ="http://44.203.251.203:5000/usertype/del"
+const baseURLUpdateDelete ="http://43.210.67.101:5000/usertype/del"
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 

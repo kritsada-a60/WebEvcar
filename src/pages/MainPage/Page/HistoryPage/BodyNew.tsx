@@ -49,9 +49,9 @@ type MyData = {
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
-    const baseURL ="http://44.203.251.203:5000/car/list"
+    const baseURL ="http://43.210.67.101:5000/car/list"
 
-    const baseURLUpdateDelete ="http://44.203.251.203:5000/car/del"
+    const baseURLUpdateDelete ="http://43.210.67.101:5000/car/del"
 
     const navigate = useNavigate();
 
@@ -85,8 +85,20 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     }
 
     useEffect(() =>{
-      axios.post(baseURL,{
-        ctm_id: CTMID
+      if(CTMID != "1"){
+        axios.post(baseURL,{
+          ctm_id: CTMID
+        }).then((response) => {
+          setpost(response.data.data)
+          // console.log(post,"post data")
+          console.log(response.data.data,"start data")
+          // console.log(response.data.data.length)
+          setcount(response.data.data.length)
+          LS.setItem('CountDataCarpage', response.data.data.length)
+        })
+      }else{
+        axios.post(baseURL,{
+        ctm_id: ""
       }).then((response) => {
         setpost(response.data.data)
         // console.log(post,"post data")
@@ -95,6 +107,8 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         setcount(response.data.data.length)
         LS.setItem('CountDataCarpage', response.data.data.length)
       })
+      }
+
     }, []);
 
     useEffect(() =>{

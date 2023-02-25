@@ -25,13 +25,13 @@ type MyDataPost = {
 
 export interface ISAddCustomerPageProps {}
 
-const baseURL ="http://44.203.251.203:5000/usertype/list"
+const baseURL ="http://43.210.67.101:5000/usertype/list"
 
-const baseURLEdit ="http://44.203.251.203:5000/usertype/add"
+const baseURLEdit ="http://43.210.67.101:5000/usertype/add"
 
-const baseURLUpdateData ="http://44.203.251.203:5000/customer/one"
+const baseURLUpdateData ="http://43.210.67.101:5000/customer/one"
 
-const baseURLUpdateEdit ="http://44.203.251.203:5000/usertype/edit"
+const baseURLUpdateEdit ="http://43.210.67.101:5000/usertype/edit"
 
 const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props) => {
 

@@ -155,17 +155,17 @@ type MyDorpDownLength = {
  
 
 
-const baseURL ="http://44.203.251.203:5000/service/list"
+const baseURL ="http://43.210.67.101:5000/service/list"
 
-const baseURLEdit ="http://44.203.251.203:5000/service/add"
+const baseURLEdit ="http://43.210.67.101:5000/service/add"
 
-const baseURLUpdateDelete ="http://44.203.251.203:5000/service/del"
+const baseURLUpdateDelete ="http://43.210.67.101:5000/service/del"
 
-const baseURLUpdateDataTable ="http://44.203.251.203:5000/service/one"
+const baseURLUpdateDataTable ="http://43.210.67.101:5000/service/one"
 
-const baseURLUpdateDataTable2 ="http://44.203.251.203:5000/station/list"
+const baseURLUpdateDataTable2 ="http://43.210.67.101:5000/station/list"
 
-const baseURLUpdateDorpdown ="http://44.203.251.203:5000/credit/list"
+const baseURLUpdateDorpdown ="http://43.210.67.101:5000/credit/list"
 
 
 
@@ -357,9 +357,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         //     axios
         //     .post(baseURLUpdateDataTable , {
         //         sv_id: NumberDorpDown,
-        //         // sv_id: LS.getItem("IdCustomerEdit"),
-
-                
+       //          // sv_id: LS.getItem("IdCustomerEdit"),    
         //         // sv_id: "6",
         //     })
         //     .then((res) => {
@@ -458,7 +456,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         // setNumberDorpDown(event.target.value); /* จุดเริ่มต้นของนรก */
         // SetLs_idEdit2();
         // setNameDorpDown(event.target.value);
-        
+
         console.log(event.target.value)
         // console.log(post3[0]?.sv_id)
         axios.post(baseURLUpdateDorpdown,{

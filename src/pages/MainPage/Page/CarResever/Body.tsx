@@ -47,11 +47,11 @@ type MyDataPost = {
  
 
 
-const baseURL ="http://44.203.251.203:5000/car/reservelist"
+const baseURL ="http://43.210.67.101:5000/car/reservelist"
 
-const baseURLCancel ="http://44.203.251.203:5000/car/cancel"
+const baseURLCancel ="http://43.210.67.101:5000/car/cancel"
 
-const baseTestURL ="http://44.203.251.203:5000/user/typelist"
+const baseTestURL ="http://43.210.67.101:5000/user/typelist"
 
 
 
@@ -135,7 +135,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         cr_id: MySetCancelCRID
       }).then((response) => {
         // setpost(response.data.data)
-        console.log(response.data.data)
+        console.log(response.data)
         // setcount(response.data.data.length)
       })
     }
@@ -167,7 +167,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
       const monthstartdate=monthdate.getFullYear()+'-'+(monthdate.getMonth()+ 1)+'-'+monthdate.getDate()
       setStartDate(monthstartdate)
       setEndDate(todaydate)
-      
+
     }, []);
 
 

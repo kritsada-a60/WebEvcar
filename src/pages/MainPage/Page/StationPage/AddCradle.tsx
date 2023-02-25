@@ -74,15 +74,15 @@ type AddStation ={
 
 export interface ISAddCradleInfomationPageProps {}
 
-const baseURL ="http://44.203.251.203:5000/station/list"
+const baseURL ="http://43.210.67.101:5000/station/list"
 
-const baseURLEdit ="http://44.203.251.203:5000/station/add"
+const baseURLEdit ="http://43.210.67.101:5000/station/add"
 
-const baseURLUpdateData ="http://44.203.251.203:5000/station/one"
+const baseURLUpdateData ="http://43.210.67.101:5000/station/one"
 
-const baseURLUpdateEdit ="http://44.203.251.203:5000/station/edit"
+const baseURLUpdateEdit ="http://43.210.67.101:5000/station/edit"
 
-const baseURLUpdateAdd ="http://44.203.251.203:5000/station/add"
+const baseURLUpdateAdd ="http://43.210.67.101:5000/station/add"
 
 const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPageProps> = (props) => {
 
@@ -103,8 +103,8 @@ const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPage
     const [Input12, setInput12] = useState("")
     const [Input13, setInput13] = useState("") 
     const [Input14, setInput14] = useState("")
-    const [Input15, setInput15] = useState("") 
-    const [Input16, setInput16] = useState("") 
+    const [Input15, setInput15] = useState("")
+    const [Input16, setInput16] = useState("")
     const [Input17, setInput17] = useState("")
 
     const LS = localStorage;
