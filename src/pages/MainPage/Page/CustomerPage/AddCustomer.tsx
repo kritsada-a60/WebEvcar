@@ -62,17 +62,17 @@ type MyDorpDownData = {
 
 export interface ISAddCustomerPageProps {}
 
-const baseURL ="http://43.210.67.101:5000/customer/list"
+const baseURL ="http://3.210.67.101:5000/customer/list"
 
-const baseURLEdit ="http://43.210.67.101:5000/customer/add"
+const baseURLEdit ="http://3.210.67.101:5000/customer/add"
 
-const baseURLUpdateData ="http://43.210.67.101:5000/customer/one"
+const baseURLUpdateData ="http://3.210.67.101:5000/customer/one"
 
-const baseURLUpdateEdit ="http://43.210.67.101:5000/customer/edit"
+const baseURLUpdateEdit ="http://3.210.67.101:5000/customer/edit"
 
-const baseURLUpdateAdd ="http://43.210.67.101:5000/customer/add"
+const baseURLUpdateAdd ="http://3.210.67.101:5000/customer/add"
 
-const baseURLUpdateAddDorpDown ="http://43.210.67.101:5000/customertype/list"
+const baseURLUpdateAddDorpDown ="http://3.210.67.101:5000/customertype/list"
 
 
 

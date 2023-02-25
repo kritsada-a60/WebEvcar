@@ -45,7 +45,7 @@ type MyDataPost = {
     
 };
 
-const baseURL ="http://43.210.67.101:5000/credit/user"
+const baseURL ="http://3.210.67.101:5000/credit/user"
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 

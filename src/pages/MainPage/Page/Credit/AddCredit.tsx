@@ -48,9 +48,9 @@ type MyDorpDownData = {
 
 export interface ISAddCreditPageProps {}
 
-const baseURL ="http://43.210.67.101:5000/user/list"
+const baseURL ="http://3.210.67.101:5000/user/list"
 
-const baseURLUpdateAdd ="http://43.210.67.101:5000/credit/deposit"
+const baseURLUpdateAdd ="http://3.210.67.101:5000/credit/deposit"
 
 const AddCreditPage: React.FunctionComponent<ISAddCreditPageProps> = (props) => {
 

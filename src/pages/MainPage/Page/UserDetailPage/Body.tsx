@@ -44,11 +44,11 @@ type MyDataPost2 = {
 
 
 
-const baseURL ="http://43.210.67.101:5000/user/login"
+const baseURL ="http://3.210.67.101:5000/user/login"
 
-const baseURLList ="http://43.210.67.101:5000/usertype/list"
+const baseURLList ="http://3.210.67.101:5000/usertype/list"
 
-const baseURLList2 ="http://43.210.67.101:5000/user/list"
+const baseURLList2 ="http://3.210.67.101:5000/user/list"
 
 
 

@@ -35,9 +35,9 @@ type AddCarReserve ={
 
 export interface ISAddCarReservePageProps {}
 
-const baseURL ="http://43.210.67.101:5000/station/list"
+const baseURL ="http://3.210.67.101:5000/station/list"
 
-const baseURLUpdateAdd ="http://43.210.67.101:5000/station/add"
+const baseURLUpdateAdd ="http://3.210.67.101:5000/station/add"
 
 const AddCarReservePage: React.FunctionComponent<ISAddCarReservePageProps> = (props) => {
 

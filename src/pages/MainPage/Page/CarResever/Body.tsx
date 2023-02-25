@@ -47,11 +47,11 @@ type MyDataPost = {
  
 
 
-const baseURL ="http://43.210.67.101:5000/car/reservelist"
+const baseURL ="http://3.210.67.101:5000/car/reservelist"
 
-const baseURLCancel ="http://43.210.67.101:5000/car/cancel"
+const baseURLCancel ="http://3.210.67.101:5000/car/cancel"
 
-const baseTestURL ="http://43.210.67.101:5000/user/typelist"
+const baseTestURL ="http://3.210.67.101:5000/user/typelist"
 
 
 

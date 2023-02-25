@@ -155,9 +155,9 @@ type MyDataStaion = {
 };
 
 
-const URLMerkersData = 'http://43.210.67.101:5000/car/list';
-const URLMerkersDataStation = 'http://43.210.67.101:5000/station/list';
-const baseURLTracking ="http://43.210.67.101:5000/car/tracking"
+const URLMerkersData = 'http://3.210.67.101:5000/car/list';
+const URLMerkersDataStation = 'http://3.210.67.101:5000/station/list';
+const baseURLTracking ="http://3.210.67.101:5000/car/tracking"
 
 function Map() {
     const [MarkersData, setMarkersData] = useState<MyMarkersData[]>([]);
@@ -243,7 +243,7 @@ function Map() {
 
         // if (tmp[0] == 'c') {
         //     axios
-        //         .post('http://43.210.67.101:5000/car/one', { c_id: tmp[1].toString() })
+        //         .post('http://3.210.67.101:5000/car/one', { c_id: tmp[1].toString() })
         //         .then((res) => {
         //             console.log(res.data.data,"Customer");
         //         })

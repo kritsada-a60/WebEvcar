@@ -74,15 +74,15 @@ type AddStation ={
 
 export interface ISAddCradleInfomationPageProps {}
 
-const baseURL ="http://43.210.67.101:5000/station/list"
+const baseURL ="http://3.210.67.101:5000/station/list"
 
-const baseURLEdit ="http://43.210.67.101:5000/station/add"
+const baseURLEdit ="http://3.210.67.101:5000/station/add"
 
-const baseURLUpdateData ="http://43.210.67.101:5000/station/one"
+const baseURLUpdateData ="http://3.210.67.101:5000/station/one"
 
-const baseURLUpdateEdit ="http://43.210.67.101:5000/station/edit"
+const baseURLUpdateEdit ="http://3.210.67.101:5000/station/edit"
 
-const baseURLUpdateAdd ="http://43.210.67.101:5000/station/add"
+const baseURLUpdateAdd ="http://3.210.67.101:5000/station/add"
 
 const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPageProps> = (props) => {
 

@@ -43,7 +43,7 @@ type MyDataPost = {
     ut_type: string;
 };
 
-const baseURL ="http://43.210.67.101:5000/credit/list"
+const baseURL ="http://3.210.67.101:5000/credit/list"
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 

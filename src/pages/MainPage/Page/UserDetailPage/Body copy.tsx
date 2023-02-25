@@ -15,7 +15,7 @@ type MyDataPost = {
     ut_id: number;
 };
 
-const baseURL ="http://43.210.67.101:5000/user/login"
+const baseURL ="http://3.210.67.101:5000/user/login"
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 

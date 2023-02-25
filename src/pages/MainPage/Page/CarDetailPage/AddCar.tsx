@@ -98,19 +98,19 @@ type MyDorpDownData2 = {
 
 export interface ISAddCarPageProps {}
 
-const baseURL ="http://43.210.67.101:5000/car/list"
+const baseURL ="http://3.210.67.101:5000/car/list"
 
-const baseURLEdit ="http://43.210.67.101:5000/car/add"
+const baseURLEdit ="http://3.210.67.101:5000/car/add"
 
-const baseURLUpdateData ="http://43.210.67.101:5000/car/one"
+const baseURLUpdateData ="http://3.210.67.101:5000/car/one"
 
-const baseURLUpdateEdit ="http://43.210.67.101:5000/car/edit"
+const baseURLUpdateEdit ="http://3.210.67.101:5000/car/edit"
 
-const baseURLUpdateAdd ="http://43.210.67.101:5000/car/add"
+const baseURLUpdateAdd ="http://3.210.67.101:5000/car/add"
 
-const baseURLDorpDown ="http://43.210.67.101:5000/customer/list"
+const baseURLDorpDown ="http://3.210.67.101:5000/customer/list"
 
-const baseURLDorpDown2 ="http://43.210.67.101:5000/powertype/list"
+const baseURLDorpDown2 ="http://3.210.67.101:5000/powertype/list"
 
 const AddCarPage: React.FunctionComponent<ISAddCarPageProps> = (props) => {
 
