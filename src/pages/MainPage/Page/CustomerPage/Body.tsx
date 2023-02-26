@@ -1,8 +1,8 @@
-import MUIDataTable from "mui-datatables";
+import MUIDataTable from 'mui-datatables';
 import React, { useEffect, useState } from 'react';
-import { useParams , useNavigate} from 'react-router-dom';
-import Button from '@mui/material/Button'
-import axios from "axios";
+import { useParams, useNavigate } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import axios from 'axios';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
@@ -46,16 +46,15 @@ type MyData = {
     ctmt_name: string;
 };
 
-const baseURL ="http://3.210.67.101:5000/customer/list"
+const baseURL = 'https://evcarkmitl.com:5000/customer/list';
 
-const baseURLEdit ="http://3.210.67.101:5000/customer/add"
+const baseURLEdit = 'https://evcarkmitl.com:5000/customer/add';
 
-const baseURLUpdateDelete ="http://3.210.67.101:5000/customer/del"
+const baseURLUpdateDelete = 'https://evcarkmitl.com:5000/customer/del';
 
-const test ="http://3.210.67.101:5000/customer/one"
+const test = 'https://evcarkmitl.com:5000/customer/one';
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
-
     const [message, setMessage] = useState('');
     const { nametext } = useParams();
     const navigate = useNavigate();
@@ -63,7 +62,6 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const [post, setpost] = useState<MyData[]>([]);
 
     const [count, setcount] = useState('');
-    
 
     // const [MyIdEdit, setMyIdEdit] = useState<IDEdit>();
 
@@ -88,74 +86,68 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         // navigateadddata();
     }
 
-
-
     const [EditCustomerData, setEditCustomerData] = useState('');
     // const [DeleteData, setDeleteData] = useState<MyDeleteData[]>([]);
     const [DeleteData, setDeleteData] = useState('');
     const [EditData_3, setEditData_3] = useState();
 
-
-
-    useEffect(() =>{
-      axios.post(baseURL,{
-        ctmt_id: Number(LVID),
-      }).then((response) => {
-        setpost(response.data.data)
-        // console.log(post,"post data")
-        console.log(response.data.data,"start data")
-        // console.log(response.data.data.length)
-        setcount(response.data.data.length)
-      })
+    useEffect(() => {
+        axios
+            .post(baseURL, {
+                ctmt_id: Number(LVID)
+            })
+            .then((response) => {
+                setpost(response.data.data);
+                // console.log(post,"post data")
+                console.log(response.data.data, 'start data');
+                // console.log(response.data.data.length)
+                setcount(response.data.data.length);
+            });
     }, []);
 
-    useEffect(() =>{
-        console.log(post,"this data")
+    useEffect(() => {
+        console.log(post, 'this data');
     }, [post]);
 
-    useEffect(() =>{
-        console.log("this count",count)
+    useEffect(() => {
+        console.log('this count', count);
     }, [count]);
 
     /* Click And Go Next Page */
 
-    useEffect(() =>{
-        console.log("EditCustomerData",EditCustomerData)   
+    useEffect(() => {
+        console.log('EditCustomerData', EditCustomerData);
         SetLs_idEdit();
-        if (EditCustomerData != ''){
+        if (EditCustomerData != '') {
             navigateeditdata();
         }
     }, [EditCustomerData]);
 
-
-
-    useEffect(() =>{
-        console.log("EditCustomerData",DeleteData)
+    useEffect(() => {
+        console.log('EditCustomerData', DeleteData);
         GetLs_idDelete();
 
-        if ( DeleteData != ''){
-            var answer = window.confirm("ต้องการจะลบข้อมูลหรือไม่");
+        if (DeleteData != '') {
+            var answer = window.confirm('ต้องการจะลบข้อมูลหรือไม่');
             if (answer) {
-                    alert("ลบข้อมูลสำเร็จ");
-                    axios
+                alert('ลบข้อมูลสำเร็จ');
+                axios
                     .post(baseURLUpdateDelete, {
                         ctm_id: Number(DeleteData),
-                        u_id: "1",
+                        u_id: '1'
                     })
                     .then((res) => {
-                        console.log(res,"this is delete");
+                        console.log(res, 'this is delete');
                         window.location.reload();
                         // console.log("ok");
                     })
                     .catch((err) => console.error(err));
-                }else{
-                    window.location.reload();
-                }
+            } else {
+                window.location.reload();
             }
-            else {
-                
-                // alert("ลบข้อมูลไม่สำเร็จ");
-            }
+        } else {
+            // alert("ลบข้อมูลไม่สำเร็จ");
+        }
     }, [DeleteData]);
 
     // async function AlertMassage (){
@@ -169,24 +161,19 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     // }
 
-
-
     const navigateadddata = () => {
         navigate('/addcustomer');
     };
 
-        const navigateeditdata = () => {
+    const navigateeditdata = () => {
         navigate('/editcustomer');
     };
-
-
-
 
     const handleSubmit = () => {
         // if (DeleteData != "0"){
         //     console.log(DeleteData,"Now Delete")
         // }
-        console.log(DeleteData)
+        console.log(DeleteData);
         // axios
         // .post(baseURLUpdateDelete, {
         //     ctm_id: Number(DeleteData),
@@ -199,73 +186,75 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         // .catch((err) => console.error(err));
     };
 
-
-
-    const columns = ["เลขที่กิจการ", "รูปแบบกิจการ", "สถานะเปิด/ปิด", "ที่อยู่", "ชื่อเจ้าของอู่", "เบอร์ติดต่อ", "เวลาทำการ"];
+    const columns = ['เลขที่กิจการ', 'รูปแบบกิจการ', 'สถานะเปิด/ปิด', 'ที่อยู่', 'ชื่อเจ้าของอู่', 'เบอร์ติดต่อ', 'เวลาทำการ'];
 
     const data = [
-    ["Joe James", "Test Corp", "Yonkers", "NY"],
-    ["John Walsh", "Test Corp", "Hartford", "CT"],
-    ["Bob Herm", "Test Corp", "Tampa", "FL"],
-    ["James Houston", "Test Corp", "Dallas", "TX"],
+        ['Joe James', 'Test Corp', 'Yonkers', 'NY'],
+        ['John Walsh', 'Test Corp', 'Hartford', 'CT'],
+        ['Bob Herm', 'Test Corp', 'Tampa', 'FL'],
+        ['James Houston', 'Test Corp', 'Dallas', 'TX']
     ];
 
-    const StationInformationPagedata = [
-    ["11/10711", "สถานีประจุไฟ", "เปิด", "12/1 อ.เมือง จ.ลพบุรี", "คล่องแคล่ว    ว่องไว", "xxx-xxx-xxxx", "08.30-17.30 น."],
-    ];
+    const StationInformationPagedata = [['11/10711', 'สถานีประจุไฟ', 'เปิด', '12/1 อ.เมือง จ.ลพบุรี', 'คล่องแคล่ว    ว่องไว', 'xxx-xxx-xxxx', '08.30-17.30 น.']];
 
     /* Add Button */
 
     const Testcolumns = [
         // "ID",
-        "ชื่อลูกค้า", 
-        "ประเภทลูกค้า", 
-        "เลขทะเบียนการค้า", 
-        // "ชื่อธนาคาร", 
-        // "บัญขีธนาคาร", 
-        "ชื่อผู้ติดต่อ", 
-        // "ที่อยู่", 
-        // "ตำบล", 
+        'ชื่อลูกค้า',
+        'ประเภทลูกค้า',
+        'เลขทะเบียนการค้า',
+        // "ชื่อธนาคาร",
+        // "บัญขีธนาคาร",
+        'ชื่อผู้ติดต่อ',
+        // "ที่อยู่",
+        // "ตำบล",
         // "อำเภอ",
-        "จังหวัด", 
-        // "รหัสไปรษณีย์", 
-        // "โทรศัพท์", 
-        "มือถือ",
-        // "E-Mail", 
-        "รหัส MQTT",
-      {
-        name: "",
-        options: {
-            filter: false,
-            sort: false,
-            customBodyRenderLite: (dataIndex:any, rowIndex:any) => {
-            return (
-                <EditOutlinedIcon onClick={() => {
-                setEditCustomerData(post[dataIndex].ctm_id);
-                SetLs_idEdit();    
-                }} style={{cursor:'pointer'}}/>
-            );
-          }
+        'จังหวัด',
+        // "รหัสไปรษณีย์",
+        // "โทรศัพท์",
+        'มือถือ',
+        // "E-Mail",
+        'รหัส MQTT',
+        {
+            name: '',
+            options: {
+                filter: false,
+                sort: false,
+                customBodyRenderLite: (dataIndex: any, rowIndex: any) => {
+                    return (
+                        <EditOutlinedIcon
+                            onClick={() => {
+                                setEditCustomerData(post[dataIndex].ctm_id);
+                                SetLs_idEdit();
+                            }}
+                            style={{ cursor: 'pointer' }}
+                        />
+                    );
+                }
+            }
+        },
+        {
+            name: '',
+            options: {
+                filter: false,
+                sort: false,
+                customBodyRenderLite: (dataIndex: any, rowIndex: any) => {
+                    return (
+                        <DeleteIcon
+                            onClick={() => {
+                                setDeleteData(post[dataIndex].ctm_id);
+                                GetLs_idDelete();
+                                // handleSubmit();
+                            }}
+                            style={{ cursor: 'pointer' }}
+                        />
+                    );
+                }
+            }
         }
-      },
-      {
-        name: "",
-        options: {
-            filter: false,
-            sort: false,
-            customBodyRenderLite: (dataIndex:any, rowIndex:any) => {
-            return (
-            <DeleteIcon onClick={() => {
-                setDeleteData(post[dataIndex].ctm_id);
-                GetLs_idDelete();
-                // handleSubmit();    
-            }} style={{cursor:'pointer'}}/>
-            );
-          }
-        }
-      }
     ];
-    
+
     const options = {
         // caseSensitive: true,
         confirmFilters: false,
@@ -275,21 +264,21 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         download: false,
         print: false,
         selectableRowsHeader: false,
-        selectableRowsHideCheckboxes: true,
+        selectableRowsHideCheckboxes: true
     };
 
     const getMuiTheme = () =>
-      createTheme({
-        components: {
-          MuiTableCell: {
-            styleOverrides:{ root: {
-              padding: '16px 1.5vw',
-            }}
-          },
-
-        }
-      });
-      
+        createTheme({
+            components: {
+                MuiTableCell: {
+                    styleOverrides: {
+                        root: {
+                            padding: '16px 1.5vw'
+                        }
+                    }
+                }
+            }
+        });
 
     /* Add Button and Vaule */
 
@@ -324,47 +313,49 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     //             <Button aria-label="edit" onClick={() => {
     //                 // alert(data2[dataIndex].name)
     //                 alert(post[rowIndex].ut_name)
-                    
+
     //             }}>
     //                 Button
     //             </Button>
-                
+
     //         );
     //     }
     //     },
-        
+
     // }
     // ];
 
     return (
-        <div style={{margin:'5vh 5vw'}}>
-            <div style={{display:'flex',justifyContent:'flex-end',alignItems:'center',margin:'2vh 0vw'}}>
-                <Button onClick={navigateadddata} style={{color:'black', backgroundColor:'#6CDCC0',borderRadius:'50px',width:'9.740vw'}}>เพิ่ม</Button>
+        <div style={{ margin: '5vh 5vw' }}>
+            <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', margin: '2vh 0vw' }}>
+                <Button onClick={navigateadddata} style={{ color: 'black', backgroundColor: '#6CDCC0', borderRadius: '50px', width: '9.740vw' }}>
+                    เพิ่ม
+                </Button>
             </div>
-            <div style={{display:'flex',justifyContent:'flex-start'}}>
-                <div style={{width:'100%'}}>
-                <ThemeProvider theme={getMuiTheme()}>
-                    <MUIDataTable
-                        title={"ข้อมูลลูกค้า"}
-                        data={post.map(item => {
-                            return [
-                                // item.ctm_id,
-                                item.ctm_name,
-                                item.ctmt_name,
-                                item.ctm_cno,
-                                // item.ctm_bank,
-                                // item.ctm_bank_no,
-                                item.ctm_contact_name,
-                                item.ctm_province,
-                                item.ctm_mobile,
-                                item.ctm_mqtt_code,
-                            ]
-                        })} 
-                        columns={Testcolumns}
-                        options={options}
-                    />
-                </ThemeProvider>
-                {/* <MUIDataTable
+            <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                <div style={{ width: '100%' }}>
+                    <ThemeProvider theme={getMuiTheme()}>
+                        <MUIDataTable
+                            title={'ข้อมูลลูกค้า'}
+                            data={post.map((item) => {
+                                return [
+                                    // item.ctm_id,
+                                    item.ctm_name,
+                                    item.ctmt_name,
+                                    item.ctm_cno,
+                                    // item.ctm_bank,
+                                    // item.ctm_bank_no,
+                                    item.ctm_contact_name,
+                                    item.ctm_province,
+                                    item.ctm_mobile,
+                                    item.ctm_mqtt_code
+                                ];
+                            })}
+                            columns={Testcolumns}
+                            options={options}
+                        />
+                    </ThemeProvider>
+                    {/* <MUIDataTable
                     title={"ข้อมูลสถานี"}
                     data={data2}
                     columns={columnss} 

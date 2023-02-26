@@ -1,9 +1,9 @@
-import MUIDataTable from "mui-datatables";
+import MUIDataTable from 'mui-datatables';
 import React, { useEffect, useState } from 'react';
-import { useParams , useNavigate} from 'react-router-dom';
-import Button from '@mui/material/Button'
-import axios from "axios";
-import { Typography , TextField} from "@mui/material";
+import { useParams, useNavigate } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import axios from 'axios';
+import { Typography, TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Dayjs } from 'dayjs';
@@ -14,9 +14,7 @@ import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-
 export interface IBodyPageProps {}
-
 
 type MyDataPost = {
     ut_name: string;
@@ -43,10 +41,9 @@ type MyDataPost = {
     ut_type: string;
 };
 
-const baseURL ="http://3.210.67.101:5000/credit/list"
+const baseURL = 'https://evcarkmitl.com:5000/credit/list';
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
-
     const [message, setMessage] = useState('');
     const { nametext } = useParams();
     const navigate = useNavigate();
@@ -56,11 +53,11 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const [count, setcount] = useState('');
 
     const handleChangeStartDate = (newValue: any | null) => {
-      setStartDate(newValue);
+        setStartDate(newValue);
     };
 
     const handleChangeEndDate = (newValue: any | null) => {
-      setEndDate(newValue);
+        setEndDate(newValue);
     };
 
     // const [MyIdEdit, setMyIdEdit] = useState<IDEdit>();
@@ -95,46 +92,48 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const CTMID = LS.getItem('USERCTM');
     const UID = LS.getItem('LVUSERID');
     const CID = LS.getItem('IdCarEditHistory');
-    
 
     const fetchapi = () => {
-      console.log("This is Ctm_id",CTMID)
-      if(CTMID != "1"){
-        axios.post(baseURL,{
-          ctm_id: CTMID,
-          u_id: "",
-          sdate: String(StartDate),
-          edate: String(EndDate),
-          s_id: ""
-        }).then((response) => {
-          setpost(response.data.data)
-          console.log(response.data.data)
-          setcount(response.data.data.length)
-        })
-      }else{
-         axios.post(baseURL,{
-          ctm_id: "5",
-          u_id: "",
-          sdate: String(StartDate),
-          edate: String(EndDate),
-          s_id: ""
-        }).then((response) => {
-          setpost(response.data.data)
-          console.log(response.data.data)
-          setcount(response.data.data.length)
-        })
-      }
+        console.log('This is Ctm_id', CTMID);
+        if (CTMID != '1') {
+            axios
+                .post(baseURL, {
+                    ctm_id: CTMID,
+                    u_id: '',
+                    sdate: String(StartDate),
+                    edate: String(EndDate),
+                    s_id: ''
+                })
+                .then((response) => {
+                    setpost(response.data.data);
+                    console.log(response.data.data);
+                    setcount(response.data.data.length);
+                });
+        } else {
+            axios
+                .post(baseURL, {
+                    ctm_id: '5',
+                    u_id: '',
+                    sdate: String(StartDate),
+                    edate: String(EndDate),
+                    s_id: ''
+                })
+                .then((response) => {
+                    setpost(response.data.data);
+                    console.log(response.data.data);
+                    setcount(response.data.data.length);
+                });
+        }
+    };
 
-    }
-
-    useEffect(() =>{
-        const showdate =new Date();
-        const todaydate=showdate.getFullYear()+'-'+(showdate.getMonth()+ 1) +'-'+showdate.getDate()
+    useEffect(() => {
+        const showdate = new Date();
+        const todaydate = showdate.getFullYear() + '-' + (showdate.getMonth() + 1) + '-' + showdate.getDate();
         const monthdate = new Date();
         monthdate.setMonth(-1);
-        const monthstartdate=monthdate.getFullYear()+'-'+(monthdate.getMonth()+ 1)+'-'+monthdate.getDate()
-        setStartDate(monthstartdate)
-        setEndDate(todaydate)
+        const monthstartdate = monthdate.getFullYear() + '-' + (monthdate.getMonth() + 1) + '-' + monthdate.getDate();
+        setStartDate(monthstartdate);
+        setEndDate(todaydate);
         // console.log(todaydate,"today")
         // console.log(monthdate,"after 1 month")
         // console.log(showdate.setMonth(showdate.getMonth()- 1), "dateeeeeeeee")
@@ -145,27 +144,27 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         // console.log(endOfMonth, "Second");
     }, []);
 
-    useEffect(() =>{
+    useEffect(() => {
         // console.log("this data",post)
     }, [post]);
 
-    useEffect(() =>{
-        console.log("this count",count)
+    useEffect(() => {
+        console.log('this count', count);
     }, [count]);
 
-    useEffect(() =>{
-      console.log(StartDate)
-      if ((StartDate != undefined)&&(StartDate!="")&&(EndDate != undefined)&&(EndDate!="")){
-        fetchapi()
-      }
+    useEffect(() => {
+        console.log(StartDate);
+        if (StartDate != undefined && StartDate != '' && EndDate != undefined && EndDate != '') {
+            fetchapi();
+        }
     }, [StartDate, EndDate]);
 
     /* Click And Go Next Page */
 
-    useEffect(() =>{
-        console.log("EditData",EditData_1)   
+    useEffect(() => {
+        console.log('EditData', EditData_1);
         SetLs_idEdit();
-        if (EditData_1 != ''){
+        if (EditData_1 != '') {
             navigateadddata();
         }
     }, [EditData_1]);
@@ -174,16 +173,9 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         navigate('/addcredit');
     };
 
-
-
     /* Add Button */
 
-    const Testcolumns = [
-      "วันเวลา",
-      "ชื่อ-นามสกุล",
-      "ผู้เติมเงิน",
-      "จำนวนเงิน",
-    ];
+    const Testcolumns = ['วันเวลา', 'ชื่อ-นามสกุล', 'ผู้เติมเงิน', 'จำนวนเงิน'];
 
     const options = {
         // caseSensitive: true,
@@ -194,79 +186,63 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         download: false,
         print: false,
         selectableRowsHeader: false,
-        selectableRowsHideCheckboxes: true,
+        selectableRowsHideCheckboxes: true
     };
 
     const getMuiTheme = () =>
-      createTheme({
-        components: {
-          MuiTableCell: {
-            styleOverrides:{ root: {
-              padding: '16px 1.5vw',
-            }}
-          },
-
-        }
-      });
+        createTheme({
+            components: {
+                MuiTableCell: {
+                    styleOverrides: {
+                        root: {
+                            padding: '16px 1.5vw'
+                        }
+                    }
+                }
+            }
+        });
 
     const DateTime = () => {
-        const showdate =new Date();
-        const displaytodaydate=showdate.getDate()+'/'+showdate.getMonth()+'/'+showdate.getFullYear()
-    }
-
+        const showdate = new Date();
+        const displaytodaydate = showdate.getDate() + '/' + showdate.getMonth() + '/' + showdate.getFullYear();
+    };
 
     return (
-        <div style={{margin:'5vh 5vw'}}>
-            <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'flex-start',alignItems:'center'}}>
+        <div style={{ margin: '5vh 5vw' }}>
+            <div style={{ margin: '2.5vh 0', display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
                 <label>
-                    <div style={{margin:'1vh 2vw 1vh 0vw',backgroundColor:'white',borderColor:'black', width:'13vw'}}>
+                    <div style={{ margin: '1vh 2vw 1vh 0vw', backgroundColor: 'white', borderColor: 'black', width: '13vw' }}>
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DesktopDatePicker
-                            label="StartDate"
-                            inputFormat="YYYY/MM/DD"
-                            value={StartDate}
-                            onChange={handleChangeStartDate}
-                            renderInput={(params) => <TextField {...params} />}
-                            />
+                            <DesktopDatePicker label="StartDate" inputFormat="YYYY/MM/DD" value={StartDate} onChange={handleChangeStartDate} renderInput={(params) => <TextField {...params} />} />
                         </LocalizationProvider>
-                    </div>    
-                    </label>
-                    <label>
-                    <div style={{margin:'1vh 1vw 1vh 0vw',backgroundColor:'white',borderColor:'black', width:'13vw'}}>
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DesktopDatePicker
-                            label="EndDate"
-                            inputFormat="YYYY/MM/DD"
-                            value={EndDate}
-                            onChange={handleChangeEndDate}
-                            renderInput={(params) => <TextField {...params} />}
-                            />
-                        </LocalizationProvider>
-                    </div>    
+                    </div>
                 </label>
-                <SearchIcon onClick={fetchapi} style={{cursor:'pointer'}}/>
-
-             </div>
-            <div style={{display:'flex',justifyContent:'flex-end',alignItems:'center',margin:'2vh 0vw'}}>
-                <Button onClick={navigateadddata} style={{color:'black', backgroundColor:'#6CDCC0',borderRadius:'50px',width:'9.740vw'}}>เพิ่มเครดิต</Button>
+                <label>
+                    <div style={{ margin: '1vh 1vw 1vh 0vw', backgroundColor: 'white', borderColor: 'black', width: '13vw' }}>
+                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                            <DesktopDatePicker label="EndDate" inputFormat="YYYY/MM/DD" value={EndDate} onChange={handleChangeEndDate} renderInput={(params) => <TextField {...params} />} />
+                        </LocalizationProvider>
+                    </div>
+                </label>
+                <SearchIcon onClick={fetchapi} style={{ cursor: 'pointer' }} />
             </div>
-            <div style={{display:'flex',justifyContent:'flex-start'}}>
-                <div style={{width:'100%'}}>
-                <ThemeProvider theme={getMuiTheme()}>
-                    <MUIDataTable
-                        title={"ประวัติการใช้งาน"}
-                        data={post.map(item => {
-                            return [
-                                item.cd,
-                                item.u_fullname,
-                                item.u_fullname_add,
-                                item.ut_balance,
-                            ]
-                        })}
-                        columns={Testcolumns}
-                        options={options}
-                    />
-                </ThemeProvider>
+            <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', margin: '2vh 0vw' }}>
+                <Button onClick={navigateadddata} style={{ color: 'black', backgroundColor: '#6CDCC0', borderRadius: '50px', width: '9.740vw' }}>
+                    เพิ่มเครดิต
+                </Button>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                <div style={{ width: '100%' }}>
+                    <ThemeProvider theme={getMuiTheme()}>
+                        <MUIDataTable
+                            title={'ประวัติการใช้งาน'}
+                            data={post.map((item) => {
+                                return [item.cd, item.u_fullname, item.u_fullname_add, item.ut_balance];
+                            })}
+                            columns={Testcolumns}
+                            options={options}
+                        />
+                    </ThemeProvider>
                 </div>
             </div>
         </div>

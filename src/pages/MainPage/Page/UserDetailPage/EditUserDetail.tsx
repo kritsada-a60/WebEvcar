@@ -84,23 +84,23 @@ type MyEditData = {
 
 export interface ISEditUserDetailPageProps {}
 
-const baseURL = 'http://3.210.67.101:5000/usertype/list';
+const baseURL = 'https://evcarkmitl.com:5000/usertype/list';
 
-const baseURLEdit = 'http://3.210.67.101:5000/usertype/add';
+const baseURLEdit = 'https://evcarkmitl.com:5000/usertype/add';
 
-const baseURLUpdateData = 'http://3.210.67.101:5000/user/info';
+const baseURLUpdateData = 'https://evcarkmitl.com:5000/user/info';
 
-const baseURLUpdateEdit = 'http://3.210.67.101:5000/usertype/edit';
+const baseURLUpdateEdit = 'https://evcarkmitl.com:5000/usertype/edit';
 
-const baseURLUpdateMyEdit = 'http://3.210.67.101:5000/user/edit';
+const baseURLUpdateMyEdit = 'https://evcarkmitl.com:5000/user/edit';
 
-const baseURLUpdateAddDorpDown = 'http://3.210.67.101:5000/customertype/list';
+const baseURLUpdateAddDorpDown = 'https://evcarkmitl.com:5000/customertype/list';
 
-const baseURLUpdateAddDorpDown2 = 'http://3.210.67.101:5000/customer/list';
+const baseURLUpdateAddDorpDown2 = 'https://evcarkmitl.com:5000/customer/list';
 
-const baseURLUpdateAddDorpDown3 = 'http://3.210.67.101:5000/userlevel/list';
+const baseURLUpdateAddDorpDown3 = 'https://evcarkmitl.com:5000/userlevel/list';
 
-const baseURLUpdateAddDorpDown4 = 'http://3.210.67.101:5000/usertype/list';
+const baseURLUpdateAddDorpDown4 = 'https://evcarkmitl.com:5000/usertype/list';
 
 const EditUserDetailPage: React.FunctionComponent<ISEditUserDetailPageProps> = (props) => {
     const [post, setpost] = useState<MyDataPost[]>([]);
@@ -331,32 +331,36 @@ const EditUserDetailPage: React.FunctionComponent<ISEditUserDetailPageProps> = (
     }, [FirstData]);
 
     useEffect(() => {
-        console.log("this Input1",Input1)
-      if (Input1 > '1'){
-        axios.post(baseURLUpdateAddDorpDown2,{
-          ctmt_id : Input1,
-        }).then((response) => {
-          console.log(response.data.data)
-          setDorpDownData2(response.data.data)
-          if (UserInfo != undefined) setInput2(UserInfo.ctm_id.toString());
-        })
-        .catch((err) => console.error(err));
-      }else{
-        axios.post(baseURLUpdateAddDorpDown2,{
-          ctmt_id : Input1,
-        }).then((response) => {
-          // console.log(response.data.data)
-          // setDorpDownData2(response.data.data)
-          // const FillDropDown = response.data.data
-          const resultDorpDownData = response.data.data?.filter((name:any) => {
-              return name.ctm_name == "System"
-          })
-          setDorpDownData2(resultDorpDownData)
-          if (UserInfo != undefined) setInput2(UserInfo.ctm_id.toString());
-          console.log(resultDorpDownData)
-        })
-        .catch((err) => console.error(err));
-      }
+        console.log('this Input1', Input1);
+        if (Input1 > '1') {
+            axios
+                .post(baseURLUpdateAddDorpDown2, {
+                    ctmt_id: Input1
+                })
+                .then((response) => {
+                    console.log(response.data.data);
+                    setDorpDownData2(response.data.data);
+                    if (UserInfo != undefined) setInput2(UserInfo.ctm_id.toString());
+                })
+                .catch((err) => console.error(err));
+        } else {
+            axios
+                .post(baseURLUpdateAddDorpDown2, {
+                    ctmt_id: Input1
+                })
+                .then((response) => {
+                    // console.log(response.data.data)
+                    // setDorpDownData2(response.data.data)
+                    // const FillDropDown = response.data.data
+                    const resultDorpDownData = response.data.data?.filter((name: any) => {
+                        return name.ctm_name == 'System';
+                    });
+                    setDorpDownData2(resultDorpDownData);
+                    if (UserInfo != undefined) setInput2(UserInfo.ctm_id.toString());
+                    console.log(resultDorpDownData);
+                })
+                .catch((err) => console.error(err));
+        }
     }, [Input1]);
 
     useEffect(() => {
@@ -368,19 +372,18 @@ const EditUserDetailPage: React.FunctionComponent<ISEditUserDetailPageProps> = (
                 return DorpDownDataS.ctmt_id > 1;
             }
         });
-        const result2 = DorpDownData3.filter((DorpDownDataS:any) => {
-          if (Input9 == '1'){
-            return DorpDownDataS.ul_id == 1
-          }else if(Input9 == '2'){
-            return DorpDownDataS.ul_id == 2
-          }else{
-            return DorpDownDataS
-          }
-
-        })
+        const result2 = DorpDownData3.filter((DorpDownDataS: any) => {
+            if (Input9 == '1') {
+                return DorpDownDataS.ul_id == 1;
+            } else if (Input9 == '2') {
+                return DorpDownDataS.ul_id == 2;
+            } else {
+                return DorpDownDataS;
+            }
+        });
         console.log('this result', result);
         setDorpDownDatafillter(result);
-        setDropDownLvUserfillter(result2)
+        setDropDownLvUserfillter(result2);
         console.log('Effect Input9');
         console.log(UserInfo);
         if (UserInfo != undefined) setInput1(UserInfo.ctmt_id.toString());

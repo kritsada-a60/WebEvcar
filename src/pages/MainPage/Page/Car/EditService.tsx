@@ -57,17 +57,17 @@ type MyEditData = {
 
 export interface ISAddServicePageProps {}
 
-const baseURL = 'http://3.210.67.101:5000/service/list';
+const baseURL = 'https://evcarkmitl.com:5000/service/list';
 
-const baseURLEdit = 'http://3.210.67.101:5000/service/add';
+const baseURLEdit = 'https://evcarkmitl.com:5000/service/add';
 
-const baseURLUpdateData = 'http://3.210.67.101:5000/service/one';
+const baseURLUpdateData = 'https://evcarkmitl.com:5000/service/one';
 
-const baseURLUpdateEdit = 'http://3.210.67.101:5000/service/edit';
+const baseURLUpdateEdit = 'https://evcarkmitl.com:5000/service/edit';
 
-const baseURLDorpDown = 'http://3.210.67.101:5000/powercatalog/list';
+const baseURLDorpDown = 'https://evcarkmitl.com:5000/powercatalog/list';
 
-const baseURLDorpDown2 = 'http://3.210.67.101:5000/powertype/list';
+const baseURLDorpDown2 = 'https://evcarkmitl.com:5000/powertype/list';
 
 const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) => {
     const [post, setpost] = useState<MyEditData[]>([]);
@@ -145,9 +145,9 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
     const handleSubmit = (e: any) => {
         e.preventDefault();
         console.log(Bnumber);
-        const NumberS_ID = LS.getItem("IdServiceDorpDown")
-        const NumberSV_ID = LS.getItem("IdCustomerEdit")
-        
+        const NumberS_ID = LS.getItem('IdServiceDorpDown');
+        const NumberSV_ID = LS.getItem('IdCustomerEdit');
+
         axios
             .post(baseURLUpdateEdit, {
                 sv_id: Number(NumberSV_ID),
@@ -159,28 +159,28 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
                 sv_price: Number(Input5),
                 sv_unit: Input6,
                 sv_remark: Input8,
-                sv_active: "1",
+                sv_active: '1',
                 u_id: UID
             })
             .then((res) => {
                 console.log(res.data);
                 console.log('ok');
-                
-                if(res.data.success == true){
-                AlertMassage();
+
+                if (res.data.success == true) {
+                    AlertMassage();
                 } else {
-                alert("ข้อมูลไม่ถูกต้อง");
+                    alert('ข้อมูลไม่ถูกต้อง');
                 }
                 // setBnumber(res.data.success)
             })
             .catch((err) => console.error(err));
     };
 
-    async function AlertMassage (){
-      await alert("ข้อมูลถูกต้อง");
-      await LS.setItem('IdServiceDorpDown', '');
-      await LS.setItem('IdCustomerEdit', '');
-      await navigateadddata();
+    async function AlertMassage() {
+        await alert('ข้อมูลถูกต้อง');
+        await LS.setItem('IdServiceDorpDown', '');
+        await LS.setItem('IdCustomerEdit', '');
+        await navigateadddata();
     }
 
     /* axios Editdata */
@@ -203,9 +203,9 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
                 setInput3(response.data.data[0].sv_name);
                 setInput4(response.data.data[0].sv_serial);
                 setInput5(response.data.data[0].sv_price);
-                setInput6(response.data.data[0].sv_unit)
-                setInput7(response.data.data[0].sv_mqtt_code)
-                setInput8(response.data.data[0].sv_remark)
+                setInput6(response.data.data[0].sv_unit);
+                setInput7(response.data.data[0].sv_mqtt_code);
+                setInput8(response.data.data[0].sv_remark);
                 console.log(response.data.data[0]);
 
                 // axios.post(baseURLDorpDown2,{
@@ -213,7 +213,7 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
                 // }).then((res)=>{
                 //   setInput2(res.data.data)
                 // })
-                
+
                 const MyDD2 = response.data.data[0].pc_id;
                 axios
                     .post(baseURLDorpDown2, {
@@ -227,9 +227,9 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
                         // setInput2(response.data.data[0].pt_name)
                     })
                     .catch((err) => console.error(err))
-                    .finally(()=>{
-                        setInput2(response.data.data[0].pt_id)
-                    })
+                    .finally(() => {
+                        setInput2(response.data.data[0].pt_id);
+                    });
             });
         axios
             .get(baseURLDorpDown)

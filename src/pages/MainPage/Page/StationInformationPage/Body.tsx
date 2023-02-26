@@ -1,8 +1,8 @@
-import MUIDataTable from "mui-datatables";
+import MUIDataTable from 'mui-datatables';
 import React, { useEffect, useState } from 'react';
-import { useParams , useNavigate} from 'react-router-dom';
-import Button from '@mui/material/Button'
-import axios from "axios";
+import { useParams, useNavigate } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import axios from 'axios';
 import SearchIcon from '@mui/icons-material/Search';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -24,17 +24,14 @@ type MyDataPost = {
 // interface IDEdit {
 //     editdata_id: any;
 // }
- 
 
+const baseURL = 'https://evcarkmitl.com:5000/usertype/list';
 
-const baseURL ="http://3.210.67.101:5000/usertype/list"
+const baseURLEdit = 'https://evcarkmitl.com:5000/usertype/add';
 
-const baseURLEdit ="http://3.210.67.101:5000/usertype/add"
-
-const baseURLUpdateDelete ="http://3.210.67.101:5000/usertype/del"
+const baseURLUpdateDelete = 'https://evcarkmitl.com:5000/usertype/del';
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
-
     const [message, setMessage] = useState('');
     const { nametext } = useParams();
     const navigate = useNavigate();
@@ -70,29 +67,29 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const [EditData_2, setEditData_2] = useState('');
     const [EditData_3, setEditData_3] = useState('');
 
-    useEffect(() =>{
-      axios.post(baseURL).then((response) => {
-        setpost(response.data.data)
-        console.log(response.data.data)
-        // console.log(response.data.data.length)
-        setcount(response.data.data.length)
-      })
+    useEffect(() => {
+        axios.post(baseURL).then((response) => {
+            setpost(response.data.data);
+            console.log(response.data.data);
+            // console.log(response.data.data.length)
+            setcount(response.data.data.length);
+        });
     }, []);
 
-    useEffect(() =>{
+    useEffect(() => {
         // console.log("this data",post)
     }, [post]);
 
-    useEffect(() =>{
-        console.log("this count",count)
+    useEffect(() => {
+        console.log('this count', count);
     }, [count]);
 
     /* Click And Go Next Page */
 
-    useEffect(() =>{
-        console.log("EditData",EditData_1)   
+    useEffect(() => {
+        console.log('EditData', EditData_1);
         SetLs_idEdit();
-        if (EditData_1 != ''){
+        if (EditData_1 != '') {
             navigateadddata();
         }
     }, [EditData_1]);
@@ -109,86 +106,89 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         }
     }, []);
 
-        useEffect(() =>{
-        console.log("EditCustomerData",DeleteData)
+    useEffect(() => {
+        console.log('EditCustomerData', DeleteData);
         GetLs_idDelete();
-        if ( DeleteData != ''){
+        if (DeleteData != '') {
             axios
-            .post(baseURLUpdateDelete, {
-                s_id: Number(DeleteData),
-                u_id: 1,
-            })
-            .then((res) => {
-                console.log(res,"this is delete");
-                // console.log("ok");
-            })
-            .catch((err) => console.error(err));
+                .post(baseURLUpdateDelete, {
+                    s_id: Number(DeleteData),
+                    u_id: 1
+                })
+                .then((res) => {
+                    console.log(res, 'this is delete');
+                    // console.log("ok");
+                })
+                .catch((err) => console.error(err));
         }
-
     }, [DeleteData]);
 
-    const columns = ["เลขที่กิจการ", "รูปแบบกิจการ", "สถานะเปิด/ปิด", "ที่อยู่", "ชื่อเจ้าของอู่", "เบอร์ติดต่อ", "เวลาทำการ"];
+    const columns = ['เลขที่กิจการ', 'รูปแบบกิจการ', 'สถานะเปิด/ปิด', 'ที่อยู่', 'ชื่อเจ้าของอู่', 'เบอร์ติดต่อ', 'เวลาทำการ'];
 
     const data = [
-    ["Joe James", "Test Corp", "Yonkers", "NY"],
-    ["John Walsh", "Test Corp", "Hartford", "CT"],
-    ["Bob Herm", "Test Corp", "Tampa", "FL"],
-    ["James Houston", "Test Corp", "Dallas", "TX"],
+        ['Joe James', 'Test Corp', 'Yonkers', 'NY'],
+        ['John Walsh', 'Test Corp', 'Hartford', 'CT'],
+        ['Bob Herm', 'Test Corp', 'Tampa', 'FL'],
+        ['James Houston', 'Test Corp', 'Dallas', 'TX']
     ];
 
-    const StationInformationPagedata = [
-    ["11/10711", "สถานีประจุไฟ", "เปิด", "12/1 อ.เมือง จ.ลพบุรี", "คล่องแคล่ว    ว่องไว", "xxx-xxx-xxxx", "08.30-17.30 น."],
-    ];
+    const StationInformationPagedata = [['11/10711', 'สถานีประจุไฟ', 'เปิด', '12/1 อ.เมือง จ.ลพบุรี', 'คล่องแคล่ว    ว่องไว', 'xxx-xxx-xxxx', '08.30-17.30 น.']];
 
     /* Add Button */
 
     const Testcolumns = [
-      "เลขที่กิจการ",
-      "รูปแบบกิจการ",
-      "สถานะเปิด/ปิด",
-      "ที่อยู่",
-      "ชื่อเจ้าของอู่",
-      "เบอร์ติดต่อ",
-      "เวลาทำการ",
-      {
-        name: "",
-        options: {
-            filter: false,
-            sort: false,
-            customBodyRenderLite: (dataIndex:any, rowIndex:any) => {
-            return (
-              <Button aria-label="edit" variant="outlined" style={{color:'white',backgroundColor:'#6CDCC0',borderRadius:'15px'}}
-              onClick={() => {
-                setEditData_1(post[dataIndex].ut_id)
-                SetLs_idEdit();            
-              }}
-              >
-                {`Edit`}
-              </Button>
-            );
-          }
+        'เลขที่กิจการ',
+        'รูปแบบกิจการ',
+        'สถานะเปิด/ปิด',
+        'ที่อยู่',
+        'ชื่อเจ้าของอู่',
+        'เบอร์ติดต่อ',
+        'เวลาทำการ',
+        {
+            name: '',
+            options: {
+                filter: false,
+                sort: false,
+                customBodyRenderLite: (dataIndex: any, rowIndex: any) => {
+                    return (
+                        <Button
+                            aria-label="edit"
+                            variant="outlined"
+                            style={{ color: 'white', backgroundColor: '#6CDCC0', borderRadius: '15px' }}
+                            onClick={() => {
+                                setEditData_1(post[dataIndex].ut_id);
+                                SetLs_idEdit();
+                            }}
+                        >
+                            {`Edit`}
+                        </Button>
+                    );
+                }
+            }
+        },
+        {
+            name: '',
+            options: {
+                filter: false,
+                sort: false,
+                customBodyRenderLite: (dataIndex: any, rowIndex: any) => {
+                    return (
+                        <Button
+                            aria-label="delete"
+                            variant="outlined"
+                            style={{ color: 'white', backgroundColor: '#6CDCC0', borderRadius: '15px' }}
+                            onClick={() => {
+                                // setDeleteData(post[dataIndex].s_id);
+                                // GetLs_idDelete();
+                                // handleSubmit();
+                            }}
+                        >
+                            {`Delete`}
+                        </Button>
+                    );
+                }
+            }
         }
-      },
-      {
-        name: "",
-        options: {
-            filter: false,
-            sort: false,
-            customBodyRenderLite: (dataIndex:any, rowIndex:any) => {
-            return (
-              <Button aria-label="delete" variant="outlined" style={{color:'white',backgroundColor:'#6CDCC0',borderRadius:'15px'}}
-              onClick={() => {
-                // setDeleteData(post[dataIndex].s_id);
-                // GetLs_idDelete();
-                // handleSubmit();
-              }}
-              >
-                {`Delete`}
-              </Button>
-            );
-          }
-        }
-      }
     ];
 
     /* Add Button and Vaule */
@@ -224,36 +224,35 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     //             <Button aria-label="edit" onClick={() => {
     //                 // alert(data2[dataIndex].name)
     //                 alert(post[rowIndex].ut_name)
-                    
+
     //             }}>
     //                 Button
     //             </Button>
-                
+
     //         );
     //     }
     //     },
-        
+
     // }
     // ];
 
     return (
-        <div style={{margin:'5vh 5vw'}}>
-            <div style={{display:'flex',justifyContent:'flex-end',alignItems:'center',margin:'2vh 0vw'}}>
-                <Button onClick={navigateadddata} style={{color:'black', backgroundColor:'#6CDCC0',borderRadius:'50px',width:'9.740vw'}}>เพิ่ม</Button>
+        <div style={{ margin: '5vh 5vw' }}>
+            <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', margin: '2vh 0vw' }}>
+                <Button onClick={navigateadddata} style={{ color: 'black', backgroundColor: '#6CDCC0', borderRadius: '50px', width: '9.740vw' }}>
+                    เพิ่ม
+                </Button>
             </div>
-            <div style={{display:'flex',justifyContent:'flex-start'}}>
-                <div style={{width:'100%'}}>
-                <MUIDataTable
-                    title={"ข้อมูลสถานี"}
-                    data={post.map(item => {
-                        return [
-                            item.ut_id,
-                            item.ut_name,
-                        ]
-                    })}
-                    columns={Testcolumns} 
-                />
-                {/* <MUIDataTable
+            <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                <div style={{ width: '100%' }}>
+                    <MUIDataTable
+                        title={'ข้อมูลสถานี'}
+                        data={post.map((item) => {
+                            return [item.ut_id, item.ut_name];
+                        })}
+                        columns={Testcolumns}
+                    />
+                    {/* <MUIDataTable
                     title={"ข้อมูลสถานี"}
                     data={data2}
                     columns={columnss} 

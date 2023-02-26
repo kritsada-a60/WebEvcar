@@ -1,9 +1,9 @@
-import MUIDataTable from "mui-datatables";
+import MUIDataTable from 'mui-datatables';
 import React, { useEffect, useState } from 'react';
-import { useParams , useNavigate} from 'react-router-dom';
-import Button from '@mui/material/Button'
-import axios from "axios";
-import { Typography , TextField} from "@mui/material";
+import { useParams, useNavigate } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import axios from 'axios';
+import { Typography, TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Dayjs } from 'dayjs';
@@ -14,9 +14,7 @@ import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-
 export interface IBodyPageProps {}
-
 
 type MyDataPost = {
     ut_name: string;
@@ -42,13 +40,11 @@ type MyDataPost = {
     ut_id: number;
     ut_type: string;
     uc_balance: string;
-    
 };
 
-const baseURL ="http://3.210.67.101:5000/credit/user"
+const baseURL = 'https://evcarkmitl.com:5000/credit/user';
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
-
     const [message, setMessage] = useState('');
     const { nametext } = useParams();
     const navigate = useNavigate();
@@ -58,11 +54,11 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const [count, setcount] = useState('');
 
     const handleChangeStartDate = (newValue: any | null) => {
-      setStartDate(newValue);
+        setStartDate(newValue);
     };
 
     const handleChangeEndDate = (newValue: any | null) => {
-      setEndDate(newValue);
+        setEndDate(newValue);
     };
 
     // const [MyIdEdit, setMyIdEdit] = useState<IDEdit>();
@@ -97,33 +93,34 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const CTMID = LS.getItem('USERCTM');
     const UID = LS.getItem('LVUSERID');
     const CID = LS.getItem('IdCarEditHistory');
-    
 
     const fetchapi = () => {
-      console.log("This is Ctm_id",CTMID)
-      axios.post(baseURL,{
-        ctm_id: CTMID,
-        u_id: '',
-        // sdate: String(StartDate),
-        // edate: String(EndDate)
-      }).then((response) => {
-        setpost(response.data.data)
-        console.log(response.data.data)
-        setcount(response.data.data.length)
-      })
-    }
+        console.log('This is Ctm_id', CTMID);
+        axios
+            .post(baseURL, {
+                ctm_id: CTMID,
+                u_id: ''
+                // sdate: String(StartDate),
+                // edate: String(EndDate)
+            })
+            .then((response) => {
+                setpost(response.data.data);
+                console.log(response.data.data);
+                setcount(response.data.data.length);
+            });
+    };
 
-    console.log(CTMID,"ctm")
-    console.log(UID,"uid")
-    console.log(CID,"cid")
-    useEffect(() =>{
-        const showdate =new Date();
-        const todaydate=showdate.getFullYear()+'-'+(showdate.getMonth()+ 1) +'-'+showdate.getDate()
+    console.log(CTMID, 'ctm');
+    console.log(UID, 'uid');
+    console.log(CID, 'cid');
+    useEffect(() => {
+        const showdate = new Date();
+        const todaydate = showdate.getFullYear() + '-' + (showdate.getMonth() + 1) + '-' + showdate.getDate();
         const monthdate = new Date();
         monthdate.setMonth(-1);
-        const monthstartdate=monthdate.getFullYear()+'-'+(monthdate.getMonth()+ 1)+'-'+monthdate.getDate()
-        setStartDate(monthstartdate)
-        setEndDate(todaydate)
+        const monthstartdate = monthdate.getFullYear() + '-' + (monthdate.getMonth() + 1) + '-' + monthdate.getDate();
+        setStartDate(monthstartdate);
+        setEndDate(todaydate);
         // console.log(todaydate,"today")
         // console.log(monthdate,"after 1 month")
         // console.log(showdate.setMonth(showdate.getMonth()- 1), "dateeeeeeeee")
@@ -134,27 +131,27 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         // console.log(endOfMonth, "Second");
     }, []);
 
-    useEffect(() =>{
+    useEffect(() => {
         // console.log("this data",post)
     }, [post]);
 
-    useEffect(() =>{
-        console.log("this count",count)
+    useEffect(() => {
+        console.log('this count', count);
     }, [count]);
 
-    useEffect(() =>{
-      console.log(StartDate)
-      if ((StartDate != undefined)&&(StartDate!="")&&(EndDate != undefined)&&(EndDate!="")){
-        fetchapi()
-      }
+    useEffect(() => {
+        console.log(StartDate);
+        if (StartDate != undefined && StartDate != '' && EndDate != undefined && EndDate != '') {
+            fetchapi();
+        }
     }, [StartDate, EndDate]);
 
     /* Click And Go Next Page */
 
-    useEffect(() =>{
-        console.log("EditData",EditData_1)   
+    useEffect(() => {
+        console.log('EditData', EditData_1);
         SetLs_idEdit();
-        if (EditData_1 != ''){
+        if (EditData_1 != '') {
             navigateadddata();
         }
     }, [EditData_1]);
@@ -165,10 +162,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     /* Add Button */
 
-    const Testcolumns = [
-      "ชื่อ-นามสกุล",
-      "จำนวนเงิน",
-    ];
+    const Testcolumns = ['ชื่อ-นามสกุล', 'จำนวนเงิน'];
 
     const options = {
         // caseSensitive: true,
@@ -179,44 +173,41 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         download: false,
         print: false,
         selectableRowsHeader: false,
-        selectableRowsHideCheckboxes: true,
+        selectableRowsHideCheckboxes: true
     };
 
     const getMuiTheme = () =>
-      createTheme({
-        components: {
-          MuiTableCell: {
-            styleOverrides:{ root: {
-              padding: '16px 1.5vw',
-            }}
-          },
-
-        }
-      });
+        createTheme({
+            components: {
+                MuiTableCell: {
+                    styleOverrides: {
+                        root: {
+                            padding: '16px 1.5vw'
+                        }
+                    }
+                }
+            }
+        });
 
     const DateTime = () => {
-        const showdate =new Date();
-        const displaytodaydate=showdate.getDate()+'/'+showdate.getMonth()+'/'+showdate.getFullYear()
-    }
-
+        const showdate = new Date();
+        const displaytodaydate = showdate.getDate() + '/' + showdate.getMonth() + '/' + showdate.getFullYear();
+    };
 
     return (
-        <div style={{margin:'5vh 5vw'}}>
-            <div style={{display:'flex',justifyContent:'flex-start'}}>
-                <div style={{width:'100%'}}>
-                <ThemeProvider theme={getMuiTheme()}>
-                    <MUIDataTable
-                        title={"เครดิตคงเหลือ"}
-                        data={post.map(item => {
-                            return [
-                                item.u_fullname,
-                                item.uc_balance,
-                            ]
-                        })}
-                        columns={Testcolumns}
-                        options={options}
-                    />
-                </ThemeProvider>
+        <div style={{ margin: '5vh 5vw' }}>
+            <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                <div style={{ width: '100%' }}>
+                    <ThemeProvider theme={getMuiTheme()}>
+                        <MUIDataTable
+                            title={'เครดิตคงเหลือ'}
+                            data={post.map((item) => {
+                                return [item.u_fullname, item.uc_balance];
+                            })}
+                            columns={Testcolumns}
+                            options={options}
+                        />
+                    </ThemeProvider>
                 </div>
             </div>
         </div>
