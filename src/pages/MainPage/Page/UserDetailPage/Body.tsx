@@ -65,6 +65,10 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     const LS = localStorage;
 
+    const CTMID = LS.getItem('USERCTM');
+    const UID = LS.getItem('LVUSERID');
+    const CID = LS.getItem('IdCarEditHistory');
+
     function SetLs_idEdit() {
 
     LS.setItem('idEdit', EditData_1);
@@ -90,8 +94,11 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     //         // setcount(res.data)
     //     })
     //     .catch((err) => console.error(err));
+        if(CTMID != "1"){
         axios
-        .get(baseURLList2)
+        .post(baseURLList2,{
+            ctm_id: ""
+        })
         .then((res) => {
             setpost2(res.data.data)
             setpost(res.data.data)
@@ -99,6 +106,20 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
             // setcount(res.data)
         })
         .catch((err) => console.error(err));
+        }else{
+        axios
+        .post(baseURLList2,{
+            ctm_id: "3"
+        })
+        .then((res) => {
+            setpost2(res.data.data)
+            setpost(res.data.data)
+            console.log(res.data.data)
+            // setcount(res.data)
+        })
+        .catch((err) => console.error(err));
+        }
+
     }, []);
 
     // function postdata() {
