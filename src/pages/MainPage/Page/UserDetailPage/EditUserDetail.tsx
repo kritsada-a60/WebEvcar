@@ -127,7 +127,8 @@ const EditUserDetailPage: React.FunctionComponent<ISEditUserDetailPageProps> = (
     const CTMID = LS.getItem('USERCTM');
     const UID = LS.getItem('LVUSERID');
     const CID = LS.getItem('IdCarEditHistory');
-
+    const CTMT = LS.getItem('LVUSER');
+    
     const RemoceIdEdit = () => {
         LS.removeItem('idEdit');
         navigateadddata();
@@ -301,8 +302,15 @@ const EditUserDetailPage: React.FunctionComponent<ISEditUserDetailPageProps> = (
         axios
             .get(baseURLUpdateAddDorpDown4)
             .then((response) => {
-                console.log(response.data.data);
+                if(CTMID !="1"){
+                const result = response.data.data.filter((member:any) => {
+                    return member.ut_id >= "3"
+                })
+                console.log(result,"result")
+                setDorpDownData4(result);
+                }else{
                 setDorpDownData4(response.data.data);
+                }
             })
             .catch((err) => console.error(err));
     }, []);
@@ -366,8 +374,10 @@ const EditUserDetailPage: React.FunctionComponent<ISEditUserDetailPageProps> = (
     useEffect(() => {
         console.log('this Input9', Input9);
         const result = DorpDownData.filter((DorpDownDataS: any) => {
-            if (Input9 <= '2') {
-                return DorpDownDataS.ctmt_id == 1;
+            if (CTMT == "2") {
+                return DorpDownDataS.ctmt_id == 2;
+            } else if (CTMT == "3") {
+                return DorpDownDataS.ctmt_id == 3;
             } else {
                 return DorpDownDataS.ctmt_id > 1;
             }

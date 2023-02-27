@@ -59,6 +59,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const CTMID = LS.getItem('USERCTM');
     const UID = LS.getItem('LVUSERID');
     const CID = LS.getItem('IdCarEditHistory');
+    
 
     function SetLs_idEdit() {
         LS.setItem('idEdit', EditData_1);
@@ -87,7 +88,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         if(CTMID != "1"){
         axios
         .post(baseURLList2,{
-            ctm_id: ""
+            ctm_id: "3"
         })
         .then((res) => {
             setpost2(res.data.data)
@@ -99,7 +100,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         }else{
         axios
         .post(baseURLList2,{
-            ctm_id: "3"
+            ctm_id: ""
         })
         .then((res) => {
             setpost2(res.data.data)

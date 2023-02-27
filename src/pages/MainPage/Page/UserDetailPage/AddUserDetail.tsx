@@ -107,6 +107,11 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
     const LS = localStorage;
     const idEdit = LS.getItem('idEdit');
 
+    const CTMID = LS.getItem('USERCTM');
+    const UID = LS.getItem('LVUSERID');
+    const CID = LS.getItem('IdCarEditHistory');
+    const CTMT = LS.getItem('LVUSER');
+
     const RemoceIdEdit = () => {
         LS.removeItem('idEdit');
         navigateadddata();
@@ -258,7 +263,16 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
             .get(baseURLUpdateAddDorpDown4)
             .then((response) => {
                 console.log(response.data.data);
+                if(CTMID !="1"){
+                const result = response.data.data.filter((member:any) => {
+                    return member.ut_id >= "3"
+                })
+                console.log(result,"result")
+                setDorpDownData4(result);
+                }else{
                 setDorpDownData4(response.data.data);
+                }
+                
             })
             .catch((err) => console.error(err));
     }, []);
@@ -323,13 +337,23 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
 
     useEffect(() => {
         // console.log("this Input9",Input9)
+        // const result = DorpDownData.filter((DorpDownDataS: any) => {
+        //     if (Input9 <= '2') {
+        //         return DorpDownDataS.ctmt_id == 2;
+        //     } else {
+        //         return DorpDownDataS.ctmt_id > 1;
+        //     }
+        // });
         const result = DorpDownData.filter((DorpDownDataS: any) => {
-            if (Input9 <= '2') {
-                return DorpDownDataS.ctmt_id == 1;
+            if (CTMT == "2") {
+                return DorpDownDataS.ctmt_id == 2;
+            } else if (CTMT == "3") {
+                return DorpDownDataS.ctmt_id == 3;
             } else {
                 return DorpDownDataS.ctmt_id > 1;
             }
         });
+        
 
         const result2 = DorpDownData3.filter((DorpDownDataS: any) => {
             if (Input9 == '1') {
