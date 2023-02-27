@@ -19,7 +19,6 @@ import IconBetteryRed from '../../../../img/Icon/MapDetail/BatteryRed.png';
 import IconBetteryGreen from '../../../../img/Icon/MapDetail/BatteryGreen.png';
 import IconBetteryType from '../../../../img/Icon/MapDetail/Type.png';
 
-
 import IconStation from '../../../../img/Icon/IconStation_red.png';
 
 import IconStationGreen from '../../../../img/Icon/IconStation0.png';
@@ -28,8 +27,8 @@ import IconStationGray from '../../../../img/Icon/IconStation2.png';
 import axios from 'axios';
 import { type } from 'os';
 import { url } from 'inspector';
-import Body from "./Body"
-import BodyMap from "./BodyTableMap"
+import Body from './Body';
+import BodyMap from './BodyTableMap';
 
 type MarkersData = {
     bt_pt_id: number;
@@ -154,10 +153,9 @@ type MyDataStaion = {
     ss_name: string;
 };
 
-
-const URLMerkersData = 'http://3.210.67.101:5000/car/list';
-const URLMerkersDataStation = 'http://3.210.67.101:5000/station/list';
-const baseURLTracking ="http://3.210.67.101:5000/car/tracking"
+const URLMerkersData = 'https://evcarkmitl.com:5000/car/list';
+const URLMerkersDataStation = 'https://evcarkmitl.com:5000/station/list';
+const baseURLTracking = 'https://evcarkmitl.com:5000/car/tracking';
 
 function Map() {
     const [MarkersData, setMarkersData] = useState<MyMarkersData[]>([]);
@@ -178,8 +176,8 @@ function Map() {
         axios
             .post(baseURLTracking, {
                 ctm_id: CTMID,
-                sdate: "2020-12-30",
-                edate: "2024-1-31",
+                sdate: '2020-12-30',
+                edate: '2024-1-31',
                 u_id: UID,
                 c_id: 1
             })
@@ -187,14 +185,11 @@ function Map() {
                 setMarkersData(res.data.data);
             })
             .catch((err) => console.error(err));
-
-
     }, []);
-
 
     useEffect(() => {
         console.log(MarkersData, 'This MarkersData');
-        
+
         var dataCar = [];
         for (var i in MarkersData) {
             dataCar.push({
@@ -202,25 +197,24 @@ function Map() {
                 name: MarkersData[i].c_license_plate,
                 position: { lat: Number(MarkersData[i].c_lat), lng: Number(MarkersData[i].c_lng) },
                 customIcon: IconCarSVG,
-                positionlat:MarkersData[i].c_lat,
-                positionlng:MarkersData[i].c_lng,
-                battery:MarkersData[i].bt_pt_name,
+                positionlat: MarkersData[i].c_lat,
+                positionlng: MarkersData[i].c_lng,
+                battery: MarkersData[i].bt_pt_name,
                 carspeed: MarkersData[i].c_speed,
                 miledistance: MarkersData[i].c_mileage_init,
                 ptname: MarkersData[i].cgt_pt_name,
                 carstatus: MarkersData[i].c_status,
                 ctmname: MarkersData[i].ctm_name,
-                carcapacity: MarkersData[i].c_capacity,
+                carcapacity: MarkersData[i].c_capacity
             });
         }
         setDataCar(dataCar);
-
 
         // console.log(data);
     }, [MarkersData]);
 
     useEffect(() => {
-        console.log(DataCar,"This DataCar")
+        console.log(DataCar, 'This DataCar');
     }, [DataCar]);
 
     useEffect(() => {
@@ -243,7 +237,7 @@ function Map() {
 
         // if (tmp[0] == 'c') {
         //     axios
-        //         .post('http://3.210.67.101:5000/car/one', { c_id: tmp[1].toString() })
+        //         .post('https://evcarkmitl.com:5000/car/one', { c_id: tmp[1].toString() })
         //         .then((res) => {
         //             console.log(res.data.data,"Customer");
         //         })
@@ -264,93 +258,86 @@ function Map() {
         map.fitBounds(bounds);
     };
 
-
     const OPTIONS = {
         minZoom: 2,
-        maxZoom: 18,
-    }
-
+        maxZoom: 18
+    };
 
     return (
-        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <GoogleMap onLoad={handleOnLoad} options={OPTIONS} center={{ lat: 13.619392, lng: 100.720057 }} onClick={() => setActiveMarker(null)} mapContainerStyle={{ width: '50vw', height: '100vh' }}>
-                {DataCar?.map(({ id, name, position, customIcon, positionlat, positionlng, battery, carspeed, miledistance, ptname, carstatus, ctmname, carcapacity}) => (
-                    <Marker key={id} position={position} onClick={() => handleActiveMarker(id)} icon={{url:customIcon, scaledSize: new google.maps.Size(30, 30)}}>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <GoogleMap
+                onLoad={handleOnLoad}
+                options={OPTIONS}
+                center={{ lat: 13.619392, lng: 100.720057 }}
+                onClick={() => setActiveMarker(null)}
+                mapContainerStyle={{ width: '50vw', height: '100vh' }}
+            >
+                {DataCar?.map(({ id, name, position, customIcon, positionlat, positionlng, battery, carspeed, miledistance, ptname, carstatus, ctmname, carcapacity }) => (
+                    <Marker key={id} position={position} onClick={() => handleActiveMarker(id)} icon={{ url: customIcon, scaledSize: new google.maps.Size(30, 30) }}>
                         {activeMarker === id ? (
                             <InfoWindow onCloseClick={() => setActiveMarker(null)}>
-                                <div style={{width:'20vw',height:'40vh'}}>
-                                    <div style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
-                                        <p style={{margin:'1vh 0.5vw',width:'10vw',fontWeight:'bold' , fontSize:'3vh'}}>{name}</p>
+                                <div style={{ width: '20vw', height: '40vh' }}>
+                                    <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                                        <p style={{ margin: '1vh 0.5vw', width: '10vw', fontWeight: 'bold', fontSize: '3vh' }}>{name}</p>
                                     </div>
-                                    <div style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
-                                        {carstatus === "OFF-LINE" ? (
-                                        <img src={IconCarOff} style={{width:'1vw'}}/>
-                                        ) : 
-                                        <img src={IconCarOn} style={{width:'1vw'}}/>
-                                        }
-                                        <p style={{margin:'1vh 0.5vw',width:'5vw',fontWeight:'bold'}}>{carstatus}</p>
-                                        <p style={{width:'12vw',display: 'flex', justifyContent: 'flex-end'}}>{ctmname}</p>
+                                    <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                                        {carstatus === 'OFF-LINE' ? <img src={IconCarOff} style={{ width: '1vw' }} /> : <img src={IconCarOn} style={{ width: '1vw' }} />}
+                                        <p style={{ margin: '1vh 0.5vw', width: '5vw', fontWeight: 'bold' }}>{carstatus}</p>
+                                        <p style={{ width: '12vw', display: 'flex', justifyContent: 'flex-end' }}>{ctmname}</p>
                                     </div>
-                                    <div style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
-                                        <img src={Icon1} style={{width:'1vw'}}/>
-                                        <p style={{margin:'1vh 0.5vw',width:'5vw',fontWeight:'bold'}}>ระยะทางสะสม</p>
-                                        <p style={{width:'12vw',display: 'flex', justifyContent: 'flex-end'}}>{miledistance}</p>
+                                    <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                                        <img src={Icon1} style={{ width: '1vw' }} />
+                                        <p style={{ margin: '1vh 0.5vw', width: '5vw', fontWeight: 'bold' }}>ระยะทางสะสม</p>
+                                        <p style={{ width: '12vw', display: 'flex', justifyContent: 'flex-end' }}>{miledistance}</p>
                                     </div>
-                                    <div style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
-                                        <img src={Icon2} style={{width:'1vw'}}/>
-                                        <p style={{margin:'1vh 0.5vw',width:'5vw',fontWeight:'bold'}}>ความเร็ว (หน่วย)</p>
-                                        <p style={{width:'12vw',display: 'flex', justifyContent: 'flex-end'}}>{carspeed}</p>
+                                    <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                                        <img src={Icon2} style={{ width: '1vw' }} />
+                                        <p style={{ margin: '1vh 0.5vw', width: '5vw', fontWeight: 'bold' }}>ความเร็ว (หน่วย)</p>
+                                        <p style={{ width: '12vw', display: 'flex', justifyContent: 'flex-end' }}>{carspeed}</p>
                                     </div>
-                                    <div style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
-                                        <img src={Icon3} style={{width:'1vw'}}/>
-                                        <p style={{margin:'1vh 0.5vw',width:'5vw',fontWeight:'bold'}}>ชื่อคนขับ</p>
-                                        <p style={{width:'12vw',display: 'flex', justifyContent: 'flex-end'}}>ไม่ระบุผู้ขับขี่</p>
+                                    <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                                        <img src={Icon3} style={{ width: '1vw' }} />
+                                        <p style={{ margin: '1vh 0.5vw', width: '5vw', fontWeight: 'bold' }}>ชื่อคนขับ</p>
+                                        <p style={{ width: '12vw', display: 'flex', justifyContent: 'flex-end' }}>ไม่ระบุผู้ขับขี่</p>
                                     </div>
-                                    <div style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
-                                        <img src={Icon4} style={{width:'1vw'}}/>
-                                        <p style={{margin:'1vh 0.5vw',width:'5vw',fontWeight:'bold'}}>ใบขับขี่</p>
-                                        <p style={{width:'12vw',display: 'flex', justifyContent: 'flex-end'}}>ไม่ระบุใบขับขี่</p>
+                                    <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                                        <img src={Icon4} style={{ width: '1vw' }} />
+                                        <p style={{ margin: '1vh 0.5vw', width: '5vw', fontWeight: 'bold' }}>ใบขับขี่</p>
+                                        <p style={{ width: '12vw', display: 'flex', justifyContent: 'flex-end' }}>ไม่ระบุใบขับขี่</p>
                                     </div>
-                                    <div style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
-                                        <img src={Icon7} style={{width:'1vw'}}/>
-                                        <p style={{margin:'1vh 0.5vw',width:'5vw',fontWeight:'bold'}}>ตำแหน่ง</p>
-                                        <p style={{width:'12vw',display: 'flex', justifyContent: 'flex-end'}}>ละติจูด : {positionlat}</p>
+                                    <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                                        <img src={Icon7} style={{ width: '1vw' }} />
+                                        <p style={{ margin: '1vh 0.5vw', width: '5vw', fontWeight: 'bold' }}>ตำแหน่ง</p>
+                                        <p style={{ width: '12vw', display: 'flex', justifyContent: 'flex-end' }}>ละติจูด : {positionlat}</p>
                                     </div>
-                                    <div style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
-                                        <p style={{margin:'1vh 0.5vw',width:'5vw',fontWeight:'bold'}}></p>
-                                        <p style={{width:'13vw',display: 'flex', justifyContent: 'flex-end'}}>ลองจิจูด : {positionlng}</p>
+                                    <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                                        <p style={{ margin: '1vh 0.5vw', width: '5vw', fontWeight: 'bold' }}></p>
+                                        <p style={{ width: '13vw', display: 'flex', justifyContent: 'flex-end' }}>ลองจิจูด : {positionlng}</p>
                                     </div>
-                                    <div style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
-                                        {carcapacity <= 25 ? (
-                                        <img src={IconBetteryRed} style={{width:'1vw'}}/>
-                                        ) : 
-                                        <img src={IconBetteryGreen} style={{width:'1vw'}}/>
-                                        }
-                                        <p style={{margin:'1vh 0.5vw',width:'5vw',fontWeight:'bold'}}>ระดับแบตเตอรี่</p>
-                                        <p style={{width:'12vw',display: 'flex', justifyContent: 'flex-end'}}>{carcapacity} %</p>
+                                    <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                                        {carcapacity <= 25 ? <img src={IconBetteryRed} style={{ width: '1vw' }} /> : <img src={IconBetteryGreen} style={{ width: '1vw' }} />}
+                                        <p style={{ margin: '1vh 0.5vw', width: '5vw', fontWeight: 'bold' }}>ระดับแบตเตอรี่</p>
+                                        <p style={{ width: '12vw', display: 'flex', justifyContent: 'flex-end' }}>{carcapacity} %</p>
                                     </div>
-                                    <div style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
-                                        <img src={IconBetteryType} style={{width:'1vw'}}/>
-                                        <p style={{margin:'1vh 0.5vw',width:'5vw',fontWeight:'bold'}}>ประเภทหัวชาร์จ</p>
-                                        <p style={{width:'12vw',display: 'flex', justifyContent: 'flex-end'}}>{ptname}</p>
+                                    <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                                        <img src={IconBetteryType} style={{ width: '1vw' }} />
+                                        <p style={{ margin: '1vh 0.5vw', width: '5vw', fontWeight: 'bold' }}>ประเภทหัวชาร์จ</p>
+                                        <p style={{ width: '12vw', display: 'flex', justifyContent: 'flex-end' }}>{ptname}</p>
                                     </div>
-                                    <div style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
-                                        <img src={IconBettery} style={{width:'1vw'}}/>
-                                        <p style={{margin:'1vh 0.5vw',width:'5vw',fontWeight:'bold'}}>ประเภทแบตเตอรี่</p>
-                                        <p style={{width:'12vw',display: 'flex', justifyContent: 'flex-end'}}>{battery}</p>
+                                    <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                                        <img src={IconBettery} style={{ width: '1vw' }} />
+                                        <p style={{ margin: '1vh 0.5vw', width: '5vw', fontWeight: 'bold' }}>ประเภทแบตเตอรี่</p>
+                                        <p style={{ width: '12vw', display: 'flex', justifyContent: 'flex-end' }}>{battery}</p>
                                     </div>
                                 </div>
                             </InfoWindow>
                         ) : null}
                     </Marker>
                 ))}
-
             </GoogleMap>
-            <BodyMap/>
+            <BodyMap />
         </div>
     );
 }
 
 export default Map;
-
-

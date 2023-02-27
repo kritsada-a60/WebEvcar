@@ -74,17 +74,17 @@ type MyDorpDownData2 = {
 
 export interface ISEditCarPageProps {}
 
-const baseURL = 'http://3.210.67.101:5000/car/list';
+const baseURL = 'https://evcarkmitl.com:5000/car/list';
 
-const baseURLEdit = 'http://3.210.67.101:5000/car/add';
+const baseURLEdit = 'https://evcarkmitl.com:5000/car/add';
 
-const baseURLUpdateData = 'http://3.210.67.101:5000/car/one';
+const baseURLUpdateData = 'https://evcarkmitl.com:5000/car/one';
 
-const baseURLUpdateEdit = 'http://3.210.67.101:5000/car/edit';
+const baseURLUpdateEdit = 'https://evcarkmitl.com:5000/car/edit';
 
-const baseURLDorpDown = 'http://3.210.67.101:5000/customer/list';
+const baseURLDorpDown = 'https://evcarkmitl.com:5000/customer/list';
 
-const baseURLDorpDown2 = 'http://3.210.67.101:5000/powertype/list';
+const baseURLDorpDown2 = 'https://evcarkmitl.com:5000/powertype/list';
 
 const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
     const [post, setpost] = useState<MyDataPost[]>([]);
@@ -219,7 +219,7 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
                 setDorpDownData2(response.data.data);
                 console.log(response.data);
             });
-            
+
         axios
             .post(baseURLDorpDown2, {
                 pc_id: 2
