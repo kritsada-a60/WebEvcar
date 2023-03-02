@@ -111,6 +111,7 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
     const UID = LS.getItem('LVUSERID');
     const CID = LS.getItem('IdCarEditHistory');
     const CTMT = LS.getItem('LVUSER');
+    // const USERCTM = LS.getItem('USERCTM');
 
     const RemoceIdEdit = () => {
         LS.removeItem('idEdit');
