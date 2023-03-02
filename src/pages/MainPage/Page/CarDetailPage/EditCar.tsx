@@ -108,6 +108,8 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
     const LS = localStorage;
     const idEdit = LS.getItem('IdEditCustomerData');
 
+    const CTMID = LS.getItem('USERCTM');
+
     const RemoceIdEdit = () => {
         LS.removeItem('IdEditCustomerData');
         navigate('/cardetail');
@@ -199,18 +201,32 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
     /* axios Editdata */
 
     useEffect(() => {
-        axios
+        if (CTMID != "1") {
+            axios
             .post(baseURLDorpDown, {
-                ctmt_id: 2
+                ctmt_id: CTMID
             })
             .then((response) => {
                 setDorpDownData(response.data.data);
-                console.log(response.data);
 
                 // const result = FirstData.filter((member) => {
                 //   return member.ctmt_id = 2
                 // })
             });
+        }else {
+            axios
+            .post(baseURLDorpDown, {
+                ctmt_id: 2
+            })
+            .then((response) => {
+                setDorpDownData(response.data.data);
+
+                // const result = FirstData.filter((member) => {
+                //   return member.ctmt_id = 2
+                // })
+            });
+
+        }
         axios
             .post(baseURLDorpDown2, {
                 pc_id: 1
@@ -239,7 +255,12 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
     }, [DorpDownData]);
 
     const resultDorpDownData = DorpDownData.filter((member) => {
-        return member.ctmt_id == 2;
+        if(CTMID != "1"){
+            return member.ctmt_id == Number(CTMID);
+        }else {
+            return member.ctmt_id == 2;
+        }
+        
     });
 
     useEffect(() => {

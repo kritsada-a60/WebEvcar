@@ -70,6 +70,26 @@ type AddStation = {
     u_id: number;
 };
 
+type MyDorpDownData = {
+    ctm_address: string;
+    ctm_amphur: string;
+    ctm_bank: string;
+    ctm_bank_no: string;
+    ctm_cno: string;
+    ctm_contact_name: string;
+    ctm_id: string;
+    ctm_mail: string;
+    ctm_mobile: string;
+    ctm_mqtt_code: any;
+    ctm_name: string;
+    ctm_province: string;
+    ctm_tel: string;
+    ctm_tumbon: string;
+    ctm_zipcode: string;
+    ctmt_id: number;
+    ctmt_name: string;
+};
+
 export interface ISAddCradleInfomationPageProps {}
 
 const baseURL = 'https://evcarkmitl.com:5000/station/list';
@@ -82,8 +102,12 @@ const baseURLUpdateEdit = 'https://evcarkmitl.com:5000/station/edit';
 
 const baseURLUpdateAdd = 'https://evcarkmitl.com:5000/station/add';
 
+const baseURLDorpDown = 'https://evcarkmitl.com:5000/customer/list';
+
 const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPageProps> = (props) => {
     const [post, setpost] = useState<AddStation[]>([]);
+
+    const [DorpDownData, setDorpDownData] = useState<MyDorpDownData[]>([]);
 
     const [Input1, setInput1] = useState('');
     const [Input2, setInput2] = useState('');
@@ -108,12 +132,13 @@ const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPage
     const CTMID = LS.getItem('USERCTM');
     const UID = LS.getItem('LVUSERID');
     const CID = LS.getItem('IdCarEditHistory');
+    const CTMTID = LS.getItem('LVUSER');
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
         axios
             .post(baseURLUpdateAdd, {
-                ctm_id: CTMID,
+                ctm_id: Input11,
                 s_name: Input1,
                 s_mqtt_code: Input10,
                 s_address: Input2,
@@ -147,23 +172,54 @@ const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPage
     }
     /* axios Adddata */
 
-    // useEffect(() =>{
-    //   axios.post(baseURLUpdateData,{
-    //     ut_id: LS.getItem('idEdit')
-    //   }).then((response) => {
-    //     console.log(response.data)
-    //     // setFirstData(response.data.data[0].ut_name)
-    //     setInput(response.data.data[0].ut_name)
-    //     // setpost(response.data.data)
-    //     // console.log(response.data.data[0])
-    //   })
-    // }, []);
+    useEffect(() =>{
+        if (CTMID != "1") {
+            axios
+            .post(baseURLDorpDown, {
+                ctmt_id: CTMTID
+            })
+            .then((response) => {
+                setDorpDownData(response.data.data);
+                console.log(response.data.data, 'data');
+                // const result = FirstData.filter((member) => {
+                //   return member.ctmt_id = 2
+                // })
+            });
+        }else {
+            axios
+            .post(baseURLDorpDown, {
+                ctmt_id: 2
+            })
+            .then((response) => {
+                setDorpDownData(response.data.data);
+
+                // const result = FirstData.filter((member) => {
+                //   return member.ctmt_id = 2
+                // })
+            });
+
+        }
+    }, []);
 
     /* axios Adddata */
 
     useEffect(() => {
         console.log(Input1, 'input');
     }, [Input1]);
+
+
+    const resultDorpDownData = DorpDownData.filter((member) => {
+        if(CTMID != "1"){
+            return member.ctm_id == CTMID;
+        }else {
+            return member;
+        }
+        
+    });
+
+    useEffect(() => {
+        console.log(resultDorpDownData, 'resultDorpDownData');
+    }, [resultDorpDownData]);
 
     const navigate = useNavigate();
 
@@ -177,6 +233,31 @@ const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPage
             <p style={{ margin: '5vh 30vw', justifyContent: 'center', fontSize: '36px' }}>เพิ่มข้อมูลสถานี</p>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <form>
+                    <div style={{ margin: '2.5vh 0', display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                        <label>
+                            <p style={{ margin: '0vh 5vw', borderColor: 'black', width: '15vw', fontSize: '18px', fontWeight: 'bold' }}>ผู้ประกอบการ</p>
+                            <Select
+                                type="การใช้งาน"
+                                name=""
+                                style={{ margin: '1vh 5vw', backgroundColor: 'white', borderColor: 'black', width: '15vw' }}
+                                value={Input11}
+                                onChange={(e) => {
+                                    setInput11(e.target.value);
+                                }}
+                                displayEmpty
+                                inputProps={{ 'aria-label': 'Without label' }}
+                            >
+                                {resultDorpDownData?.length &&
+                                    resultDorpDownData.map((e: any, i: number) => {
+                                        return (
+                                            <MenuItem key={e.ctm_id} value={e.ctm_id}>
+                                                {e.ctm_name}
+                                            </MenuItem>
+                                        );
+                                    })}
+                            </Select>
+                        </label>
+                    </div>
                     <div style={{ margin: '2.5vh 0', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <label>
                             <p style={{ margin: '1vh 5vw', borderColor: 'black', width: '15vw', fontSize: '18px', fontWeight: 'bold' }}>ชื่อสถานี</p>
@@ -318,6 +399,8 @@ const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPage
                             />
                         </label>
                     </div>
+
+                    
 
                     {/* <div style={{margin:'2.5vh 0',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <label>

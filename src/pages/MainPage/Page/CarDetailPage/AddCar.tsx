@@ -121,6 +121,10 @@ const AddCarPage: React.FunctionComponent<ISAddCarPageProps> = (props) => {
 
     const LS = localStorage;
 
+    const CTMID = LS.getItem('USERCTM');
+    const CTMTID = LS.getItem('LVUSER');
+    
+
     const [Input1, setInput1] = useState('');
     const [Input2, setInput2] = useState('');
     const [Input3, setInput3] = useState('');
@@ -144,7 +148,20 @@ const AddCarPage: React.FunctionComponent<ISAddCarPageProps> = (props) => {
     };
 
     useEffect(() => {
-        axios
+        if (CTMID != "1") {
+            axios
+            .post(baseURLDorpDown, {
+                ctmt_id: CTMTID
+            })
+            .then((response) => {
+                setDorpDownData(response.data.data);
+
+                // const result = FirstData.filter((member) => {
+                //   return member.ctmt_id = 2
+                // })
+            });
+        }else {
+            axios
             .post(baseURLDorpDown, {
                 ctmt_id: 2
             })
@@ -155,6 +172,9 @@ const AddCarPage: React.FunctionComponent<ISAddCarPageProps> = (props) => {
                 //   return member.ctmt_id = 2
                 // })
             });
+
+        }
+        
         axios
             .post(baseURLDorpDown2, {
                 pc_id: 1
@@ -236,10 +256,18 @@ const AddCarPage: React.FunctionComponent<ISAddCarPageProps> = (props) => {
         console.log(valuedata, 'valuedata');
     }, [valuedata]);
 
+
+
     const resultDorpDownData = DorpDownData.filter((member) => {
-        return member.ctmt_id == 2;
+        if(CTMID != "1"){
+            return member.ctmt_id == Number(CTMID);
+        }else {
+            return member.ctmt_id == 2;
+        }
+        
     });
 
+    console.log(resultDorpDownData,"resultDorpDownData")
     return (
         <div style={{ backgroundColor: '#E0F0EC' }}>
             <Header />
@@ -293,7 +321,7 @@ const AddCarPage: React.FunctionComponent<ISAddCarPageProps> = (props) => {
                                         );
                                     })}
                             </Select>
-                            {/* {NumberDorpDown}          */}
+                            {/* {NumberDorpDown} */}
                         </label>
                     </div>
                     <div style={{ margin: '2.5vh 0', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -406,6 +434,7 @@ const AddCarPage: React.FunctionComponent<ISAddCarPageProps> = (props) => {
                             />
                         </label>
                     </div>
+                    
 
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <Button style={{ color: 'white', backgroundColor: '#6CDCC0', margin: '2.5vh 2.5vw' }} onClick={handleSubmit} type="submit">

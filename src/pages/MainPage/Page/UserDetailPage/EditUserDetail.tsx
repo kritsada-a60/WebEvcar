@@ -340,13 +340,18 @@ const EditUserDetailPage: React.FunctionComponent<ISEditUserDetailPageProps> = (
 
     useEffect(() => {
         console.log('this Input1', Input1);
-        if (Input1 > '1') {
+        if (Input1 > '1' && CTMID != "1") {
             axios
                 .post(baseURLUpdateAddDorpDown2, {
                     ctmt_id: Input1
                 })
                 .then((response) => {
                     console.log(response.data.data);
+                    // const resultDorpDownData = response.data.data?.filter((name: any) => {
+                    //     return name.ctm_id == CTMID;
+                    // });
+                    // console.log(resultDorpDownData);
+                    // setDorpDownData2(resultDorpDownData);
                     setDorpDownData2(response.data.data);
                     if (UserInfo != undefined) setInput2(UserInfo.ctm_id.toString());
                 })

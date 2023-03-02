@@ -29,6 +29,26 @@ type MyDataEdit = {
     u_id: number;
 };
 
+type MyDorpDownData = {
+    ctm_address: string;
+    ctm_amphur: string;
+    ctm_bank: string;
+    ctm_bank_no: string;
+    ctm_cno: string;
+    ctm_contact_name: string;
+    ctm_id: string;
+    ctm_mail: string;
+    ctm_mobile: string;
+    ctm_mqtt_code: any;
+    ctm_name: string;
+    ctm_province: string;
+    ctm_tel: string;
+    ctm_tumbon: string;
+    ctm_zipcode: string;
+    ctmt_id: number;
+    ctmt_name: string;
+};
+
 export interface ISAddCradleInfomationPageProps {}
 
 const baseURL = 'https://evcarkmitl.com:5000/station/list';
@@ -39,12 +59,16 @@ const baseURLUpdateData = 'https://evcarkmitl.com:5000/station/one';
 
 const baseURLUpdateEdit = 'https://evcarkmitl.com:5000/station/edit';
 
+const baseURLDorpDown = 'https://evcarkmitl.com:5000/customer/list';
+
 const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPageProps> = (props) => {
     const [post, setpost] = useState<MyDataPost[]>([]);
 
     const [MyIdEdit, setMyIdEdit] = useState('');
 
     const [FirstData, setFirstData] = useState<MyDataEdit[]>([]);
+
+    const [DorpDownData, setDorpDownData] = useState<MyDorpDownData[]>([]);
 
     const LS = localStorage;
     const idEdit = LS.getItem('IdEditStationData');
@@ -57,6 +81,7 @@ const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPage
     const CTMID = LS.getItem('USERCTM');
     const UID = LS.getItem('LVUSERID');
     const CID = LS.getItem('IdCarEditHistory');
+    const CTMTID = LS.getItem('LVUSER');
 
     const navigate = useNavigate();
 
@@ -76,7 +101,7 @@ const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPage
     const [Input8, setInput8] = useState('');
     const [Input9, setInput9] = useState('');
     const [Input10, setInput10] = useState('');
-
+    const [Input11, setInput11] = useState('');
     const [Bnumber, setBnumber] = useState({
         ut_name: '',
         u_id: '',
@@ -110,7 +135,7 @@ const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPage
         const Mys_id = LS.getItem('idEdit');
         axios
             .post(baseURLUpdateEdit, {
-                ctm_id: CTMID,
+                ctm_id: Input11,
                 s_name: Input1,
                 s_mqtt_code: Input10,
                 s_address: Input2,
@@ -174,6 +199,32 @@ const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPage
                 // setpost(response.data.data)
                 console.log(response.data.data[0]);
             });
+        if (CTMID != "1") {
+            axios
+            .post(baseURLDorpDown, {
+                ctmt_id: CTMTID
+            })
+            .then((response) => {
+                setDorpDownData(response.data.data);
+                console.log(response.data.data, 'data');
+                // const result = FirstData.filter((member) => {
+                //   return member.ctmt_id = 2
+                // })
+            });
+        }else {
+            axios
+            .post(baseURLDorpDown, {
+                ctmt_id: 2
+            })
+            .then((response) => {
+                setDorpDownData(response.data.data);
+
+                // const result = FirstData.filter((member) => {
+                //   return member.ctmt_id = 2
+                // })
+            });
+
+        }
     }, []);
 
     /* axios Editdata */
@@ -203,12 +254,46 @@ const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPage
         console.log('this Bname', Bname);
     }, [Bname]);
 
+    const resultDorpDownData = DorpDownData.filter((member) => {
+        if(CTMID != "1"){
+            return member.ctm_id == CTMID;
+        }else {
+            return member;
+        }
+        
+    });
+
     return (
         <div style={{ backgroundColor: '#E0F0EC' }}>
             <Header />
             <p style={{ margin: '5vh 30vw', justifyContent: 'center', fontSize: '36px' }}>แก้ไขสถานี</p>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <form>
+                    <div style={{ margin: '2.5vh 0', display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                        <label>
+                            <p style={{ margin: '0vh 5vw', borderColor: 'black', width: '15vw', fontSize: '18px', fontWeight: 'bold' }}>ผู้ประกอบการ</p>
+                            <Select
+                                type="การใช้งาน"
+                                name=""
+                                style={{ margin: '1vh 5vw', backgroundColor: 'white', borderColor: 'black', width: '15vw' }}
+                                value={Input11}
+                                onChange={(e) => {
+                                    setInput11(e.target.value);
+                                }}
+                                displayEmpty
+                                inputProps={{ 'aria-label': 'Without label' }}
+                            >
+                                {resultDorpDownData?.length &&
+                                    resultDorpDownData.map((e: any, i: number) => {
+                                        return (
+                                            <MenuItem key={e.ctm_id} value={e.ctm_id}>
+                                                {e.ctm_name}
+                                            </MenuItem>
+                                        );
+                                    })}
+                            </Select>
+                        </label>
+                    </div>
                     <div style={{ margin: '2.5vh 0', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <label>
                             <p style={{ margin: '1vh 5vw', borderColor: 'black', width: '15vw', fontSize: '18px', fontWeight: 'bold' }}>ชื่อสถานี</p>

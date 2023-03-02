@@ -87,6 +87,20 @@ const baseURLUpdateAddDorpDown4 = 'https://evcarkmitl.com:5000/usertype/list';
 
 const baseURLUpdateAdd = 'https://evcarkmitl.com:5000/user/register';
 
+type MyEditData = {
+    u_id: string;
+    ctm_id: number;
+    ctmt_id: number;
+    u_email: string;
+    u_fullname: string;
+    u_mobile: string;
+    u_name: string;
+    ua_id: number;
+    ul_id: number;
+    ut_id: number;
+    uid: number;
+};
+
 const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (props) => {
     const [post, setpost] = useState<MyDataPost[]>([]);
 
@@ -103,6 +117,8 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
     const [DropDownLvUserfillter, setDropDownLvUserfillter] = useState<MyDorpDownData3[]>([]);
 
     const [DorpDownData4, setDorpDownData4] = useState<MyDorpDownData4[]>([]);
+
+    const [UserInfo, setUserInfo] = useState<MyEditData>();
 
     const LS = localStorage;
     const idEdit = LS.getItem('idEdit');
@@ -226,7 +242,7 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
                 // u_id: LS.getItem('idEdit')
             })
             .then((response) => {
-                console.log(response.data);
+                console.log(response.data.data[0]);
                 // setFirstData(response.data.data[0].ut_name)
                 // setBname(response.data.data[0].u_name)
                 // setBemail(response.data.data[0].u_email)
@@ -241,6 +257,7 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
 
                 // setBname2(response.data.data)
                 // setpost(response.data.data)
+                setUserInfo(response.data.data[0]);
                 // console.log(response.data.data[0])
             });
 
@@ -307,14 +324,18 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
 
     useEffect(() => {
         console.log('this Input1', Input1);
-        if (Input1 > '1') {
+        if (Input1 > '1' && CTMID != "1") {
             axios
                 .post(baseURLUpdateAddDorpDown2, {
                     ctmt_id: Input1
                 })
                 .then((response) => {
-                    console.log(response.data.data);
-                    setDorpDownData2(response.data.data);
+                    console.log(CTMID)
+                    const resultDorpDownData = response.data.data?.filter((name: any) => {
+                        return name.ctm_id == CTMID;
+                    });
+                    setDorpDownData2(resultDorpDownData);
+                    console.log(resultDorpDownData);
                 })
                 .catch((err) => console.error(err));
         } else {
@@ -323,14 +344,14 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
                     ctmt_id: Input1
                 })
                 .then((response) => {
-                    // console.log(response.data.data)
+                    console.log(response.data.data)
                     // setDorpDownData2(response.data.data)
                     // const FillDropDown = response.data.data
-                    const resultDorpDownData = response.data.data?.filter((name: any) => {
-                        return name.ctm_name == 'System';
-                    });
-                    setDorpDownData2(resultDorpDownData);
-                    console.log(resultDorpDownData);
+                    // const resultDorpDownData = response.data.data?.filter((name: any) => {
+                    //     return name.ctm_name == 'System';
+                    // });
+                    setDorpDownData2(response.data.data);
+                    // console.log(resultDorpDownData);
                 })
                 .catch((err) => console.error(err));
         }
@@ -370,7 +391,17 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
         console.log('this result2', result2);
         setDorpDownDatafillter(result);
         setDropDownLvUserfillter(result2);
+        // if (UserInfo != undefined) setInput1(UserInfo.ctmt_id.toString());
+        // if (UserInfo != undefined) setInput10(UserInfo.ul_id.toString());
     }, [Input9]);
+
+    useEffect(() => {
+        console.log('Set UserInfo');
+        console.log(UserInfo);
+        console.log(UserInfo?.ctmt_id);
+        console.log(UserInfo?.ut_id);
+        // if (UserInfo != undefined) setInput9(UserInfo.ut_id.toString());
+    }, [UserInfo]);
 
     useEffect(() => {
         // console.log("this Input2",Input2)
@@ -379,6 +410,7 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
         //   console.log("5555")
         // }
     }, [DorpDownData2]);
+
 
     return (
         <div style={{ backgroundColor: '#E0F0EC' }}>
