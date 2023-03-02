@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { GoogleMap, InfoWindow, Marker } from '@react-google-maps/api';
 import IconCar from '../../../../img/Icon/IconCar.png';
+import IconCarOffline from '../../../../img/Icon/CarOffline.svg';
+
 import IconCarSVG from '../../../../img/Icon/Car.svg';
 
 import Icon1 from '../../../../img/Icon/MapDetail/1.png';
@@ -357,7 +359,8 @@ function Map() {
                 id: 'c_' + MarkersData[i].c_id.toString(),
                 name: MarkersData[i].c_license_plate,
                 position: { lat: Number(MarkersData[i].c_lat), lng: Number(MarkersData[i].c_lng) },
-                customIcon: IconCarSVG,
+                // customIcon: IconCarSVG,
+                customIcon: MarkersData[i].c_status == "OFF-LINE" ? IconCarOffline : IconCarSVG,
                 positionlat: MarkersData[i].c_lat,
                 positionlng: MarkersData[i].c_lng,
                 battery: MarkersData[i].bt_pt_name,
