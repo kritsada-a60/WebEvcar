@@ -107,6 +107,7 @@ type NewStationData = {
     scontact: string;
     ctmname: string;
     stel: string;
+    ssid: any;
 };
 
 type NewData = {
@@ -140,7 +141,7 @@ type MyDataStation = {
     s_tel: string;
     s_tumbon: string;
     s_zipcode: string;
-    ss_id: number;
+    ss_id: any;
     ss_name: string;
 };
 
@@ -324,9 +325,15 @@ function Map() {
     useEffect(() => {
         const interval = setInterval(() => {
             ReMarkerData();
+            // console.log("1234")
         }, 20000);
         return () => clearInterval(interval);
     }, []);
+
+    // window.setTimeout( function() {
+        
+    //     ReMarkerData();
+    // }, 5000);
 
     // const nodeInterval: NodeJS.Timeout = setInterval(() => {
     //     console.log("1234")
@@ -379,14 +386,15 @@ function Map() {
                 id: 's_' + MarkersDataStation[i].s_id.toString(),
                 name: MarkersDataStation[i].s_mqtt_code,
                 position: { lat: Number(MarkersDataStation[i].s_lat), lng: Number(MarkersDataStation[i].s_lng) },
-                customIcon: IconStationGreen,
+                customIcon: MarkersDataStation[i].ss_id == "0" ? IconStationRed : IconStationGreen,
                 positionlat: MarkersDataStation[i].s_lat,
                 positionlng: MarkersDataStation[i].s_lng,
                 sactive: MarkersDataStation[i].s_active,
                 ssname: MarkersDataStation[i].ss_name,
                 scontact: MarkersDataStation[i].s_contact,
                 ctmname: MarkersDataStation[i].ctm_name,
-                stel: MarkersDataStation[i].s_tel
+                stel: MarkersDataStation[i].s_tel,
+                ssid: MarkersDataStation[i].ss_id
             });
         }
 
@@ -443,8 +451,8 @@ function Map() {
 
     const handleOnLoad = (map: any) => {
         const bounds = new google.maps.LatLngBounds();
-        DataCar?.forEach(({ position }) => bounds.extend(position));
-        DataStation?.forEach(({ position }) => bounds.extend(position));
+        // DataCar?.forEach(({ position }) => bounds.extend(position));
+        // DataStation?.forEach(({ position }) => bounds.extend(position));
         map.fitBounds(bounds);
     };
 
@@ -452,6 +460,17 @@ function Map() {
         minZoom: 2,
         maxZoom: 18
     };
+
+    const center = {
+        lat: 13.619392,
+        lng: 100.720057
+    };
+
+    const [map, setMap] = React.useState(null)
+
+    const onUnmount = React.useCallback(function callback(map) {
+        setMap(null)
+    }, [])
 
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -461,6 +480,8 @@ function Map() {
                 center={{ lat: 13.619392, lng: 100.720057 }}
                 onClick={() => setActiveMarker(null)}
                 mapContainerStyle={{ width: '50vw', height: '100vh' }}
+                // onUnmount={onUnmount}
+                // clickableIcons={true}
             >
                 {DataCar?.map(({ id, name, position, customIcon, positionlat, positionlng, battery, carspeed, miledistance, ptname, carstatus, ctmname, carcapacity }) => (
                     <Marker key={id} position={position} onClick={() => handleActiveMarker(id)} icon={{ url: customIcon, scaledSize: new google.maps.Size(30, 30) }}>
@@ -524,7 +545,7 @@ function Map() {
                         ) : null}
                     </Marker>
                 ))}
-                {DataStation?.map(({ id, name, position, customIcon, positionlat, positionlng, sactive, ssname, scontact, stel, ctmname }) => (
+                {DataStation?.map(({ id, name, position, customIcon, positionlat, positionlng, sactive, ssname, scontact, stel, ctmname, ssid }) => (
                     <Marker key={id} position={position} onClick={() => handleActiveMarker(id)} icon={customIcon}>
                         {activeMarker === id ? (
                             <InfoWindow onCloseClick={() => setActiveMarker(null)}>

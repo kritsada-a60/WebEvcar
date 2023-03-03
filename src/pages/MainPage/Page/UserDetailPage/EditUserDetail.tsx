@@ -362,15 +362,15 @@ const EditUserDetailPage: React.FunctionComponent<ISEditUserDetailPageProps> = (
                     ctmt_id: Input1
                 })
                 .then((response) => {
-                    // console.log(response.data.data)
-                    // setDorpDownData2(response.data.data)
+                    console.log(response.data.data)
+                    setDorpDownData2(response.data.data)
                     // const FillDropDown = response.data.data
-                    const resultDorpDownData = response.data.data?.filter((name: any) => {
-                        return name.ctm_name == 'System';
-                    });
-                    setDorpDownData2(resultDorpDownData);
-                    if (UserInfo != undefined) setInput2(UserInfo.ctm_id.toString());
-                    console.log(resultDorpDownData);
+                    // const resultDorpDownData = response.data.data?.filter((name: any) => {
+                    //     return name.ctm_name == 'System';
+                    // });
+                    // setDorpDownData2(resultDorpDownData);
+                    // if (UserInfo != undefined) setInput2(UserInfo.ctm_id.toString());
+                    // console.log(resultDorpDownData);
                 })
                 .catch((err) => console.error(err));
         }
