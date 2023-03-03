@@ -328,6 +328,7 @@ function Map() {
             // console.log("1234")
         }, 20000);
         return () => clearInterval(interval);
+
     }, []);
 
     // window.setTimeout( function() {
@@ -392,7 +393,7 @@ function Map() {
                 sactive: MarkersDataStation[i].s_active,
                 ssname: MarkersDataStation[i].ss_name,
                 scontact: MarkersDataStation[i].s_contact,
-                ctmname: MarkersDataStation[i].ctm_name,
+                ctmname: MarkersDataStation[i].s_name,
                 stel: MarkersDataStation[i].s_tel,
                 ssid: MarkersDataStation[i].ss_id
             });
@@ -471,6 +472,7 @@ function Map() {
     const onUnmount = React.useCallback(function callback(map) {
         setMap(null)
     }, [])
+
 
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
