@@ -88,7 +88,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         if(CTMID != "1"){
         axios
         .post(baseURLList2,{
-            ctm_id: "3"
+            ctm_id: CTMID
         })
         .then((res) => {
             setpost2(res.data.data)

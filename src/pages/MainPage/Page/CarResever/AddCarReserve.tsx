@@ -106,7 +106,7 @@ const AddCarReservePage: React.FunctionComponent<ISAddCarReservePageProps> = (pr
                     </div>
                     <div style={{ margin: '2.5vh 0', display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
                         <label>
-                            <p style={{ margin: '1vh 5vw', borderColor: 'black', width: '15vw', fontSize: '18px', fontWeight: 'bold' }}>จำนวนเงิน</p>
+                            <p style={{ margin: '1vh 5vw', borderColor: 'black', width: '15vw', fontSize: '18px', fontWeight: 'bold' }}>จำนวนเครดิต</p>
                             <TextField
                                 type="ut_name"
                                 name="ut_name"

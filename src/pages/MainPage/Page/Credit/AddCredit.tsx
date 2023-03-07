@@ -64,11 +64,24 @@ const AddCreditPage: React.FunctionComponent<ISAddCreditPageProps> = (props) => 
     const CID = LS.getItem('IdCarEditHistory');
 
     useEffect(() => {
-        axios.get(baseURL).then((response) => {
+        if (CTMID != '1'){
+        axios.post(baseURL, {
+            ctm_id : CTMID
+        }).then((response) => {
             setDorpDownData(response.data.data);
             console.log(response.data.data);
             // setcount(response.data.data.length)
         });
+        }else{
+        axios.post(baseURL, {
+            ctm_id : ""
+        }).then((response) => {
+            setDorpDownData(response.data.data);
+            console.log(response.data.data);
+            // setcount(response.data.data.length)
+        });
+        }
+
     }, []);
 
     const handleSubmit = (e: any) => {
@@ -157,7 +170,7 @@ const AddCreditPage: React.FunctionComponent<ISAddCreditPageProps> = (props) => 
                     </div>
                     <div style={{ margin: '2.5vh 0', display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
                         <label>
-                            <p style={{ margin: '1vh 5vw', borderColor: 'black', width: '15vw', fontSize: '18px', fontWeight: 'bold' }}>จำนวนเงิน</p>
+                            <p style={{ margin: '1vh 5vw', borderColor: 'black', width: '15vw', fontSize: '18px', fontWeight: 'bold' }}>จำนวนเครดิต</p>
                             <TextField
                                 type="number"
                                 name="ut_name"

@@ -323,7 +323,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                 <div style={{ width: '100%' }}>
                     <ThemeProvider theme={getMuiTheme()}>
                         <MUIDataTable
-                            title={'ประวัติการเติมเงิน'}
+                            title={'ประวัติการเติมเครดิต'}
                             data={post.map((item) => {
                                 return [
                                     item.cr_reserve,

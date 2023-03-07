@@ -175,7 +175,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     /* Add Button */
 
-    const Testcolumns = ['วันเวลา', 'ชื่อ-นามสกุล', 'ผู้เติมเงิน', 'จำนวนเงิน'];
+    const Testcolumns = ['วันเวลา', 'ชื่อ-นามสกุล', 'ผู้เติมเครดิต', 'จำนวนเครดิต'];
 
     const options = {
         // caseSensitive: true,

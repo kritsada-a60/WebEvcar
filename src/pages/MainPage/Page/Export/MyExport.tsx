@@ -64,11 +64,23 @@ const AddCreditPage: React.FunctionComponent<ISAddCreditPageProps> = (props) => 
     const CID = LS.getItem('IdCarEditHistory');
 
     useEffect(() => {
-        axios.get(baseURL).then((response) => {
-            setDorpDownData(response.data.data);
-            console.log(response.data.data);
-            // setcount(response.data.data.length)
-        });
+        if (CTMID != '1'){
+            axios.post(baseURL, {
+                ctm_id : CTMID
+            }).then((response) => {
+                setDorpDownData(response.data.data);
+                console.log(response.data.data);
+                // setcount(response.data.data.length)
+            });
+        }else{
+            axios.post(baseURL, {
+                ctm_id : ""
+            }).then((response) => {
+                setDorpDownData(response.data.data);
+                console.log(response.data.data);
+                // setcount(response.data.data.length)
+            });
+        }
     }, []);
 
     const handleSubmit = (e: any) => {

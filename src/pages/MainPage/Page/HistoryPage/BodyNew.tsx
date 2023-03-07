@@ -195,6 +195,37 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         }
     ];
 
+    const Testcolumns2 = [
+        'ประวัติรถ',
+        'อู่',
+        'หัวชาร์จ',
+        'ประเภทแบตเตอรี่',
+        'ระดับแบตตารี่',
+        'ความเร็วรถ',
+        'เลขไมล์',
+        'วันที่เริ่มใช้งาน',
+        'MQTT CODE',
+        'สถานะรถ',
+        {
+            name: '',
+            options: {
+                filter: false,
+                sort: false,
+                customBodyRenderLite: (dataIndex: any, rowIndex: any) => {
+                    return (
+                        <TimeToLeaveOutlinedIcon
+                            onClick={() => {
+                                setEditCarData(post[dataIndex].c_id);
+                                SetLs_idEdit();
+                            }}
+                            style={{ cursor: 'pointer' }}
+                        />
+                    );
+                }
+            }
+        }
+    ];
+
     const options = {
         // caseSensitive: true,
         confirmFilters: false,
@@ -224,7 +255,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         <div style={{ margin: '5vh 5vw' }}>
             <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
                 <div style={{ width: '100%' }}>
-                    {LVID == '2' ? (
+                    {LVID == '1' || LVID == '2' ? (
                         <ThemeProvider theme={getMuiTheme()}>
                             <MUIDataTable
                                 title={'ประวัติรถ'}
@@ -276,7 +307,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                                         }
                                     ];
                                 })}
-                                columns={Testcolumns}
+                                columns={Testcolumns2}
                                 options={options}
                             />
                         </ThemeProvider>
