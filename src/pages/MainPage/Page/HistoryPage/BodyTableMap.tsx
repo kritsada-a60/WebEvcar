@@ -57,9 +57,9 @@ type MyData = {
 };
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
-    const baseURL = 'https://evcarkmitl.com:5000/car/tracking';
+    const baseURL = 'http://3.210.67.101:5000/car/tracking';
 
-    const baseURLUpdateDelete = 'https://evcarkmitl.com:5000/car/del';
+    const baseURLUpdateDelete = 'http://3.210.67.101:5000/car/del';
 
     const navigate = useNavigate();
 

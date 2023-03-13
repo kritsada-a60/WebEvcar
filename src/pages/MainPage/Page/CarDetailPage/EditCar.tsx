@@ -74,17 +74,17 @@ type MyDorpDownData2 = {
 
 export interface ISEditCarPageProps {}
 
-const baseURL = 'https://evcarkmitl.com:5000/car/list';
+const baseURL = 'http://3.210.67.101:5000/car/list';
 
-const baseURLEdit = 'https://evcarkmitl.com:5000/car/add';
+const baseURLEdit = 'http://3.210.67.101:5000/car/add';
 
-const baseURLUpdateData = 'https://evcarkmitl.com:5000/car/one';
+const baseURLUpdateData = 'http://3.210.67.101:5000/car/one';
 
-const baseURLUpdateEdit = 'https://evcarkmitl.com:5000/car/edit';
+const baseURLUpdateEdit = 'http://3.210.67.101:5000/car/edit';
 
-const baseURLDorpDown = 'https://evcarkmitl.com:5000/customer/list';
+const baseURLDorpDown = 'http://3.210.67.101:5000/customer/list';
 
-const baseURLDorpDown2 = 'https://evcarkmitl.com:5000/powertype/list';
+const baseURLDorpDown2 = 'http://3.210.67.101:5000/powertype/list';
 
 const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
     const [post, setpost] = useState<MyDataPost[]>([]);
@@ -201,32 +201,18 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
     /* axios Editdata */
 
     useEffect(() => {
-        if (CTMID != "1") {
-            axios
-            .post(baseURLDorpDown, {
-                ctmt_id: CTMID
-            })
-            .then((response) => {
-                setDorpDownData(response.data.data);
-
-                // const result = FirstData.filter((member) => {
-                //   return member.ctmt_id = 2
-                // })
-            });
-        }else {
-            axios
+        axios
             .post(baseURLDorpDown, {
                 ctmt_id: 2
             })
             .then((response) => {
                 setDorpDownData(response.data.data);
+                console.log(response.data);
 
                 // const result = FirstData.filter((member) => {
                 //   return member.ctmt_id = 2
                 // })
             });
-
-        }
         axios
             .post(baseURLDorpDown2, {
                 pc_id: 1
@@ -235,7 +221,7 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
                 setDorpDownData2(response.data.data);
                 console.log(response.data);
             });
-
+            
         axios
             .post(baseURLDorpDown2, {
                 pc_id: 2
@@ -256,11 +242,10 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
 
     const resultDorpDownData = DorpDownData.filter((member) => {
         if(CTMID != "1"){
-            return member.ctmt_id == Number(CTMID);
+            return member.ctm_id == CTMID;
         }else {
             return member.ctmt_id == 2;
         }
-        
     });
 
     useEffect(() => {

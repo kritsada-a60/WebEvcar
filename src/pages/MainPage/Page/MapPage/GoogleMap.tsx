@@ -216,8 +216,8 @@ const markers = [
     }
 ];
 
-const URLMerkersData = 'https://evcarkmitl.com:5000/car/list';
-const URLMerkersDataStation = 'https://evcarkmitl.com:5000/station/list';
+const URLMerkersData = 'http://3.210.67.101:5000/car/list';
+const URLMerkersDataStation = 'http://3.210.67.101:5000/station/list';
 
 function Map() {
     const [MarkersData, setMarkersData] = useState<MyMarkersData[]>([]);
@@ -385,7 +385,7 @@ function Map() {
         for (var i in MarkersDataStation) {
             dataStation.push({
                 id: 's_' + MarkersDataStation[i].s_id.toString(),
-                name: MarkersDataStation[i].s_mqtt_code,
+                name: MarkersDataStation[i].s_name,
                 position: { lat: Number(MarkersDataStation[i].s_lat), lng: Number(MarkersDataStation[i].s_lng) },
                 customIcon: MarkersDataStation[i].ss_id == "0" ? IconStationRed : IconStationGreen,
                 positionlat: MarkersDataStation[i].s_lat,
@@ -393,7 +393,7 @@ function Map() {
                 sactive: MarkersDataStation[i].s_active,
                 ssname: MarkersDataStation[i].ss_name,
                 scontact: MarkersDataStation[i].s_contact,
-                ctmname: MarkersDataStation[i].s_name,
+                ctmname: MarkersDataStation[i].ctm_name,
                 stel: MarkersDataStation[i].s_tel,
                 ssid: MarkersDataStation[i].ss_id
             });
@@ -428,14 +428,14 @@ function Map() {
 
         if (tmp[0] == 'c') {
             axios
-                .post('https://evcarkmitl.com:5000/car/one', { c_id: tmp[1].toString() })
+                .post('http://3.210.67.101:5000/car/one', { c_id: tmp[1].toString() })
                 .then((res) => {
                     console.log(res.data.data, 'Customer');
                 })
                 .catch((err) => console.error(err));
         } else {
             axios
-                .post('https://evcarkmitl.com:5000/station/one', { s_id: tmp[1].toString() })
+                .post('http://3.210.67.101:5000/station/one', { s_id: tmp[1].toString() })
                 .then((res) => {
                     console.log(res.data.data, 'Station');
                 })
@@ -513,11 +513,11 @@ function Map() {
                                         <p style={{ margin: '1vh 0.5vw', width: '5vw', fontWeight: 'bold' }}>ชื่อคนขับ</p>
                                         <p style={{ width: '12vw', display: 'flex', justifyContent: 'flex-end' }}>ไม่ระบุผู้ขับขี่</p>
                                     </div>
-                                    <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                                    {/* <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
                                         <img src={Icon4} style={{ width: '1vw' }} />
                                         <p style={{ margin: '1vh 0.5vw', width: '5vw', fontWeight: 'bold' }}>ใบขับขี่</p>
                                         <p style={{ width: '12vw', display: 'flex', justifyContent: 'flex-end' }}>ไม่ระบุใบขับขี่</p>
-                                    </div>
+                                    </div> */}
                                     <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
                                         <img src={Icon7} style={{ width: '1vw' }} />
                                         <p style={{ margin: '1vh 0.5vw', width: '5vw', fontWeight: 'bold' }}>ตำแหน่ง</p>
@@ -553,23 +553,23 @@ function Map() {
                             <InfoWindow onCloseClick={() => setActiveMarker(null)}>
                                 <div style={{ width: '20vw', height: '40vh' }}>
                                     <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
-                                        <p style={{ margin: '1vh 0.5vw', width: '10vw', fontWeight: 'bold', fontSize: '3vh' }}>{name}</p>
+                                        <p style={{ margin: '1vh 0.5vw', width: '20vw', fontWeight: 'bold', fontSize: '3vh' }}>{name}</p>
                                     </div>
                                     <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
-                                        {ssname === 'OFF-LINE' ? <img src={IconCarOff} style={{ width: '1vw' }} /> : <img src={IconCarOn} style={{ width: '1vw' }} />}
+                                        {ssname === 'OFFLINE' ? <img src={IconCarOff} style={{ width: '1vw' }} /> : <img src={IconCarOn} style={{ width: '1vw' }} />}
                                         <p style={{ margin: '1vh 0.5vw', width: '5vw', fontWeight: 'bold' }}>{ssname}</p>
                                         {/* <p style={{width:'12vw',display: 'flex', justifyContent: 'flex-end'}}>{sactive}</p> */}
                                     </div>
                                     <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
                                         <img src={Icon3} style={{ width: '1vw' }} />
-                                        <p style={{ margin: '1vh 0.5vw', width: '5vw', fontWeight: 'bold' }}>ชื่อสถานี</p>
+                                        <p style={{ margin: '1vh 0.5vw', width: '5vw', fontWeight: 'bold' }}>ชื่อกิจการ</p>
                                         <p style={{ width: '12vw', display: 'flex', justifyContent: 'flex-end' }}>{ctmname}</p>
                                     </div>
-                                    <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
-                                        <img src={IconBetteryType} style={{ width: '1vw' }} />
+                                    {/* <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                                        <img src={Icon3} style={{ width: '1vw' }} />
                                         <p style={{ margin: '1vh 0.5vw', width: '5vw', fontWeight: 'bold' }}>ชื่อเจ้าของ</p>
                                         <p style={{ width: '12vw', display: 'flex', justifyContent: 'flex-end' }}>{scontact}</p>
-                                    </div>
+                                    </div> */}
                                     <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
                                         <img src={IconBetteryType} style={{ width: '1vw' }} />
                                         <p style={{ margin: '1vh 0.5vw', width: '5vw', fontWeight: 'bold' }}>เบอร์ติดต่อ</p>

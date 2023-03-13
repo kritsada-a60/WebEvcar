@@ -40,13 +40,13 @@ type MyData = {
     ss_name: string;
 };
 
-const baseURL = 'https://evcarkmitl.com:5000/station/list';
+const baseURL = 'http://3.210.67.101:5000/station/list';
 
-const baseURLEdit = 'https://evcarkmitl.com:5000/station/add';
+const baseURLEdit = 'http://3.210.67.101:5000/station/add';
 
-const baseURLUpdateDelete = 'https://evcarkmitl.com:5000/station/del';
+const baseURLUpdateDelete = 'http://3.210.67.101:5000/station/del';
 
-const test = 'https://evcarkmitl.com:5000/station/one';
+const test = 'http://3.210.67.101:5000/station/one';
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const [message, setMessage] = useState('');
@@ -78,6 +78,8 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const CTMID = LS.getItem('USERCTM');
     const UID = LS.getItem('LVUSERID');
     const CID = LS.getItem('IdCarEditHistory');
+
+    console.log(CTMID,"CTMID")
 
     const [IDEditData, setIDEditData] = useState('');
     // const [DeleteData, setDeleteData] = useState<MyDeleteData[]>([]);
@@ -175,6 +177,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const Testcolumns = [
         // "เลขที่กิจการ",
         'ชื่อสถานี',
+        'ผู้ประกอบการ',
         // "รูปแบบกิจการ",
         'ที่อยู่',
         'ตำบล',
@@ -182,8 +185,8 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         'จังหวัด',
         'ชื่อผู้ติดต่อ',
         'เบอร์ติดต่อ',
-        'ละติจูด',
-        'ลองจิจูด',
+        // 'ละติจูด',
+        // 'ลองจิจูด',
         'รหัส MQTT',
         'สถานะสถานี',
         {
@@ -275,17 +278,18 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                                 return [
                                     // item.s_id,
                                     item.s_name,
+                                    item.ctm_name,
                                     item.s_address,
                                     item.s_tumbon,
                                     item.s_amphur,
                                     item.s_province,
                                     item.s_contact,
                                     item.s_tel,
-                                    item.s_lat,
-                                    item.s_lng,
+                                    // item.s_lat,
+                                    // item.s_lng,
                                     item.s_mqtt_code,
                                     () => {
-                                        if (item.ss_name == 'OFF-LINE') {
+                                        if (item.ss_name == 'OFFLINE') {
                                             return <p style={{ color: 'red', fontWeight: 'bold' }}>{item.ss_name}</p>;
                                         } else {
                                             return <p style={{ color: 'darkgreen', fontWeight: 'bold' }}>{item.ss_name}</p>;

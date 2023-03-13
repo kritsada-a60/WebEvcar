@@ -152,17 +152,17 @@ type MyDorpDownLength = {
     sv_id: number;
 };
 
-const baseURL = 'https://evcarkmitl.com:5000/service/list';
+const baseURL = 'http://3.210.67.101:5000/service/list';
 
-const baseURLEdit = 'https://evcarkmitl.com:5000/service/add';
+const baseURLEdit = 'http://3.210.67.101:5000/service/add';
 
-const baseURLUpdateDelete = 'https://evcarkmitl.com:5000/service/del';
+const baseURLUpdateDelete = 'http://3.210.67.101:5000/service/del';
 
-const baseURLUpdateDataTable = 'https://evcarkmitl.com:5000/service/one';
+const baseURLUpdateDataTable = 'http://3.210.67.101:5000/service/one';
 
-const baseURLUpdateDataTable2 = 'https://evcarkmitl.com:5000/station/list';
+const baseURLUpdateDataTable2 = 'http://3.210.67.101:5000/station/list';
 
-const baseURLUpdateDorpdown = 'https://evcarkmitl.com:5000/credit/list';
+const baseURLUpdateDorpdown = 'http://3.210.67.101:5000/credit/list';
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const [message, setMessage] = useState('');
@@ -449,7 +449,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         'ชื่อบริการ',
         'ประเภท',
         'ชื่อ-นามสกุล',
-        'จำนวนเครดิต',
+        'จำนวนกิโลวัตต์',
         // "ชื่อลูกค้า",
         // "ประเภทลูกค้า",
         // "เลขทะเบียนการค้า",

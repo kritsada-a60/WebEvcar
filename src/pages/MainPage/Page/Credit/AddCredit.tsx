@@ -45,9 +45,9 @@ type MyDorpDownData = {
 
 export interface ISAddCreditPageProps {}
 
-const baseURL = 'https://evcarkmitl.com:5000/user/list';
+const baseURL = 'http://3.210.67.101:5000/user/list';
 
-const baseURLUpdateAdd = 'https://evcarkmitl.com:5000/credit/deposit';
+const baseURLUpdateAdd = 'http://3.210.67.101:5000/credit/deposit';
 
 const AddCreditPage: React.FunctionComponent<ISAddCreditPageProps> = (props) => {
     const [post, setpost] = useState<AddCredit[]>([]);
@@ -66,7 +66,7 @@ const AddCreditPage: React.FunctionComponent<ISAddCreditPageProps> = (props) => 
     useEffect(() => {
         if (CTMID != '1'){
         axios.post(baseURL, {
-            ctm_id : CTMID
+            ctm_id : ""
         }).then((response) => {
             setDorpDownData(response.data.data);
             console.log(response.data.data);
@@ -128,7 +128,7 @@ const AddCreditPage: React.FunctionComponent<ISAddCreditPageProps> = (props) => 
     return (
         <div style={{ backgroundColor: '#E0F0EC' }}>
             <Header />
-            <p style={{ margin: '5vh 30vw', justifyContent: 'center', fontSize: '36px' }}>เติมเครดิต</p>
+            <p style={{ margin: '5vh 30vw', justifyContent: 'center', fontSize: '36px' }}>เติมกิโลวัตต์</p>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <form>
                     <div style={{ margin: '2.5vh 0', display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
@@ -170,7 +170,7 @@ const AddCreditPage: React.FunctionComponent<ISAddCreditPageProps> = (props) => 
                     </div>
                     <div style={{ margin: '2.5vh 0', display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
                         <label>
-                            <p style={{ margin: '1vh 5vw', borderColor: 'black', width: '15vw', fontSize: '18px', fontWeight: 'bold' }}>จำนวนเครดิต</p>
+                            <p style={{ margin: '1vh 5vw', borderColor: 'black', width: '15vw', fontSize: '18px', fontWeight: 'bold' }}>จำนวนกิโลวัตต์</p>
                             <TextField
                                 type="number"
                                 name="ut_name"

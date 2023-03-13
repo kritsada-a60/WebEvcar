@@ -35,9 +35,9 @@ type AddCarReserve = {
 
 export interface ISAddCarReservePageProps {}
 
-const baseURL = 'https://evcarkmitl.com:5000/station/list';
+const baseURL = 'http://3.210.67.101:5000/station/list';
 
-const baseURLUpdateAdd = 'https://evcarkmitl.com:5000/station/add';
+const baseURLUpdateAdd = 'http://3.210.67.101:5000/station/add';
 
 const AddCarReservePage: React.FunctionComponent<ISAddCarReservePageProps> = (props) => {
     const [post, setpost] = useState<AddCarReserve[]>([]);
@@ -87,7 +87,7 @@ const AddCarReservePage: React.FunctionComponent<ISAddCarReservePageProps> = (pr
     return (
         <div style={{ backgroundColor: '#E0F0EC' }}>
             <Header />
-            <p style={{ margin: '5vh 30vw', justifyContent: 'center', fontSize: '36px' }}>เติมเครดิต</p>
+            <p style={{ margin: '5vh 30vw', justifyContent: 'center', fontSize: '36px' }}>เติมกิโลวัตต์</p>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <form>
                     <div style={{ margin: '2.5vh 0', display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
@@ -106,7 +106,7 @@ const AddCarReservePage: React.FunctionComponent<ISAddCarReservePageProps> = (pr
                     </div>
                     <div style={{ margin: '2.5vh 0', display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
                         <label>
-                            <p style={{ margin: '1vh 5vw', borderColor: 'black', width: '15vw', fontSize: '18px', fontWeight: 'bold' }}>จำนวนเครดิต</p>
+                            <p style={{ margin: '1vh 5vw', borderColor: 'black', width: '15vw', fontSize: '18px', fontWeight: 'bold' }}>จำนวนกิโลวัตต์</p>
                             <TextField
                                 type="ut_name"
                                 name="ut_name"

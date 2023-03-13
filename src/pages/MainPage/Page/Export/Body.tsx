@@ -42,7 +42,7 @@ type MyDataPost = {
     uc_balance: string;
 };
 
-const baseURL = 'https://evcarkmitl.com:5000/credit/user';
+const baseURL = 'http://3.210.67.101:5000/credit/user';
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const [message, setMessage] = useState('');
@@ -162,7 +162,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     /* Add Button */
 
-    const Testcolumns = ['ชื่อ-นามสกุล', 'จำนวนเครดิต'];
+    const Testcolumns = ['ชื่อ-นามสกุล', 'จำนวนกิโลวัตต์'];
 
     const options = {
         // caseSensitive: true,
@@ -200,7 +200,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                 <div style={{ width: '100%' }}>
                     <ThemeProvider theme={getMuiTheme()}>
                         <MUIDataTable
-                            title={'เครดิตคงเหลือ'}
+                            title={'กิโลวัตต์คงเหลือ'}
                             data={post.map((item) => {
                                 return [item.u_fullname, item.uc_balance];
                             })}

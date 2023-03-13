@@ -42,11 +42,11 @@ type MyDataPost = {
     u_mobile: string;
 };
 
-const baseURL = 'https://evcarkmitl.com:5000/car/reservelist';
+const baseURL = 'http://3.210.67.101:5000/car/reservelist';
 
-const baseURLCancel = 'https://evcarkmitl.com:5000/car/cancel';
+const baseURLCancel = 'http://3.210.67.101:5000/car/cancel';
 
-const baseTestURL = 'https://evcarkmitl.com:5000/user/typelist';
+const baseTestURL = 'http://3.210.67.101:5000/user/typelist';
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const navigate = useNavigate();
@@ -323,7 +323,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                 <div style={{ width: '100%' }}>
                     <ThemeProvider theme={getMuiTheme()}>
                         <MUIDataTable
-                            title={'ประวัติการเติมเครดิต'}
+                            title={'ประวัติการเติมกิโลวัตต์'}
                             data={post.map((item) => {
                                 return [
                                     item.cr_reserve,

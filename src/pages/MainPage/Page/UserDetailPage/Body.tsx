@@ -37,13 +37,14 @@ type MyDataPost2 = {
     ua_name: string;
     ul_name: string;
     ut_name: string;
+    ctmt_name: string;
 };
 
-const baseURL = 'https://evcarkmitl.com:5000/user/login';
+const baseURL = 'http://3.210.67.101:5000/user/login';
 
-const baseURLList = 'https://evcarkmitl.com:5000/usertype/list';
+const baseURLList = 'http://3.210.67.101:5000/usertype/list';
 
-const baseURLList2 = 'https://evcarkmitl.com:5000/user/list';
+const baseURLList2 = 'http://3.210.67.101:5000/user/list';
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const [post, setpost] = useState<MyDataPost[]>([]);
@@ -150,6 +151,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         'ชื่อผู้ใช้งาน',
         'ชื่อ-นามสกุล',
         'ชื่อลูกค้า',
+        'ประเภทลูกค้า',
         'ประเภทสิทธิ',
         'ระดับสิทธิ',
         'เบอร์ติดต่อ',
@@ -224,7 +226,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                             title={'ข้อมูลผู้ใช้งาน'}
                             // data = {data}
                             data={post2.map((item) => {
-                                return [item.u_name, item.u_fullname, item.ctm_name, item.ut_name, item.ul_name, item.u_mobile, item.u_email, item.ua_name];
+                                return [item.u_name, item.u_fullname, item.ctm_name, item.ctmt_name,item.ut_name, item.ul_name, item.u_mobile, item.u_email, item.ua_name];
                             })}
                             columns={UserDetailcolumns}
                             options={options}

@@ -41,7 +41,7 @@ type MyDataPost = {
     ut_type: string;
 };
 
-const baseURL = 'https://evcarkmitl.com:5000/credit/list';
+const baseURL = 'http://3.210.67.101:5000/credit/list';
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const [message, setMessage] = useState('');
@@ -175,7 +175,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     /* Add Button */
 
-    const Testcolumns = ['วันเวลา', 'ชื่อ-นามสกุล', 'ผู้เติมเครดิต', 'จำนวนเครดิต'];
+    const Testcolumns = ['วันเวลา', 'ชื่อกิจการ','ผู้รับกิโลวัตต์', 'ผู้เติมกิโลวัตต์', 'จำนวนกิโลวัตต์'];
 
     const options = {
         // caseSensitive: true,
@@ -228,7 +228,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
             </div>
             <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', margin: '2vh 0vw' }}>
                 <Button onClick={navigateadddata} style={{ color: 'black', backgroundColor: '#6CDCC0', borderRadius: '50px', width: '9.740vw' }}>
-                    เพิ่มเครดิต
+                    เพิ่มกิโลวัตต์
                 </Button>
             </div>
             <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
@@ -237,7 +237,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                         <MUIDataTable
                             title={'ประวัติการใช้งาน'}
                             data={post.map((item) => {
-                                return [item.cd, item.u_fullname, item.u_fullname_add, item.ut_balance];
+                                return [item.cd, item.ctm_name,item.u_fullname, item.u_fullname_add, item.ut_balance];
                             })}
                             columns={Testcolumns}
                             options={options}

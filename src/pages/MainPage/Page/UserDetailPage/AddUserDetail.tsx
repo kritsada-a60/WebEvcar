@@ -69,23 +69,23 @@ type MyDorpDownData4 = {
 
 export interface ISAddUserDetailPageProps {}
 
-const baseURL = 'https://evcarkmitl.com:5000/usertype/list';
+const baseURL = 'http://3.210.67.101:5000/usertype/list';
 
-const baseURLEdit = 'https://evcarkmitl.com:5000/usertype/add';
+const baseURLEdit = 'http://3.210.67.101:5000/usertype/add';
 
-const baseURLUpdateData = 'https://evcarkmitl.com:5000/user/info';
+const baseURLUpdateData = 'http://3.210.67.101:5000/user/info';
 
-const baseURLUpdateEdit = 'https://evcarkmitl.com:5000/usertype/edit';
+const baseURLUpdateEdit = 'http://3.210.67.101:5000/usertype/edit';
 
-const baseURLUpdateAddDorpDown = 'https://evcarkmitl.com:5000/customertype/list';
+const baseURLUpdateAddDorpDown = 'http://3.210.67.101:5000/customertype/list';
 
-const baseURLUpdateAddDorpDown2 = 'https://evcarkmitl.com:5000/customer/list';
+const baseURLUpdateAddDorpDown2 = 'http://3.210.67.101:5000/customer/list';
 
-const baseURLUpdateAddDorpDown3 = 'https://evcarkmitl.com:5000/userlevel/list';
+const baseURLUpdateAddDorpDown3 = 'http://3.210.67.101:5000/userlevel/list';
 
-const baseURLUpdateAddDorpDown4 = 'https://evcarkmitl.com:5000/usertype/list';
+const baseURLUpdateAddDorpDown4 = 'http://3.210.67.101:5000/usertype/list';
 
-const baseURLUpdateAdd = 'https://evcarkmitl.com:5000/user/register';
+const baseURLUpdateAdd = 'http://3.210.67.101:5000/user/register';
 
 type MyEditData = {
     u_id: string;
@@ -366,31 +366,59 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
         //         return DorpDownDataS.ctmt_id > 1;
         //     }
         // });
-        const result = DorpDownData.filter((DorpDownDataS: any) => {
-            if (CTMT == "2") {
-                return DorpDownDataS.ctmt_id == 2;
-            } else if (CTMT == "3") {
-                return DorpDownDataS.ctmt_id == 3;
-            } else {
-                return DorpDownDataS.ctmt_id > 1;
-            }
-        });
-        
+        if (CTMID == "1"){
+        const result = DorpDownData.filter((DorpDownDataS:any) => {
+          if (Input9 <= '2'){
+            return DorpDownDataS.ctmt_id == 1
+          }else{
+            return DorpDownDataS.ctmt_id > 1
+          }
+        })
 
-        const result2 = DorpDownData3.filter((DorpDownDataS: any) => {
-            if (Input9 == '1') {
-                return DorpDownDataS.ul_id == 1;
-            } else if (Input9 == '2') {
-                return DorpDownDataS.ul_id == 2;
-            } else {
-                return DorpDownDataS;
-            }
-        });
+        const result2 = DorpDownData3.filter((DorpDownDataS:any) => {
+          if (Input9 == '1'){
+            return DorpDownDataS.ul_id == 1
+          }else if(Input9 == '2'){
+            return DorpDownDataS.ul_id == 2
+          }else{
+            return DorpDownDataS
+          }
 
-        console.log('this result', result);
-        console.log('this result2', result2);
-        setDorpDownDatafillter(result);
-        setDropDownLvUserfillter(result2);
+        })
+            setDorpDownDatafillter(result);
+            setDropDownLvUserfillter(result2);
+
+        }else{
+            const result = DorpDownData.filter((DorpDownDataS: any) => {
+                if (CTMT == "2") {
+                    return DorpDownDataS.ctmt_id == 2;
+                } else if (CTMT == "3") {
+                    return DorpDownDataS.ctmt_id == 3;
+                } else {
+                    return DorpDownDataS.ctmt_id > 1;
+                }
+            });
+            
+
+            const result2 = DorpDownData3.filter((DorpDownDataS: any) => {
+                if (Input9 == '1') {
+                    return DorpDownDataS.ul_id == 1;
+                } else if (Input9 == '2') {
+                    return DorpDownDataS.ul_id == 2;
+                } else {
+                    return DorpDownDataS;
+                }
+            });
+            setDorpDownDatafillter(result);
+            setDropDownLvUserfillter(result2);
+        }
+
+
+
+        // console.log('this result', result);
+        // console.log('this result2', result2);
+        // setDorpDownDatafillter(result);
+        // setDropDownLvUserfillter(result2);
         // if (UserInfo != undefined) setInput1(UserInfo.ctmt_id.toString());
         // if (UserInfo != undefined) setInput10(UserInfo.ul_id.toString());
     }, [Input9]);

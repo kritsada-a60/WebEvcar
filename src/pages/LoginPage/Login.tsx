@@ -151,7 +151,7 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
 
     // useEffect(() => {
     //   axios
-    //     .post("https://evcarkmitl.com:5000/car/one", {
+    //     .post("http://3.210.67.101:5000/car/one", {
     //       c_id: "2"
     //     })
     //     .then((res) => {
@@ -172,7 +172,7 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
         console.log(values);
         setalertlogin('1');
         axios
-            .post('https://evcarkmitl.com:5000/user/login', {
+            .post('http://3.210.67.101:5000/user/login', {
                 uname: values.uname,
                 upass: values.upass
             })

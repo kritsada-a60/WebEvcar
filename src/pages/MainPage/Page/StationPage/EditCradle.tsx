@@ -51,15 +51,15 @@ type MyDorpDownData = {
 
 export interface ISAddCradleInfomationPageProps {}
 
-const baseURL = 'https://evcarkmitl.com:5000/station/list';
+const baseURL = 'http://3.210.67.101:5000/station/list';
 
-const baseURLEdit = 'https://evcarkmitl.com:5000/station/add';
+const baseURLEdit = 'http://3.210.67.101:5000/station/add';
 
-const baseURLUpdateData = 'https://evcarkmitl.com:5000/station/one';
+const baseURLUpdateData = 'http://3.210.67.101:5000/station/one';
 
-const baseURLUpdateEdit = 'https://evcarkmitl.com:5000/station/edit';
+const baseURLUpdateEdit = 'http://3.210.67.101:5000/station/edit';
 
-const baseURLDorpDown = 'https://evcarkmitl.com:5000/customer/list';
+const baseURLDorpDown = 'http://3.210.67.101:5000/customer/list';
 
 const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPageProps> = (props) => {
     const [post, setpost] = useState<MyDataPost[]>([]);
@@ -108,6 +108,8 @@ const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPage
         ctm_name: '',
         ctmt_name: ''
     });
+
+    const [StationInfo, setStationInfo] = useState<MyDorpDownData>();
 
     const [age, setAge] = React.useState('');
 
@@ -198,6 +200,7 @@ const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPage
                 setInput10(response.data.data[0].s_mqtt_code);
                 // setpost(response.data.data)
                 console.log(response.data.data[0]);
+                setStationInfo(response.data.data[0]);
             });
         if (CTMID != "1") {
             axios
@@ -214,7 +217,7 @@ const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPage
         }else {
             axios
             .post(baseURLDorpDown, {
-                ctmt_id: 2
+                ctmt_id: 3
             })
             .then((response) => {
                 setDorpDownData(response.data.data);
@@ -253,6 +256,17 @@ const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPage
     useEffect(() => {
         console.log('this Bname', Bname);
     }, [Bname]);
+
+    useEffect(() => {
+        console.log(StationInfo);
+        if (StationInfo != undefined) {
+            if (Input11 != undefined) setInput11(StationInfo?.ctm_id.toString());
+        }
+    }, [StationInfo]);
+
+    useEffect(() => {
+        console.log('this Input11', Input11);
+    }, [Input11]);
 
     const resultDorpDownData = DorpDownData.filter((member) => {
         if(CTMID != "1"){

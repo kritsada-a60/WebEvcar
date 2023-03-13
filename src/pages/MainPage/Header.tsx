@@ -43,12 +43,12 @@ function ResponsiveAppBar() {
         { page: 'ประวัติรถ', link: 'history' },
         { page: 'ข้อมูลรถ', link: 'cardetail' },
         { page: 'หน้าจองรถ', link: 'carresever' }, // เห็นเฉพาะเจ้าของปั้ม
-        { page: 'เติมเครดิต', link: 'credit' }, // เห็นเฉพาะเจ้าของปั้ม
+        { page: 'เติมกิโลวัตต์', link: 'credit' }, // เห็นเฉพาะเจ้าของปั้ม
         { page: 'ข้อมูลลูกค้า', link: 'customer' },
         { page: 'ข้อมูลสถานี', link: 'station' },
         { page: 'Serivce', link: 'service' },
         { page: 'Export', link: "detailstation"},
-        { page: 'เครดิตคงเหลือ', link: 'checkcredit' },
+        { page: 'กิโลวัตต์คงเหลือ', link: 'checkcredit' },
         { page: 'ข้อมูลผู้ใช้งาน', link: 'userdetail' }
     ];
 
@@ -64,11 +64,11 @@ function ResponsiveAppBar() {
     const pagesLV3 = [
         { page: 'แผนที่', link: 'map' },
         { page: 'ประวัติสถานี', link: 'history' },
-        { page: 'เติมเครดิต', link: 'credit' }, // เห็นเฉพาะเจ้าของปั้ม
+        { page: 'เติมกิโลวัตต์', link: 'credit' }, // เห็นเฉพาะเจ้าของปั้ม
         {page:'ข้อมูลสถานี', link: "station"},
         { page: 'Serivce', link: 'service' },
         { page: 'Export', link: "detailstation"},
-        { page: 'เครดิตคงเหลือ', link: 'checkcredit' },
+        { page: 'กิโลวัตต์คงเหลือ', link: 'checkcredit' },
         { page: 'ข้อมูลผู้ใช้งาน', link: 'userdetail' }
     ];
 
@@ -217,42 +217,42 @@ function ResponsiveAppBar() {
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {LVID == "1" && LVTYPEID == "1" && pages.map(({ page, link }) => (
-                            <div style={{ margin: '0vw 1vw' }}>
+                            <div style={{ margin: '0vw 0.5vw' }}>
                                 <Button key={page} onClick={handleCloseNavMenu} href={link} sx={{ my: 2, color: 'black', display: 'block' }}>
                                     {page}
                                 </Button>
                             </div>
                         ))}
                         {LVID == "1" && LVTYPEID != "1" &&  pagesLV4.map(({ page, link }) => (
-                            <div style={{ margin: '0vw 1vw' }}>
+                            <div style={{ margin: '0vw 0.5vw' }}>
                                 <Button key={page} onClick={handleCloseNavMenu} href={link} sx={{ my: 2, color: 'black', display: 'block' }}>
                                     {page}
                                 </Button>
                             </div>
                         ))}
                         {LVID == "2" && LVTYPEID == "1" && pagesLV2.map(({ page, link }) => (
-                            <div style={{ margin: '0vw 1vw' }}>
+                            <div style={{ margin: '0vw 0.5vw' }}>
                                 <Button key={page} onClick={handleCloseNavMenu} href={link} sx={{ my: 2, color: 'black', display: 'block' }}>
                                     {page}
                                 </Button>
                             </div>
                         ))}
                         {LVID == "2" && LVTYPEID != "1" && pagesLV5.map(({ page, link }) => (
-                            <div style={{ margin: '0vw 1vw' }}>
+                            <div style={{ margin: '0vw 0.5vw' }}>
                                 <Button key={page} onClick={handleCloseNavMenu} href={link} sx={{ my: 2, color: 'black', display: 'block' }}>
                                     {page}
                                 </Button>
                             </div>
                         ))}
                         {LVID == "3" && LVTYPEID == "1" && pagesLV3.map(({ page, link }) => (
-                            <div style={{ margin: '0vw 1vw' }}>
+                            <div style={{ margin: '0vw 0.5vw' }}>
                                 <Button key={page} onClick={handleCloseNavMenu} href={link} sx={{ my: 2, color: 'black', display: 'block' }}>
                                     {page}
                                 </Button>
                             </div>
                         ))}
                         {LVID == "3" && LVTYPEID != "1" && pagesLV6.map(({ page, link }) => (
-                            <div style={{ margin: '0vw 1vw' }}>
+                            <div style={{ margin: '0vw 0.5vw' }}>
                                 <Button key={page} onClick={handleCloseNavMenu} href={link} sx={{ my: 2, color: 'black', display: 'block' }}>
                                     {page}
                                 </Button>

@@ -42,9 +42,9 @@ type MyData = {
 };
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
-    const baseURL = 'https://evcarkmitl.com:5000/car/list';
+    const baseURL = 'http://3.210.67.101:5000/car/list';
 
-    const baseURLUpdateDelete = 'https://evcarkmitl.com:5000/car/del';
+    const baseURLUpdateDelete = 'http://3.210.67.101:5000/car/del';
 
     const navigate = useNavigate();
 
@@ -193,6 +193,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                 }
             }
         });
+        
 
     return (
         <div style={{ width: '50%', height: '100vh' }}>

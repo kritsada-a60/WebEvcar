@@ -120,15 +120,15 @@ type MyDorpDownLength = {
     sv_id: number;
 };
 
-const baseURL = 'https://evcarkmitl.com:5000/service/list';
+const baseURL = 'http://3.210.67.101:5000/service/list';
 
-const baseURLEdit = 'https://evcarkmitl.com:5000/service/add';
+const baseURLEdit = 'http://3.210.67.101:5000/service/add';
 
-const baseURLUpdateDelete = 'https://evcarkmitl.com:5000/service/del';
+const baseURLUpdateDelete = 'http://3.210.67.101:5000/service/del';
 
-const baseURLUpdateDataTable = 'https://evcarkmitl.com:5000/service/one';
+const baseURLUpdateDataTable = 'http://3.210.67.101:5000/service/one';
 
-const baseURLUpdateDataTable2 = 'https://evcarkmitl.com:5000/station/list';
+const baseURLUpdateDataTable2 = 'http://3.210.67.101:5000/station/list';
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const [message, setMessage] = useState('');
@@ -401,8 +401,8 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         'ชื่อบริการ',
         'ประเภท',
         'serial',
-        'ราคา',
-        'หน่วย',
+        'กิโลวัตต์',
+        // 'หน่วย',
         'MQTT_CODE',
         'สถานะ',
         // "ชื่อลูกค้า",
@@ -586,7 +586,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                                     item.pc_name,
                                     item.sv_serial,
                                     item.sv_price,
-                                    item.sv_unit,
+                                    // item.sv_unit,
                                     item.sv_mqtt_code,
                                     () => {
                                         if (item.sv_status_txt == 'ไม่พร้อมใช้งาน') {
