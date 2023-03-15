@@ -238,11 +238,16 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
         console.log('this DorpDownData', DorpDownData);
 
         console.log('this is result DorpDownData', resultDorpDownData);
+        if (CarInfo != undefined) {
+            if (Input2 != undefined) setInput2(CarInfo?.ctm_id.toString());
+            if (Input3 != undefined) setInput3(CarInfo?.cgt_pt_id.toString());
+            if (Input4 != undefined) setInput4(CarInfo?.bt_pt_id.toString());
+        }
     }, [DorpDownData]);
 
     const resultDorpDownData = DorpDownData.filter((member) => {
         if(CTMID != "1"){
-            return member.ctmt_id == Number(CTMID);
+            return member.ctm_id == CTMID;
         }else {
             return member.ctmt_id == 2;
         }
@@ -325,12 +330,12 @@ const EditCarPage: React.FunctionComponent<ISEditCarPageProps> = (props) => {
     }, [Input4]);
 
     useEffect(() => {
-        console.log(CarInfo);
-        if (CarInfo != undefined) {
-            if (Input2 != undefined) setInput2(CarInfo?.ctm_id.toString());
-            if (Input3 != undefined) setInput3(CarInfo?.cgt_pt_id.toString());
-            if (Input4 != undefined) setInput4(CarInfo?.bt_pt_id.toString());
-        }
+        // console.log(CarInfo);
+        // if (CarInfo != undefined) {
+        //     if (Input2 != undefined) setInput2(CarInfo?.ctm_id.toString());
+        //     if (Input3 != undefined) setInput3(CarInfo?.cgt_pt_id.toString());
+        //     if (Input4 != undefined) setInput4(CarInfo?.bt_pt_id.toString());
+        // }
     }, [CarInfo]);
 
     return (
