@@ -55,13 +55,13 @@ type MyDorpDownData = {
 
 export interface ISAddCustomerPageProps {}
 
-const baseURL = 'http://3.210.67.101:5000/usertype/list';
+const baseURL = 'https://evcarkmitl.com:5000/usertype/list';
 
-const baseURLEdit = 'http://3.210.67.101:5000/usertype/add';
+const baseURLEdit = 'https://evcarkmitl.com:5000/usertype/add';
 
-const baseURLUpdateData = 'http://3.210.67.101:5000/customer/one';
+const baseURLUpdateData = 'https://evcarkmitl.com:5000/customer/one';
 
-const baseURLUpdateEdit = 'http://3.210.67.101:5000/customer/edit';
+const baseURLUpdateEdit = 'https://evcarkmitl.com:5000/customer/edit';
 
 const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props) => {
     const [post, setpost] = useState<MyDataPost[]>([]);
@@ -84,7 +84,7 @@ const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props)
         navigate('/customer');
     };
 
-    const baseURLUpdateAddDorpDown = 'http://3.210.67.101:5000/customertype/list';
+    const baseURLUpdateAddDorpDown = 'https://evcarkmitl.com:5000/customertype/list';
 
     const [Bname, setBname] = useState('');
 

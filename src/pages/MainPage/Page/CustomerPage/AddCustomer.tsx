@@ -60,17 +60,17 @@ type MyDorpDownData = {
 
 export interface ISAddCustomerPageProps {}
 
-const baseURL = 'http://3.210.67.101:5000/customer/list';
+const baseURL = 'https://evcarkmitl.com:5000/customer/list';
 
-const baseURLEdit = 'http://3.210.67.101:5000/customer/add';
+const baseURLEdit = 'https://evcarkmitl.com:5000/customer/add';
 
-const baseURLUpdateData = 'http://3.210.67.101:5000/customer/one';
+const baseURLUpdateData = 'https://evcarkmitl.com:5000/customer/one';
 
-const baseURLUpdateEdit = 'http://3.210.67.101:5000/customer/edit';
+const baseURLUpdateEdit = 'https://evcarkmitl.com:5000/customer/edit';
 
-const baseURLUpdateAdd = 'http://3.210.67.101:5000/customer/add';
+const baseURLUpdateAdd = 'https://evcarkmitl.com:5000/customer/add';
 
-const baseURLUpdateAddDorpDown = 'http://3.210.67.101:5000/customertype/list';
+const baseURLUpdateAddDorpDown = 'https://evcarkmitl.com:5000/customertype/list';
 
 const AddCustomerPage: React.FunctionComponent<ISAddCustomerPageProps> = (props) => {
     const [post, setpost] = useState<MyDataPost[]>([]);

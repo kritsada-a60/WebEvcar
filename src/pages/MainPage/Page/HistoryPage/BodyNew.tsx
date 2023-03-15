@@ -47,9 +47,9 @@ type MyData = {
 };
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
-    const baseURL = 'http://3.210.67.101:5000/car/list';
+    const baseURL = 'https://evcarkmitl.com:5000/car/list';
 
-    const baseURLUpdateDelete = 'http://3.210.67.101:5000/car/del';
+    const baseURLUpdateDelete = 'https://evcarkmitl.com:5000/car/del';
 
     const navigate = useNavigate();
 
@@ -70,6 +70,12 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     function SetLs_idEdit() {
         // console.log(EditCarData);
         LS.setItem('IdCarEditHistory', EditCarData);
+        // navigateadddata();
+    }
+
+    function SetLicensePlate() {
+        // console.log(EditCarData);
+        LS.setItem('IdCarLicensePlate', EditCarData);
         // navigateadddata();
     }
 
@@ -186,6 +192,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                             onClick={() => {
                                 setEditCarData(post[dataIndex].c_id);
                                 SetLs_idEdit();
+                                LS.setItem('IdCarLicensePlate', post[dataIndex].c_license_plate);
                             }}
                             style={{ cursor: 'pointer' }}
                         />

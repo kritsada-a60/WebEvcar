@@ -92,17 +92,17 @@ type MyDorpDownData = {
 
 export interface ISAddCradleInfomationPageProps {}
 
-const baseURL = 'http://3.210.67.101:5000/station/list';
+const baseURL = 'https://evcarkmitl.com:5000/station/list';
 
-const baseURLEdit = 'http://3.210.67.101:5000/station/add';
+const baseURLEdit = 'https://evcarkmitl.com:5000/station/add';
 
-const baseURLUpdateData = 'http://3.210.67.101:5000/station/one';
+const baseURLUpdateData = 'https://evcarkmitl.com:5000/station/one';
 
-const baseURLUpdateEdit = 'http://3.210.67.101:5000/station/edit';
+const baseURLUpdateEdit = 'https://evcarkmitl.com:5000/station/edit';
 
-const baseURLUpdateAdd = 'http://3.210.67.101:5000/station/add';
+const baseURLUpdateAdd = 'https://evcarkmitl.com:5000/station/add';
 
-const baseURLDorpDown = 'http://3.210.67.101:5000/customer/list';
+const baseURLDorpDown = 'https://evcarkmitl.com:5000/customer/list';
 
 const AddCradleInfomationPage: React.FunctionComponent<ISAddCradleInfomationPageProps> = (props) => {
     const [post, setpost] = useState<AddStation[]>([]);

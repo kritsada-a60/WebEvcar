@@ -40,11 +40,11 @@ type MyDataPost2 = {
     ctmt_name: string;
 };
 
-const baseURL = 'http://3.210.67.101:5000/user/login';
+const baseURL = 'https://evcarkmitl.com:5000/user/login';
 
-const baseURLList = 'http://3.210.67.101:5000/usertype/list';
+const baseURLList = 'https://evcarkmitl.com:5000/usertype/list';
 
-const baseURLList2 = 'http://3.210.67.101:5000/user/list';
+const baseURLList2 = 'https://evcarkmitl.com:5000/user/list';
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const [post, setpost] = useState<MyDataPost[]>([]);

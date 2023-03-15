@@ -67,19 +67,19 @@ type MyDorpDownData2 = {
 
 export interface ISAddServicePageProps {}
 
-const baseURL = 'http://3.210.67.101:5000/service/list';
+const baseURL = 'https://evcarkmitl.com:5000/service/list';
 
-const baseURLEdit = 'http://3.210.67.101:5000/service/add';
+const baseURLEdit = 'https://evcarkmitl.com:5000/service/add';
 
-const baseURLUpdateData = 'http://3.210.67.101:5000/service/one';
+const baseURLUpdateData = 'https://evcarkmitl.com:5000/service/one';
 
-const baseURLUpdateEdit = 'http://3.210.67.101:5000/service/edit';
+const baseURLUpdateEdit = 'https://evcarkmitl.com:5000/service/edit';
 
-const baseURLUpdateAdd = 'http://3.210.67.101:5000/service/add';
+const baseURLUpdateAdd = 'https://evcarkmitl.com:5000/service/add';
 
-const baseURLDorpDown = 'http://3.210.67.101:5000/powercatalog/list';
+const baseURLDorpDown = 'https://evcarkmitl.com:5000/powercatalog/list';
 
-const baseURLDorpDown2 = 'http://3.210.67.101:5000/powertype/list';
+const baseURLDorpDown2 = 'https://evcarkmitl.com:5000/powertype/list';
 
 const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) => {
     const [post, setpost] = useState<MyDataPost[]>([]);

@@ -57,9 +57,9 @@ type MyData = {
 };
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
-    const baseURL = 'http://3.210.67.101:5000/car/tracking';
+    const baseURL = 'https://evcarkmitl.com:5000/car/tracking';
 
-    const baseURLUpdateDelete = 'http://3.210.67.101:5000/car/del';
+    const baseURLUpdateDelete = 'https://evcarkmitl.com:5000/car/del';
 
     const navigate = useNavigate();
 
@@ -72,6 +72,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const CTMID = LS.getItem('USERCTM');
     const UID = LS.getItem('LVUSERID');
     const CID = LS.getItem('IdCarEditHistory');
+    const CLP = LS.getItem('IdCarLicensePlate');
 
     useEffect(() => {
         axios
@@ -98,7 +99,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     /* Click And Go Next Page */
 
-    const Testcolumns = ['ID CAR', 'เวลาเริ่มเดินทาง', 'ละติจูด', 'ลองจิจูด', 'ความเร็ว'];
+    const Testcolumns = ['ลำดับที่', 'วัน-เวลา', 'ละติจูด', 'ลองจิจูด', 'ความเร็ว'];
 
     const options = {
         // caseSensitive: true,
@@ -127,7 +128,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     return (
         <div style={{ width: '50%', height: '100vh' }}>
-            <div style={{ width: '50%', margin: '5vh 1vw', fontSize: '2vw' }}>ค้นหารถ</div>
+            <div style={{ width: '50%', margin: '5vh 1vw', fontSize: '2vw' }}>{CLP}</div>
             <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
                 <div style={{ width: '100%' }}>
                     <ThemeProvider theme={getMuiTheme()}>

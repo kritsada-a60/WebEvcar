@@ -40,13 +40,13 @@ type MyData = {
     ss_name: string;
 };
 
-const baseURL = 'http://3.210.67.101:5000/station/list';
+const baseURL = 'https://evcarkmitl.com:5000/station/list';
 
-const baseURLEdit = 'http://3.210.67.101:5000/station/add';
+const baseURLEdit = 'https://evcarkmitl.com:5000/station/add';
 
-const baseURLUpdateDelete = 'http://3.210.67.101:5000/station/del';
+const baseURLUpdateDelete = 'https://evcarkmitl.com:5000/station/del';
 
-const test = 'http://3.210.67.101:5000/station/one';
+const test = 'https://evcarkmitl.com:5000/station/one';
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const [message, setMessage] = useState('');
@@ -273,7 +273,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                     <ThemeProvider theme={getMuiTheme()}>
                         <MUIDataTable
                             // title={"ข้อมูลอู่"}
-                            title={'สถานี'}
+                            title={'ข้อมูลสถานี'}
                             data={post.map((item) => {
                                 return [
                                     // item.s_id,

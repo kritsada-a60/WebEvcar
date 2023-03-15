@@ -25,11 +25,11 @@ type MyDataPost = {
 //     editdata_id: any;
 // }
 
-const baseURL = 'http://3.210.67.101:5000/usertype/list';
+const baseURL = 'https://evcarkmitl.com:5000/usertype/list';
 
-const baseURLEdit = 'http://3.210.67.101:5000/usertype/add';
+const baseURLEdit = 'https://evcarkmitl.com:5000/usertype/add';
 
-const baseURLUpdateDelete = 'http://3.210.67.101:5000/usertype/del';
+const baseURLUpdateDelete = 'https://evcarkmitl.com:5000/usertype/del';
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const [message, setMessage] = useState('');

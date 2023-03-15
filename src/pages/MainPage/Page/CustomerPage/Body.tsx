@@ -46,13 +46,13 @@ type MyData = {
     ctmt_name: string;
 };
 
-const baseURL = 'http://3.210.67.101:5000/customer/list';
+const baseURL = 'https://evcarkmitl.com:5000/customer/list';
 
-const baseURLEdit = 'http://3.210.67.101:5000/customer/add';
+const baseURLEdit = 'https://evcarkmitl.com:5000/customer/add';
 
-const baseURLUpdateDelete = 'http://3.210.67.101:5000/customer/del';
+const baseURLUpdateDelete = 'https://evcarkmitl.com:5000/customer/del';
 
-const test = 'http://3.210.67.101:5000/customer/one';
+const test = 'https://evcarkmitl.com:5000/customer/one';
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const [message, setMessage] = useState('');

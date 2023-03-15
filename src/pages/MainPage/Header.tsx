@@ -46,7 +46,7 @@ function ResponsiveAppBar() {
         { page: 'เติมกิโลวัตต์', link: 'credit' }, // เห็นเฉพาะเจ้าของปั้ม
         { page: 'ข้อมูลลูกค้า', link: 'customer' },
         { page: 'ข้อมูลสถานี', link: 'station' },
-        { page: 'Serivce', link: 'service' },
+        { page: 'Service', link: 'service' },
         { page: 'Export', link: "detailstation"},
         { page: 'กิโลวัตต์คงเหลือ', link: 'checkcredit' },
         { page: 'ข้อมูลผู้ใช้งาน', link: 'userdetail' }
@@ -63,10 +63,10 @@ function ResponsiveAppBar() {
 
     const pagesLV3 = [
         { page: 'แผนที่', link: 'map' },
-        { page: 'ประวัติสถานี', link: 'history' },
+        // { page: 'ประวัติสถานี', link: 'history' },
         { page: 'เติมกิโลวัตต์', link: 'credit' }, // เห็นเฉพาะเจ้าของปั้ม
         {page:'ข้อมูลสถานี', link: "station"},
-        { page: 'Serivce', link: 'service' },
+        { page: 'Service', link: 'service' },
         { page: 'Export', link: "detailstation"},
         { page: 'กิโลวัตต์คงเหลือ', link: 'checkcredit' },
         { page: 'ข้อมูลผู้ใช้งาน', link: 'userdetail' }
@@ -79,7 +79,7 @@ function ResponsiveAppBar() {
         { page: 'ข้อมูลลูกค้า', link: 'customer' },
         { page: 'ข้อมูลสถานี', link: 'station' },
         // {page:'ข้อมูลสถานี', link: "stationinformation"},
-        { page: 'Serivce', link: 'service' },
+        { page: 'Service', link: 'service' },
     ];
 
     const pagesLV5 = [
@@ -94,7 +94,7 @@ function ResponsiveAppBar() {
         { page: 'แผนที่', link: 'map' },
         { page: 'ประวัติสถานี', link: 'history' },
         { page:'ข้อมูลสถานี', link: "station" },
-        { page: 'Serivce', link: 'service' },
+        { page: 'Service', link: 'service' },
     ];
 
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);

@@ -216,8 +216,8 @@ const markers = [
     }
 ];
 
-const URLMerkersData = 'http://3.210.67.101:5000/car/list';
-const URLMerkersDataStation = 'http://3.210.67.101:5000/station/list';
+const URLMerkersData = 'https://evcarkmitl.com:5000/car/list';
+const URLMerkersDataStation = 'https://evcarkmitl.com:5000/station/list';
 
 function Map() {
     const [MarkersData, setMarkersData] = useState<MyMarkersData[]>([]);
@@ -428,14 +428,14 @@ function Map() {
 
         if (tmp[0] == 'c') {
             axios
-                .post('http://3.210.67.101:5000/car/one', { c_id: tmp[1].toString() })
+                .post('https://evcarkmitl.com:5000/car/one', { c_id: tmp[1].toString() })
                 .then((res) => {
                     console.log(res.data.data, 'Customer');
                 })
                 .catch((err) => console.error(err));
         } else {
             axios
-                .post('http://3.210.67.101:5000/station/one', { s_id: tmp[1].toString() })
+                .post('https://evcarkmitl.com:5000/station/one', { s_id: tmp[1].toString() })
                 .then((res) => {
                     console.log(res.data.data, 'Station');
                 })
@@ -496,6 +496,10 @@ function Map() {
                                     <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
                                         {carstatus === 'OFF-LINE' ? <img src={IconCarOff} style={{ width: '1vw' }} /> : <img src={IconCarOn} style={{ width: '1vw' }} />}
                                         <p style={{ margin: '1vh 0.5vw', width: '5vw', fontWeight: 'bold' }}>{carstatus}</p>
+                                    </div>
+                                    <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                                        <img src={Icon3} style={{ width: '1vw' }} />
+                                        <p style={{ margin: '1vh 0.5vw', width: '5vw', fontWeight: 'bold' }}>ชื่อกิจการ</p>
                                         <p style={{ width: '12vw', display: 'flex', justifyContent: 'flex-end' }}>{ctmname}</p>
                                     </div>
                                     <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>

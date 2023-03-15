@@ -41,7 +41,7 @@ type MyDataPost = {
     ut_type: string;
 };
 
-const baseURL = 'http://3.210.67.101:5000/credit/list';
+const baseURL = 'https://evcarkmitl.com:5000/credit/list';
 
 const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
     const [message, setMessage] = useState('');
@@ -235,7 +235,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                 <div style={{ width: '100%' }}>
                     <ThemeProvider theme={getMuiTheme()}>
                         <MUIDataTable
-                            title={'ประวัติการใช้งาน'}
+                            title={'เติมกิโลวัตต์'}
                             data={post.map((item) => {
                                 return [item.cd, item.ctm_name,item.u_fullname, item.u_fullname_add, item.ut_balance];
                             })}

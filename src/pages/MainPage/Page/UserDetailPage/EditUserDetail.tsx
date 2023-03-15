@@ -84,23 +84,23 @@ type MyEditData = {
 
 export interface ISEditUserDetailPageProps {}
 
-const baseURL = 'http://3.210.67.101:5000/usertype/list';
+const baseURL = 'https://evcarkmitl.com:5000/usertype/list';
 
-const baseURLEdit = 'http://3.210.67.101:5000/usertype/add';
+const baseURLEdit = 'https://evcarkmitl.com:5000/usertype/add';
 
-const baseURLUpdateData = 'http://3.210.67.101:5000/user/info';
+const baseURLUpdateData = 'https://evcarkmitl.com:5000/user/info';
 
-const baseURLUpdateEdit = 'http://3.210.67.101:5000/usertype/edit';
+const baseURLUpdateEdit = 'https://evcarkmitl.com:5000/usertype/edit';
 
-const baseURLUpdateMyEdit = 'http://3.210.67.101:5000/user/edit';
+const baseURLUpdateMyEdit = 'https://evcarkmitl.com:5000/user/edit';
 
-const baseURLUpdateAddDorpDown = 'http://3.210.67.101:5000/customertype/list';
+const baseURLUpdateAddDorpDown = 'https://evcarkmitl.com:5000/customertype/list';
 
-const baseURLUpdateAddDorpDown2 = 'http://3.210.67.101:5000/customer/list';
+const baseURLUpdateAddDorpDown2 = 'https://evcarkmitl.com:5000/customer/list';
 
-const baseURLUpdateAddDorpDown3 = 'http://3.210.67.101:5000/userlevel/list';
+const baseURLUpdateAddDorpDown3 = 'https://evcarkmitl.com:5000/userlevel/list';
 
-const baseURLUpdateAddDorpDown4 = 'http://3.210.67.101:5000/usertype/list';
+const baseURLUpdateAddDorpDown4 = 'https://evcarkmitl.com:5000/usertype/list';
 
 const EditUserDetailPage: React.FunctionComponent<ISEditUserDetailPageProps> = (props) => {
     const [post, setpost] = useState<MyDataPost[]>([]);

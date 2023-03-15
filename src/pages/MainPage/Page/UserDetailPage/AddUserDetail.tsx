@@ -69,23 +69,23 @@ type MyDorpDownData4 = {
 
 export interface ISAddUserDetailPageProps {}
 
-const baseURL = 'http://3.210.67.101:5000/usertype/list';
+const baseURL = 'https://evcarkmitl.com:5000/usertype/list';
 
-const baseURLEdit = 'http://3.210.67.101:5000/usertype/add';
+const baseURLEdit = 'https://evcarkmitl.com:5000/usertype/add';
 
-const baseURLUpdateData = 'http://3.210.67.101:5000/user/info';
+const baseURLUpdateData = 'https://evcarkmitl.com:5000/user/info';
 
-const baseURLUpdateEdit = 'http://3.210.67.101:5000/usertype/edit';
+const baseURLUpdateEdit = 'https://evcarkmitl.com:5000/usertype/edit';
 
-const baseURLUpdateAddDorpDown = 'http://3.210.67.101:5000/customertype/list';
+const baseURLUpdateAddDorpDown = 'https://evcarkmitl.com:5000/customertype/list';
 
-const baseURLUpdateAddDorpDown2 = 'http://3.210.67.101:5000/customer/list';
+const baseURLUpdateAddDorpDown2 = 'https://evcarkmitl.com:5000/customer/list';
 
-const baseURLUpdateAddDorpDown3 = 'http://3.210.67.101:5000/userlevel/list';
+const baseURLUpdateAddDorpDown3 = 'https://evcarkmitl.com:5000/userlevel/list';
 
-const baseURLUpdateAddDorpDown4 = 'http://3.210.67.101:5000/usertype/list';
+const baseURLUpdateAddDorpDown4 = 'https://evcarkmitl.com:5000/usertype/list';
 
-const baseURLUpdateAdd = 'http://3.210.67.101:5000/user/register';
+const baseURLUpdateAdd = 'https://evcarkmitl.com:5000/user/register';
 
 type MyEditData = {
     u_id: string;
@@ -332,7 +332,7 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
                 .then((response) => {
                     console.log(CTMID)
                     const resultDorpDownData = response.data.data?.filter((name: any) => {
-                        return name.ctm_id == CTMID;
+                        return name.ctm_name == "System";
                     });
                     setDorpDownData2(resultDorpDownData);
                     console.log(resultDorpDownData);
@@ -350,8 +350,14 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
                     // const resultDorpDownData = response.data.data?.filter((name: any) => {
                     //     return name.ctm_name == 'System';
                     // });
-                    setDorpDownData2(response.data.data);
+                    // setDorpDownData2(response.data.data);
                     // console.log(resultDorpDownData);
+                    console.log(CTMID)
+                    const resultDorpDownData = response.data.data?.filter((name: any) => {
+                        return name.ctm_name == "System";
+                    });
+                    setDorpDownData2(resultDorpDownData);
+                    console.log(resultDorpDownData);
                 })
                 .catch((err) => console.error(err));
         }
