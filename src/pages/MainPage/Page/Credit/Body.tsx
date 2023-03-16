@@ -112,7 +112,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         } else {
             axios
                 .post(baseURL, {
-                    ctm_id: '5',
+                    ctm_id: '',
                     u_id: '',
                     sdate: String(StartDate),
                     edate: String(EndDate),
