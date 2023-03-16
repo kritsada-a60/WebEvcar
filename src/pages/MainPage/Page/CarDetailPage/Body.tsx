@@ -172,7 +172,26 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         'เลขไมล์',
         'วันที่เริ่มใช้งาน',
         'MQTT CODE',
-        'สถานะรถ',
+        {
+            name: 'สถานะรถ',
+            options: {
+                sort: false,
+                filter: false,
+            }, 
+        },
+        {
+            name: 'สถานะรถ',
+            options: {
+                filter: true,
+                sort: false,
+                display: false,
+                customBodyRenderLite: (dataIndex: any, rowIndex: any) => {
+                    return (
+                        <div></div>
+                    )
+                }
+            }
+        },
         {
             name: '',
             options: {
@@ -266,7 +285,8 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                                         } else {
                                             return <p style={{ color: 'darkgreen', fontWeight: 'bold' }}>{item.c_status}</p>;
                                         }
-                                    }
+                                    },
+                                    item.c_status
                                 ];
                             })}
                             columns={Testcolumns}

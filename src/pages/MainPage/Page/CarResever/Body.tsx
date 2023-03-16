@@ -250,7 +250,26 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         'วันเวลาเริ่ม',
         'วันเวลาสิ้นสุด',
         'วันเวลายกเลิก',
-        'สถานะ',
+        {
+            name: 'สถานะรถ',
+            options: {
+                sort: false,
+                filter: false,
+            }, 
+        },
+        {
+            name: 'สถานะรถ',
+            options: {
+                filter: true,
+                sort: false,
+                display: false,
+                customBodyRenderLite: (dataIndex: any, rowIndex: any) => {
+                    return (
+                        <div></div>
+                    )
+                }
+            }
+        },
         {
             name: '',
             options: {
@@ -332,7 +351,8 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                                     item.cr_sdatetime,
                                     item.cr_edatetime,
                                     item.cr_cancel,
-                                    item.cr_active === '1' ? <div style={{ color: 'green' }}>ปกติ</div> : <div style={{ color: 'red' }}>ยกเลิก</div>
+                                    item.cr_active === '1' ? <div style={{ color: 'green' }}>ปกติ</div> : <div style={{ color: 'red' }}>ยกเลิก</div>,
+                                    item.cr_active
                                 ];
                             })}
                             columns={Testcolumns}

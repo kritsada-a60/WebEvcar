@@ -175,7 +175,52 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     /* Add Button */
 
-    const Testcolumns = ['วันเวลา', 'ชื่อกิจการ','ผู้รับกิโลวัตต์', 'ผู้เติมกิโลวัตต์', 'จำนวนกิโลวัตต์', 'ประเภทธุรกรรม'];
+
+
+
+
+    const Testcolumns = ['วันเวลา', 'ชื่อกิจการ','ผู้รับกิโลวัตต์', 'ผู้เติมกิโลวัตต์',
+    {
+        name: 'จำนวนกิโลวัตต์',
+        options: {
+            sort: false,
+            filter: false,
+        }, 
+    },
+    {
+        name: 'ประเภทธุรกรรม',
+        options: {
+            sort: false,
+            filter: false,
+        }, 
+    },
+    {
+        name: 'จำนวนกิโลวัตต์',
+        options: {
+            filter: true,
+            sort: false,
+            display: false,
+            customBodyRenderLite: (dataIndex: any, rowIndex: any) => {
+                return (
+                    <div></div>
+                )
+            }
+        }
+    },
+    {
+        name: 'ประเภทธุรกรรม',
+        options: {
+            filter: true,
+            sort: false,
+            display: false,
+            customBodyRenderLite: (dataIndex: any, rowIndex: any) => {
+                return (
+                    <div></div>
+                )
+            }
+        } 
+    }
+    ];
 
     const options = {
         // caseSensitive: true,
@@ -187,7 +232,9 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         print: true,
         selectableRowsHeader: false,
         selectableRowsHideCheckboxes: true
+
     };
+    
 
     const getMuiTheme = () =>
         createTheme({
@@ -200,7 +247,25 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                     }
                 }
             }
+            
         });
+
+    const getMuiTheme2 = () =>
+    createTheme({
+      components: {
+        MuiTableCell: {
+          styleOverrides:{ root: {
+            padding: '8px',
+            backgroundColor: '#CDCAC6',
+          }}
+        },
+        MuiToolbar: {
+          styleOverrides:{regular: {
+            minHeight: '8px',
+          }}
+        }
+      }
+    });
 
     const DateTime = () => {
         const showdate = new Date();
@@ -240,19 +305,18 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                                 return [item.cd, item.ctm_name,item.u_fullname, item.u_fullname_add, 
                                     () => {
                                         if (item.ut_type == 'W') {
-                                            return <p style={{ color: 'red' , fontWeight:'bold',fontSize:'2rem',margin:'0px 0vw 0px 0px',display:'flex',justifyContent:'center'}}>{item.ut_balance}</p>;
+                                            return <p style={{ color: 'red' , fontWeight:'bold',fontSize:'1.25rem',margin:'0px 0vw 0px 0px',display:'flex',justifyContent:'flex-start'}}>{item.ut_balance.toFixed(2)}</p>;
                                         } else {
-                                            return <p style={{ color: 'darkgreen' , fontWeight:'bold',fontSize:'2rem',margin:'0px 0vw 0px 0px',display:'flex',justifyContent:'center'}}>{item.ut_balance}</p>;
+                                            return <p style={{ color: 'darkgreen' , fontWeight:'bold',fontSize:'1.25rem',margin:'0px 0vw 0px 0px',display:'flex',justifyContent:'flex-start'}}>{item.ut_balance.toFixed(2)}</p>;
                                         }
                                     },
                                     () => {
                                         if (item.ut_type == 'W') {
-                                            return <p >ใช้</p>;
+                                            return <p >ใช้จ่าย</p>;
                                         } else {
                                             return <p >เติม</p>;
                                         }
-                                    }
-                                    
+                                    },item.ut_balance.toFixed(2)
                                 ];
                             })}
                             columns={Testcolumns}

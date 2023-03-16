@@ -404,7 +404,26 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         'กิโลวัตต์',
         // 'หน่วย',
         'MQTT_CODE',
-        'สถานะ',
+        {
+            name: 'สถานะ',
+            options: {
+                sort: false,
+                filter: false,
+            }, 
+        },
+        {
+            name: 'สถานะ',
+            options: {
+                filter: true,
+                sort: false,
+                display: false,
+                customBodyRenderLite: (dataIndex: any, rowIndex: any) => {
+                    return (
+                        <div></div>
+                    )
+                }
+            }
+        },
         // "ชื่อลูกค้า",
         // "ประเภทลูกค้า",
         // "เลขทะเบียนการค้า",
@@ -594,7 +613,8 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                                         } else {
                                             return <p style={{ color: 'darkgreen', fontWeight: 'bold' }}>{item.sv_status_txt}</p>;
                                         }
-                                    }
+                                    },
+                                    item.sv_status_txt
                                 ];
                             })}
                             // data={post3}

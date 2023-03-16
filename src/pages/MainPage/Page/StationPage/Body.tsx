@@ -188,7 +188,26 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         // 'ละติจูด',
         // 'ลองจิจูด',
         'รหัส MQTT',
-        'สถานะสถานี',
+        {
+            name: 'สถานะสถานี',
+            options: {
+                sort: false,
+                filter: false,
+            }, 
+        },
+        {
+            name: 'สถานะสถานี',
+            options: {
+                filter: true,
+                sort: false,
+                display: false,
+                customBodyRenderLite: (dataIndex: any, rowIndex: any) => {
+                    return (
+                        <div></div>
+                    )
+                }
+            }
+        },
         {
             name: '',
             options: {
@@ -294,7 +313,8 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                                         } else {
                                             return <p style={{ color: 'darkgreen', fontWeight: 'bold' }}>{item.ss_name}</p>;
                                         }
-                                    }
+                                    },
+                                    item.ss_name
                                 ];
                             })}
                             columns={Testcolumns}

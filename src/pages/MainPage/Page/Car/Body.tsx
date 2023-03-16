@@ -278,22 +278,43 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         //     // console.log(response.data.data.length)
         //     // setcount(response.data.data.length)
         //   })
-        axios
+        if (CTMID != '1') {
+            axios
             .post(baseURLUpdateDataTable2, {
                 ctm_id: CTMID
             })
             .then((response) => {
                 console.log(response.data);
                 setpost(response.data.data);
-                // console.log(post,"post data")
-
                 setDorpDownStaion2(response.data.data);
-                // console.log(DorpDownStaion,"post dorpdown")
-
-                // console.log(response.data.data,"start data")
-                // console.log(response.data.data.length)
-                // setcount(response.data.data.length)
             });
+        } else {
+            axios
+            .post(baseURLUpdateDataTable2, {
+                ctm_id: ""
+            })
+            .then((response) => {
+                console.log(response.data);
+                setpost(response.data.data);
+                setDorpDownStaion2(response.data.data);
+            });
+        }
+        // axios
+        //     .post(baseURLUpdateDataTable2, {
+        //         ctm_id: CTMID
+        //     })
+        //     .then((response) => {
+        //         console.log(response.data);
+        //         setpost(response.data.data);
+        //         // console.log(post,"post data")
+
+        //         setDorpDownStaion2(response.data.data);
+        //         // console.log(DorpDownStaion,"post dorpdown")
+
+        //         // console.log(response.data.data,"start data")
+        //         // console.log(response.data.data.length)
+        //         // setcount(response.data.data.length)
+        //     });
     }, []);
 
     const resultDorpDownData = DorpDownStaion.filter((member) => {

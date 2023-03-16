@@ -167,7 +167,28 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     const CarDetailPagedata = [['กข 231', 'อู่ 1', 'ตุ๊กตุ๊ก', 'ลิเธียม', '22/ก.ย./64', '40 กม./ชม.', '20', '22/ก.ย./64', 'ดี']];
 
-    const Testcolumns = ['ทะเบียนรถ', 'หัวชาร์จ', 'ประเภทแบตเตอรี่', 'ระดับแบตเตอรี่', 'อู่'];
+    const Testcolumns = ['ทะเบียนรถ', 'หัวชาร์จ', 'ประเภทแบตเตอรี่',
+    {
+            name: 'ระดับแบตเตอรี่',
+            options: {
+                sort: false,
+                filter: false,
+            }, 
+        },
+        {
+            name: 'ระดับแบตเตอรี่',
+            options: {
+                filter: true,
+                sort: false,
+                display: false,
+                customBodyRenderLite: (dataIndex: any, rowIndex: any) => {
+                    return (
+                        <div></div>
+                    )
+                }
+            }
+        },
+    'อู่'];
 
     const options = {
         // caseSensitive: true,
@@ -204,7 +225,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                         <MUIDataTable
                             title={'ข้อมูลรถ'}
                             data={post.map((item) => {
-                                return [item.c_license_plate, item.cgt_pt_name, item.bt_pt_name, <>{item.c_capacity} %</>, item.ctm_name];
+                                return [item.c_license_plate, item.cgt_pt_name, item.bt_pt_name, <>{item.c_capacity} %</>,item.c_capacity, item.ctm_name];
                             })}
                             columns={Testcolumns}
                             options={options}
