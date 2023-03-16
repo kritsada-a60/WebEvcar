@@ -237,7 +237,16 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                         <MUIDataTable
                             title={'เติมกิโลวัตต์'}
                             data={post.map((item) => {
-                                return [item.cd, item.ctm_name,item.u_fullname, item.u_fullname_add, item.ut_balance];
+                                return [item.cd, item.ctm_name,item.u_fullname, item.u_fullname_add, 
+                                    () => {
+                                        if (item.ut_type == 'W') {
+                                            return <p style={{ color: 'red'}}>{item.ut_balance}</p>;
+                                        } else {
+                                            return <p style={{ color: 'darkgreen'}}>{item.ut_balance}</p>;
+                                        }
+                                    }
+                                    
+                                ];
                             })}
                             columns={Testcolumns}
                             options={options}
