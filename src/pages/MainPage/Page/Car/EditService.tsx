@@ -378,7 +378,7 @@ const AddServicePage: React.FunctionComponent<ISAddServicePageProps> = (props) =
                     </div>
                     <div style={{ margin: '2.5vh 0', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <label>
-                            <p style={{ margin: '0vh 5vw', borderColor: 'black', width: '15vw', fontSize: '18px', fontWeight: 'bold' }}>ราคา</p>
+                            <p style={{ margin: '0vh 5vw', borderColor: 'black', width: '15vw', fontSize: '18px', fontWeight: 'bold' }}>กิโลวัตต์</p>
                             <TextField
                                 type="ut_name"
                                 name="ut_name"
