@@ -83,7 +83,7 @@ const AddCreditPage: React.FunctionComponent<ISAddCreditPageProps> = (props) => 
         // }
         
         axios.post(baseURL, {
-            ctm_id : CTMID
+            ctm_id : ''
         }).then((response) => {
             setDorpDownData(response.data.data);
             console.log(response.data.data);
