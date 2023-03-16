@@ -167,7 +167,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     const CarDetailPagedata = [['กข 231', 'อู่ 1', 'ตุ๊กตุ๊ก', 'ลิเธียม', '22/ก.ย./64', '40 กม./ชม.', '20', '22/ก.ย./64', 'ดี']];
 
-    const Testcolumns = ['ทะเบียนรถ', 'หัวชาร์จ', 'ประเภทแบตเตอรี่', 'ระดับแบตตารี่', 'อู่'];
+    const Testcolumns = ['ทะเบียนรถ', 'หัวชาร์จ', 'ประเภทแบตเตอรี่', 'ระดับแบตเตอรี่', 'อู่'];
 
     const options = {
         // caseSensitive: true,
