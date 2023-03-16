@@ -175,7 +175,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
 
     /* Add Button */
 
-    const Testcolumns = ['วันเวลา', 'ชื่อกิจการ','ผู้รับกิโลวัตต์', 'ผู้เติมกิโลวัตต์', 'จำนวนกิโลวัตต์'];
+    const Testcolumns = ['วันเวลา', 'ชื่อกิจการ','ผู้รับกิโลวัตต์', 'ผู้เติมกิโลวัตต์', 'จำนวนกิโลวัตต์', 'ประเภทธุรกรรม'];
 
     const options = {
         // caseSensitive: true,
@@ -184,7 +184,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
         viewColumns: false,
         searchOpen: false,
         download: false,
-        print: false,
+        print: true,
         selectableRowsHeader: false,
         selectableRowsHideCheckboxes: true
     };
@@ -240,9 +240,16 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                                 return [item.cd, item.ctm_name,item.u_fullname, item.u_fullname_add, 
                                     () => {
                                         if (item.ut_type == 'W') {
-                                            return <p style={{ color: 'red'}}>{item.ut_balance}</p>;
+                                            return <p style={{ color: 'red' , fontWeight:'bold',fontSize:'2rem',margin:'0px 0vw 0px 0px',display:'flex',justifyContent:'center'}}>{item.ut_balance}</p>;
                                         } else {
-                                            return <p style={{ color: 'darkgreen'}}>{item.ut_balance}</p>;
+                                            return <p style={{ color: 'darkgreen' , fontWeight:'bold',fontSize:'2rem',margin:'0px 0vw 0px 0px',display:'flex',justifyContent:'center'}}>{item.ut_balance}</p>;
+                                        }
+                                    },
+                                    () => {
+                                        if (item.ut_type == 'W') {
+                                            return <p >ใช้</p>;
+                                        } else {
+                                            return <p >เติม</p>;
                                         }
                                     }
                                     
