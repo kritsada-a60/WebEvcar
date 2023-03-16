@@ -331,8 +331,13 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
                 })
                 .then((response) => {
                     console.log(CTMID)
+                    console.log(response)
                     const resultDorpDownData = response.data.data?.filter((name: any) => {
-                        return name.ctm_name == "System";
+                        if (name.ctm_name == "System"){
+                            return name.ctm_name == "System";
+                        } else {
+                            return name.ctmt_id == Input1;
+                        }
                     });
                     setDorpDownData2(resultDorpDownData);
                     console.log(resultDorpDownData);
@@ -354,10 +359,15 @@ const AddUserDetailPage: React.FunctionComponent<ISAddUserDetailPageProps> = (pr
                     // console.log(resultDorpDownData);
                     console.log(CTMID)
                     const resultDorpDownData = response.data.data?.filter((name: any) => {
-                        return name.ctm_name == "System";
+                        if (name.ctm_name == "System"){
+                            return name.ctm_name == "System";
+                        } else {
+                            return name.ctmt_id == Input1;
+                        }
+                        
                     });
                     setDorpDownData2(resultDorpDownData);
-                    console.log(resultDorpDownData);
+                    console.log(response.data.data);
                 })
                 .catch((err) => console.error(err));
         }
