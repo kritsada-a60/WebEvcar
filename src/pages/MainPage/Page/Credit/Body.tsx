@@ -316,7 +316,9 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                                         } else {
                                             return <p >เติม</p>;
                                         }
-                                    },item.ut_balance.toFixed(2)
+                                    },item.ut_balance.toFixed(2),
+                                    item.ut_type
+
                                 ];
                             })}
                             columns={Testcolumns}
