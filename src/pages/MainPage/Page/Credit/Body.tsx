@@ -317,16 +317,7 @@ const BodyPage: React.FunctionComponent<IBodyPageProps> = (props) => {
                                             return <p >เติม</p>;
                                         }
                                     },item.ut_balance.toFixed(2),
-                                    
-                                                                        () => {
-                                        if (item.ut_type == 'W') {
-                                            return <p >ใช้จ่าย</p>;
-                                        } else {
-                                            return <p >เติม</p>;
-                                        }
-                                    },
-                                    
-
+                                    item.ut_type
                                 ];
                             })}
                             columns={Testcolumns}
