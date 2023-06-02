@@ -322,14 +322,14 @@ function Map() {
         }
     };
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            ReMarkerData();
-            // console.log("1234")
-        }, 20000);
-        return () => clearInterval(interval);
+    // useEffect(() => {
+    //     const interval = setInterval(() => {
+    //         ReMarkerData();
+    //         // console.log("1234")
+    //     }, 20000);
+    //     return () => clearInterval(interval);
 
-    }, []);
+    // }, []);
 
     // window.setTimeout( function() {
         
